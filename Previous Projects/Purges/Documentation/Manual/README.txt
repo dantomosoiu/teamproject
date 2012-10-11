@@ -1,0 +1,3 @@
+This folder contains information on running and using Purges. This is a minimal manual and does not cover installation or program dependencies, it assumes that you have a working version of Purges on your computer.
+
+The minimal manual is supplied in two versions. A postscript file, called Manual.ps, and a PDF file called Manual.pdf. You can use Adobe Acrobat Reader to view the PDF file and can get it from http://www.adobe.com.

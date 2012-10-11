@@ -1,0 +1,1 @@
+This folder contains the various 3D model versions of the environments used in this release of Purges. Viewers are supplied for each type of file format.
