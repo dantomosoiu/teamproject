@@ -1,0 +1,1231 @@
+
+<!-- saved from url=(0107)http://webcache.googleusercontent.com/search?q=cache:http://www.ibpsa.org/proceedings/BS2007/p826_final.pdf -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style type="text/css"></style></head><body bgcolor="#ffffff" vlink="blue" link="blue"><div style="background:#fff;border:1px solid #999;margin:-1px -1px 0;padding:0;"><div style="background:#ddd;border:1px solid #999;color:#000;font:13px arial,sans-serif;font-weight:normal;margin:12px;padding:8px;text-align:left">This is the html version of the file <a href="http://www.ibpsa.org/proceedings/BS2007/p826_final.pdf" style="text-decoration:underline;color:#00c">http://www.ibpsa.org/proceedings/BS2007/p826_final.pdf</a>.<br><b>Google</b> automatically generates html versions of documents as we crawl the web.</div></div><div style="position:relative">
+
+
+
+<meta name="CreationDate" content="D:20070824125024+08&#39;00&#39;">
+<meta name="Author" content="chuang">
+<meta name="Creator" content="PScript5.dll Version 5.2">
+<meta name="Producer" content="Acrobat Distiller 7.0 (Windows)">
+<meta name="ModDate" content="D:20070824125024+08&#39;00&#39;">
+<meta name="Title" content="Microsoft Word - p826_final.doc">
+<title>A NEW COMPOSITE FIRE EVACUATION (CFE) MODEL BASED ON HUMAN BEHAVIOR Chen Tao1, 2, Yang Rui1, 2, Sun Zhanhui1, 2, Weng Wenguo1, 2</title>
+
+<table border="0" width="100%"><tbody><tr><td bgcolor="eeeeee" align="right"><font face="arial,sans-serif"><a name="1"><b>Page 1</b></a></font></td></tr></tbody></table><font size="3" face="Times"><span style="font-size:11px;font-family:Times">
+<div style="position:absolute;top:230;left:340"><nobr>Proceedings: Building Simulation 2007</nobr></div>
+<div style="position:absolute;top:1369;left:428"><nobr>- 703 -</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:16px;font-family:Times">
+<div style="position:absolute;top:286;left:209"><nobr><b>A NEW COMPOSITE FIRE EVACUATION (CFE) MODEL</b></nobr></div>
+<div style="position:absolute;top:307;left:312"><nobr><b>BASED ON HUMAN BEHAVIOR</b></nobr></div>
+<div style="position:absolute;top:345;left:227"><nobr>Chen Tao<font style="font-size:9px">1, 2</font>, Yang Rui<font style="font-size:9px">1, 2</font>, Sun Zhanhui<font style="font-size:9px">1, 2</font>, Weng Wenguo<font style="font-size:9px">1, 2</font></nobr></div>
+<div style="position:absolute;top:366;left:321"><nobr>Email: chentao.a@tsinghua.edu.cn</nobr></div>
+</span></font>
+<font size="2" face="Times"><span style="font-size:9px;font-family:Times">
+<div style="position:absolute;top:405;left:152"><nobr>1 <font style="font-size:16px">Center for Public Safety Research, Tsinghua University, Beijing, 100084, China</font></nobr></div>
+<div style="position:absolute;top:426;left:146"><nobr>2 <font style="font-size:16px">Department of Engineering Physics, Tsinghua University, Beijing, 100084, China</font></nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:16px;font-family:Times">
+<div style="position:absolute;top:501;left:106"><nobr>ABSTRACT</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:13px;font-family:Times">
+<div style="position:absolute;top:531;left:106"><nobr>Occupant evacuation dynamics is a kind of many-</nobr></div>
+<div style="position:absolute;top:548;left:106"><nobr>body system of strongly interacting persons. A great</nobr></div>
+<div style="position:absolute;top:566;left:106"><nobr>deal of factors should be taken into account in the</nobr></div>
+<div style="position:absolute;top:583;left:106"><nobr>study of fire evacuation, such as human behavior, fire</nobr></div>
+<div style="position:absolute;top:601;left:106"><nobr>products and architecture. To describe human</nobr></div>
+<div style="position:absolute;top:619;left:106"><nobr>behavior, there are two different evacuation models,</nobr></div>
+<div style="position:absolute;top:636;left:106"><nobr>the social force model and the lattice-gas model.</nobr></div>
+<div style="position:absolute;top:654;left:106"><nobr>Considering the impact of fire product upon people's</nobr></div>
+<div style="position:absolute;top:671;left:106"><nobr>physiology and psychology, the CFE (Composite</nobr></div>
+<div style="position:absolute;top:689;left:106"><nobr>Fire Evacuation) model is presented in this paper,</nobr></div>
+<div style="position:absolute;top:706;left:106"><nobr>which includes three sub models: lattice-gas model,</nobr></div>
+<div style="position:absolute;top:724;left:106"><nobr>social force model and pre-movement time model.</nobr></div>
+<div style="position:absolute;top:741;left:106"><nobr>And a direction potential field concept is introduced</nobr></div>
+<div style="position:absolute;top:759;left:106"><nobr>in the CFE model to solve the moving directionality</nobr></div>
+<div style="position:absolute;top:776;left:106"><nobr>of people. In the end, the fire case of Yiyuan dancing</nobr></div>
+<div style="position:absolute;top:794;left:106"><nobr>hall in Fuxin is simulated by the CFE model and the</nobr></div>
+<div style="position:absolute;top:812;left:106"><nobr>lattice-gas model based on the human characteristics</nobr></div>
+<div style="position:absolute;top:829;left:106"><nobr>of China.</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:16px;font-family:Times">
+<div style="position:absolute;top:860;left:106"><nobr>KEYWORDS</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:13px;font-family:Times">
+<div style="position:absolute;top:890;left:106"><nobr>Evacuation Model, Fire, Human Behavior, Case</nobr></div>
+<div style="position:absolute;top:908;left:106"><nobr>Study</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:16px;font-family:Times">
+<div style="position:absolute;top:939;left:106"><nobr>INTRODUCTION</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:13px;font-family:Times">
+<div style="position:absolute;top:969;left:106"><nobr>In recent years, the study of performance-based fire</nobr></div>
+<div style="position:absolute;top:986;left:106"><nobr>protection design and fire risk assessment develops</nobr></div>
+<div style="position:absolute;top:1004;left:106"><nobr>rapidly in the world and it has been one of key issues</nobr></div>
+<div style="position:absolute;top:1021;left:106"><nobr>in the research field of fire safety. One of the most</nobr></div>
+<div style="position:absolute;top:1039;left:106"><nobr>important goals of these researches is to ensure the</nobr></div>
+<div style="position:absolute;top:1056;left:106"><nobr>safety of life. To realize the rational and optimal fire</nobr></div>
+<div style="position:absolute;top:1074;left:106"><nobr>protection design, proper calculation of the Required</nobr></div>
+<div style="position:absolute;top:1092;left:106"><nobr>Safe Egress Time (RSET) is required.</nobr></div>
+<div style="position:absolute;top:1118;left:106"><nobr>It is thought that evacuation and fire development go</nobr></div>
+<div style="position:absolute;top:1136;left:106"><nobr>irreversibly and synchronously along the same time-</nobr></div>
+<div style="position:absolute;top:1153;left:106"><nobr>line. The fire development can be divided into</nobr></div>
+<div style="position:absolute;top:1171;left:106"><nobr>several periods, such as breaking out, fire increasing,</nobr></div>
+<div style="position:absolute;top:1188;left:106"><nobr>stable burning, fire decay and fire extinguishing. For</nobr></div>
+<div style="position:absolute;top:1206;left:106"><nobr>human safety, the first two periods should be cared</nobr></div>
+<div style="position:absolute;top:1223;left:106"><nobr>about mainly. Generally, an evacuation will go</nobr></div>
+<div style="position:absolute;top:1241;left:106"><nobr>through the stages of perceiving a fire, preparing,</nobr></div>
+<div style="position:absolute;top:1259;left:106"><nobr>evacuating, reaching safe place, etc. During the</nobr></div>
+<div style="position:absolute;top:1276;left:106"><nobr>evacuation, there are two significant moments, the</nobr></div>
+<div style="position:absolute;top:1294;left:106"><nobr>fire detecting time and the time of fire endangering</nobr></div>
+<div style="position:absolute;top:1311;left:106"><nobr>human safety.</nobr></div>
+<div style="position:absolute;top:496;left:463"><nobr>The key to guarantee the human safety in building is</nobr></div>
+<div style="position:absolute;top:514;left:463"><nobr>that the RSET must be smaller than the Available</nobr></div>
+<div style="position:absolute;top:531;left:463"><nobr>Safe Egress Time (ASET, viz. the time period from</nobr></div>
+<div style="position:absolute;top:549;left:463"><nobr>fire breaking out to endangering human safety). The</nobr></div>
+<div style="position:absolute;top:567;left:463"><nobr>universal criterion of safe evacuation time-line is</nobr></div>
+<div style="position:absolute;top:584;left:463"><nobr>shown in Figure 1.</nobr></div>
+</span></font>
+<font size="2" face="Times"><span style="font-size:6px;font-family:Times">
+<div style="position:absolute;top:687;left:645"><nobr>moving time</nobr></div>
+<div style="position:absolute;top:662;left:523"><nobr>Required Safe Egress Time (RSET)</nobr></div>
+<div style="position:absolute;top:688;left:549"><nobr>pre-movement time</nobr></div>
+<div style="position:absolute;top:639;left:548"><nobr>Available Safe Egress Time (ASET)</nobr></div>
+<div style="position:absolute;top:726;left:497"><nobr>detect</nobr></div>
+<div style="position:absolute;top:726;left:530"><nobr>alarm</nobr></div>
+<div style="position:absolute;top:725;left:679"><nobr>finish evacuating</nobr></div>
+<div style="position:absolute;top:689;left:485"><nobr>alarm time</nobr></div>
+<div style="position:absolute;top:725;left:732"><nobr>building limitation</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:13px;font-family:Times">
+<div style="position:absolute;top:746;left:472"><nobr><i>Figure 1 Universal criterion of safe evacuation time-line</i></nobr></div>
+<div style="position:absolute;top:790;left:463"><nobr>The RSET means the time period from the moment</nobr></div>
+<div style="position:absolute;top:808;left:463"><nobr>of fire breaking out to the moment that all the people</nobr></div>
+<div style="position:absolute;top:826;left:463"><nobr>reach the safe area. The RSET includes the detecting</nobr></div>
+<div style="position:absolute;top:843;left:463"><nobr>and alarm time <i>t<font style="font-size:7px">alarm</font></i>, the pre-movement time tpre and</nobr></div>
+<div style="position:absolute;top:861;left:463"><nobr>the movement time <i>t<font style="font-size:7px">move</font></i>, where the <i>t<font style="font-size:7px">pre </font></i>consist of the</nobr></div>
+<div style="position:absolute;top:878;left:463"><nobr>recognition time <i>t<font style="font-size:7px">reg </font></i>and the response time <i>t<font style="font-size:7px">resp</font></i>,</nobr></div>
+<div style="position:absolute;top:896;left:463"><nobr>expressed as Eq. (1).</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:10px;font-family:Times">
+<div style="position:absolute;top:926;left:678"><nobr>(</nobr></div>
+<div style="position:absolute;top:926;left:727"><nobr>)</nobr></div>
+</span></font>
+<font size="2" face="Times"><span style="font-size:5px;font-family:Times">
+<div style="position:absolute;top:934;left:553"><nobr><i>alarm</i></nobr></div>
+<div style="position:absolute;top:934;left:588"><nobr><i>pre</i></nobr></div>
+<div style="position:absolute;top:934;left:614"><nobr><i>move</i></nobr></div>
+<div style="position:absolute;top:934;left:648"><nobr><i>alarm</i></nobr></div>
+<div style="position:absolute;top:934;left:686"><nobr><i>reg</i></nobr></div>
+<div style="position:absolute;top:934;left:713"><nobr><i>resp</i></nobr></div>
+<div style="position:absolute;top:934;left:746"><nobr><i>move</i></nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:10px;font-family:Times">
+<div style="position:absolute;top:926;left:506"><nobr><i>RSET t</i></nobr></div>
+<div style="position:absolute;top:926;left:583"><nobr><i>t</i></nobr></div>
+<div style="position:absolute;top:926;left:610"><nobr><i>t</i></nobr></div>
+<div style="position:absolute;top:926;left:644"><nobr><i>t</i></nobr></div>
+<div style="position:absolute;top:926;left:682"><nobr><i>t</i></nobr></div>
+<div style="position:absolute;top:926;left:709"><nobr><i>t</i></nobr></div>
+<div style="position:absolute;top:926;left:743"><nobr><i>t</i></nobr></div>
+<div style="position:absolute;top:925;left:539"><nobr>=</nobr></div>
+<div style="position:absolute;top:925;left:574"><nobr>+</nobr></div>
+<div style="position:absolute;top:925;left:601"><nobr>+</nobr></div>
+<div style="position:absolute;top:925;left:634"><nobr>=</nobr></div>
+<div style="position:absolute;top:925;left:669"><nobr>+</nobr></div>
+<div style="position:absolute;top:925;left:700"><nobr>+</nobr></div>
+<div style="position:absolute;top:925;left:734"><nobr>+</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:13px;font-family:Times">
+<div style="position:absolute;top:922;left:769"><nobr>(1)</nobr></div>
+<div style="position:absolute;top:954;left:463"><nobr>The <i>t<font style="font-size:7px">alarm </font></i>can be estimated by the smoke spreading</nobr></div>
+<div style="position:absolute;top:972;left:463"><nobr>simulation and the characteristic of detection system,</nobr></div>
+<div style="position:absolute;top:990;left:463"><nobr>the <i>t<font style="font-size:7px">pre </font></i>is generally acquired from statistics, and the</nobr></div>
+<div style="position:absolute;top:1007;left:463"><nobr><i>t<font style="font-size:7px">move </font></i>can be predicted by the simple empirical formula</nobr></div>
+<div style="position:absolute;top:1025;left:463"><nobr>or the evacuation model which mainly depends on</nobr></div>
+<div style="position:absolute;top:1042;left:463"><nobr>crowd density, walking speed, width of exits, etc.</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:16px;font-family:Times">
+<div style="position:absolute;top:1073;left:463"><nobr>CFE MODEL</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:13px;font-family:Times">
+<div style="position:absolute;top:1103;left:463"><nobr>According to the representation methods of the</nobr></div>
+<div style="position:absolute;top:1121;left:463"><nobr>enclosure (Gwynne et al. 1999), models can roughly</nobr></div>
+<div style="position:absolute;top:1138;left:463"><nobr>be classified as coarse network models, fine net</nobr></div>
+<div style="position:absolute;top:1156;left:463"><nobr>models or continuity models. In the coarse network</nobr></div>
+<div style="position:absolute;top:1173;left:463"><nobr>model, each node may represent a room or corridor</nobr></div>
+<div style="position:absolute;top:1191;left:463"><nobr>irrespective of its physical size. Nodes are connected</nobr></div>
+<div style="position:absolute;top:1208;left:463"><nobr>by arcs representing actual connectivity (such as door,</nobr></div>
+<div style="position:absolute;top:1226;left:463"><nobr>exit) within the structure. This model presents</nobr></div>
+<div style="position:absolute;top:1244;left:463"><nobr>difficulties when incorporating local movement and</nobr></div>
+<div style="position:absolute;top:1261;left:463"><nobr>navigation including overtaking, the resolution of</nobr></div>
+<div style="position:absolute;top:1279;left:463"><nobr>local conflicts, and obstacle avoidance. Using the</nobr></div>
+<div style="position:absolute;top:1296;left:463"><nobr>fine net approach the entire floor space of the</nobr></div>
+<div style="position:absolute;top:1314;left:463"><nobr>enclosure is usually covered in a collection of tiles or </nobr></div>
+</span></font>
+
+<div style="position:absolute;top:1438;left:0"><hr><table border="0" width="100%"><tbody><tr><td bgcolor="eeeeee" align="right"><font face="arial,sans-serif"><a name="2"><b>Page 2</b></a></font></td></tr></tbody></table></div><font size="3" face="Times"><span style="font-size:11px;font-family:Times">
+<div style="position:absolute;top:1493;left:340"><nobr>Proceedings: Building Simulation 2007</nobr></div>
+<div style="position:absolute;top:2632;left:428"><nobr>- 704 -</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:13px;font-family:Times">
+<div style="position:absolute;top:1545;left:106"><nobr>nodes. It can show geometry form of the floor space,</nobr></div>
+<div style="position:absolute;top:1563;left:106"><nobr>position of the inside barrier and people’s accurate</nobr></div>
+<div style="position:absolute;top:1580;left:106"><nobr>position, but it is difficult to simulate the crowded</nobr></div>
+<div style="position:absolute;top:1598;left:106"><nobr>situation. Based on the systematic frame of multi-</nobr></div>
+<div style="position:absolute;top:1615;left:106"><nobr>particles and self-driven, the continuity model (also</nobr></div>
+<div style="position:absolute;top:1633;left:106"><nobr>called social force model) uses mechanics equations</nobr></div>
+<div style="position:absolute;top:1650;left:106"><nobr>to simulate crowd dynamics. The individual has the</nobr></div>
+<div style="position:absolute;top:1668;left:106"><nobr>ability of independent movement and making a</nobr></div>
+<div style="position:absolute;top:1686;left:106"><nobr>response to surrounding environment in this model.</nobr></div>
+<div style="position:absolute;top:1703;left:106"><nobr>This simulation can subtly realize pushing, panic and</nobr></div>
+<div style="position:absolute;top:1721;left:106"><nobr>visual range (Helbing et al. 2000) at great cost of</nobr></div>
+<div style="position:absolute;top:1738;left:106"><nobr>computing time, which will result in low</nobr></div>
+<div style="position:absolute;top:1756;left:106"><nobr>computational efficiency.</nobr></div>
+<div style="position:absolute;top:1782;left:106"><nobr>Based on the human behavior characteristic of people</nobr></div>
+<div style="position:absolute;top:1800;left:106"><nobr>in China, CFE (Composite Fire Evacuation) model</nobr></div>
+<div style="position:absolute;top:1817;left:106"><nobr>has been described in this paper, which includes three</nobr></div>
+<div style="position:absolute;top:1835;left:106"><nobr>sub models: lattice-gas model, social force model and</nobr></div>
+<div style="position:absolute;top:1852;left:106"><nobr>pre-movement time model. The impact of fire</nobr></div>
+<div style="position:absolute;top:1870;left:106"><nobr>products upon people's physiology and psychology</nobr></div>
+<div style="position:absolute;top:1888;left:106"><nobr>has also been considered in this model. The CFE</nobr></div>
+<div style="position:absolute;top:1905;left:106"><nobr>model comprehends the advantage of the lattice-gas</nobr></div>
+<div style="position:absolute;top:1923;left:106"><nobr>model which is high computational efficiency, and</nobr></div>
+<div style="position:absolute;top:1940;left:106"><nobr>the social force model, which is fine simulation of</nobr></div>
+<div style="position:absolute;top:1958;left:106"><nobr>crowd dynamics. It adopts the lattice-gas approach in</nobr></div>
+<div style="position:absolute;top:1975;left:106"><nobr>low crowd density areas and uses the social force</nobr></div>
+<div style="position:absolute;top:1993;left:106"><nobr>model to simulate the panic and crowded behavior in</nobr></div>
+<div style="position:absolute;top:2010;left:106"><nobr>high crowd density areas.</nobr></div>
+<div style="position:absolute;top:2045;left:106"><nobr><b>Lattice-gas sub-model</b></nobr></div>
+<div style="position:absolute;top:2068;left:106"><nobr>Traditional lattice-gas model is a kind of discrete</nobr></div>
+<div style="position:absolute;top:2086;left:106"><nobr>non-linear kinetics system based on the fluid</nobr></div>
+<div style="position:absolute;top:2103;left:106"><nobr>molecular kinetic theory (Li et al. 1994), and it is the</nobr></div>
+<div style="position:absolute;top:2121;left:106"><nobr>embodiment and application of cellular automaton in</nobr></div>
+<div style="position:absolute;top:2138;left:106"><nobr>statistical physics and fluid mechanics. In a</nobr></div>
+<div style="position:absolute;top:2156;left:106"><nobr>microscopic scale, the model describes a large</nobr></div>
+<div style="position:absolute;top:2173;left:106"><nobr>number of particles with the same quality moving</nobr></div>
+<div style="position:absolute;top:2191;left:106"><nobr>and interacting in the regular discrete nets following</nobr></div>
+<div style="position:absolute;top:2209;left:106"><nobr>a certain collision rule, and it will simulate the</nobr></div>
+<div style="position:absolute;top:2226;left:106"><nobr>complicated physical phenomenon in the</nobr></div>
+<div style="position:absolute;top:2244;left:106"><nobr>macroscopic scale. In a word, it is a physical model</nobr></div>
+<div style="position:absolute;top:2261;left:106"><nobr>with discrete time, space and target.</nobr></div>
+<div style="position:absolute;top:2288;left:106"><nobr>Each human individual have a certain body size</nobr></div>
+<div style="position:absolute;top:2305;left:106"><nobr>which can be expressed by the area of people’s</nobr></div>
+<div style="position:absolute;top:2323;left:106"><nobr>horizontal projection. In this model, the size of lattice</nobr></div>
+<div style="position:absolute;top:2340;left:106"><nobr>is fixed through the area of people’s horizontal</nobr></div>
+<div style="position:absolute;top:2358;left:106"><nobr>projection and the statistics value of shoulder width.</nobr></div>
+<div style="position:absolute;top:2375;left:106"><nobr>It is indicated that the average area of pedestrian</nobr></div>
+<div style="position:absolute;top:2393;left:106"><nobr>horizontal projection is 0.113m<font style="font-size:7px">2</font></nobr></div>
+<div style="position:absolute;top:2393;left:361"><nobr>in Russia</nobr></div>
+<div style="position:absolute;top:2411;left:106"><nobr>(Predtechenskii et al. 1971), 0.1458-0.1862m<font style="font-size:7px">2 </font>in</nobr></div>
+<div style="position:absolute;top:2428;left:106"><nobr>Austria (Kendik 1985) and 0.12-0.19m<font style="font-size:7px">2 </font>in Germany</nobr></div>
+<div style="position:absolute;top:2446;left:106"><nobr>(Schneider 2001). According to "Chinese adult's</nobr></div>
+<div style="position:absolute;top:2463;left:106"><nobr>physique determines standard", the statistical</nobr></div>
+<div style="position:absolute;top:2481;left:106"><nobr>averages of adult's height and weight are shown in</nobr></div>
+<div style="position:absolute;top:2498;left:106"><nobr>Table 1 (Yu 1997). About the proportionate</nobr></div>
+<div style="position:absolute;top:2516;left:106"><nobr>relationship of the human body, it is indicated that</nobr></div>
+<div style="position:absolute;top:2533;left:106"><nobr>the shoulder width is 1/4 of the height. So, the</nobr></div>
+<div style="position:absolute;top:2551;left:106"><nobr>average shoulder width of Chinese can be calculated,</nobr></div>
+<div style="position:absolute;top:2569;left:106"><nobr>shown in Table 1. According to the above statement,</nobr></div>
+<div style="position:absolute;top:1545;left:463"><nobr>each grid of the lattice is set as 0.5m×0.5m. The grid</nobr></div>
+<div style="position:absolute;top:1563;left:463"><nobr>area is 0.25m<font style="font-size:7px">2 </font>which is sufficient to contain one</nobr></div>
+<div style="position:absolute;top:1580;left:463"><nobr>person.</nobr></div>
+<div style="position:absolute;top:1607;left:483"><nobr><i>Table 1 Mean values of Chinese adult's height,</i></nobr></div>
+<div style="position:absolute;top:1624;left:544"><nobr><i>weight and shoulder width</i></nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:11px;font-family:Times">
+<div style="position:absolute;top:1650;left:482"><nobr><b>Age bracket</b></nobr></div>
+<div style="position:absolute;top:1647;left:571"><nobr>18-20 21-25 26-30 31-35 36-40</nobr></div>
+<div style="position:absolute;top:1666;left:547"><nobr>M 169.9 170.2 170.1 169.8 169.6</nobr></div>
+<div style="position:absolute;top:1669;left:485"><nobr><b>Height</b></nobr></div>
+<div style="position:absolute;top:1685;left:492"><nobr><b>(cm)</b></nobr></div>
+<div style="position:absolute;top:1685;left:549"><nobr>F 158.8 159.2 159.4 159.0 158.9</nobr></div>
+<div style="position:absolute;top:1704;left:547"><nobr>M 59.2</nobr></div>
+<div style="position:absolute;top:1704;left:618"><nobr>61.2 63.2 64.6 65.7</nobr></div>
+<div style="position:absolute;top:1707;left:484"><nobr><b>Weight</b></nobr></div>
+<div style="position:absolute;top:1723;left:493"><nobr><b>(kg)</b></nobr></div>
+<div style="position:absolute;top:1723;left:549"><nobr>F</nobr></div>
+<div style="position:absolute;top:1723;left:575"><nobr>51.1</nobr></div>
+<div style="position:absolute;top:1723;left:618"><nobr>51.3 53.5 54.9 56.5</nobr></div>
+<div style="position:absolute;top:1741;left:547"><nobr>M 42.5</nobr></div>
+<div style="position:absolute;top:1741;left:618"><nobr>42.6 42.5 42.5 42.4</nobr></div>
+<div style="position:absolute;top:1744;left:479"><nobr><b>Shoulder</b></nobr></div>
+<div style="position:absolute;top:1760;left:473"><nobr><b>width (cm) </b>F</nobr></div>
+<div style="position:absolute;top:1760;left:575"><nobr>39.7</nobr></div>
+<div style="position:absolute;top:1760;left:618"><nobr>39.8 39.9 39.8 39.7</nobr></div>
+<div style="position:absolute;top:1782;left:482"><nobr><b>Age bracket</b></nobr></div>
+<div style="position:absolute;top:1779;left:571"><nobr>41-45 46-50 51-55 56-60</nobr></div>
+<div style="position:absolute;top:1798;left:547"><nobr>M 168.9 167.8 167.8 167.6</nobr></div>
+<div style="position:absolute;top:1801;left:485"><nobr><b>Height</b></nobr></div>
+<div style="position:absolute;top:1817;left:492"><nobr><b>(cm)</b></nobr></div>
+<div style="position:absolute;top:1817;left:549"><nobr>F 158.2 157.7 157.4</nobr></div>
+<div style="position:absolute;top:1836;left:547"><nobr>M 66.2</nobr></div>
+<div style="position:absolute;top:1836;left:618"><nobr>66.0 66.2 66.3</nobr></div>
+<div style="position:absolute;top:1839;left:484"><nobr><b>Weight</b></nobr></div>
+<div style="position:absolute;top:1855;left:493"><nobr><b>(kg)</b></nobr></div>
+<div style="position:absolute;top:1855;left:549"><nobr>F</nobr></div>
+<div style="position:absolute;top:1855;left:575"><nobr>58.1</nobr></div>
+<div style="position:absolute;top:1855;left:618"><nobr>58.8 58.5</nobr></div>
+<div style="position:absolute;top:1874;left:547"><nobr>M 42.2</nobr></div>
+<div style="position:absolute;top:1874;left:618"><nobr>42.0 42.0 41.9</nobr></div>
+<div style="position:absolute;top:1877;left:479"><nobr><b>Shoulder</b></nobr></div>
+<div style="position:absolute;top:1893;left:473"><nobr><b>width (cm) </b>F</nobr></div>
+<div style="position:absolute;top:1893;left:575"><nobr>39.6</nobr></div>
+<div style="position:absolute;top:1893;left:618"><nobr>39.4 39.4</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:13px;font-family:Times">
+<div style="position:absolute;top:1934;left:463"><nobr>Except for certain quality and body size, a human</nobr></div>
+<div style="position:absolute;top:1951;left:463"><nobr>individual is a special particle with ideology.</nobr></div>
+<div style="position:absolute;top:1969;left:463"><nobr>Especially in fire emergency, people’s actions have</nobr></div>
+<div style="position:absolute;top:1986;left:463"><nobr>obvious directionality, viz. fleeing from the</nobr></div>
+<div style="position:absolute;top:2004;left:463"><nobr>hazardous area and evacuating to the safe zone or</nobr></div>
+<div style="position:absolute;top:2021;left:463"><nobr>outdoors. The traditional collision rule based on</nobr></div>
+<div style="position:absolute;top:2039;left:463"><nobr>momentum conservation can not describe people’s</nobr></div>
+<div style="position:absolute;top:2057;left:463"><nobr>action characteristics accurately. To solve the moving</nobr></div>
+<div style="position:absolute;top:2074;left:463"><nobr>directionality of people, the lattice-gas model in this</nobr></div>
+<div style="position:absolute;top:2092;left:463"><nobr>paper introduces a direction potential field concept. It</nobr></div>
+<div style="position:absolute;top:2109;left:463"><nobr>means that each lattice has a direction potential. The</nobr></div>
+<div style="position:absolute;top:2127;left:463"><nobr>individual in the CFE model will move from the</nobr></div>
+<div style="position:absolute;top:2144;left:463"><nobr>lattice with higher potential to that with lower</nobr></div>
+<div style="position:absolute;top:2162;left:463"><nobr>potential.</nobr></div>
+<div style="position:absolute;top:2188;left:463"><nobr>The direction potential field can not only express the</nobr></div>
+<div style="position:absolute;top:2206;left:463"><nobr>relative distance to the exit but also reflect familiar</nobr></div>
+<div style="position:absolute;top:2224;left:463"><nobr>degree of evacuee to the structure of the building, the</nobr></div>
+<div style="position:absolute;top:2241;left:463"><nobr>escape route and the safety exit. It can even show the</nobr></div>
+<div style="position:absolute;top:2259;left:463"><nobr>trend of far away from dangerous area. Figure 2</nobr></div>
+<div style="position:absolute;top:2276;left:463"><nobr>gives a demonstration of net dividing and direction</nobr></div>
+<div style="position:absolute;top:2294;left:463"><nobr>potential field initializing for the 5m×5m square</nobr></div>
+<div style="position:absolute;top:2311;left:463"><nobr>room with two exits. Figure 2(a) is the sketch map of</nobr></div>
+<div style="position:absolute;top:2329;left:463"><nobr>net dividing, position of exits and fire point. In</nobr></div>
+<div style="position:absolute;top:2346;left:463"><nobr>Figure 2(b), only relative distance to the exit is</nobr></div>
+<div style="position:absolute;top:2364;left:463"><nobr>considered in the direction potential field. The</nobr></div>
+<div style="position:absolute;top:2382;left:463"><nobr>direction tendencies of exit 1 and 2 are set as 0, and</nobr></div>
+<div style="position:absolute;top:2399;left:463"><nobr>the highest direction potential is 9 in this room.</nobr></div>
+<div style="position:absolute;top:2417;left:463"><nobr>Figure 2(c) shows different familiar degree of</nobr></div>
+<div style="position:absolute;top:2434;left:463"><nobr>evacuee to different exits, which results in the change</nobr></div>
+<div style="position:absolute;top:2452;left:463"><nobr>of direction potential field. Here, the direction</nobr></div>
+<div style="position:absolute;top:2469;left:463"><nobr>potential of exit 1 is 0 and that of exit 2 is 5, which</nobr></div>
+<div style="position:absolute;top:2487;left:463"><nobr>means exit 1 is in common use. And the highest</nobr></div>
+<div style="position:absolute;top:2504;left:463"><nobr>value of direction potential has changed into 11. The</nobr></div>
+<div style="position:absolute;top:2522;left:463"><nobr>influence of fire region is expressed by Figure 2(d).</nobr></div>
+<div style="position:absolute;top:2539;left:463"><nobr>The direction potential of fire region in the CFE</nobr></div>
+<div style="position:absolute;top:2557;left:463"><nobr>model is usually set as the highest value, which </nobr></div>
+</span></font>
+
+<div style="position:absolute;top:2701;left:0"><hr><table border="0" width="100%"><tbody><tr><td bgcolor="eeeeee" align="right"><font face="arial,sans-serif"><a name="3"><b>Page 3</b></a></font></td></tr></tbody></table></div><font size="3" face="Times"><span style="font-size:11px;font-family:Times">
+<div style="position:absolute;top:2756;left:340"><nobr>Proceedings: Building Simulation 2007</nobr></div>
+<div style="position:absolute;top:3895;left:428"><nobr>- 705 -</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:13px;font-family:Times">
+<div style="position:absolute;top:2808;left:106"><nobr>represents the tendency of keeping away from</nobr></div>
+<div style="position:absolute;top:2826;left:106"><nobr>hazardous area.</nobr></div>
+</span></font>
+<font size="2" face="Times"><span style="font-size:4px;font-family:Times">
+<div style="position:absolute;top:3007;left:128"><nobr>1</nobr></div>
+<div style="position:absolute;top:3007;left:141"><nobr>2</nobr></div>
+<div style="position:absolute;top:3007;left:153"><nobr>3</nobr></div>
+<div style="position:absolute;top:3007;left:166"><nobr>4</nobr></div>
+<div style="position:absolute;top:3007;left:178"><nobr>5</nobr></div>
+<div style="position:absolute;top:3007;left:191"><nobr>6</nobr></div>
+<div style="position:absolute;top:3007;left:204"><nobr>7</nobr></div>
+<div style="position:absolute;top:3007;left:216"><nobr>8</nobr></div>
+<div style="position:absolute;top:3007;left:229"><nobr>9</nobr></div>
+<div style="position:absolute;top:3007;left:240"><nobr>10</nobr></div>
+<div style="position:absolute;top:2994;left:118"><nobr>1</nobr></div>
+<div style="position:absolute;top:2981;left:118"><nobr>2</nobr></div>
+<div style="position:absolute;top:2968;left:118"><nobr>3</nobr></div>
+<div style="position:absolute;top:2955;left:118"><nobr>4</nobr></div>
+<div style="position:absolute;top:2942;left:118"><nobr>5</nobr></div>
+<div style="position:absolute;top:2929;left:118"><nobr>6</nobr></div>
+<div style="position:absolute;top:2916;left:118"><nobr>7</nobr></div>
+<div style="position:absolute;top:2904;left:118"><nobr>8</nobr></div>
+<div style="position:absolute;top:2891;left:118"><nobr>9</nobr></div>
+<div style="position:absolute;top:2878;left:116"><nobr>10</nobr></div>
+</span></font>
+<font size="2" face="Times"><span style="font-size:6px;font-family:Times">
+<div style="position:absolute;top:2903;left:153"><nobr>Fire</nobr></div>
+<div style="position:absolute;top:2912;left:149"><nobr>region</nobr></div>
+<div style="position:absolute;top:2995;left:190"><nobr>Exit2</nobr></div>
+<div style="position:absolute;top:2873;left:139"><nobr>Exit1</nobr></div>
+<div style="position:absolute;top:3013;left:184"><nobr>(a)</nobr></div>
+<div style="position:absolute;top:3013;left:337"><nobr>(b)</nobr></div>
+<div style="position:absolute;top:3147;left:176"><nobr>(c)</nobr></div>
+<div style="position:absolute;top:3147;left:337"><nobr>(d)</nobr></div>
+</span></font>
+<font size="2" face="Times"><span style="font-size:4px;font-family:Times">
+<div style="position:absolute;top:3141;left:120"><nobr>1</nobr></div>
+<div style="position:absolute;top:3141;left:132"><nobr>2</nobr></div>
+<div style="position:absolute;top:3141;left:145"><nobr>3</nobr></div>
+<div style="position:absolute;top:3141;left:158"><nobr>4</nobr></div>
+<div style="position:absolute;top:3141;left:171"><nobr>5</nobr></div>
+<div style="position:absolute;top:3141;left:184"><nobr>6</nobr></div>
+<div style="position:absolute;top:3141;left:196"><nobr>7</nobr></div>
+<div style="position:absolute;top:3141;left:209"><nobr>8</nobr></div>
+<div style="position:absolute;top:3141;left:222"><nobr>9</nobr></div>
+<div style="position:absolute;top:3141;left:234"><nobr>10</nobr></div>
+<div style="position:absolute;top:3135;left:114"><nobr>1</nobr></div>
+<div style="position:absolute;top:3122;left:114"><nobr>2</nobr></div>
+<div style="position:absolute;top:3109;left:114"><nobr>3</nobr></div>
+<div style="position:absolute;top:3097;left:114"><nobr>4</nobr></div>
+<div style="position:absolute;top:3084;left:114"><nobr>5</nobr></div>
+<div style="position:absolute;top:3071;left:114"><nobr>6</nobr></div>
+<div style="position:absolute;top:3058;left:114"><nobr>7</nobr></div>
+<div style="position:absolute;top:3045;left:114"><nobr>8</nobr></div>
+<div style="position:absolute;top:3032;left:114"><nobr>9</nobr></div>
+<div style="position:absolute;top:3020;left:112"><nobr>10</nobr></div>
+<div style="position:absolute;top:3123;left:250"><nobr>0</nobr></div>
+<div style="position:absolute;top:3115;left:250"><nobr>1.000</nobr></div>
+<div style="position:absolute;top:3108;left:250"><nobr>2.000</nobr></div>
+<div style="position:absolute;top:3100;left:250"><nobr>3.000</nobr></div>
+<div style="position:absolute;top:3093;left:250"><nobr>4.000</nobr></div>
+<div style="position:absolute;top:3085;left:250"><nobr>5.000</nobr></div>
+<div style="position:absolute;top:3077;left:250"><nobr>6.000</nobr></div>
+<div style="position:absolute;top:3070;left:250"><nobr>7.000</nobr></div>
+<div style="position:absolute;top:3062;left:250"><nobr>8.000</nobr></div>
+<div style="position:absolute;top:3055;left:250"><nobr>9.000</nobr></div>
+<div style="position:absolute;top:3047;left:250"><nobr>10.00</nobr></div>
+<div style="position:absolute;top:3040;left:250"><nobr>11.00</nobr></div>
+<div style="position:absolute;top:3032;left:250"><nobr>12.00</nobr></div>
+<div style="position:absolute;top:3142;left:284"><nobr>1</nobr></div>
+<div style="position:absolute;top:3142;left:297"><nobr>2</nobr></div>
+<div style="position:absolute;top:3142;left:310"><nobr>3</nobr></div>
+<div style="position:absolute;top:3142;left:323"><nobr>4</nobr></div>
+<div style="position:absolute;top:3142;left:336"><nobr>5</nobr></div>
+<div style="position:absolute;top:3142;left:349"><nobr>6</nobr></div>
+<div style="position:absolute;top:3142;left:362"><nobr>7</nobr></div>
+<div style="position:absolute;top:3142;left:375"><nobr>8</nobr></div>
+<div style="position:absolute;top:3142;left:388"><nobr>9</nobr></div>
+<div style="position:absolute;top:3142;left:399"><nobr>10</nobr></div>
+<div style="position:absolute;top:3136;left:279"><nobr>1</nobr></div>
+<div style="position:absolute;top:3123;left:279"><nobr>2</nobr></div>
+<div style="position:absolute;top:3110;left:279"><nobr>3</nobr></div>
+<div style="position:absolute;top:3097;left:279"><nobr>4</nobr></div>
+<div style="position:absolute;top:3084;left:279"><nobr>5</nobr></div>
+<div style="position:absolute;top:3071;left:279"><nobr>6</nobr></div>
+<div style="position:absolute;top:3058;left:279"><nobr>7</nobr></div>
+<div style="position:absolute;top:3046;left:279"><nobr>8</nobr></div>
+<div style="position:absolute;top:3033;left:279"><nobr>9</nobr></div>
+<div style="position:absolute;top:3020;left:276"><nobr>10</nobr></div>
+<div style="position:absolute;top:3120;left:416"><nobr>0</nobr></div>
+<div style="position:absolute;top:3113;left:416"><nobr>1.000</nobr></div>
+<div style="position:absolute;top:3105;left:416"><nobr>2.000</nobr></div>
+<div style="position:absolute;top:3098;left:416"><nobr>3.000</nobr></div>
+<div style="position:absolute;top:3091;left:416"><nobr>4.000</nobr></div>
+<div style="position:absolute;top:3084;left:416"><nobr>5.000</nobr></div>
+<div style="position:absolute;top:3076;left:416"><nobr>6.000</nobr></div>
+<div style="position:absolute;top:3069;left:416"><nobr>7.000</nobr></div>
+<div style="position:absolute;top:3062;left:416"><nobr>8.000</nobr></div>
+<div style="position:absolute;top:3054;left:416"><nobr>9.000</nobr></div>
+<div style="position:absolute;top:3047;left:416"><nobr>10.00</nobr></div>
+<div style="position:absolute;top:3040;left:416"><nobr>11.00</nobr></div>
+<div style="position:absolute;top:3032;left:416"><nobr>12.00</nobr></div>
+<div style="position:absolute;top:3002;left:282"><nobr>1</nobr></div>
+<div style="position:absolute;top:3002;left:295"><nobr>2</nobr></div>
+<div style="position:absolute;top:3002;left:308"><nobr>3</nobr></div>
+<div style="position:absolute;top:3002;left:321"><nobr>4</nobr></div>
+<div style="position:absolute;top:3002;left:334"><nobr>5</nobr></div>
+<div style="position:absolute;top:3002;left:347"><nobr>6</nobr></div>
+<div style="position:absolute;top:3002;left:360"><nobr>7</nobr></div>
+<div style="position:absolute;top:3002;left:373"><nobr>8</nobr></div>
+<div style="position:absolute;top:3002;left:386"><nobr>9</nobr></div>
+<div style="position:absolute;top:3002;left:398"><nobr>10</nobr></div>
+<div style="position:absolute;top:2995;left:277"><nobr>1</nobr></div>
+<div style="position:absolute;top:2982;left:277"><nobr>2</nobr></div>
+<div style="position:absolute;top:2969;left:277"><nobr>3</nobr></div>
+<div style="position:absolute;top:2956;left:277"><nobr>4</nobr></div>
+<div style="position:absolute;top:2943;left:277"><nobr>5</nobr></div>
+<div style="position:absolute;top:2930;left:277"><nobr>6</nobr></div>
+<div style="position:absolute;top:2917;left:277"><nobr>7</nobr></div>
+<div style="position:absolute;top:2904;left:277"><nobr>8</nobr></div>
+<div style="position:absolute;top:2891;left:277"><nobr>9</nobr></div>
+<div style="position:absolute;top:2878;left:274"><nobr>10</nobr></div>
+<div style="position:absolute;top:2955;left:273"><nobr>Y</nobr></div>
+<div style="position:absolute;top:2950;left:273"><nobr>Ax</nobr></div>
+<div style="position:absolute;top:2943;left:273"><nobr>is</nobr></div>
+<div style="position:absolute;top:2937;left:273"><nobr>Title</nobr></div>
+<div style="position:absolute;top:2981;left:415"><nobr>0</nobr></div>
+<div style="position:absolute;top:2972;left:415"><nobr>1.000</nobr></div>
+<div style="position:absolute;top:2963;left:415"><nobr>2.000</nobr></div>
+<div style="position:absolute;top:2954;left:415"><nobr>3.000</nobr></div>
+<div style="position:absolute;top:2945;left:415"><nobr>4.000</nobr></div>
+<div style="position:absolute;top:2936;left:415"><nobr>5.000</nobr></div>
+<div style="position:absolute;top:2927;left:415"><nobr>6.000</nobr></div>
+<div style="position:absolute;top:2918;left:415"><nobr>7.000</nobr></div>
+<div style="position:absolute;top:2909;left:415"><nobr>8.000</nobr></div>
+<div style="position:absolute;top:2900;left:415"><nobr>9.000</nobr></div>
+<div style="position:absolute;top:2892;left:415"><nobr>10.00</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:13px;font-family:Times">
+<div style="position:absolute;top:3171;left:134"><nobr><i>Figure 2 Net dividing and direction potential field</i></nobr></div>
+<div style="position:absolute;top:3189;left:164"><nobr><i>initializing in the 5m×5m square room</i></nobr></div>
+<div style="position:absolute;top:3223;left:106"><nobr><b>Social force sub-model</b></nobr></div>
+<div style="position:absolute;top:3247;left:106"><nobr>During fire emergency, people's behavior is generally</nobr></div>
+<div style="position:absolute;top:3265;left:106"><nobr>complicated and unordered. But given relatively</nobr></div>
+<div style="position:absolute;top:3283;left:106"><nobr>simple and loose environment, people’s behavior can</nobr></div>
+<div style="position:absolute;top:3301;left:106"><nobr>be described by probability, which lead to the</nobr></div>
+<div style="position:absolute;top:3319;left:106"><nobr>development of gas-kinetic model (Helbing 1992).</nobr></div>
+<div style="position:absolute;top:3337;left:106"><nobr>Lewin has proposed another method to simulate</nobr></div>
+<div style="position:absolute;top:3355;left:106"><nobr>people's behavior (Lewin 1992). It is thought that the</nobr></div>
+<div style="position:absolute;top:3373;left:106"><nobr>behavior should be changed by the influence of</nobr></div>
+<div style="position:absolute;top:3391;left:106"><nobr>"social force". According to the concept of social</nobr></div>
+<div style="position:absolute;top:3409;left:106"><nobr>force, Helbing, et al. have proposed a dynamics</nobr></div>
+<div style="position:absolute;top:3427;left:106"><nobr>model to describe people’s psychology and crowded</nobr></div>
+<div style="position:absolute;top:3445;left:106"><nobr>behavior (Helbing et al. 2000). In this model, the</nobr></div>
+<div style="position:absolute;top:3463;left:106"><nobr>behaviour in a crowd will be influenced by two</nobr></div>
+<div style="position:absolute;top:3481;left:106"><nobr>different forces, socio-psychological and physical</nobr></div>
+<div style="position:absolute;top:3499;left:106"><nobr>force.</nobr></div>
+<div style="position:absolute;top:3526;left:106"><nobr>It is supposed that individual <i>i</i>, who is in dangerous</nobr></div>
+<div style="position:absolute;top:3544;left:106"><nobr>area at a certain moment <i>t</i>, expects to evacuate to the</nobr></div>
+<div style="position:absolute;top:3562;left:106"><nobr>safe area with speed <font style="font-size:6px">0 </font>( )</nobr></div>
+</span></font>
+<font size="2" face="Times"><span style="font-size:6px;font-family:Times">
+<div style="position:absolute;top:3571;left:249"><nobr><i>i</i></nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:13px;font-family:Times">
+<div style="position:absolute;top:3562;left:243"><nobr><i>v t </i>and direction <font style="font-size:6px">0 </font>( )</nobr></div>
+</span></font>
+<font size="2" face="Times"><span style="font-size:6px;font-family:Times">
+<div style="position:absolute;top:3571;left:373"><nobr><i>i</i></nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:13px;font-family:Times">
+<div style="position:absolute;top:3562;left:367"><nobr><i>e t</i></nobr></div>
+<div style="position:absolute;top:3555;left:368"><nobr>v</nobr></div>
+<div style="position:absolute;top:3562;left:400"><nobr>. His</nobr></div>
+<div style="position:absolute;top:3580;left:106"><nobr>social psychology force can be described by Eq. (2),</nobr></div>
+<div style="position:absolute;top:3598;left:106"><nobr>where <font style="font-size:12px">( )</font></nobr></div>
+</span></font>
+<font size="2" face="Times"><span style="font-size:6px;font-family:Times">
+<div style="position:absolute;top:3607;left:156"><nobr><i>i</i></nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:12px;font-family:Times">
+<div style="position:absolute;top:3598;left:149"><nobr><i>v t</i></nobr></div>
+<div style="position:absolute;top:3591;left:151"><nobr>v</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:13px;font-family:Times">
+<div style="position:absolute;top:3598;left:182"><nobr>means the actual speed, <i>m<font style="font-size:7px">i </font></i>is the weight</nobr></div>
+<div style="position:absolute;top:3616;left:106"><nobr>and <i>τ<font style="font-size:7px">i</font></i></nobr></div>
+<div style="position:absolute;top:3616;left:158"><nobr>is the characteristic acceleration time to</nobr></div>
+<div style="position:absolute;top:3634;left:106"><nobr>describe his accelerating ability.</nobr></div>
+</span></font>
+<font size="2" face="Times"><span style="font-size:5px;font-family:Times">
+<div style="position:absolute;top:3662;left:211"><nobr>0</nobr></div>
+<div style="position:absolute;top:3662;left:235"><nobr>0</nobr></div>
+<div style="position:absolute;top:3679;left:158"><nobr>0</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:10px;font-family:Times">
+<div style="position:absolute;top:3663;left:216"><nobr>() ()</nobr></div>
+<div style="position:absolute;top:3663;left:274"><nobr>()</nobr></div>
+<div style="position:absolute;top:3671;left:164"><nobr>( )</nobr></div>
+</span></font>
+<font size="2" face="Times"><span style="font-size:5px;font-family:Times">
+<div style="position:absolute;top:3671;left:210"><nobr><i>i</i></nobr></div>
+<div style="position:absolute;top:3671;left:234"><nobr><i>i</i></nobr></div>
+<div style="position:absolute;top:3671;left:270"><nobr><i>i</i></nobr></div>
+<div style="position:absolute;top:3679;left:156"><nobr><i>i</i></nobr></div>
+<div style="position:absolute;top:3679;left:198"><nobr><i>i</i></nobr></div>
+<div style="position:absolute;top:3689;left:246"><nobr><i>i</i></nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:10px;font-family:Times">
+<div style="position:absolute;top:3663;left:204"><nobr><i>v t e t v t</i></nobr></div>
+<div style="position:absolute;top:3671;left:152"><nobr><i>f t m</i></nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:11px;font-family:Times">
+<div style="position:absolute;top:3679;left:240"><nobr>τ</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:10px;font-family:Times">
+<div style="position:absolute;top:3662;left:256"><nobr>−</nobr></div>
+<div style="position:absolute;top:3670;left:179"><nobr>=</nobr></div>
+<div style="position:absolute;top:3657;left:230"><nobr>v</nobr></div>
+<div style="position:absolute;top:3657;left:265"><nobr>v</nobr></div>
+<div style="position:absolute;top:3662;left:152"><nobr>v</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:13px;font-family:Times">
+<div style="position:absolute;top:3666;left:413"><nobr>(2)</nobr></div>
+<div style="position:absolute;top:3709;left:106"><nobr>The physics environment force includes <i><font style="font-size:6px">ij</font></i></nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:12px;font-family:Times">
+<div style="position:absolute;top:3709;left:385"><nobr><i>f</i></nobr></div>
+<div style="position:absolute;top:3698;left:386"><nobr>v</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:13px;font-family:Times">
+<div style="position:absolute;top:3709;left:407"><nobr>(the</nobr></div>
+<div style="position:absolute;top:3727;left:106"><nobr>force among people) and <i><font style="font-size:6px">iw</font></i></nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:12px;font-family:Times">
+<div style="position:absolute;top:3727;left:285"><nobr><i>f</i></nobr></div>
+<div style="position:absolute;top:3716;left:286"><nobr>v</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:13px;font-family:Times">
+<div style="position:absolute;top:3727;left:308"><nobr>(the force between</nobr></div>
+<div style="position:absolute;top:3745;left:106"><nobr>people and barrier). The kinetic equation to describe</nobr></div>
+<div style="position:absolute;top:3763;left:106"><nobr>evacuating velocity in the social force sub-model can</nobr></div>
+<div style="position:absolute;top:3781;left:106"><nobr>be expressed as:</nobr></div>
+</span></font>
+<font size="2" face="Times"><span style="font-size:5px;font-family:Times">
+<div style="position:absolute;top:3809;left:209"><nobr>0</nobr></div>
+<div style="position:absolute;top:3809;left:233"><nobr>0</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:10px;font-family:Times">
+<div style="position:absolute;top:3810;left:214"><nobr>() ()</nobr></div>
+<div style="position:absolute;top:3810;left:271"><nobr>()</nobr></div>
+</span></font>
+<font size="2" face="Times"><span style="font-size:5px;font-family:Times">
+<div style="position:absolute;top:3818;left:171"><nobr><i>i</i></nobr></div>
+<div style="position:absolute;top:3818;left:209"><nobr><i>i</i></nobr></div>
+<div style="position:absolute;top:3818;left:232"><nobr><i>i</i></nobr></div>
+<div style="position:absolute;top:3818;left:267"><nobr><i>i</i></nobr></div>
+<div style="position:absolute;top:3826;left:154"><nobr><i>i</i></nobr></div>
+<div style="position:absolute;top:3826;left:197"><nobr><i>i</i></nobr></div>
+<div style="position:absolute;top:3826;left:316"><nobr><i>ij</i></nobr></div>
+<div style="position:absolute;top:3826;left:353"><nobr><i>iw</i></nobr></div>
+<div style="position:absolute;top:3835;left:297"><nobr><i>j i</i></nobr></div>
+<div style="position:absolute;top:3835;left:337"><nobr><i>w</i></nobr></div>
+<div style="position:absolute;top:3836;left:244"><nobr><i>i</i></nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:10px;font-family:Times">
+<div style="position:absolute;top:3810;left:160"><nobr><i>dv</i></nobr></div>
+<div style="position:absolute;top:3810;left:203"><nobr><i>v t e t v t</i></nobr></div>
+<div style="position:absolute;top:3818;left:146"><nobr><i>m</i></nobr></div>
+<div style="position:absolute;top:3818;left:189"><nobr><i>m</i></nobr></div>
+<div style="position:absolute;top:3818;left:312"><nobr><i>f</i></nobr></div>
+<div style="position:absolute;top:3818;left:350"><nobr><i>f</i></nobr></div>
+<div style="position:absolute;top:3828;left:163"><nobr><i>dt</i></nobr></div>
+<div style="position:absolute;top:3826;left:238"><nobr>τ</nobr></div>
+</span></font>
+<font size="2" face="Times"><span style="font-size:5px;font-family:Times">
+<div style="position:absolute;top:3834;left:300"><nobr>≠</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:10px;font-family:Times">
+<div style="position:absolute;top:3809;left:253"><nobr>−</nobr></div>
+<div style="position:absolute;top:3817;left:179"><nobr>=</nobr></div>
+<div style="position:absolute;top:3817;left:286"><nobr>+</nobr></div>
+<div style="position:absolute;top:3817;left:324"><nobr>+</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:16px;font-family:Times">
+<div style="position:absolute;top:3814;left:295"><nobr>∑</nobr></div>
+<div style="position:absolute;top:3814;left:333"><nobr>∑</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:10px;font-family:Times">
+<div style="position:absolute;top:3804;left:167"><nobr>v</nobr></div>
+<div style="position:absolute;top:3804;left:228"><nobr>v</nobr></div>
+<div style="position:absolute;top:3804;left:263"><nobr>v</nobr></div>
+<div style="position:absolute;top:3809;left:312"><nobr>v</nobr></div>
+<div style="position:absolute;top:3809;left:350"><nobr>v</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:13px;font-family:Times">
+<div style="position:absolute;top:3812;left:409"><nobr>(3).</nobr></div>
+<div style="position:absolute;top:2812;left:463"><nobr><b>Pre-movement time sub-model</b></nobr></div>
+<div style="position:absolute;top:2830;left:463"><nobr>In the pre-movement time sub model, a Gaussian</nobr></div>
+<div style="position:absolute;top:2848;left:463"><nobr>distribution function is used to describe the pre-</nobr></div>
+<div style="position:absolute;top:2865;left:463"><nobr>movement time <i>t<font style="font-size:7px">pre </font></i>(Jia et al. 2002), expressed by</nobr></div>
+</span></font>
+<font size="2" face="Times"><span style="font-size:4px;font-family:Times">
+<div style="position:absolute;top:2888;left:647"><nobr>2</nobr></div>
+<div style="position:absolute;top:2896;left:635"><nobr>,</nobr></div>
+<div style="position:absolute;top:2906;left:633"><nobr>2</nobr></div>
+<div style="position:absolute;top:2914;left:626"><nobr>,</nobr></div>
+<div style="position:absolute;top:2915;left:555"><nobr>,</nobr></div>
+</span></font>
+<font size="2" face="Times"><span style="font-size:9px;font-family:Times">
+<div style="position:absolute;top:2889;left:594"><nobr>(</nobr></div>
+<div style="position:absolute;top:2889;left:643"><nobr>)</nobr></div>
+<div style="position:absolute;top:2891;left:540"><nobr>1</nobr></div>
+<div style="position:absolute;top:2898;left:566"><nobr>exp[</nobr></div>
+<div style="position:absolute;top:2898;left:652"><nobr>]</nobr></div>
+<div style="position:absolute;top:2907;left:608"><nobr>2</nobr></div>
+<div style="position:absolute;top:2908;left:530"><nobr>2</nobr></div>
+</span></font>
+<font size="2" face="Times"><span style="font-size:4px;font-family:Times">
+<div style="position:absolute;top:2896;left:602"><nobr><i>pre</i></nobr></div>
+<div style="position:absolute;top:2896;left:626"><nobr><i>pre</i></nobr></div>
+<div style="position:absolute;top:2914;left:617"><nobr><i>pre</i></nobr></div>
+<div style="position:absolute;top:2915;left:546"><nobr><i>pre</i></nobr></div>
+</span></font>
+<font size="2" face="Times"><span style="font-size:9px;font-family:Times">
+<div style="position:absolute;top:2889;left:598"><nobr><i>t</i></nobr></div>
+<div style="position:absolute;top:2889;left:622"><nobr><i>t</i></nobr></div>
+<div style="position:absolute;top:2898;left:504"><nobr><i>f</i></nobr></div>
+<div style="position:absolute;top:2907;left:613"><nobr><i>t</i></nobr></div>
+<div style="position:absolute;top:2908;left:542"><nobr><i>t</i></nobr></div>
+</span></font>
+<font size="2" face="Times"><span style="font-size:4px;font-family:Times">
+<div style="position:absolute;top:2895;left:637"><nobr>μ</nobr></div>
+<div style="position:absolute;top:2913;left:628"><nobr>σ</nobr></div>
+<div style="position:absolute;top:2914;left:557"><nobr>σ</nobr></div>
+</span></font>
+<font size="2" face="Times"><span style="font-size:9px;font-family:Times">
+<div style="position:absolute;top:2906;left:535"><nobr>π</nobr></div>
+<div style="position:absolute;top:2888;left:614"><nobr>−</nobr></div>
+<div style="position:absolute;top:2897;left:512"><nobr>=</nobr></div>
+<div style="position:absolute;top:2897;left:586"><nobr>−</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:13px;font-family:Times">
+<div style="position:absolute;top:2889;left:765"><nobr>(4).</nobr></div>
+<div style="position:absolute;top:2936;left:463"><nobr>The five main factors which influence <i>t<font style="font-size:7px">pre,</font></i><font style="font-size:8px">μ </font>(standard</nobr></div>
+<div style="position:absolute;top:2953;left:463"><nobr>pre-movement time) are: people’s state, building</nobr></div>
+<div style="position:absolute;top:2971;left:463"><nobr>characteristic, present position of people, fire</nobr></div>
+<div style="position:absolute;top:2988;left:463"><nobr>intensity, fire detecting and warning facility. The</nobr></div>
+<div style="position:absolute;top:3007;left:463"><nobr>calculation formula of <i>t<font style="font-size:7px">pre,</font></i><font style="font-size:8px">μ </font>is</nobr></div>
+</span></font>
+<font size="2" face="Times"><span style="font-size:5px;font-family:Times">
+<div style="position:absolute;top:3045;left:517"><nobr>,</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:11px;font-family:Times">
+<div style="position:absolute;top:3036;left:562"><nobr>(</nobr></div>
+<div style="position:absolute;top:3036;left:629"><nobr>)</nobr></div>
+</span></font>
+<font size="2" face="Times"><span style="font-size:5px;font-family:Times">
+<div style="position:absolute;top:3045;left:506"><nobr><i>pre</i></nobr></div>
+<div style="position:absolute;top:3045;left:544"><nobr><i>pre</i></nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:11px;font-family:Times">
+<div style="position:absolute;top:3036;left:501"><nobr><i>t</i></nobr></div>
+<div style="position:absolute;top:3036;left:540"><nobr><i>t b a c d e</i></nobr></div>
+</span></font>
+<font size="2" face="Times"><span style="font-size:6px;font-family:Times">
+<div style="position:absolute;top:3043;left:519"><nobr>μ <font style="font-size:11px">=</font></nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:11px;font-family:Times">
+<div style="position:absolute;top:3035;left:575"><nobr>+ + +</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:13px;font-family:Times">
+<div style="position:absolute;top:3033;left:765"><nobr>(5),</nobr></div>
+<div style="position:absolute;top:3067;left:463"><nobr>where <i><font style="font-size:6px">pre</font></i></nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:12px;font-family:Times">
+<div style="position:absolute;top:3067;left:511"><nobr><i>t</i></nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:13px;font-family:Times">
+<div style="position:absolute;top:3067;left:538"><nobr>and <i>t<font style="font-size:7px">pre,</font></i><font style="font-size:8px">σ </font>are mean value and mean</nobr></div>
+<div style="position:absolute;top:3091;left:463"><nobr>variance of <i>t<font style="font-size:7px">pre,</font></i><font style="font-size:8px">μ</font>.</nobr></div>
+<div style="position:absolute;top:3117;left:463"><nobr>The five factors can be expressed by dimensionless</nobr></div>
+<div style="position:absolute;top:3135;left:463"><nobr>parameters a, b, c, d and e separately, whose values</nobr></div>
+<div style="position:absolute;top:3152;left:463"><nobr>are shown in Table 2.</nobr></div>
+<div style="position:absolute;top:3179;left:469"><nobr><i>Table 2 Values of dimensionless parameters in pre-</i></nobr></div>
+<div style="position:absolute;top:3196;left:546"><nobr><i>movement time sub-model</i></nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:11px;font-family:Times">
+<div style="position:absolute;top:3222;left:463"><nobr><b>Dimensionless</b></nobr></div>
+<div style="position:absolute;top:3239;left:472"><nobr><b>Parameter</b></nobr></div>
+<div style="position:absolute;top:3231;left:595"><nobr><b>Characteristic and Value</b></nobr></div>
+<div style="position:absolute;top:3253;left:565"><nobr>Waking</nobr></div>
+<div style="position:absolute;top:3253;left:646"><nobr>Resting</nobr></div>
+<div style="position:absolute;top:3253;left:724"><nobr>Sleeping</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:13px;font-family:Times">
+<div style="position:absolute;top:3260;left:469"><nobr><i>a</i></nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:11px;font-family:Times">
+<div style="position:absolute;top:3253;left:492"><nobr>People's</nobr></div>
+<div style="position:absolute;top:3270;left:502"><nobr>state</nobr></div>
+<div style="position:absolute;top:3270;left:582"><nobr>1</nobr></div>
+<div style="position:absolute;top:3270;left:658"><nobr>1.2</nobr></div>
+<div style="position:absolute;top:3270;left:739"><nobr>1.5</nobr></div>
+<div style="position:absolute;top:3288;left:552"><nobr>Market or</nobr></div>
+<div style="position:absolute;top:3304;left:549"><nobr>amusement</nobr></div>
+<div style="position:absolute;top:3321;left:560"><nobr>place</nobr></div>
+<div style="position:absolute;top:3288;left:602"><nobr>Office or</nobr></div>
+<div style="position:absolute;top:3304;left:604"><nobr>Factory</nobr></div>
+<div style="position:absolute;top:3321;left:603"><nobr>building</nobr></div>
+<div style="position:absolute;top:3288;left:651"><nobr>House or</nobr></div>
+<div style="position:absolute;top:3304;left:654"><nobr>School</nobr></div>
+<div style="position:absolute;top:3321;left:649"><nobr>dormitory</nobr></div>
+<div style="position:absolute;top:3296;left:702"><nobr>Hotel or</nobr></div>
+<div style="position:absolute;top:3312;left:698"><nobr>Apartment</nobr></div>
+<div style="position:absolute;top:3296;left:746"><nobr>Hospital or</nobr></div>
+<div style="position:absolute;top:3312;left:745"><nobr>Sanatorium</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:13px;font-family:Times">
+<div style="position:absolute;top:3311;left:469"><nobr><i>b</i></nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:11px;font-family:Times">
+<div style="position:absolute;top:3304;left:499"><nobr>Building</nobr></div>
+<div style="position:absolute;top:3321;left:491"><nobr>characteristic</nobr></div>
+<div style="position:absolute;top:3338;left:561"><nobr>0.5</nobr></div>
+<div style="position:absolute;top:3338;left:610"><nobr>1.0 1.2~1.5 1.6~1.8 ≈2.0</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:13px;font-family:Times">
+<div style="position:absolute;top:3362;left:469"><nobr><i>c</i></nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:11px;font-family:Times">
+<div style="position:absolute;top:3355;left:495"><nobr>Position of</nobr></div>
+<div style="position:absolute;top:3371;left:502"><nobr>people</nobr></div>
+<div style="position:absolute;top:3363;left:552"><nobr>The number of rooms to the fire room / 10</nobr></div>
+<div style="position:absolute;top:3389;left:572"><nobr>large</nobr></div>
+<div style="position:absolute;top:3389;left:648"><nobr>middle</nobr></div>
+<div style="position:absolute;top:3389;left:733"><nobr>small</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:13px;font-family:Times">
+<div style="position:absolute;top:3395;left:469"><nobr><i>d </i><font style="font-size:11px">Fire intensity</font></nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:11px;font-family:Times">
+<div style="position:absolute;top:3406;left:575"><nobr>-0.1</nobr></div>
+<div style="position:absolute;top:3406;left:663"><nobr>0</nobr></div>
+<div style="position:absolute;top:3406;left:739"><nobr>0.1</nobr></div>
+<div style="position:absolute;top:3423;left:675"><nobr>Alarm bell</nobr></div>
+<div style="position:absolute;top:3423;left:550"><nobr>Pronunciatio</nobr></div>
+<div style="position:absolute;top:3439;left:570"><nobr>n</nobr></div>
+<div style="position:absolute;top:3456;left:550"><nobr>broadcasting</nobr></div>
+<div style="position:absolute;top:3431;left:603"><nobr>Recording</nobr></div>
+<div style="position:absolute;top:3447;left:611"><nobr>alarm Accurate Inaccurate</nobr></div>
+<div style="position:absolute;top:3439;left:756"><nobr>None</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:13px;font-family:Times">
+<div style="position:absolute;top:3446;left:469"><nobr><i>e</i></nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:11px;font-family:Times">
+<div style="position:absolute;top:3431;left:490"><nobr>Fire detecting</nobr></div>
+<div style="position:absolute;top:3448;left:492"><nobr>and warning</nobr></div>
+<div style="position:absolute;top:3464;left:502"><nobr>facility</nobr></div>
+<div style="position:absolute;top:3473;left:562"><nobr>-0.2</nobr></div>
+<div style="position:absolute;top:3473;left:611"><nobr>-0.1</nobr></div>
+<div style="position:absolute;top:3473;left:657"><nobr>-0.1</nobr></div>
+<div style="position:absolute;top:3473;left:709"><nobr>0.2</nobr></div>
+<div style="position:absolute;top:3473;left:757"><nobr>0.1</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:16px;font-family:Times">
+<div style="position:absolute;top:3517;left:463"><nobr>CASE STUDY</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:13px;font-family:Times">
+<div style="position:absolute;top:3546;left:463"><nobr>Since 1991 in China, the twelve extraordinarily</nobr></div>
+<div style="position:absolute;top:3564;left:463"><nobr>serious fire tragedies have caused about 1,552 deaths,</nobr></div>
+<div style="position:absolute;top:3581;left:463"><nobr>each of which devitalized more than 50 people's lives.</nobr></div>
+<div style="position:absolute;top:3599;left:463"><nobr>Among them, the fire of Yiyuan dancing hall in</nobr></div>
+<div style="position:absolute;top:3617;left:463"><nobr>Fuxin resulted in 233 deaths. Taking this fire as an</nobr></div>
+<div style="position:absolute;top:3634;left:463"><nobr>example, FDS is used to simulate the fire scene and</nobr></div>
+<div style="position:absolute;top:3652;left:463"><nobr>to calculate and confirm ASET, and RSET is</nobr></div>
+<div style="position:absolute;top:3669;left:463"><nobr>calculated by the CFE model. The number of death</nobr></div>
+<div style="position:absolute;top:3687;left:463"><nobr>can be calculated by comparing of ASET and RSET.</nobr></div>
+<div style="position:absolute;top:3721;left:463"><nobr><b>Fire scene</b></nobr></div>
+<div style="position:absolute;top:3744;left:463"><nobr>The fire accident of Yiyuan dancing hall in Fuxin</nobr></div>
+<div style="position:absolute;top:3762;left:463"><nobr>took place at 13:30 on November 27, 1994. There</nobr></div>
+<div style="position:absolute;top:3780;left:463"><nobr>were 304 people in the dance hall when the fire broke</nobr></div>
+<div style="position:absolute;top:3797;left:463"><nobr>out. It caused 233 deaths, 133 men and 100 women.</nobr></div>
+<div style="position:absolute;top:3815;left:463"><nobr>Four people were severely injured and sixteen people</nobr></div>
+<div style="position:absolute;top:3832;left:463"><nobr>were slightly injured. Among the 231 deceased </nobr></div>
+</span></font>
+
+<div style="position:absolute;top:3964;left:0"><hr><table border="0" width="100%"><tbody><tr><td bgcolor="eeeeee" align="right"><font face="arial,sans-serif"><a name="4"><b>Page 4</b></a></font></td></tr></tbody></table></div><font size="3" face="Times"><span style="font-size:11px;font-family:Times">
+<div style="position:absolute;top:4019;left:340"><nobr>Proceedings: Building Simulation 2007</nobr></div>
+<div style="position:absolute;top:5158;left:428"><nobr>- 706 -</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:13px;font-family:Times">
+<div style="position:absolute;top:4071;left:106"><nobr>whose identities were verified, there were 84 workers,</nobr></div>
+<div style="position:absolute;top:4089;left:106"><nobr>75 students and 61 job-waiting youth. According to</nobr></div>
+<div style="position:absolute;top:4106;left:106"><nobr>the statistic, most of the deceased were young people,</nobr></div>
+<div style="position:absolute;top:4124;left:106"><nobr>61 people between 14 and 17 years old and 159</nobr></div>
+<div style="position:absolute;top:4141;left:106"><nobr>people between 18 and 25 years old (Anno., Anno.</nobr></div>
+<div style="position:absolute;top:4159;left:106"><nobr>A).</nobr></div>
+</span></font>
+<font size="2" face="Times"><span style="font-size:6px;font-family:Times">
+<div style="position:absolute;top:4308;left:241"><nobr>Dance hall</nobr></div>
+<div style="position:absolute;top:4212;left:265"><nobr>Box</nobr></div>
+<div style="position:absolute;top:4213;left:301"><nobr>Box</nobr></div>
+<div style="position:absolute;top:4213;left:337"><nobr>Box</nobr></div>
+<div style="position:absolute;top:4249;left:379"><nobr>Front</nobr></div>
+<div style="position:absolute;top:4259;left:375"><nobr>corridor</nobr></div>
+<div style="position:absolute;top:4290;left:420"><nobr>Stree</nobr></div>
+<div style="position:absolute;top:4272;left:420"><nobr>t of north</nobr></div>
+<div style="position:absolute;top:4258;left:193"><nobr>Sofa</nobr></div>
+<div style="position:absolute;top:4313;left:116"><nobr>13</nobr></div>
+<div style="position:absolute;top:4305;left:116"><nobr>m</nobr></div>
+<div style="position:absolute;top:4311;left:397"><nobr>2m</nobr></div>
+<div style="position:absolute;top:4291;left:374"><nobr>0.8</nobr></div>
+<div style="position:absolute;top:4280;left:374"><nobr>m</nobr></div>
+<div style="position:absolute;top:4403;left:253"><nobr>18m</nobr></div>
+<div style="position:absolute;top:4326;left:382"><nobr>3m</nobr></div>
+<div style="position:absolute;top:4212;left:157"><nobr>Box</nobr></div>
+<div style="position:absolute;top:4212;left:194"><nobr>Box</nobr></div>
+<div style="position:absolute;top:4212;left:230"><nobr>Box</nobr></div>
+<div style="position:absolute;top:4352;left:132"><nobr>Courtyard</nobr></div>
+<div style="position:absolute;top:4315;left:132"><nobr>o</nobr></div>
+<div style="position:absolute;top:4310;left:132"><nobr>u</nobr></div>
+<div style="position:absolute;top:4306;left:132"><nobr>tsid</nobr></div>
+<div style="position:absolute;top:4294;left:132"><nobr>e</nobr></div>
+<div style="position:absolute;top:4288;left:132"><nobr>th</nobr></div>
+<div style="position:absolute;top:4281;left:132"><nobr>e</nobr></div>
+<div style="position:absolute;top:4275;left:132"><nobr>so</nobr></div>
+<div style="position:absolute;top:4267;left:132"><nobr>u</nobr></div>
+<div style="position:absolute;top:4263;left:132"><nobr>th</nobr></div>
+<div style="position:absolute;top:4313;left:157"><nobr>1.8</nobr></div>
+<div style="position:absolute;top:4302;left:157"><nobr>m</nobr></div>
+<div style="position:absolute;top:4362;left:175"><nobr>North</nobr></div>
+<div style="position:absolute;top:4290;left:317"><nobr>North gate</nobr></div>
+<div style="position:absolute;top:4337;left:154"><nobr>South gate</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:13px;font-family:Times">
+<div style="position:absolute;top:4427;left:114"><nobr><i>Figure 3 The plan sketch of Yiyuan dancing hall in Fuxin</i></nobr></div>
+<div style="position:absolute;top:4471;left:106"><nobr>The area of Yiyuan dancing hall is 280m<font style="font-size:7px">2</font>. Figure 3</nobr></div>
+<div style="position:absolute;top:4489;left:106"><nobr>shows the Yiyuan dancing hall. The hall is 18 meters</nobr></div>
+<div style="position:absolute;top:4506;left:106"><nobr>long, 13 meters wide and 5 meters high, with six</nobr></div>
+<div style="position:absolute;top:4524;left:106"><nobr>boxes in the west which are 2.76 meters long, 2</nobr></div>
+<div style="position:absolute;top:4541;left:106"><nobr>meters wide and 2.4 meters high. The width of the</nobr></div>
+<div style="position:absolute;top:4559;left:106"><nobr>boxes’ doors is 0.8m, and the north gate is 0.8m, the</nobr></div>
+<div style="position:absolute;top:4577;left:106"><nobr>south gate is 1.8m (unfortunately, the south gate was</nobr></div>
+<div style="position:absolute;top:4594;left:106"><nobr>closed during the fire). All the exits are 2 meters high.</nobr></div>
+<div style="position:absolute;top:4612;left:106"><nobr>The building wall is fitted with the woven Dacron</nobr></div>
+<div style="position:absolute;top:4629;left:106"><nobr>and cotton with both upper and lower ends nailing</nobr></div>
+<div style="position:absolute;top:4647;left:106"><nobr>and pigeonholing. The top of the building is</nobr></div>
+<div style="position:absolute;top:4664;left:106"><nobr>decorated by wooden-ply board. There are 56 sofas</nobr></div>
+<div style="position:absolute;top:4682;left:106"><nobr>against the wall with synthetic leather as surface</nobr></div>
+<div style="position:absolute;top:4699;left:106"><nobr>material and polyurethane as filling.</nobr></div>
+<div style="position:absolute;top:4734;left:106"><nobr><b>ASET calculated by FDS</b></nobr></div>
+<div style="position:absolute;top:4757;left:106"><nobr>To simulate the ventilation effect of the window</nobr></div>
+<div style="position:absolute;top:4775;left:106"><nobr>break in FDS model, 6 vents with 0.08m<font style="font-size:7px">2 </font>area are set</nobr></div>
+<div style="position:absolute;top:4792;left:106"><nobr>up evenly in both sides of the hall, which are 2.0m</nobr></div>
+<div style="position:absolute;top:4810;left:106"><nobr>height to the floor. According to the experiment</nobr></div>
+<div style="position:absolute;top:4827;left:106"><nobr>database of NIST (National Institute of Standard &amp;</nobr></div>
+<div style="position:absolute;top:4845;left:106"><nobr>Technology), U.S.A., the largest fire power of one</nobr></div>
+<div style="position:absolute;top:4862;left:106"><nobr>armchair is 2.25MW (Anno. B). It is supposed that</nobr></div>
+<div style="position:absolute;top:4881;left:106"><nobr>the fire taking place in the dance hall is α<i>t</i><font style="font-size:7px">2</font>fire with</nobr></div>
+<div style="position:absolute;top:4899;left:106"><nobr>0.046889kW/s<font style="font-size:7px">2 </font>of fire growth rate and there are</nobr></div>
+<div style="position:absolute;top:4917;left:106"><nobr>always two sofas burning steadily in the largest fire</nobr></div>
+<div style="position:absolute;top:4935;left:106"><nobr>power at any moment of spreading course after the</nobr></div>
+<div style="position:absolute;top:4952;left:106"><nobr>fire is steady. Then, in the simulation of FDS, the</nobr></div>
+<div style="position:absolute;top:4970;left:106"><nobr>area of fire is set as 2m<font style="font-size:7px">2 </font>to satisfy the horizontal area</nobr></div>
+<div style="position:absolute;top:4987;left:106"><nobr>of two armchairs. The fire material was adopted</nobr></div>
+<div style="position:absolute;top:5005;left:106"><nobr>polyurethane, and the power of fire after burning</nobr></div>
+<div style="position:absolute;top:5022;left:106"><nobr>steadily is 2.25MW/m<font style="font-size:7px">2</font>. It can be found from the</nobr></div>
+<div style="position:absolute;top:5040;left:106"><nobr>hypothesis that the fire source in FDS doesn’t include</nobr></div>
+<div style="position:absolute;top:5057;left:106"><nobr>the woven Dacron and cotton hanging on the wall.</nobr></div>
+<div style="position:absolute;top:5075;left:106"><nobr>Since the burning rate of these chemical upholstery</nobr></div>
+<div style="position:absolute;top:5093;left:106"><nobr>fabrics is very fast, it is considered that the supposed</nobr></div>
+<div style="position:absolute;top:4071;left:463"><nobr>fire in this paper is relatively conservative. Figure 4</nobr></div>
+<div style="position:absolute;top:4089;left:463"><nobr>shows the calculation result of FDS at 6 minutes after</nobr></div>
+<div style="position:absolute;top:4106;left:463"><nobr>the start of the fire: the value of temperature and CO</nobr></div>
+<div style="position:absolute;top:4124;left:463"><nobr>density distribution map at the horizontal height of</nobr></div>
+<div style="position:absolute;top:4141;left:463"><nobr>1.6m, which is the height from the floor to the mouth</nobr></div>
+<div style="position:absolute;top:4159;left:463"><nobr>of person of average length.</nobr></div>
+<div style="position:absolute;top:4449;left:567"><nobr><i>(a) Temperature (</i>℃<i>)</i></nobr></div>
+<div style="position:absolute;top:4723;left:567"><nobr><i>(b) CO density (ppm)</i></nobr></div>
+<div style="position:absolute;top:4749;left:468"><nobr><i>Figure 4 Temperature and CO density distribution map at</i></nobr></div>
+<div style="position:absolute;top:4767;left:574"><nobr><i>1.6m height (240s)</i></nobr></div>
+<div style="position:absolute;top:4811;left:463"><nobr>It is supposed in this paper that the temperature</nobr></div>
+<div style="position:absolute;top:4830;left:463"><nobr>higher than 80℃ or the concentration of CO more</nobr></div>
+<div style="position:absolute;top:4848;left:463"><nobr>than 800ppm will cause injury to the human body.</nobr></div>
+<div style="position:absolute;top:4866;left:463"><nobr>The simulation results of FDS show that the average</nobr></div>
+<div style="position:absolute;top:4883;left:463"><nobr>temperature at the horizontal height of 1.6m will be</nobr></div>
+<div style="position:absolute;top:4902;left:463"><nobr>higher than 80℃ in about 220s, and CO density will</nobr></div>
+<div style="position:absolute;top:4920;left:463"><nobr>reach 800ppm in about 280s. Thus, ASET is</nobr></div>
+<div style="position:absolute;top:4938;left:463"><nobr>confirmed as 220s by the simulation of FDS.</nobr></div>
+<div style="position:absolute;top:4972;left:463"><nobr><b>Evacuation simulation and analysis</b></nobr></div>
+<div style="position:absolute;top:4996;left:463"><nobr>It is described by Helbing et al. (2000) that the</nobr></div>
+<div style="position:absolute;top:5013;left:463"><nobr>influence radius among human individual is 5m in</nobr></div>
+<div style="position:absolute;top:5031;left:463"><nobr>the social force model. Consider that the high crowd</nobr></div>
+<div style="position:absolute;top:5048;left:463"><nobr>density area generally appears near the bottleneck</nobr></div>
+<div style="position:absolute;top:5066;left:463"><nobr>such as the exit and stair (Chen et al. 2003), in this</nobr></div>
+<div style="position:absolute;top:5083;left:463"><nobr>case study, the social force sub-model is used to</nobr></div>
+<div style="position:absolute;top:5101;left:463"><nobr>describe the panic and crowded behavior within 5m </nobr></div>
+</span></font>
+
+<div style="position:absolute;top:5227;left:0"><hr><table border="0" width="100%"><tbody><tr><td bgcolor="eeeeee" align="right"><font face="arial,sans-serif"><a name="5"><b>Page 5</b></a></font></td></tr></tbody></table></div><font size="3" face="Times"><span style="font-size:11px;font-family:Times">
+<div style="position:absolute;top:5282;left:340"><nobr>Proceedings: Building Simulation 2007</nobr></div>
+<div style="position:absolute;top:6421;left:428"><nobr>- 707 -</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:13px;font-family:Times">
+<div style="position:absolute;top:5334;left:106"><nobr>range near the north door and the lattice-gas sub-</nobr></div>
+<div style="position:absolute;top:5352;left:106"><nobr>model will simulate evacuation in other low density</nobr></div>
+<div style="position:absolute;top:5369;left:106"><nobr>areas.</nobr></div>
+<div style="position:absolute;top:5396;left:106"><nobr>In the simulating of the CFE model, people’s weight,</nobr></div>
+<div style="position:absolute;top:5413;left:106"><nobr>shoulder width and speed are all regarded as normal</nobr></div>
+<div style="position:absolute;top:5431;left:106"><nobr>distribution. According to the statistical information</nobr></div>
+<div style="position:absolute;top:5448;left:106"><nobr>about the people in the dancing hall and the data of</nobr></div>
+<div style="position:absolute;top:5466;left:106"><nobr>Table 1, the choice of people’s parameters in the CFE</nobr></div>
+<div style="position:absolute;top:5484;left:106"><nobr>model is selected as described in Table 3.</nobr></div>
+<div style="position:absolute;top:5510;left:127"><nobr><i>Table 3 People's parameters in the CFE model</i></nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:11px;font-family:Times">
+<div style="position:absolute;top:5540;left:194"><nobr><b>SEX</b></nobr></div>
+<div style="position:absolute;top:5540;left:323"><nobr><b>M</b></nobr></div>
+<div style="position:absolute;top:5540;left:387"><nobr><b>F</b></nobr></div>
+<div style="position:absolute;top:5562;left:184"><nobr><b>Number</b></nobr></div>
+<div style="position:absolute;top:5559;left:320"><nobr>174</nobr></div>
+<div style="position:absolute;top:5559;left:381"><nobr>130</nobr></div>
+<div style="position:absolute;top:5580;left:241"><nobr><b>Mean</b></nobr></div>
+<div style="position:absolute;top:5577;left:323"><nobr>60</nobr></div>
+<div style="position:absolute;top:5577;left:384"><nobr>51</nobr></div>
+<div style="position:absolute;top:5589;left:133"><nobr><b>Weight (kg)</b></nobr></div>
+<div style="position:absolute;top:5599;left:232"><nobr><b>Variance</b></nobr></div>
+<div style="position:absolute;top:5596;left:327"><nobr>1</nobr></div>
+<div style="position:absolute;top:5596;left:387"><nobr>1</nobr></div>
+<div style="position:absolute;top:5617;left:241"><nobr><b>Mean</b></nobr></div>
+<div style="position:absolute;top:5614;left:318"><nobr>47.5</nobr></div>
+<div style="position:absolute;top:5614;left:379"><nobr>44.7</nobr></div>
+<div style="position:absolute;top:5618;left:121"><nobr><b>Shoulder Width</b></nobr></div>
+<div style="position:absolute;top:5634;left:154"><nobr><b>(cm)</b></nobr></div>
+<div style="position:absolute;top:5636;left:232"><nobr><b>Variance</b></nobr></div>
+<div style="position:absolute;top:5633;left:327"><nobr>3</nobr></div>
+<div style="position:absolute;top:5633;left:387"><nobr>3</nobr></div>
+<div style="position:absolute;top:5654;left:235"><nobr><b>Normal</b></nobr></div>
+<div style="position:absolute;top:5651;left:321"><nobr>1.0</nobr></div>
+<div style="position:absolute;top:5651;left:382"><nobr>1.0</nobr></div>
+<div style="position:absolute;top:5673;left:238"><nobr><b>Expect</b></nobr></div>
+<div style="position:absolute;top:5670;left:321"><nobr>5.0</nobr></div>
+<div style="position:absolute;top:5670;left:382"><nobr>4.0</nobr></div>
+<div style="position:absolute;top:5672;left:134"><nobr><b>Speed (m/s)</b></nobr></div>
+<div style="position:absolute;top:5691;left:232"><nobr><b>Variance</b></nobr></div>
+<div style="position:absolute;top:5688;left:321"><nobr>0.2</nobr></div>
+<div style="position:absolute;top:5688;left:382"><nobr>0.2</nobr></div>
+</span></font>
+<font size="2" face="Times"><span style="font-size:6px;font-family:Times">
+<div style="position:absolute;top:5725;left:254"><nobr><i>pre</i></nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:13px;font-family:Times">
+<div style="position:absolute;top:5716;left:249"><nobr><i>t</i></nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:11px;font-family:Times">
+<div style="position:absolute;top:5713;left:349"><nobr>240</nobr></div>
+<div style="position:absolute;top:5717;left:125"><nobr><b>Pre-movement</b></nobr></div>
+<div style="position:absolute;top:5732;left:147"><nobr><b>time(s)</b></nobr></div>
+<div style="position:absolute;top:5741;left:246"><nobr><i><b>t<font style="font-size:7px">pre,</font></b></i><font style="font-size:7px">σ</font></nobr></div>
+<div style="position:absolute;top:5737;left:352"><nobr>10</nobr></div>
+</span></font>
+<font size="2" face="Times"><span style="font-size:6px;font-family:Times">
+<div style="position:absolute;top:5980;left:155"><nobr>0</nobr></div>
+<div style="position:absolute;top:5980;left:188"><nobr>50</nobr></div>
+<div style="position:absolute;top:5980;left:222"><nobr>100</nobr></div>
+<div style="position:absolute;top:5980;left:258"><nobr>150</nobr></div>
+<div style="position:absolute;top:5980;left:294"><nobr>200</nobr></div>
+<div style="position:absolute;top:5980;left:330"><nobr>250</nobr></div>
+<div style="position:absolute;top:5980;left:365"><nobr>300</nobr></div>
+<div style="position:absolute;top:5980;left:401"><nobr>350</nobr></div>
+<div style="position:absolute;top:5970;left:142"><nobr>80</nobr></div>
+<div style="position:absolute;top:5949;left:142"><nobr>90</nobr></div>
+<div style="position:absolute;top:5928;left:137"><nobr>100</nobr></div>
+<div style="position:absolute;top:5907;left:137"><nobr>110</nobr></div>
+<div style="position:absolute;top:5886;left:137"><nobr>120</nobr></div>
+<div style="position:absolute;top:5865;left:137"><nobr>130</nobr></div>
+<div style="position:absolute;top:5844;left:137"><nobr>140</nobr></div>
+<div style="position:absolute;top:5823;left:137"><nobr>150</nobr></div>
+<div style="position:absolute;top:5802;left:137"><nobr>160</nobr></div>
+<div style="position:absolute;top:5781;left:137"><nobr>170</nobr></div>
+<div style="position:absolute;top:5924;left:131"><nobr>Pre-m</nobr></div>
+<div style="position:absolute;top:5900;left:131"><nobr>o</nobr></div>
+<div style="position:absolute;top:5895;left:131"><nobr>vem</nobr></div>
+<div style="position:absolute;top:5878;left:131"><nobr>ent tim</nobr></div>
+<div style="position:absolute;top:5851;left:131"><nobr>e</nobr></div>
+<div style="position:absolute;top:5844;left:131"><nobr>(s</nobr></div>
+<div style="position:absolute;top:5836;left:131"><nobr>)</nobr></div>
+<div style="position:absolute;top:5994;left:250"><nobr>No. of personnel</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:13px;font-family:Times">
+<div style="position:absolute;top:6015;left:155"><nobr><i>(a) Pre-movement time of different person</i></nobr></div>
+</span></font>
+<font size="2" face="Times"><span style="font-size:6px;font-family:Times">
+<div style="position:absolute;top:6235;left:153"><nobr>70</nobr></div>
+<div style="position:absolute;top:6235;left:175"><nobr>80</nobr></div>
+<div style="position:absolute;top:6235;left:197"><nobr>90</nobr></div>
+<div style="position:absolute;top:6235;left:217"><nobr>100 110 120 130 140 150 160 170 180</nobr></div>
+<div style="position:absolute;top:6225;left:146"><nobr>0</nobr></div>
+<div style="position:absolute;top:6202;left:142"><nobr>10</nobr></div>
+<div style="position:absolute;top:6180;left:142"><nobr>20</nobr></div>
+<div style="position:absolute;top:6157;left:142"><nobr>30</nobr></div>
+<div style="position:absolute;top:6135;left:142"><nobr>40</nobr></div>
+<div style="position:absolute;top:6112;left:142"><nobr>50</nobr></div>
+<div style="position:absolute;top:6090;left:142"><nobr>60</nobr></div>
+<div style="position:absolute;top:6067;left:142"><nobr>70</nobr></div>
+<div style="position:absolute;top:6045;left:142"><nobr>80</nobr></div>
+<div style="position:absolute;top:6174;left:135"><nobr>N</nobr></div>
+<div style="position:absolute;top:6167;left:135"><nobr>u</nobr></div>
+<div style="position:absolute;top:6162;left:135"><nobr>m</nobr></div>
+<div style="position:absolute;top:6155;left:135"><nobr>b</nobr></div>
+<div style="position:absolute;top:6150;left:135"><nobr>er o</nobr></div>
+<div style="position:absolute;top:6134;left:135"><nobr>f pe</nobr></div>
+<div style="position:absolute;top:6119;left:135"><nobr>ople</nobr></div>
+<div style="position:absolute;top:6249;left:235"><nobr>Pre-movement time(s)</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:13px;font-family:Times">
+<div style="position:absolute;top:6269;left:226"><nobr><i>(b) Distribution</i></nobr></div>
+<div style="position:absolute;top:6296;left:113"><nobr><i>Figure 5 Pre-movement time calculated by pre-movement</i></nobr></div>
+<div style="position:absolute;top:6313;left:227"><nobr><i>time sub-model</i></nobr></div>
+<div style="position:absolute;top:6340;left:106"><nobr>The dancing hall is a public place of entertainment</nobr></div>
+<div style="position:absolute;top:6357;left:106"><nobr>for people who are awake without fire detecting and</nobr></div>
+<div style="position:absolute;top:5334;left:463"><nobr>warning facilities, and the fire is assumed to be large.</nobr></div>
+<div style="position:absolute;top:5352;left:463"><nobr>According to Table 2, the value of the dimensionless</nobr></div>
+<div style="position:absolute;top:5369;left:463"><nobr>parameter <i>a</i>, <i>b</i>, <i>d </i>and <i>e </i>is 1, 0.5, -0.1, 0.1 respectively.</nobr></div>
+<div style="position:absolute;top:5387;left:463"><nobr>The value of <i>c </i>is calculated based on the topological</nobr></div>
+<div style="position:absolute;top:5404;left:463"><nobr>structure of building. Thus, the pre-movement time</nobr></div>
+<div style="position:absolute;top:5422;left:463"><nobr>of people in this building is calculated by the pre-</nobr></div>
+<div style="position:absolute;top:5439;left:463"><nobr>movement time sub-model. Figure 5(a) presents pre-</nobr></div>
+<div style="position:absolute;top:5457;left:463"><nobr>movement time of different persons, and Figure 5(b)</nobr></div>
+<div style="position:absolute;top:5475;left:463"><nobr>is the distribution of pre-movement time, which is a</nobr></div>
+<div style="position:absolute;top:5492;left:463"><nobr>normal distribution. From Figure 5, the biggest and</nobr></div>
+<div style="position:absolute;top:5510;left:463"><nobr>smallest pre-movement time are 170s and 85s.</nobr></div>
+<div style="position:absolute;top:5536;left:463"><nobr>Based on the parameter selection, the simulatiom</nobr></div>
+<div style="position:absolute;top:5554;left:463"><nobr>result of the CFE model is presented by the solid line</nobr></div>
+<div style="position:absolute;top:5571;left:463"><nobr>in Figure 6. For comparison, the analog result is also</nobr></div>
+<div style="position:absolute;top:5589;left:463"><nobr>obtained by the simple lattice-gas model, which is</nobr></div>
+<div style="position:absolute;top:5606;left:463"><nobr>expressed by dotted line in Figure 6. It is shown that</nobr></div>
+<div style="position:absolute;top:5624;left:463"><nobr>the evacuation efficiency calculated by the CFE</nobr></div>
+<div style="position:absolute;top:5641;left:463"><nobr>model is relatively low. It is probably contributes to</nobr></div>
+<div style="position:absolute;top:5659;left:463"><nobr>this model’s ability of describing the phenomena of</nobr></div>
+<div style="position:absolute;top:5677;left:463"><nobr>pushing and shoving among individuals near the</nobr></div>
+<div style="position:absolute;top:5694;left:463"><nobr>north gate, which reflects that people are eager to</nobr></div>
+<div style="position:absolute;top:5712;left:463"><nobr>evacuate to the safe area during a fire.</nobr></div>
+</span></font>
+<font size="2" face="Times"><span style="font-size:6px;font-family:Times">
+<div style="position:absolute;top:5950;left:508"><nobr>0</nobr></div>
+<div style="position:absolute;top:5950;left:529"><nobr>50</nobr></div>
+<div style="position:absolute;top:5950;left:550"><nobr>100</nobr></div>
+<div style="position:absolute;top:5950;left:573"><nobr>150</nobr></div>
+<div style="position:absolute;top:5950;left:597"><nobr>200</nobr></div>
+<div style="position:absolute;top:5950;left:620"><nobr>250</nobr></div>
+<div style="position:absolute;top:5950;left:643"><nobr>300</nobr></div>
+<div style="position:absolute;top:5950;left:667"><nobr>350</nobr></div>
+<div style="position:absolute;top:5950;left:690"><nobr>400</nobr></div>
+<div style="position:absolute;top:5950;left:714"><nobr>450</nobr></div>
+<div style="position:absolute;top:5950;left:737"><nobr>500</nobr></div>
+<div style="position:absolute;top:5950;left:761"><nobr>550</nobr></div>
+<div style="position:absolute;top:5940;left:499"><nobr>0</nobr></div>
+<div style="position:absolute;top:5912;left:494"><nobr>50</nobr></div>
+<div style="position:absolute;top:5885;left:490"><nobr>100</nobr></div>
+<div style="position:absolute;top:5857;left:490"><nobr>150</nobr></div>
+<div style="position:absolute;top:5830;left:490"><nobr>200</nobr></div>
+<div style="position:absolute;top:5802;left:490"><nobr>250</nobr></div>
+<div style="position:absolute;top:5774;left:490"><nobr>300</nobr></div>
+<div style="position:absolute;top:5747;left:490"><nobr>350</nobr></div>
+</span></font>
+<font size="2" face="Times"><span style="font-size:7px;font-family:Times">
+<div style="position:absolute;top:5763;left:617"><nobr>ASET</nobr></div>
+<div style="position:absolute;top:5913;left:483"><nobr>Num</nobr></div>
+<div style="position:absolute;top:5893;left:483"><nobr>ber of peo</nobr></div>
+<div style="position:absolute;top:5852;left:483"><nobr>ple not ev</nobr></div>
+<div style="position:absolute;top:5813;left:483"><nobr>ac</nobr></div>
+<div style="position:absolute;top:5803;left:483"><nobr>uate</nobr></div>
+<div style="position:absolute;top:5785;left:483"><nobr>d</nobr></div>
+<div style="position:absolute;top:5965;left:621"><nobr>RSET(s)</nobr></div>
+<div style="position:absolute;top:5756;left:686"><nobr>CFE model</nobr></div>
+<div style="position:absolute;top:5768;left:686"><nobr>Lattice-Gas model</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:13px;font-family:Times">
+<div style="position:absolute;top:5989;left:474"><nobr><i>Figure 6 The simulation result of evacuating from north</i></nobr></div>
+<div style="position:absolute;top:6006;left:582"><nobr><i>gate during fire</i></nobr></div>
+<div style="position:absolute;top:6033;left:463"><nobr>Regarding 220s as dangerous moment which is the</nobr></div>
+<div style="position:absolute;top:6050;left:463"><nobr>ASET calculated by the simulation of FDS, 162</nobr></div>
+<div style="position:absolute;top:6068;left:463"><nobr>persons will die from the simulation of simple lattice-</nobr></div>
+<div style="position:absolute;top:6085;left:463"><nobr>gas model and the number of death will be 197 from</nobr></div>
+<div style="position:absolute;top:6103;left:463"><nobr>the CFE model. It seems that the simulation result of</nobr></div>
+<div style="position:absolute;top:6120;left:463"><nobr>the CFE model is closer to the real case situation.</nobr></div>
+<div style="position:absolute;top:6138;left:463"><nobr>One of the most probable reason is the difference in</nobr></div>
+<div style="position:absolute;top:6155;left:463"><nobr>simulation ability about crowd situations of these two</nobr></div>
+<div style="position:absolute;top:6173;left:463"><nobr>kinds of models. The ability of the simple lattice-gas</nobr></div>
+<div style="position:absolute;top:6191;left:463"><nobr>model to describe the interacting among individual is</nobr></div>
+<div style="position:absolute;top:6208;left:463"><nobr>not strong enough to simulate the evacuating</nobr></div>
+<div style="position:absolute;top:6226;left:463"><nobr>situation in the high crowd density area accurately,</nobr></div>
+<div style="position:absolute;top:6243;left:463"><nobr>especially in case where the exit is small and</nobr></div>
+<div style="position:absolute;top:6261;left:463"><nobr>congestion is likely to occur.</nobr></div>
+<div style="position:absolute;top:6287;left:463"><nobr>The number of 197 deaths in accident of Yiyuan</nobr></div>
+<div style="position:absolute;top:6305;left:463"><nobr>dancing hall simulated by the CFE model is smaller</nobr></div>
+<div style="position:absolute;top:6322;left:463"><nobr>than the real death number of 233. The authors</nobr></div>
+<div style="position:absolute;top:6340;left:463"><nobr>consider that it is mainly due to the neglect of the</nobr></div>
+<div style="position:absolute;top:6358;left:463"><nobr>chemical fiber cloth decorating to the wall in the </nobr></div>
+</span></font>
+
+<div style="position:absolute;top:6490;left:0"><hr><table border="0" width="100%"><tbody><tr><td bgcolor="eeeeee" align="right"><font face="arial,sans-serif"><a name="6"><b>Page 6</b></a></font></td></tr></tbody></table></div><font size="3" face="Times"><span style="font-size:11px;font-family:Times">
+<div style="position:absolute;top:6545;left:340"><nobr>Proceedings: Building Simulation 2007</nobr></div>
+<div style="position:absolute;top:7684;left:428"><nobr>- 708 -</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:13px;font-family:Times">
+<div style="position:absolute;top:6597;left:106"><nobr>assumption of the fire scene. Thus, the fire situation</nobr></div>
+<div style="position:absolute;top:6615;left:106"><nobr>calculated in FDS simulation is not as dangerous as</nobr></div>
+<div style="position:absolute;top:6632;left:106"><nobr>the actual conditions. The neglect leads to the</nobr></div>
+<div style="position:absolute;top:6650;left:106"><nobr>deviation of ASET and influences the simulation</nobr></div>
+<div style="position:absolute;top:6667;left:106"><nobr>result of people’s death finally.</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:16px;font-family:Times">
+<div style="position:absolute;top:6699;left:106"><nobr>CONCLUSION</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:13px;font-family:Times">
+<div style="position:absolute;top:6728;left:106"><nobr>The CFE model is built based on the analysis of</nobr></div>
+<div style="position:absolute;top:6746;left:106"><nobr>Chinese people’s behavior characteristic, which</nobr></div>
+<div style="position:absolute;top:6763;left:106"><nobr>includes three sub models: lattice-gas model, social</nobr></div>
+<div style="position:absolute;top:6781;left:106"><nobr>force model and pre-movement time model. The</nobr></div>
+<div style="position:absolute;top:6799;left:106"><nobr>impact of fire products upon people’s physiology and</nobr></div>
+<div style="position:absolute;top:6816;left:106"><nobr>psychology has been considered in this model.</nobr></div>
+<div style="position:absolute;top:6834;left:106"><nobr>Evacuation during fire can be simulated by the CFE</nobr></div>
+<div style="position:absolute;top:6851;left:106"><nobr>model, and the result can predict RSET. With the</nobr></div>
+<div style="position:absolute;top:6869;left:106"><nobr>help of FDS model to calculate ASET, it is possible</nobr></div>
+<div style="position:absolute;top:6886;left:106"><nobr>to perform risk assessment or analyze the fire case</nobr></div>
+<div style="position:absolute;top:6904;left:106"><nobr>for the certain building or environment.</nobr></div>
+<div style="position:absolute;top:6930;left:106"><nobr>After the simulation and analysis of the CFE model</nobr></div>
+<div style="position:absolute;top:6948;left:106"><nobr>and simple lattice-gas model, it seems that the</nobr></div>
+<div style="position:absolute;top:6965;left:106"><nobr>simulation result of the CFE model is closer to the</nobr></div>
+<div style="position:absolute;top:6983;left:106"><nobr>real case situation. The reason is that the CFE model</nobr></div>
+<div style="position:absolute;top:7001;left:106"><nobr>can simulate the condition of pushing and shoving</nobr></div>
+<div style="position:absolute;top:7018;left:106"><nobr>among individual accurately. This condition reflects</nobr></div>
+<div style="position:absolute;top:7036;left:106"><nobr>the psychology that people in a fire are eager to</nobr></div>
+<div style="position:absolute;top:7053;left:106"><nobr>evacuate to the safe area as quickly as possible, and it</nobr></div>
+<div style="position:absolute;top:7071;left:106"><nobr>usually causes congestion near the exit and reduces</nobr></div>
+<div style="position:absolute;top:7088;left:106"><nobr>the efficiency of evacuating, which is described as</nobr></div>
+<div style="position:absolute;top:7106;left:106"><nobr>the ‘fast-is-slow effect’ by Helbing (2000).</nobr></div>
+<div style="position:absolute;top:7132;left:106"><nobr>In the future, video material on escape panics will be</nobr></div>
+<div style="position:absolute;top:7150;left:106"><nobr>used to validate the CFE model. The authors are now</nobr></div>
+<div style="position:absolute;top:7168;left:106"><nobr>studying the impact of CO and high-temperature of</nobr></div>
+<div style="position:absolute;top:7185;left:106"><nobr>fire exhaust gases on people, the interpersonal</nobr></div>
+<div style="position:absolute;top:7203;left:106"><nobr>interactions which include direction, velocity,</nobr></div>
+<div style="position:absolute;top:7220;left:106"><nobr>acoustic information exchange, etc.</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:16px;font-family:Times">
+<div style="position:absolute;top:7269;left:106"><nobr>ACKNOWLEDGEMENT</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:13px;font-family:Times">
+<div style="position:absolute;top:7299;left:106"><nobr>The authors appreciate the project 70503017</nobr></div>
+<div style="position:absolute;top:7316;left:106"><nobr>supported by NSFC and the project</nobr></div>
+<div style="position:absolute;top:7334;left:106"><nobr>212006BAK01A02 support by MOST.</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:16px;font-family:Times">
+<div style="position:absolute;top:7365;left:106"><nobr>REFERENCES</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:13px;font-family:Times">
+<div style="position:absolute;top:7395;left:106"><nobr>Anonymity <font color="#0000ff">http://info.fire.sinobnet.com/</font></nobr></div>
+<div style="position:absolute;top:7422;left:106"><nobr>Anonymity A <font color="#0000ff">http://www.119.sd.cn/infocenter/</font></nobr></div>
+<div style="position:absolute;top:7449;left:106"><nobr>Anonymity B <font color="#0000ff">http://202.38.89.99/software_index/fastdata_index.htm</font></nobr></div>
+<div style="position:absolute;top:7476;left:106"><nobr>Chen T., Song W.G., Fan W.C., Lu S.X., Yao B.</nobr></div>
+<div style="position:absolute;top:7494;left:133"><nobr>2003. “Pedestrian evacuation flow from hallway</nobr></div>
+<div style="position:absolute;top:7512;left:133"><nobr>to stairs”, in: Faridah Shafii, Richard Bukowski,</nobr></div>
+<div style="position:absolute;top:7530;left:133"><nobr>Ron Klemencic(eds.), The CIB-CTBUH</nobr></div>
+<div style="position:absolute;top:7548;left:133"><nobr>Conference on Tall Buildings: Strategies for</nobr></div>
+<div style="position:absolute;top:7566;left:133"><nobr>Performance in the Aftermath of the World</nobr></div>
+<div style="position:absolute;top:7584;left:133"><nobr>Trade Centre, CIB TG50, Malaysia, 79-86.</nobr></div>
+<div style="position:absolute;top:7611;left:106"><nobr>Gwynne S., Galea E.R., Owen M., Lawrence P.J.,</nobr></div>
+<div style="position:absolute;top:7629;left:133"><nobr>Filippidis L. 1999. “A review of the</nobr></div>
+<div style="position:absolute;top:6597;left:490"><nobr>methodologies used in evacuation modeling”,</nobr></div>
+<div style="position:absolute;top:6615;left:490"><nobr>Fire &amp; Materials. 23: 383-388.</nobr></div>
+<div style="position:absolute;top:6642;left:463"><nobr>Helbing D. 1992. “A fluid-dynamic model for the</nobr></div>
+<div style="position:absolute;top:6660;left:490"><nobr>movement of pedestrians”, Complex Systems 6:</nobr></div>
+<div style="position:absolute;top:6678;left:490"><nobr>391-415.</nobr></div>
+<div style="position:absolute;top:6705;left:463"><nobr>Helbing D., Farkas I., Vicsek T. 2000. “Simulating</nobr></div>
+<div style="position:absolute;top:6723;left:490"><nobr>dynamical features of escape panic”, Nature. 407:</nobr></div>
+<div style="position:absolute;top:6741;left:490"><nobr>487-490.</nobr></div>
+<div style="position:absolute;top:6768;left:463"><nobr>Jia C.Q., Liu C., Xiang T.H., Zeng D.L. 2002. “The</nobr></div>
+<div style="position:absolute;top:6786;left:490"><nobr>Study of Evacuation Start Time in Fires”, Fire</nobr></div>
+<div style="position:absolute;top:6804;left:490"><nobr>Safety Science (In Chinese) 11(3): 176-179.</nobr></div>
+<div style="position:absolute;top:6831;left:463"><nobr>Kendik E. 1985. SFPE Technology Report 85.4:</nobr></div>
+<div style="position:absolute;top:6849;left:490"><nobr>“Assessment of Escape Routes in Buildings and</nobr></div>
+<div style="position:absolute;top:6867;left:490"><nobr>a Design Method for Calculating Pedestrian</nobr></div>
+<div style="position:absolute;top:6885;left:490"><nobr>Movement”, Society of Fire Protection</nobr></div>
+<div style="position:absolute;top:6903;left:490"><nobr>Engineers. Boston, Massachusetts.</nobr></div>
+<div style="position:absolute;top:6930;left:463"><nobr>Lewin K., 1992. “Field Theory in Social Science”,</nobr></div>
+<div style="position:absolute;top:6948;left:490"><nobr>Harper, New York.</nobr></div>
+<div style="position:absolute;top:6975;left:463"><nobr>Li Y.X., Kang L.S., Chen Y.P. 1994. “Lattice-Gas</nobr></div>
+<div style="position:absolute;top:6993;left:490"><nobr>Automaton”, Tsinghua University Press,</nobr></div>
+<div style="position:absolute;top:7011;left:490"><nobr>Guangxi Science and Technology Press (In</nobr></div>
+<div style="position:absolute;top:7029;left:490"><nobr>Chinese).</nobr></div>
+<div style="position:absolute;top:7056;left:463"><nobr>Predtechenskii V.M., Milinskii A.I. 1971. “Planning</nobr></div>
+<div style="position:absolute;top:7074;left:490"><nobr>for Foot Traffic Flow in Buildings”, Amerind</nobr></div>
+<div style="position:absolute;top:7092;left:490"><nobr>Publishing Co. Pvt. Ltd., New Delhi.</nobr></div>
+<div style="position:absolute;top:7119;left:463"><nobr>Schneider V., 2001. “Application of the individual-</nobr></div>
+<div style="position:absolute;top:7137;left:490"><nobr>based evacuation model ASERI in designing</nobr></div>
+<div style="position:absolute;top:7155;left:490"><nobr>safety concepts”, in: Proceedings of 2nd</nobr></div>
+<div style="position:absolute;top:7173;left:490"><nobr>International Symposium on Human Behavior in</nobr></div>
+<div style="position:absolute;top:7191;left:490"><nobr>Fire, March, Boston, USA, , 41-51.</nobr></div>
+<div style="position:absolute;top:7218;left:463"><nobr>Yu D.Z., 1997. “Report on the investigation and</nobr></div>
+<div style="position:absolute;top:7236;left:490"><nobr>research of the physique of Chinese staff</nobr></div>
+<div style="position:absolute;top:7254;left:490"><nobr>members and workers”, Fujian Sports Science</nobr></div>
+<div style="position:absolute;top:7272;left:490"><nobr>and Technology (In Chinese) 16(4): 6-13. </nobr></div>
+</span></font>
+
+
+</div></body></html>
