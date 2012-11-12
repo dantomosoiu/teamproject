@@ -1,0 +1,30 @@
+\documentclass{article}
+\begin{document}
+\section{Introduction}
+\subsection{What is an Evacuation Simulator}
+A simulation can be defined  is the imitation of a real-world process or system over time\cite{DiscreteEvent}. Therefore it follows that an evacuation simulator is a system which attempts to accurately predict the evacuation of a population from a given environment such as a building or vehicle. There can be many reasons for an evacuation occuring, but only the occurence of a fire is considered within the scope of this project.\\
+
+Underlying any such simulator is a logical model. In a simulation model, the designer aims to ``represent the behaviour and movement observed in evacuations not only to achieve accurate results, but to realistically represent the paths  and decisions taken during an evacuation''\cite{MethodReview}.These criteria have been realised in the *simulator name* by a number of key features, based on research, which are discussed within this report.\\
+
+This model can be broken down into several sub-models which fall into two broad categories: environments models and logical/behavioural models. An environment model is the logical representation of the area in which the evacuation occurs. This includes entrances and exits, pathways, etc. The second cateogry includes all other parts of the simulation, such as general models for an individuals movement or path finding algorithms. \\
+
+By seperating these two sets of models, it is possible to build an evacuation simulator where the environment used is interchangable. So for example, the same system could simulate an evacuation on two different buildings provided that a suitable representation of each could be produced. 
+Henceforth we shall refer to our three dimensional representation of the target environment, as well as the underlying model which corresponds to it in the system, as the ``3D Model''.\\
+
+\subsection{Why Implement an Evacuation Simulator}
+Simulations provide a relatively cheap and effective means by which to test evacuation procedures, estimate evacuation times and indicate possible areas of danger in the environment on which the simulation is modelled.\\
+
+The task of accurately testing a buildings evacuation procedure is both difficult and expensive. In such cases one option is to hire members of the public as stand-in `evacuees' and run a mock evacuation. In theory this would allow an appropriate expert such as a consultant from a local fire department to assess the effectiveness of an exisiting plan. However, such tests on public buildings are very expensive: hired evacuees will usually be paid as well as any staff required for the test. Another interesting drawback to this approach is that when an evacuee knows they are participating in an experiment, their behaviour is inherently different than it would be in a real evacuation. This phenomenon is know as Evaluation Apprehension\cite{EvalApprehension}.\\
+
+For these reasons such large scale tests are rarely performed, if ever. In this situation a simulator can provide a suitable alternative by allowing a large range of tests to be performed at minimal cost.\\
+
+Naturally there are some problems with simulators, the most obvious being that no matter how extensive the underlying models and background research are it is simply impossible to accurately model every aspect of an evacuation. In particular it is difficult to accurately model human behaviour. \\
+
+
+\begin{thebibliography}{9}
+\bibitem{DiscreteEvent}J. Banks, J. Carson, B. Nelson, D. Nicol, (2001). \emph{Discrete-Event System Simulation}, page 3. Prentice Hall. ISBN 0-13-088702-1.
+\bibitem{MethodReview} S.Gwynne, E.R. Galea, P.J. Lawrence and L. Filippidis, (1999). \emph{A Review of the Methodologies Used in Evacuation Modelling}. University of Greenwich.
+\bibitem{EvalApprehension} Robert Rosenthal and Ralph L. Rosnow (2009). \emph{Artifacts in Behavioral Research}, pg 212. Oxford. ISBN 978-0-19-538554-0 .
+\end{thebibliography}
+
+\end{document}
