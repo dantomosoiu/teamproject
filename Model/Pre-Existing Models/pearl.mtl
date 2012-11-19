@@ -1,0 +1,116 @@
+# Blender MTL File: 'pearl.blend'
+# Material Count: 10
+newmtl black_holes
+Ns 7.843137
+Ka 0.000000 0.000000 0.000000
+Kd 0.000000 0.000000 0.000000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 0.000000
+illum 2
+
+
+newmtl deck_wood_F:\docs\illustration\black_pearl\Wood_floor_ffs062.jpg.001
+Ns 7.843137
+Ka 0.000000 0.000000 0.000000
+Kd 0.655680 0.470560 0.652560
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 0.000000
+illum 2
+map_Kd /F:/docs/illustration/black_pearl/Wood floor ffs062.jpg
+map_Ka /F:/docs/illustration/black_pearl/Wood floor ffs062.jpg
+
+
+newmtl flag_F:\docs\illustration\black_pearl\flag.png.001
+Ns 7.843137
+Ka 0.000000 0.000000 0.000000
+Kd 0.470400 0.470400 0.470400
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 0.000000
+illum 2
+map_Kd /F:/docs/illustration/black_pearl/flag.png
+map_Ka /F:/docs/illustration/black_pearl/flag.png
+
+
+newmtl hull_trim_wood_F:\docs\illustration\black_pearl\dark_teak.jpg.003
+Ns 7.843137
+Ka 0.000000 0.000000 0.000000
+Kd 0.470400 0.470400 0.470400
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 0.000000
+illum 2
+map_Kd /F:/docs/illustration/black_pearl/dark_teak.jpg
+map_Ka /F:/docs/illustration/black_pearl/dark_teak.jpg
+
+
+newmtl hull_wood_F:\docs\illustration\black_pearl\dark_wood_planks.png.001
+Ns 7.843137
+Ka 0.000000 0.000000 0.000000
+Kd 0.470560 0.662000 0.655680
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 0.000000
+illum 2
+map_Kd /F:/docs/illustration/black_pearl/dark_wood_planks.png
+map_Ka /F:/docs/illustration/black_pearl/dark_wood_planks.png
+
+
+newmtl iron
+Ns 45.098039
+Ka 0.000000 0.000000 0.000000
+Kd 0.015680 0.015680 0.015680
+Ks 0.549000 0.549000 0.549000
+Ni 1.000000
+d 0.000000
+illum 2
+
+
+newmtl rope_
+Ns 7.843137
+Ka 0.000000 0.000000 0.000000
+Kd 0.084720 0.084720 0.084720
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 0.000000
+illum 2
+
+
+newmtl sails_F:\docs\illustration\black_pearl\sails1.png.001
+Ns 7.843137
+Ka 0.000000 0.000000 0.000000
+Kd 0.100400 0.100400 0.138000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 0.000000
+illum 2
+map_Kd /F:/docs/illustration/black_pearl/sails1.png
+map_Ka /F:/docs/illustration/black_pearl/sails1.png
+
+
+newmtl spars_F:\docs\illustration\black_pearl\dark_teak.jpg.001
+Ns 7.843137
+Ka 0.000000 0.000000 0.000000
+Kd 0.662000 0.470560 0.502000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 0.000000
+illum 2
+map_Kd /F:/docs/illustration/black_pearl/dark_teak.jpg
+map_Ka /F:/docs/illustration/black_pearl/dark_teak.jpg
+
+
+newmtl windows_Map__5_Tiles.tga
+Ns 7.843137
+Ka 0.000000 0.000000 0.000000
+Kd 0.470400 0.470400 0.470400
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 0.000000
+illum 2
+map_Kd /home/hector/Downloads/home/kevin/docs/illustration/black_pearl_export2/Map__5_Tiles.tga
+map_Ka /home/hector/Downloads/home/kevin/docs/illustration/black_pearl_export2/Map__5_Tiles.tga
+
+

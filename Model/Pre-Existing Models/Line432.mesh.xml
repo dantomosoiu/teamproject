@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mesh>
+    <sharedgeometry vertexcount="6">
+        <vertexbuffer texture_coords="1" positions="true" colours_diffuse="False" normals="true">
+            <vertex>
+                <position y="-132.306793" x="-64.943001" z="-1.940400"/>
+                <normal y="-0.894162" x="-0.340495" z="-0.290628"/>
+                <texcoord u="0.500000" v="1.000000"/>
+            </vertex>
+            <vertex>
+                <position y="-131.863403" x="-63.639099" z="-0.184300"/>
+                <normal y="-0.481185" x="0.563860" z="0.671163"/>
+                <texcoord u="0.500000" v="1.000000"/>
+            </vertex>
+            <vertex>
+                <position y="-131.392303" x="-63.984299" z="-0.046900"/>
+                <normal y="0.380261" x="-0.067385" z="0.922391"/>
+                <texcoord u="0.500000" v="1.000000"/>
+            </vertex>
+            <vertex>
+                <position y="-131.835693" x="-65.288200" z="-1.803000"/>
+                <normal y="0.005219" x="-0.999573" z="-0.028321"/>
+                <texcoord u="0.500000" v="1.000000"/>
+            </vertex>
+            <vertex>
+                <position y="-130.918900" x="-63.507198" z="-3.091900"/>
+                <normal y="-0.015168" x="0.618397" z="-0.785699"/>
+                <texcoord u="0.500000" v="1.000000"/>
+            </vertex>
+            <vertex>
+                <position y="-130.447800" x="-63.852402" z="-2.954500"/>
+                <normal y="0.844813" x="-0.011750" z="-0.534898"/>
+                <texcoord u="0.500000" v="1.000000"/>
+            </vertex>
+        </vertexbuffer>
+    </sharedgeometry>
+    <submeshes>
+        <submesh usesharedvertices="true" material="iron" use32bitindexes="False" operationtype="triangle_list">
+            <faces count="8">
+                <face v1="0" v2="1" v3="2"/>
+                <face v1="0" v2="2" v3="3"/>
+                <face v1="1" v2="4" v3="5"/>
+                <face v1="1" v2="5" v3="2"/>
+                <face v1="4" v2="0" v3="3"/>
+                <face v1="4" v2="3" v3="5"/>
+                <face v1="1" v2="0" v3="4"/>
+                <face v1="2" v2="5" v3="3"/>
+            </faces>
+        </submesh>
+    </submeshes>
+    <submeshnames>
+        <submesh index="0" name="iron">
+        </submesh>
+    </submeshnames>
+</mesh>

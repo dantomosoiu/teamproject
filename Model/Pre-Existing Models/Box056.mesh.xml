@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mesh>
+    <sharedgeometry vertexcount="20">
+        <vertexbuffer texture_coords="1" positions="true" colours_diffuse="False" normals="true">
+            <vertex>
+                <position y="-177.990997" x="31.654400" z="-4.138700"/>
+                <normal y="0.764733" x="-0.135685" z="0.629841"/>
+                <texcoord u="0.000000" v="1.000000"/>
+            </vertex>
+            <vertex>
+                <position y="-178.755493" x="31.021900" z="-4.263400"/>
+                <normal y="-0.117985" x="-0.866024" z="0.485855"/>
+                <texcoord u="1.000000" v="1.000000"/>
+            </vertex>
+            <vertex>
+                <position y="-179.395203" x="31.790100" z="-4.237800"/>
+                <normal y="-0.856655" x="0.020997" z="0.515397"/>
+                <texcoord u="1.000000" v="0.000000"/>
+            </vertex>
+            <vertex>
+                <position y="-178.630707" x="32.422501" z="-4.113100"/>
+                <normal y="0.026063" x="0.751274" z="0.659444"/>
+                <texcoord u="0.000000" v="0.000000"/>
+            </vertex>
+            <vertex>
+                <position y="-177.122803" x="32.737701" z="-14.955600"/>
+                <normal y="0.856655" x="-0.020966" z="-0.515427"/>
+                <texcoord u="0.000000" v="1.000000"/>
+            </vertex>
+            <vertex>
+                <position y="-177.762497" x="33.505901" z="-14.930000"/>
+                <normal y="0.117985" x="0.866024" z="-0.485855"/>
+                <texcoord u="1.000000" v="1.000000"/>
+            </vertex>
+            <vertex>
+                <position y="-178.526993" x="32.873402" z="-15.054700"/>
+                <normal y="-0.764733" x="0.135716" z="-0.629871"/>
+                <texcoord u="1.000000" v="0.000000"/>
+            </vertex>
+            <vertex>
+                <position y="-177.887299" x="32.105202" z="-15.080300"/>
+                <normal y="-0.026063" x="-0.751305" z="-0.659413"/>
+                <texcoord u="0.000000" v="0.000000"/>
+            </vertex>
+            <vertex>
+                <position y="-178.630707" x="32.422501" z="-4.113100"/>
+                <normal y="0.026063" x="0.751274" z="0.659444"/>
+                <texcoord u="1.000000" v="1.000000"/>
+            </vertex>
+            <vertex>
+                <position y="-177.762497" x="33.505901" z="-14.930000"/>
+                <normal y="0.117985" x="0.866024" z="-0.485855"/>
+                <texcoord u="1.000000" v="0.000000"/>
+            </vertex>
+            <vertex>
+                <position y="-177.122803" x="32.737701" z="-14.955600"/>
+                <normal y="0.856655" x="-0.020966" z="-0.515427"/>
+                <texcoord u="0.000000" v="0.000000"/>
+            </vertex>
+            <vertex>
+                <position y="-178.630707" x="32.422501" z="-4.113100"/>
+                <normal y="0.026063" x="0.751274" z="0.659444"/>
+                <texcoord u="0.000000" v="1.000000"/>
+            </vertex>
+            <vertex>
+                <position y="-179.395203" x="31.790100" z="-4.237800"/>
+                <normal y="-0.856655" x="0.020997" z="0.515397"/>
+                <texcoord u="1.000000" v="1.000000"/>
+            </vertex>
+            <vertex>
+                <position y="-177.762497" x="33.505901" z="-14.930000"/>
+                <normal y="0.117985" x="0.866024" z="-0.485855"/>
+                <texcoord u="0.000000" v="0.000000"/>
+            </vertex>
+            <vertex>
+                <position y="-179.395203" x="31.790100" z="-4.237800"/>
+                <normal y="-0.856655" x="0.020997" z="0.515397"/>
+                <texcoord u="0.000000" v="1.000000"/>
+            </vertex>
+            <vertex>
+                <position y="-177.887299" x="32.105202" z="-15.080300"/>
+                <normal y="-0.026063" x="-0.751305" z="-0.659413"/>
+                <texcoord u="1.000000" v="0.000000"/>
+            </vertex>
+            <vertex>
+                <position y="-178.526993" x="32.873402" z="-15.054700"/>
+                <normal y="-0.764733" x="0.135716" z="-0.629871"/>
+                <texcoord u="0.000000" v="0.000000"/>
+            </vertex>
+            <vertex>
+                <position y="-178.755493" x="31.021900" z="-4.263400"/>
+                <normal y="-0.117985" x="-0.866024" z="0.485855"/>
+                <texcoord u="0.000000" v="1.000000"/>
+            </vertex>
+            <vertex>
+                <position y="-177.990997" x="31.654400" z="-4.138700"/>
+                <normal y="0.764733" x="-0.135685" z="0.629841"/>
+                <texcoord u="1.000000" v="1.000000"/>
+            </vertex>
+            <vertex>
+                <position y="-177.122803" x="32.737701" z="-14.955600"/>
+                <normal y="0.856655" x="-0.020966" z="-0.515427"/>
+                <texcoord u="1.000000" v="0.000000"/>
+            </vertex>
+        </vertexbuffer>
+    </sharedgeometry>
+    <submeshes>
+        <submesh usesharedvertices="true" material="hull_trim_wood" use32bitindexes="False" operationtype="triangle_list">
+            <faces count="12">
+                <face v1="0" v2="1" v3="2"/>
+                <face v1="0" v2="2" v3="3"/>
+                <face v1="4" v2="5" v3="6"/>
+                <face v1="4" v2="6" v3="7"/>
+                <face v1="0" v2="8" v3="9"/>
+                <face v1="0" v2="9" v3="10"/>
+                <face v1="11" v2="12" v3="6"/>
+                <face v1="11" v2="6" v3="13"/>
+                <face v1="14" v2="1" v3="15"/>
+                <face v1="14" v2="15" v3="16"/>
+                <face v1="17" v2="18" v3="19"/>
+                <face v1="17" v2="19" v3="7"/>
+            </faces>
+        </submesh>
+    </submeshes>
+    <submeshnames>
+        <submesh index="0" name="hull_trim_wood">
+        </submesh>
+    </submeshnames>
+</mesh>
