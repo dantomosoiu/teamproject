@@ -1,0 +1,475 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- saved from url=(0041)http://jasss.soc.surrey.ac.uk/11/3/9.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"> 
+
+<meta name="DC.Title" content="Agent-Based Emergency Evacuation Simulation with Individuals with Disabilities in the Population"> 
+<meta name="DC.Creator" content="Keith Christensen and Yuya Sasaki"> 
+<meta name="DC.Creator.Address" content="keithc@cpd2.usu.edu"> 
+<meta name="DC.Subject" content="
+ Agent-Based Simulation, Individual-Based Simulation, Disability, Emergency Egress, Evacuation, Reinforcement Learning
+"> 
+<meta name="DC.Description" content="
+ Catastrophic events have raised numerous issues concerning how effectively the built environment accommodates the evacuation needs of individuals with disabilities.  Individuals with disabilities represent a significant, yet often overlooked, portion of the population disproportionately affected in emergency situations.  Incorporating disability considerations into emergency evacuation planning, preparation, and other activities is critical.  The most widely applied method used to evaluate how effectively the built environment accommodates emergency evacuations is agent-based or microsimulation modeling.  However, current evacuation models do not adequately address individuals with disabilities in their simulated populations.  This manuscript describes the BUMMPEE model, an agent-based simulation capable of classifying the built environment according to environmental characteristics and simulating a heterogeneous population according to variation in individual criteria.  The method allows for simulated behaviors which more aptly represent the diversity and prevalence of disabilities in the population and their interaction with the built environment.  Comparison of the results of an evacuation simulated using the BUMMPEE model is comparable to a physical evacuation with a similar population and setting.  The results of the comparison indicate that the BUMMPEE model is a reasonable approach for simulating evacuations representing the diversity and prevalence of disability in the population.
+"> 
+ <meta name="DC.Publisher" content="JASSS"> 
+ <meta name="DC.Date" content="2008-06-30"> 
+<meta name="DC.Type" content="Text.Article"> 
+<meta name="DC.Format" content="text/html"> 
+<meta name="DC.Identifier" content="http://jasss.soc.surrey.ac.uk/11/3/9.html"> 
+<meta name="DC.Language" content="en"> 
+<meta name="DC.Rights" content="JASSS@soc.surrey.ac.uk">
+<title>Keith Christensen and Yuya Sasaki: Agent-Based Emergency Evacuation Simulation with Individuals with Disabilities in the Population
+</title>
+<style type="text/css"></style></head> 
+<body bgcolor="#ffffff" vlink="#006633" link="#0000ff" alink="#99cc99">
+<font size="1">©<a href="http://jasss.soc.surrey.ac.uk/admin/copyright.html">Copyright JASSS</a></font><p>
+<a name="top"></a> 
+<a href="http://jasss.soc.surrey.ac.uk/JASSS.html"><img src="./Keith Christensen and Yuya Sasaki  Agent-Based Emergency Evacuation Simulation with Individuals with Disabilities in the Population_files/JASSSMed.GIF" width="189" height="76" border="0" alt="JASSS logo"></a>
+<img src="./Keith Christensen and Yuya Sasaki  Agent-Based Emergency Evacuation Simulation with Individuals with Disabilities in the Population_files/bar.gif" width="100%" height="3" alt="----"></p><p>
+<b><font size="4"><a href="http://jasss.soc.surrey.ac.uk/11/3/9/christensen.html">Keith Christensen and Yuya Sasaki</a> (2008)
+</font></b>
+</p><p align="CENTER"><b><font size="5">
+Agent-Based Emergency Evacuation Simulation with Individuals with Disabilities in the Population
+</font></b>
+</p><p align="CENTER"><font size="4"><i>Journal of Artificial Societies and Social Simulation</i>
+  vol. 11, no. 3 9<br>
+ &lt;http://jasss.soc.surrey.ac.uk/11/3/9.html&gt;</font>
+</p><p align="CENTER"><font size="2">
+For information about citing this article, click <a href="http://jasss.soc.surrey.ac.uk/11/3/9/citation.html">here</a></font>
+</p><p align="CENTER"><font size="2">Received: 12-Jan-2007
+&nbsp;&nbsp;&nbsp;Accepted: 16-Jun-2008
+&nbsp;&nbsp;&nbsp;Published: 30-Jun-2008
+</font>
+</p><p align="left"><a href="http://jasss.soc.surrey.ac.uk/11/3/9/9.pdf"><img src="./Keith Christensen and Yuya Sasaki  Agent-Based Emergency Evacuation Simulation with Individuals with Disabilities in the Population_files/Acrobat.gif" border="0" alt="PDF version" title="PDF of this article"></a></p>
+<hr>
+<h3><img src="./Keith Christensen and Yuya Sasaki  Agent-Based Emergency Evacuation Simulation with Individuals with Disabilities in the Population_files/bullet.gif" alt="* ">Abstract</h3>
+<dl compact=""><dt></dt><dd>
+Catastrophic events have raised numerous issues concerning how effectively the built environment accommodates the evacuation needs of individuals with disabilities.  Individuals with disabilities represent a significant, yet often overlooked, portion of the population disproportionately affected in emergency situations.  Incorporating disability considerations into emergency evacuation planning, preparation, and other activities is critical.  The most widely applied method used to evaluate how effectively the built environment accommodates emergency evacuations is agent-based or microsimulation modeling.  However, current evacuation models do not adequately address individuals with disabilities in their simulated populations.  This manuscript describes the BUMMPEE model, an agent-based simulation capable of classifying the built environment according to environmental characteristics and simulating a heterogeneous population according to variation in individual criteria.  The method allows for simulated behaviors which more aptly represent the diversity and prevalence of disabilities in the population and their interaction with the built environment.  Comparison of the results of an evacuation simulated using the BUMMPEE model is comparable to a physical evacuation with a similar population and setting.  The results of the comparison indicate that the BUMMPEE model is a reasonable approach for simulating evacuations representing the diversity and prevalence of disability in the population.
+<p></p></dd><dt><b>Keywords:</b></dt><dd>
+ Agent-Based Simulation, Individual-Based Simulation, Disability, Emergency Egress, Evacuation, Reinforcement Learning
+</dd></dl><hr noshade="">
+<h3><img align="Bottom" src="./Keith Christensen and Yuya Sasaki  Agent-Based Emergency Evacuation Simulation with Individuals with Disabilities in the Population_files/bullet.gif" width="23" height="23" alt="* "> Introduction
+</h3><dl compact="">
+
+
+<dt><b><a name="1.1">1.1</a></b></dt><dd>Catastrophic events have raised numerous issues concerning how effectively the built environment accommodates the evacuation needs of individuals with disabilities.  Individuals with disabilities represent a significant, yet often overlooked, portion of the population accounting for 12.6% of the working-age population (21,455,000) (<a href="http://jasss.soc.surrey.ac.uk/11/3/9.html#rrtcdds2005">RRTCDDS 2005</a>) and 16.7% of the total population of the United States (49,746,248) (<a href="http://jasss.soc.surrey.ac.uk/11/3/9.html#u.s.2006">U.S. Census Bureau 2006</a>).  Individuals with disabilities are disproportionately affected in emergency situations (<a href="http://jasss.soc.surrey.ac.uk/11/3/9.html#usfa1999">USFA 1999</a>).  Recent research suggests that approximately 23% of the individuals evacuating the World Trade Center on September 11, 2001 were affected by a disability or health condition which impacted their ability to evacuate the structure (<a href="http://jasss.soc.surrey.ac.uk/11/3/9.html#gershon2006">Gershon 2006</a>).  "Incorporating disability considerations into emergency evacuation planning, preparation, and other activities is critical.  Currently, there is insufficient evidence demonstrating the most effective ways to ensure the safety of individuals with disabilities during emergency situations" (<a href="http://jasss.soc.surrey.ac.uk/11/3/9.html#dept.2006">Dept. of Education 2006</a>).  In particular, while individuals with disabilities are disproportionately affected by the design of the built environment, a recent study indicates that there is a significant lack of investigation focused on the relationship between the design of the built environment and the evacuation of individuals with disabilities (<a href="http://jasss.soc.surrey.ac.uk/11/3/9.html#christensen2006">Christensen et al 2006</a>).  Therefore, research on the effect of the built environment on individuals with disabilities in emergency evacuations is urgently needed.
+
+
+<p></p></dd><dt><b><a name="1.2">1.2</a></b></dt><dd>The most widely applied method used to evaluate how effectively the built environment accommodates emergency evacuations is agent-based modeling.  "A recent survey conducted by the Fire Safety Engineering Group (FSEG) of the University of Greenwich suggests that over 40 different evacuation models for aircraft, buildings, trains and ships are currently used by engineers worldwide and many more are in various stages of development" (<a href="http://jasss.soc.surrey.ac.uk/11/3/9.html#galea2003">Galea 2003</a>).  However, current evacuation models either do not address individuals with disabilities in their simulated populations or simulate a 'standard' individual with disabilities by generally limiting their speed of movement, an approach which does not represent the disabled population (<a href="http://jasss.soc.surrey.ac.uk/11/3/9.html#christensen2006">Christensen et al 2006</a>). 
+
+
+<p></p></dd><dt><b><a name="1.3">1.3</a></b></dt><dd>As a result, individuals with disabilities are not a significant feature of agent-based evacuation models.  Agent-based evacuation models that include individuals with disabilities in the simulation population, appropriate to the diversity and prevalence of disabilities in the general population, are needed to evaluate how effectively the built environment accommodates the needs of individuals, including those with disabilities, during emergency evacuations.
+
+
+</dd></dl><h3><img align="Bottom" src="./Keith Christensen and Yuya Sasaki  Agent-Based Emergency Evacuation Simulation with Individuals with Disabilities in the Population_files/bullet.gif" width="23" height="23" alt="* "> Objectives
+</h3><dl compact="">
+
+<dt><b><a name="2.1">2.1</a></b></dt><dd>The purpose of the project described in this paper was to explore how effectively the built environment accommodates the needs of individuals with disabilities during emergency evacuations.  Specifically, the authors evaluated the effect of current and proposed Americans with Disabilities Act Accessibility Guidelines (ADAAG) for the built environment on the egress of individuals with disabilities.  To accomplish this purpose, an agent-based or individual-based simulation was developed capable of representing the diversity and prevalence of disabilities in the population and their interaction with the built environment.  This manuscript describes the BUMMPEE model, an acronym for <i><b>B</b>ottom-up <b>M</b>odeling of <b>M</b>ass <b>P</b>edestrian flows—implications for the <b>E</b>ffective <b>E</b>gress of individuals with disabilities</i>, developed by the project team to meet these criteria.
+
+
+<p></p></dd><dt><b><a name="2.2">2.2</a></b></dt><dd>The BUMMPEE model was developed as a platform for evaluating the environmental characteristics and population criteria used to include the diversity and prevalence of disabilities in the population.  As such, the BUMMPEE model is a rather straightforward stand-alone evacuation model, which incorporates a more complex heterogeneous population.  The criteria and characteristics used to incorporate individuals with disabilities could be included in existing models.
+
+ 
+</dd></dl><h3><img align="Bottom" src="./Keith Christensen and Yuya Sasaki  Agent-Based Emergency Evacuation Simulation with Individuals with Disabilities in the Population_files/bullet.gif" width="23" height="23" alt="* "> Model Development Requirements
+</h3><dl compact=""><dt></dt><dd>
+
+<h4> Population Criteria
+</h4></dd><dt><b><a name="3.1">3.1</a></b></dt><dd>The 2005 Disability Status Report indicates that individuals with disabilities comprise 12.6% of the total working age population of the United States (ages 21-64) (<a href="http://jasss.soc.surrey.ac.uk/11/3/9.html#rrtcdds2005">RRTCDDS 2005</a>).  Disability occurs in a number of overlapping forms with differing effect on the individual's relationship to the built environment (see Table 1).  A physical disability is defined as a condition that substantially limits one or more basic physical activities, such as walking, climbing stairs, reaching, lifting, or carrying (<a href="http://jasss.soc.surrey.ac.uk/11/3/9.html#census2003">Census 2003</a>).  A sensory disability is defined as blindness, deafness, or a severe vision or hearing impairment (<a href="http://jasss.soc.surrey.ac.uk/11/3/9.html#census2003">Census 2003</a>).  The other types of disabilities are defined as a condition lasting 6 months or more that made it difficult to perform certain activities, such as; learning, remembering, or concentrating (mental disability); dressing, bathing, or getting around inside the home (self-care disability); and going outside the home alone to shop or visit a doctor's office (go-outside-home disability) (<a href="http://jasss.soc.surrey.ac.uk/11/3/9.html#census2003">Census 2003</a>).
+
+
+<a name="table1"></a><table border="0" width="80%">
+<tbody><tr><td colspan="3"><hr noshade=""></td></tr>
+<tr><td colspan="3"><b>Table 1: </b> Prevalence of disability among people ages 21-64 years (<a href="http://jasss.soc.surrey.ac.uk/11/3/9.html#rrtcdds2005">RRTCDDS 2005</a>).  Respondents may have more than one type of disability.  Therefore, each type summed exceeds the total disability prevalence value.</td></tr>
+<tr><td colspan="3"><hr noshade=""></td></tr>
+<tr valign="top" align="left"><td><b>Group</b></td><td><b>% of Population</b></td><td><b>Prevalence</b></td></tr>
+<tr valign="top" align="left"><td>Total Individuals with a Disability</td><td>12.6</td><td>21,455,000</td></tr>
+<tr valign="top" align="left"><td>Physical Disability</td><td>7.8</td><td>13,313,000</td></tr>
+<tr valign="top" align="left"><td>Mental Disability</td><td>4.4</td><td>7,526,000</td></tr>
+<tr valign="top" align="left"><td>Go-Outside-Home Disability</td><td>3.1</td><td>5,336,000</td></tr>
+<tr valign="top" align="left"><td>Sensory Disability</td><td>3.0</td><td>5,074,000</td></tr>
+<tr valign="top" align="left"><td>Self-Care Disability</td><td>2.2</td><td>3,712,000</td></tr><tr><td colspan="3"><hr noshade=""></td></tr>
+</tbody></table>
+
+
+
+
+
+<p></p></dd><dt><b><a name="3.2">3.2</a></b></dt><dd>In order to represent the diversity and prevalence of disabilities in the population, the following criteria were identified for the inclusion of individuals with disabilities in a simulated population, representing factors identified by prior studies to have an effect on the evacuation behavior of individuals with disabilities (<a href="http://jasss.soc.surrey.ac.uk/11/3/9.html#christensen2006">Christensen et al 2006</a>).  The criteria define variation parameters for describing the heterogeneity of individuals with disabilities within the general population (e.g., describe differences among people who are blind or between an individual using a wheelchair and an individual using a service animal).  As the similarities between individuals with and without disabilities are far greater than the differences, the criteria are intended to be used in conjunction with those accepted for the simulation of the general population.
+
+
+<ol><li> Individual Speed—individual travel speeds may differ in relation to the particular form(s) of disability.  For example, an individual who uses a manual wheelchair may move at a higher rate of speed in a particular environment than the typical walking individual, elderly individual, or an individual who uses a motorized wheelchair.  Likewise an individual who is blind may move slower than a sighted individual or someone with visual impairments but who can still visually survey the environment for obstacles.
+</li><li>Individual Size—individual physical space requirements may differ in relation to the particular form(s) of disability.  For example, an individual who uses a motorized wheelchair will occupy more floor space than an individual who does not.
+</li><li>Individual Ability to Negotiate Terrain—an individual's ability to traverse an environment may differ in relation to the particular form(s) of disability.  For example, an individual who uses a typical motorized wheelchair will not be able to negotiate stairs, while an individual who uses an assistive walker may be able to abandon the walker if the stairway possesses adequate handrails.  An individual's ability to negotiate an evacuation route affects their route preference.  For example, an individual who is unable to negotiate stairs may prefer to await assistance by trained personnel in an ADAAG specified 'area of rescue assistance.'
+</li><li>Individual Perception—an individual's ability to evaluate the environment may differ in relation to the particular form(s) of disability.  For example, an individual who is visually impaired may not be able to access directional signage or individuals with hearing impairments may not be able to access audio information/warnings.
+</li><li>Individual Psychological Profile—an individual's ability to concentrate, learn, or remember may differ in relation to the particular form(s) of disability.  For example, an individual with a mental disability may be unable to follow complex (i.e., multi-step) evacuation instructions.
+</li><li>Individual Assistance—an individual's requirement for the assistance of another individual to move or follow instructions may differ in relation to the particular form(s) of disability.  For example, a particular individual who uses a manual wheelchair may require assistance for extensive travel while another may not or an individual with a visual impairment may require the assistance of a service animal.
+</li></ol>
+
+
+In addition to simulating populations meeting different criteria, the ability to track an individual or group of individuals, in relation to specific criteria is necessary to evaluate the effect of the built environment on such individuals.
+
+<p></p></dd><dt><b><a name="3.3">3.3</a></b></dt><dd>The BUMMPEE model addresses these criteria by including seven distinct populations, motorized wheelchair users, non-motorized wheelchair users, the visually impaired, the hearing impaired, the stamina impaired, individuals without disabilities familiar with the environment, and individuals without a physical or sensory disability but less familiar with the environment (a rudimentary method for including individuals with mild mental disabilities).  Each population may be separately defined by variations in speed, size, and ability to negotiate terrain.  Currently, the BUMMPEE model does not implement individual perception criteria or individuals with multiple disabilities.  Rather, implementing the basic inclusion of individuals with disabilities assumes that variations in individual criteria will capture the operative behavior of the limiting ability.  Individual groups may be assigned to account for variation in assistance requirements.  Variation in individual psychological profile may also be applied to the total population.  
+
+
+<h4> Environment Characteristics
+</h4><p></p></dd><dt><b><a name="3.4">3.4</a></b></dt><dd>Individuals with disabilities may be disproportionately affected by conditions in the built environment during an evacuation event.  Indeed, the majority of individual behavior, previously described as criteria, is influenced by conditions in the built environment.  A limited body of research has shown the influence of specific factors in the built environment on an individual with disabilities' speed of egress during an evacuation (<a href="http://jasss.soc.surrey.ac.uk/11/3/9.html#christensen2006">Christensen et al 2006</a>).  These studies, and accessibility axioms, indicate that the following environmental characteristics have a significant effect on the behavior of individuals with disabilities and it is necessary to incorporate them for the inclusion of individuals with disabilities in an evacuation simulation.
+
+
+<ol><li> Exit Character—an individual's ability to negotiate an exit may differ in relation to the particular form(s) of disability.  For example, an individual who uses a wheelchair or possesses lower physical strength may require an automated exit door to successfully egress.  Likewise, a stepped landing or high doorway threshold may act as a barrier for some individuals with mobility disabilities.  Exit character may result in barriers to individuals with disabilities.
+</li><li>Route Character—an individual's ability to traverse a route may differ in relation to the particular form(s) of disability.  For example, sloped walkways, stairs, uneven surface materials, and high glare surfaces may slow or prevent the passage of an individual with a disability.  Uneven surfaces may significantly slow an individual who relies on a walker for mobility.  Stairs may be a significant barrier for individuals who use wheelchairs or individuals whose impairments affect physical stamina.  Route character may affect an individual's egress speed or result in a barrier.
+</li><li>Obstacle Character—an individual's ability to negotiate route alternatives may differ in relation to the particular form(s) of disability.  For example, moving walkways, seating, bleachers, ribbon barriers, garbage cans, etc. may prove a barrier or affect the egress speed of an individual with a disability.
+</li><li>Planned Systems—refers to those elements in the built environment mandated by the Americans with Disabilities Act Accessibility Guidelines for Accessible Egress (DOJ 2002) or similar life/safety requirement.  In particular, the ADAAG for Accessible Egress addresses areas of rescue assistance (ADAAG 4.1.3(9), 4.3.11), horizontal exits (ADAAG 4.1.3(9), 4.3.10), and evacuation elevators (proposed).  ADAAG requires these alternative accommodations for individuals with disabilities who are unable to negotiate the primary evacuation route, as a result of the population criteria or environment character discussed previously.  For example, a stairwell landing may meet the criteria for an area of rescue assistance providing an alternative destination for an individual with a mobility disability which prevents their negotiating the stairs.  The same individual may prefer an evacuation elevator if one is present rather than the stairs or area of rescue assistance.  The ADAAG elements represent alternatives for the general population and the only evacuation choice for many individuals with disabilities.  
+</li></ol>
+ 
+
+<p></p></dd><dt><b><a name="3.5">3.5</a></b></dt><dd>The BUMMPEE model categorizes each component of the simulated built environment for the differing effects of these environmental characteristics on individuals with disabilities.  A component of the built environment, stairs for example, is assigned a value for exit character (whether or not the component is an exit from the structure), route character (the value is the travel speed for each individual type on stairs), obstacle character (not negotiable for all wheelchair users), and as a planned system (stairs are not ADAAG mandated and are not identified as a planned system).  Another element, an evacuation elevator, is assigned no value for exit character, a specified movement speed for each individual type, and negotiable for individuals with disabilities but nonnegotiable for individuals without disabilities (in keeping with the intent that evacuation elevators are only for use by those unable to use the primary evacuation route).  Every component in the built environment is categorized similarly according to the identified environmental characteristics.  The effects of each environmental characteristic on the simulated individuals is determined by the few available empirical studies, or on rudimentary assumptions when there is no empirical data available (<a href="http://jasss.soc.surrey.ac.uk/11/3/9.html#christensen2006">Christensen et al 2006</a>; <a href="http://jasss.soc.surrey.ac.uk/11/3/9.html#christensen2007">Christensen, Blair, and Holt 2007</a>).
+
+
+<p></p></dd><dt><b><a name="3.6">3.6</a></b></dt><dd>Where the intent of an evacuation is to exit the structure, connections between floors (stairways or elevators) are not considered exits.  Rather, stairways or elevators are considered as a component of the evacuation route which leads to an exit from the structure.
+
+
+<p></p></dd><dt><b><a name="3.7">3.7</a></b></dt><dd>Classifying the built environment according to these environmental characteristics and simulating a heterogeneous population according to the individual criteria allows for simulated behaviors which more aptly represent the diversity and prevalence of disabilities in the population and their interaction with the built environment.  The individual criteria and environmental characteristics are the basis for the BUMMPEE model.
+
+
+</dd></dl><h3><img align="Bottom" src="./Keith Christensen and Yuya Sasaki  Agent-Based Emergency Evacuation Simulation with Individuals with Disabilities in the Population_files/bullet.gif" width="23" height="23" alt="* "> The Model
+</h3><dl compact="">
+
+<dt><b><a name="4.1">4.1</a></b></dt><dd>The model (BUMMPEE) was written in C++ and uses a common graphical interface structure, as shown in Figure 1. The model consists of 47 classes, but only those most vital for the model specification will be discussed. Throughout this section, terms in small caps denote object names.
+
+<p></p><center>
+<a name="fig1"></a><table border="0" cellspacing="2" cellpadding="1">
+<tbody><tr align="Center" valign="Middle"><td>
+<img src="./Keith Christensen and Yuya Sasaki  Agent-Based Emergency Evacuation Simulation with Individuals with Disabilities in the Population_files/figure 1.jpg" width="600" height="376" alt="Figure">
+</td></tr>
+<tr align="Center" valign="Middle"><td>
+<b>Figure 1</b>. A typical interface screen of the BUMMPEE model.
+</td></tr></tbody></table>
+</center><p>
+
+
+
+</p><p></p></dd><dt><b><a name="4.2">4.2</a></b></dt><dd>The <tt>view</tt> reflects spatial features, attributes, and agent locations in terms of raster data. That is, the data structure is a two dimensional finite lattice, hence a discrete representation. It also contains a <tt>chronometer</tt>, on which the dynamics of simulation are controlled and the <tt>view</tt> is updated by a double-buffering method. The <tt>chronometer</tt>, with a predetermined time interval, sends signals to the <tt>simulator</tt> which, in turn, lets <tt>agents</tt> advance in their steps upon signal. The fundamental data stored in the <tt>simulator</tt> includes a list of <tt>floor</tt>s, a list of <tt>agent</tt>s, a list of <tt>q</tt>s, and a list of <tt>connection</tt>s. <tt>agent</tt>s are categorized by their ability/disability types, described in the previous sections, into staff, motorized wheelchair users, non-motorized wheelchair users, the visually impaired, the hearing impaired, those with lower-stamina, and all others. They differ from each other in at least one of population criteria discussed previously. A building consists of a layer of <tt>floor</tt>(s). A <tt>floor</tt>, a raster dataset consisting of finite rows and columns of cells, stores information about the environmental characteristics of the built environment in 2-D space. Instead of denominating each kind of physical objects, we categorized them by the environment characteristics discussed previously, as well as <tt>connection</tt>s between <tt>floor</tt>s.  The program is capable of importing raster GIS data to create <tt>floor</tt>s. (For information on integrating ABMs and GIS, see Gimblett (<a href="http://jasss.soc.surrey.ac.uk/11/3/9.html#gimblett2002">2002</a>).) Each <tt>agent</tt> stores a pointer to the current <tt>floor</tt> together with the current geographical coordinates (in integers corresponding to the raster data structure of <tt>floor</tt>s) of the <tt>agent'</tt>s location within that <tt>floor</tt>. A <tt>connection</tt> stores pointers to two locations of different (typically adjacent) <tt>floor</tt>s which are connected, for instance, by a stair case or elevator. <tt>q</tt>s are the same as <tt>floor</tt>s in data-structure (i.e., layered raster data), but store what is technically called the Q-values, which we will discuss shortly. The relationship among these fundamental classes is graphically illustrated in Figure 2.
+
+<p></p><center>
+<a name="fig2"></a><table border="0" cellspacing="2" cellpadding="1">
+<tbody><tr align="Center" valign="Middle"><td>
+<img src="./Keith Christensen and Yuya Sasaki  Agent-Based Emergency Evacuation Simulation with Individuals with Disabilities in the Population_files/figure 2.jpg" width="600" height="281" alt="Figure">
+</td></tr>
+<tr align="Center" valign="Middle"><td>
+<b>Figure 2</b>. Class interrelation
+</td></tr></tbody></table>
+</center><p>
+
+
+
+</p><p></p></dd><dt><b><a name="4.3">4.3</a></b></dt><dd>An <tt>agent</tt>, upon receiving a signal from the <tt>chronometer</tt>, attempts to move towards an appropriate exit. However, its movement may be constrained by the physical features of the location where it tries to move, determined in terms of penetrability or speed. An <tt>agent</tt> queries the current <tt>floor</tt> for information regarding penetrability and speed to compute the probability of movement upon a given signal. Let &#916;<i>T</i> denote the time interval in seconds by which the <tt>chronometer</tt> sends a signal. Thus, an agent goes through approximately 1/&#916;<i>T</i> times of binomial decisions ({move, not move}) in a second. Let <i>U</i>[<i>u</i><sub>1</sub>, <i>u</i><sub>2</sub>] denote a real-valued random number generated by a uniform distribution between real values <i>u</i><sub>1</sub> and <i>u</i><sub>2</sub>. Speed is the number of cells that an <tt>agent</tt> moves in a second. Then, the below pseudo-code realizes movements of an <tt>agent</tt> of type <i>a</i> at location (<i>x</i>, <i>y</i>) consistent with its speed <i>v</i>:
+
+
+<blockquote><i> v </i>= my current floor &#8594; get the speed of type <i> a </i>at (x, y)<br>
+if (v _ &#916;<i> T</i> &#8805;<i> U</i> [0,1] ) then<br>
+I am eligible to move<br></blockquote>
+
+
+
+<p></p></dd><dt><b><a name="4.4">4.4</a></b></dt><dd>The agent's movement is thus executed by consecutive binomial choices ({move, not move}) on discrete time steps. Consequently, in the limit as &#916;<i>T </i>approaches 0, the variance (given as (v &#916;<i>T</i> )(1—v &#916;<i>T</i>) &#916;<i>T</i> by the binomial distribution) of the rate of movement of <tt>agent</tt> based on the above procedure tends precisely to zero (provided that "eligibility to move" definitely allows for movement). Thus, a smaller time interval &#916;<i>T</i> is preferable for accurate realization of speed. However, there exists a tradeoff between accuracy and computational efficiency; a smaller time interval also means more frequent computing, thus computational inefficiency. We adopted a specific value &#916;<i>T </i>= 25 milliseconds, where this value is contingent on one's specific computational resources.   (In principle, the time resolution required to achieve behavioral accuracy at a cell level is given by cell size divided by the maximum speed. In our case, the cell size is a half foot - approximately 0.15m -  and the maximum speed is 1.25 m/s, which yield the coarsest time resolution of &#916;<i>T </i>= 120 milliseconds. Hence our choice of &#916;<i>T </i>= 25 suffices for the minimum behavioral accuracy.)  An <tt>agent</tt>, presented with the set of four directions {<i>north, east, south, west</i>} to move, determines a prospective next location based on the direction, and an execution of one of these strategies leads to a movement by one cell. For example, if an <tt>agent</tt> actually performs the "east" strategy, then she increments <i>x</i> by 1. While the availability of only four strategies seems a limitation, a cumulative sequence of the infinitesimally temporal executions of these strategies emergently yields more complicated paths. That is, the set of four strategies 'effectively' implies a large number of options over a longer run, which is a common characteristic of ABMs. Suppose that an <tt>agent</tt>, whose agent type is <i>a</i>, is eligible to move and has decided to move to the location (<i>x</i>,<i>y</i>). Then, the below pseudo-code determines the penetrability:
+
+
+<blockquote> if ( my current floor &#8594; can agent of type <i> a </i>occupy (<i> x</i>,<i> y</i>) ) then<br>
+I move to (<i> x,</i><i> y</i>)</blockquote>
+
+
+
+<p></p></dd><dt><b><a name="4.5">4.5</a></b></dt><dd>Here, we note that penetrability depends not only on physical objects, but also depends on other obstructing <tt>agent</tt>s. After a movement, an <tt>agent</tt> queries the current <tt>floor</tt> to determine if her new location is an exit or not. If it is an exit accessible to the <tt>agent</tt> of type <i>a</i>, then it is done with evacuation. Similarly, if the new location after a movement is a <tt>connection</tt> feature, then an <tt>agent</tt> is relocated via this object to the destination floor through the <tt>connection</tt> (e.g., go downstairs through stairs), allowing movements across floors.
+
+
+<p></p></dd><dt><b><a name="4.6">4.6</a></b></dt><dd>Provided that the purpose of the model is to simulate evacuation behaviors by rational individuals, <tt>agent</tt>s' objective should be to minimize the time to exit. Note that there is no simple calculation such as shortest-distance to predetermine the shortest-time routes. This is due to the dependency of <tt>agent</tt>s' speeds on complex interaction among them (e.g., congestion).  This dependence is even more likely with heterogeneous agent types (e.g., the presence of an individual who uses a wheelchair, for instance, may obstruct a narrow aisle in an effort to reach a wheelchair-accessible exit in the direction opposite to other individuals' flow). The best strategy differs from situation to situation, often depending on whether certain agent types are present or not, in vicinity or in distance. Thus, the information on which <tt>agent</tt>s endeavor to minimize the time to exit should be acquired in an online manner through learning. The BUMMPEE model employs reinforcement learning (<a href="http://jasss.soc.surrey.ac.uk/11/3/9.html#sutton1999">Sutton and Barto 1999</a>), for its hybrid capability of optimization and online learning, that is, optimization and learning can take place concurrently rather than learning precedes optimization.  A <tt>q</tt> is a raster data containing the time to exit (referred to as the Q-value), denoted by <i>q</i>(<i>a</i>, <i>x</i>, <i>y</i>,<i> s</i>), for each agent type, <i>a</i>, for each geographical coordinates, (<i>x</i>, <i>y</i>), for each strategy  <i>s </i>&#8712;<i> </i>{<i>north, east, south, west</i>}. <tt>agent</tt>s, through reinforcement learning, update these <i>q</i>(<i>a</i>, <i>x</i>, <i>y, s</i>) with their "momentary" experience after each infinitesimal move. Such infinitesimal updates are enabled by a branch of reinforcement learning, namely temporal-difference learning. The basic mechanics is as follows. Consider the information:
+
+
+<blockquote>(<i>x</i><sub>0</sub>, <i>y</i><sub>0</sub>) = my previous location<br>
+(<i>x</i><sub>1</sub>, <i>y</i><sub>1</sub>) = my current location<br>
+s = the strategy taken to move myself from (<i>x</i><sub>0</sub>, <i>y</i><sub>0</sub>) to (<i>x</i><sub>1</sub>, <i>y</i><sub>1</sub>) <br>
+<i>a</i> = my agent type
+<i>m</i> = number of signals that I heard while being at (<i>x</i><sub>0</sub>, <i>y</i><sub>0</sub>)</blockquote>
+
+
+
+<p></p></dd><dt><b><a name="4.7">4.7</a></b></dt><dd>If the current location (<i>x</i><sub>1</sub>, <i>y</i><sub>1</sub>) turns out to be one of exit features, then an <tt>agent</tt> sets its Q-values to zero, for the time to exit at an exit is zero:
+
+<p></p><center>
+<table border="0" cellspacing="2" cellpadding="1" width="50%">
+<tbody><tr align="Left" valign="Middle"><td>
+<img src="./Keith Christensen and Yuya Sasaki  Agent-Based Emergency Evacuation Simulation with Individuals with Disabilities in the Population_files/equation 1.jpg" width="596" height="66" alt="Equation">
+</td>
+<td align="Right" valign="Middle" width="40">
+(1)
+</td></tr></tbody></table>
+</center><p>
+
+</p><p></p></dd><dt><b><a name="4.8">4.8</a></b></dt><dd>An <tt>agent</tt>, based on its momentary experience, considers the Q-value at its previous location (<i>x</i><sub>0</sub>, <i>y</i><sub>0</sub>) as the best Q-value at its current location (<i>x</i><sub>1</sub>, <i>y</i><sub>1</sub>) plus the time spent during the step, i.e., 
+
+<p></p><center>
+<table border="0" cellspacing="2" cellpadding="1" width="50%">
+<tbody><tr align="Left" valign="Middle"><td>
+<img src="./Keith Christensen and Yuya Sasaki  Agent-Based Emergency Evacuation Simulation with Individuals with Disabilities in the Population_files/equation 2.jpg" width="453" height="33" alt="Equation">
+</td>
+<td align="Right" valign="Middle" width="40">
+(2)
+</td></tr></tbody></table>
+</center><p>
+
+
+</p><p></p></dd><dt><b><a name="4.9">4.9</a></b></dt><dd>Instead of this particular momentary experience directly defining the Q-value at its current location, however, a more gradual updating rule is employed based on a learning rate 0&lt;<i>_</i>&lt;1 as follows:
+
+<p></p><center>
+<table border="0" cellspacing="2" cellpadding="1" width="50%">
+<tbody><tr align="Left" valign="Middle"><td>
+<img src="./Keith Christensen and Yuya Sasaki  Agent-Based Emergency Evacuation Simulation with Individuals with Disabilities in the Population_files/equation 3.jpg" width="788" height="34" alt="Equation">
+</td>
+<td align="Right" valign="Middle" width="40">
+(3)
+</td></tr></tbody></table>
+</center><p>
+
+
+</p><p></p></dd><dt><b><a name="4.10">4.10</a></b></dt><dd>This Q-learning (<a href="http://jasss.soc.surrey.ac.uk/11/3/9.html#watkins1989">Watkins 1989</a>; <a href="http://jasss.soc.surrey.ac.uk/11/3/9.html#watkins1992">Watkins and Dayan 1992</a>) update rule means that the Q-value of the previous location is incremented by the temporal difference weighed by the learning rate, <i>&#945;</i>. This learning rate imposes strong inertia on <tt>agents</tt>' learning. That is, even if an <tt>agent</tt> is faced with a new event, she is severely constrained by the inability to quickly respond to it.
+
+
+<p></p></dd><dt><b><a name="4.11">4.11</a></b></dt><dd>Learning parts from decision, while the latter heavily relies on the former. There are numerous decision mechanisms in the literature. The BUMMPEE model contains two principal methods, the epsilon-greedy algorithm and the multinomial logit model. The epsilon-greedy algorithm is a simple decision mechanism where, with a predetermined exploration rate 0 &lt; <i>&#949;</i> &lt; 1, an <tt>agent</tt> of type <i>a</i> at location (<i>x</i>, <i>y</i>) takes the best strategy
+
+<p></p><center>
+<table border="0" cellspacing="2" cellpadding="1" width="50%">
+<tbody><tr align="Left" valign="Middle"><td>
+<img src="./Keith Christensen and Yuya Sasaki  Agent-Based Emergency Evacuation Simulation with Individuals with Disabilities in the Population_files/equation 4.jpg" width="265" height="33" alt="Equation">
+</td>
+<td align="Right" valign="Middle" width="40">
+(4)
+</td></tr></tbody></table>
+</center><p>
+
+with probability 1–<i>&#949;</i>, and a uniform random strategy otherwise. The multinomial logit decision method lets an <tt>agent</tt> of type <i>a</i> at location (<i>x</i>, <i>y</i>) take one of the strategies <i>s* </i>&#8712;<i> </i>{<i>north, east, south, west</i>} with the probability of each strategy <i>s </i>&#8712;<i> </i>{<i>north, east, south, west</i>} weighted by Gibbs distribution as
+</p><p></p><center>
+<table border="0" cellspacing="2" cellpadding="1" width="50%">
+<tbody><tr align="Left" valign="Middle"><td>
+<img src="./Keith Christensen and Yuya Sasaki  Agent-Based Emergency Evacuation Simulation with Individuals with Disabilities in the Population_files/equation 5.jpg" width="323" height="76" alt="Equation">
+</td>
+<td align="Right" valign="Middle" width="40">
+(5)
+</td></tr></tbody></table>
+</center><p>
+
+
+
+where &#946; &lt; 0 is a predetermined parameter (a scale parameter). Note that this parameter is negative since smaller Q-values are more preferred than larger ones. Epsilon-greedy algorithm has relative computational ease, and the results shown in the subsequent section are based on this algorithm.
+
+</p><p></p></dd><dt><b><a name="4.12">4.12</a></b></dt><dd>In the BUMMPEE model, there is only one set of <tt>q</tt>s shared by all <tt>agent</tt>s of each type. If truly independent and autonomous <tt>agent</tt>s were to be modeled, <tt>q</tt>s would have to be individualized. However, we adopted a shared knowledge model for two reasons. First, a single shared set of <tt>q</tt>s saves computational resources both in time and memory. In particular, since learning by each individual <tt>agent</tt> exploring details of building structure would take quite a long period of time, multiple <tt>agent</tt>s collectively contributing to the shared knowledge contribute to computational time efficiency. Second, both beneficial and misleading collective behaviors driven by shared knowledge are a reflection of real evacuation. For example, an <tt>agent</tt> who is perhaps unfamiliar with structural details may simply make use of the knowledge learned by someone else, however accurate that knowledge may be (e.g., she may follow the direction of other evacuees). These characterizations of the shared knowledge (<tt>q</tt>s) are primary properties of "the social learning" (<a href="http://jasss.soc.surrey.ac.uk/11/3/9.html#bandura1977">Bandura 1977</a>). (See <a href="http://jasss.soc.surrey.ac.uk/11/3/9.html#sasaki2006">Sasaki et al 2006 </a>for a similar application of shared Q-values to vehicles' travel-time minimization problem, in which the authors analyzed the interrelation between the aggregate results and the exploration parameter <i>&#949;</i> for shared Q-values.) While the Q-values are shared by all agents, the values are explicitly differentiated by agent types by including the agent type <i>a</i> as an argument of <i>q</i>, i.e., <i>q</i>(<i>a </i>_,<i> </i>_,<i> </i>_,<i> </i>).  This value differentiation is necessary as time to exit (Q-values) varies across agent types even under the same environmental state.
+
+<p></p></dd><dt><b><a name="4.13">4.13</a></b></dt><dd>The BUMMPEE model possesses the capability to save and load learnt knowledge, so different simulation runs can utilize the same saved knowledge. This allows us to have a common benchmark across simulation runs.
+
+
+</dd></dl><h3><img align="Bottom" src="./Keith Christensen and Yuya Sasaki  Agent-Based Emergency Evacuation Simulation with Individuals with Disabilities in the Population_files/bullet.gif" width="23" height="23" alt="* "> Research Method
+</h3><dl compact="">
+
+<dt><b><a name="5.1">5.1</a></b></dt><dd>While further testing of the intricacies of the model continues, the initial process of development and testing the BUMMPEE model is complete.  The objective of the initial testing was to determine whether it is reasonable to represent the diversity and prevalence of disabilities in a simulated population according to variation in individual criteria and environmental characteristics.  The reasonableness of the approach, or face validity of the model, was determined by comparison of the results of a simulated evacuation with a physical evacuation of the same setting and population, described as follows.
+
+
+<h4> Setting and Population
+</h4><p></p></dd><dt><b><a name="5.2">5.2</a></b></dt><dd>The Human Services Research Center (HSRC), on the Utah State University campus in Logan, Utah, served as the site for the physical and simulated evacuations.  The HSRC is a spatially simple four story office complex (see Figure 3) of roughly 4,000 square meters in size.  The three exits from the building are on the second floor, which is the ground floor.  Only the main exit, a complex of two exits found on the west of the structure (left in the illustration), is free of architectural barriers for individuals with disabilities.  Areas of evacuation assistance are found in both stairways located on each of the first, third, and fourth floors.  The structure was represented according to the environmental characteristics described previously for use in the evacuation simulations.
+
+
+<p></p></dd><dt><b><a name="5.3">5.3</a></b></dt><dd>The size of the population evacuating the HSRC, 71 individuals, was determined according to the number of individuals who were present and participated in the physical evacuation of the structure.  The diversity and prevalence of disabilities in the simulation population was assigned according to the demographic profile of individuals who were present and participated in the physical evacuation, as shown in Table 2.
+
+
+<a name="table2"></a><table border="0" width="80%">
+<tbody><tr><td colspan="4"><hr noshade=""></td></tr>
+<tr><td colspan="4"><b>Table 2: </b> Demographic Profile for Physical and Simulated Evacuation Populations.
+(U.S. Census Bureau 2006).</td></tr>
+<tr><td colspan="4"><hr noshade=""></td></tr>
+<tr valign="top" align="left"><td><b>Type of Disability</b></td><td><b>HSRC Population</b></td><td><b>Simulated Population</b></td><td><b>U.S. Census<br>Pop. Figures*</b></td></tr>
+<tr valign="top" align="left"><td>Visual Impairment</td><td>1</td><td>1</td><td>1</td></tr>
+<tr valign="top" align="left"><td>Physical Impairment</td><td>1</td><td>1</td><td>4</td></tr>
+<tr valign="top" align="left"><td>Hearing Impairment</td><td>0</td><td>0</td><td>1</td></tr>
+<tr valign="top" align="left"><td>Lower Stamina</td><td>4</td><td>4</td><td>4</td></tr>
+<tr valign="top" align="left"><td>      No Identified Disability</td><td>65</td><td>65</td><td>61</td></tr>
+<tr valign="top" align="left"><td><b>Totals</b></td><td>71 occupants</td><td>71 occupants</td><td>71 occupants</td></tr><tr><td colspan="4"><hr noshade=""></td></tr>
+</tbody></table>
+
+
+
+
+
+<p></p><center>
+<a name="fig3"></a><table border="0" cellspacing="2" cellpadding="1">
+<tbody><tr align="Center" valign="Middle"><td>
+<img src="./Keith Christensen and Yuya Sasaki  Agent-Based Emergency Evacuation Simulation with Individuals with Disabilities in the Population_files/figure 3.jpg" width="600" height="276" alt="Figure">
+</td></tr>
+<tr align="Center" valign="Middle"><td>
+<b>Figure 3</b>. Layout of the Human Services Research Center (HSRC). Exits  on Floor 2 are shown in green and red, stairways are shown in blue.  North is up in the illustration.
+</td></tr></tbody></table>
+</center><p>
+
+
+</p><h4> Method
+</h4><p></p></dd><dt><b><a name="5.4">5.4</a></b></dt><dd>A physical evacuation of the HSRC, in the form of a fire drill, was conducted on September 14, 2005.  Rather than being an experiment conducted solely to obtain validation data to test the BUMMPEE model, the physical evacuation was the standard fire drill conducted yearly by Utah State University safety personnel conveniently conducted during the initial development of the BUMMPEE model.  Seventy one individuals participated in the evacuation.  While the participants were not aware of the planned evacuation, the participants did correctly perceive the evacuation as not being a result of an emergency event.
+
+
+<p></p></dd><dt><b><a name="5.5">5.5</a></b></dt><dd>The drill was observed by five trained observers who monitored the exits and measured the number and evacuation time of the participants.  Individuals meeting the disability criteria who were present in the HSRC prior to the drill were identified visually by the HSRC's administration.  The observers were made aware of these individual's and instructed to make note of their particular evacuation times and locations.  The location of the participants when the drill began was not measured.
+
+ 
+<p></p></dd><dt><b><a name="5.6">5.6</a></b></dt><dd>Based on the physical evacuation, a simulation using the BUMMPEE model was conducted of the HSRC with a population of 71 agents, the diversity and prevalence of which matched the demographic profile described previously.  Two hundred and fifty simulations were conducted, a number arbitrarily selected to account for variations in individual simulations, the results of which were averaged for the values reported here.
+
+
+<p></p></dd><dt><b><a name="5.7">5.7</a></b></dt><dd>The population criteria, speed, size, and ability to negotiate values were assigned to the distinct agent populations according to the best available empirical data, which was not always available.  These values, and the supporting reference, are shown in Table 4.  Unreferenced values are assumptions due to a lack of empirical evidence.  It is important to note that there is a great deal of conflicting empirical data concerning the following values, every effort has been made to select values from quality studies (<a href="http://jasss.soc.surrey.ac.uk/11/3/9.html#christensen2006">Christensen et al 2006</a>).
+
+
+<a name="table4"></a><table border="0" width="100%">
+<tbody><tr><td colspan="5"><hr noshade=""></td></tr>
+<tr><td colspan="5"><b>Table 4: </b> Population Criteria Values </td></tr>
+<tr><td colspan="5"><hr noshade=""></td></tr>
+<tr valign="top" align="left"><td width="40%"><b>Individual with…</b></td><td><b>Max Speed on Level Plane<br>(m/s)</b></td><td><b>Max Speed on Stairs<br>(m/s)</b></td><td><b>Max Speed negotiating an obstacle (m/s)</b></td><td><b>Size in plan view<br>(ft × ft)</b></td></tr>
+<tr valign="top" align="left"><td><b>a motorized wheelchair</b></td><td>.69 <sup>1</sup></td><td>0</td><td>0</td><td>2 × 2 <sup>2</sup></td></tr>
+<tr valign="top" align="left"><td><b>a manual wheelchair</b></td><td>.89 <sup>1</sup></td><td>0</td><td>0</td><td>2 × 2 <sup>2</sup></td></tr>
+<tr valign="top" align="left"><td><b>a hearing impairment</b> <sup>5</sup></td><td>1.25</td><td>.70</td><td>.70</td><td>1.5 × 1.5</td></tr>
+<tr valign="top" align="left"><td><b>a visual impairment</b></td><td>.86 <sup>3</sup></td><td>.61 <sup>3</sup></td><td>0</td><td>1.5 × 1.5</td></tr>
+<tr valign="top" align="left"><td><b>less environment familiarity (mental disability)</b> <sup>4</sup></td><td>1.25</td><td>.70</td><td>.70</td><td>1.5 × 1.5</td></tr>
+<tr valign="top" align="left"><td><b>a stamina disability</b></td><td>.78 <sup>1</sup></td><td>.36 <sup>1</sup></td><td>0</td><td>1.5 × 1.5</td></tr>
+<tr valign="top" align="left"><td><b>-out a disability<br></b></td><td>1.25 <sup>1</sup></td><td>.70 <sup>1</sup> </td><td>.70</td><td>1.5 × 1.5</td></tr>
+<tr valign="top" align="left"><td colspan="5"><sup>1</sup>  <a href="http://jasss.soc.surrey.ac.uk/11/3/9.html#boyce1999">Boyce, Shields, and Silcock 1999</a>.<br><sup>2</sup>  Based on a review of current wheelchair specifications.<br><sup>3</sup>  <a href="http://jasss.soc.surrey.ac.uk/11/3/9.html#wright1999">Wright, Cook, and Webber 1999</a>.<br><sup>4</sup>  For the type of disability, the operative population criterion value is a less defined Q value and/or more random decision making.<br><sup>5</sup>  Hearing impairments are assumed to not have a significant effect on evacuation speeds.</td><td> </td><td> </td><td> </td><td> </td></tr><tr><td colspan="5"><hr noshade=""></td></tr>
+</tbody></table>
+
+
+
+<h4> Measures
+</h4><p></p></dd><dt><b><a name="5.8">5.8</a></b></dt><dd>Numerous measures are collected by the BUMMPEE model relevant to evaluating how effectively the built environment accommodates the needs of individuals with disabilities during emergency evacuations.  As the intent of the physical evacuation was not to provide validation data to test the BUMMPEE model, there are discrepancies between the data available from the physical and simulated evacuations.  Therefore, only the two measures that correspond between the two were used for comparison.  These measures are:
+
+
+<ol><li> Time to evacuate for the final participant/evacuee at each observed exit, which is equivalent to the maximum evacuation time.
+</li><li>Number of participants/evacuees evacuating at each observed exit.
+</li></ol>
+
+
+</dd></dl><h3><img align="Bottom" src="./Keith Christensen and Yuya Sasaki  Agent-Based Emergency Evacuation Simulation with Individuals with Disabilities in the Population_files/bullet.gif" width="23" height="23" alt="* "> Results
+</h3><dl compact="">
+
+<dt><b><a name="6.1">6.1</a></b></dt><dd>The observations made during the physical evacuation of the HSRC are reported in Table 5 and the aggregated results of the evacuation simulations are reported in Table 6.  A comparison of the results is found in Table 7.  The individual using a wheelchair was located on the first floor of the HSRC at the time of the physical evacuation and exited the structure using the accessible west exit.  During the evacuation simulations one agent using a wheelchair was randomly placed in the structure, using the accessible exit when available during 47% of the simulations; the remainder of the time an area of evacuation assistance was used by the simulated individual using a motorized wheelchair.
+
+
+<a name="table5"></a><table border="0" width="80%">
+<tbody><tr><td colspan="3"><hr noshade=""></td></tr>
+<tr><td colspan="3"><b>Table 5: </b> September 14, 2005 HSRC Physical Evacuation Observations </td></tr>
+<tr><td colspan="3"><hr noshade=""></td></tr>
+<tr valign="top" align="left"><td><b>Observation Location</b></td><td><b>Number of Evacuees<br>Through Location</b></td><td><b>Time at Final Evacuee<br>(seconds)</b></td></tr>
+<tr valign="top" align="left"><td>Southeast Exit</td><td>11</td><td>60</td></tr>
+<tr valign="top" align="left"><td>East Exit</td><td>20</td><td>155</td></tr>
+<tr valign="top" align="left"><td>West Exit (Accessible)</td><td>40</td><td>150</td></tr>
+<tr valign="top" align="left"><td>Areas of Evac. Assist.</td><td>0</td><td></td></tr>
+<tr valign="top" align="left"><td><b>Totals</b></td><td>71 occupants</td><td>155 seconds</td></tr><tr><td colspan="3"><hr noshade=""></td></tr>
+</tbody></table>
+
+
+
+
+
+<a name="table6"></a><table border="0" width="80%">
+<tbody><tr><td colspan="3"><hr noshade=""></td></tr>
+<tr><td colspan="3"><b>Table 6: </b> HSRC Evacuation Simulation Results, mean value reported.  *Determined from 245 values, 5 values more than 3 standard deviations from the mean are excluded.</td></tr>
+<tr><td colspan="3"><hr noshade=""></td></tr>
+<tr valign="top" align="left"><td><b>	Observation Location</b></td><td><b>Number of Evacuees<br>Through Location</b></td><td><b>Time at Final Evacuee<br>(seconds)</b></td></tr>
+<tr valign="top" align="left"><td>Southeast Exit</td><td>21 (21.072)</td><td></td></tr>
+<tr valign="top" align="left"><td>East Exit</td><td>7 (7.008)</td><td></td></tr>
+<tr valign="top" align="left"><td>West Exit (Accessible)</td><td>42 (42.032)</td><td>122 (121.788)</td></tr>
+<tr valign="top" align="left"><td>Areas of Evac. Assist.</td><td>1 (.063)</td><td></td></tr>
+<tr valign="top" align="left"><td><b>Totals</b></td><td>71 occupants</td><td>122 seconds*</td></tr><tr><td colspan="3"><hr noshade=""></td></tr>
+</tbody></table>
+
+
+
+
+
+<a name="table7"></a><table border="0" width="80%">
+<tbody><tr><td colspan="3"><hr noshade=""></td></tr>
+<tr><td colspan="3"><b>Table 7: </b> Comparison of Physical and Simulated HSRC Evacuations </td></tr>
+<tr><td colspan="3"><hr noshade=""></td></tr>
+<tr valign="top" align="left"><td><b>	Measure</b></td><td><b>Physical Evacuation</b></td><td><b>Simulated Evacuation</b></td></tr>
+<tr valign="top" align="left"><td># of individuals using Southeast Exit</td><td>11</td><td>21</td></tr>
+<tr valign="top" align="left"><td># of individuals using <br>East Exit</td><td>20</td><td>7</td></tr>
+<tr valign="top" align="left"><td># of individuals using<br>West Exit (Accessible)</td><td>40</td><td>42</td></tr>
+<tr valign="top" align="left"><td>Time at Final Evacuee</td><td>155 seconds</td><td>122 seconds</td></tr><tr><td colspan="3"><hr noshade=""></td></tr>
+</tbody></table>
+
+
+</dd></dl><h3><img align="Bottom" src="./Keith Christensen and Yuya Sasaki  Agent-Based Emergency Evacuation Simulation with Individuals with Disabilities in the Population_files/bullet.gif" width="23" height="23" alt="* "> Discussion and Concluding Remarks
+</h3><dl compact="">
+
+<dt><b><a name="7.1">7.1</a></b></dt><dd>The results of the physical and simulated evacuations of the HSRC are very similar.  The mean total evacuation time of the evacuation simulations is 33 seconds less than the physical evacuation.  The number of evacuees passing through the west exit is similar for both evacuations, while for the simulated evacuations those passing through the southeast and east exits is 10 greater and 13 less, respectively, compared to the physical evacuation.
+
+
+<p></p></dd><dt><b><a name="7.2">7.2</a></b></dt><dd>Some discrepancy between the physical and simulation evacuations should be expected.  A critical component of the BUMMPEE model, or any agent-based simulation, is empirical data on the behaviors and characteristics on which to base the simulated participants.  Although empirical data is crucial, "there is still a lack of quantitative experimental studies" concerning participant characteristics and behaviors (<a href="http://jasss.soc.surrey.ac.uk/11/3/9.html#helbing2005">Helbing et al 2005</a>).  Particularly, a previous study revealed that there is an even greater lack of empirical information concerning the behaviors and characteristics of individuals with disabilities during emergency evacuations (<a href="http://jasss.soc.surrey.ac.uk/11/3/9.html#christensen2006">Christensen et al 2006</a>).  This lack of fundamental data on the behavior of individuals with disabilities during emergency evacuations required assumptions which, although based on reasonable expert opinion, may not be realistic.  As variations in the individual criteria were assigned to each simulated individual according to the available empirical data, and estimated when necessary due to a lack of data, the BUMMPEE model may not be internally accurate even when the results appear to be reasonable.
+
+
+<p></p></dd><dt><b><a name="7.3">7.3</a></b></dt><dd>One of these assumptions is that individuals will move at their maximum, orderly speed during an evacuation.  The BUMMPEE model accounts for variations in individual speed, at which each individual moves unless obstructed by other individuals or the environment.  During the physical evacuation of the HSRC, individuals were observed purposefully evacuating although not at what was assumed to be their maximum, orderly speed as participants perceived the evacuation as a drill and where not motivated to evacuate at their maximum, orderly speed.  Given the model assumptions, a simulated evacuation would be expected to take less time to complete than the physical evacuation, which was the case.
+
+
+<p></p></dd><dt><b><a name="7.4">7.4</a></b></dt><dd>Similarly, the BUMMPEE model does not account for delays in the initiation of the evacuation response.  Research has shown that individuals generally delay evacuation behavior initially, although not significantly (<a href="http://jasss.soc.surrey.ac.uk/11/3/9.html#proulx2001">Proulx and Fahy 2001</a>).  Again, given the model assumptions, a simulated evacuation would be expected to take less time to complete than the physical evacuation, which was the case.  Further, the average time elapsed between recognition of an evacuation alert and an evacuation response in a office-type structure has been shown to be 29 seconds (<a href="http://jasss.soc.surrey.ac.uk/11/3/9.html#purser2001">Purser and Bensilum 2001</a>).  An evacuation delay of this magnitude would closely account for the 33 second difference between the physical and simulated HSRC evacuation.
+
+
+<p></p></dd><dt><b><a name="7.5">7.5</a></b></dt><dd>Differences in individual starting locations between the physical evacuation, which are not known, and the simulated evacuations, which are randomly assigned for each of the simulations, would likely account for much of the discrepancy in the number of evacuees using each exit, as well as having some affect on the total time to evacuate.
+
+
+<p></p></dd><dt><b><a name="7.6">7.6</a></b></dt><dd>Further study is being conducted to address these issues and determine the internal and predictive validity of the BUMMPEE model.  These studies will provide additional validation data, explore the dynamics of an agent-based evacuation model, and describe the results of investigating the evacuation of individuals with disabilities using the BUMMPEE model.
+
+
+<p></p></dd><dt><b><a name="7.7">7.7</a></b></dt><dd>This study indicates that the BUMMPEE model represents the diversity and prevalence of disabilities within a simulated population according to variation in individual criteria and environmental characteristics.  Comparison of the results of an evacuation simulated using the BUMMPEE model is comparable to a physical evacuation with a similar population and setting.  The results of the comparison indicate that the BUMMPEE model is a reasonable approach for simulating evacuations representing the diversity and prevalence of disability in the population.  However, further study is necessary to empirically inform the general evacuation behavior (speeds, delay time, etc.) of individuals with disabilities on which the model is based.
+
+
+</dd></dl><hr><h3><img align="Bottom" src="./Keith Christensen and Yuya Sasaki  Agent-Based Emergency Evacuation Simulation with Individuals with Disabilities in the Population_files/bullet.gif" width="23" height="23" alt="* "> References</h3><dl compact=""><dt></dt><dd>
+
+<a name="bandura1977">BANDURA</a> A (1977)  <i>Social Learning Theory.</i>  New York, NY, General Learning Press.<p>
+</p><p>
+<a name="boyce1999">BOYCE</a> K E, Shields T J, and Silcock G W H (1999a) Toward the characterization of building occupancies for fire safety engineering: Prevalence, type, and mobility of disabled people. <i>Fire Technology, 35</i>(1), 35-50.</p><p>
+</p><p>
+<a name="census2003">CENSUS 2000 SUMMARY FILE</a> 4—United States / prepared by the U.S. Census Bureau.  (2003).   <a href="http://www.census.gov/prod/cen2000/doc/sf4.pdf">http://www.census.gov/prod/cen2000/doc/sf4.pdf</a></p><p>
+</p><p>
+<a name="christensen2006">CHRISTENSEN</a> K M, Collins S D, Holt J M, and Phillips C N  (2006)  The Relationship Between the Design of the Built Environment and the Ability to Egress of Individuals with Disabilities.  <i>Review of Disability Studies, 2</i>(3); 24-34.</p><p>
+</p><p>
+<a name="christensen2007">CHRISTENSEN</a> K M, Blair M E, Holt J M  (2007)  The Built Environment, Evacuations, and Individuals with Disabilities: a guiding framework for disaster policy and preparation.  <i>Journal of Disability Policy Studies, 17</i>(4); 249-254.</p><p>
+</p><p>
+<a name="dept.2006">DEPARTMENT OF EDUCATION</a>  (2006)  Notice of Proposed Priorities for Disability and Rehabilitation Research Projects and Rehabilitation Engineering Research Centers.  <i>Federal Register, 71</i>(181): 54869-54879.</p><p>
+</p><p>
+<a name="galea2003">GALEA</a> E R (Eds.) (2003)  <i>Proceedings of the 2nd International Conference on Pedestrian and Evacuation Dynamics</i>. Greenwich, UK. 20-22 August 2003.</p><p>
+</p><p>
+<a name="gershon2006">GERSHON</a> R  (2006, September)  <i>World Trade Center Evacuation Study.</i>  Presentation at the WTC Evacuation Study Scientific Meeting; Translating Research into Practice.</p><p>
+</p><p>
+<a name="gimblett2002">GIMBLETT</a> R H  (2002)  <i>Integrating geographic information systems and agent-based modeling techniques: for simulation social and ecological processes.</i>  New York, NY, Oxford University Press.</p><p>
+</p><p>
+<a name="helbing2005">HELBING</a> D, Buzna L, Johansson A, and Werner T  (2005)  Self-organized pedestrian crowd dynamics: Experiments, simulations, and design solutions. <i>Transportation Science,</i> <i>39</i>(1); 1-24.</p><p>
+</p><p>
+<a name="proulx2001">PROULX</a> G and Fahy R F  (2001)  Toward creating a database on delay times to start evacuation and walking speeds for use in evacuation modeling.  <i>2nd International Symposium on Human Behavior in Fire; </i>175-183.<i> </i></p><p>
+</p><p>
+<a name="purser2001">PURSER</a> D A and Bensilum M  (2001)  Quantification of behaviour for engineering design standards and escape time calculations.  <i>Safety Science, 38</i>(2), 157-182.</p><p>
+</p><p>
+<a name="rrtcdds2005">REHABILITATION RESEARCH AND TRAINING CENTER ON DISABILITY DEMOGRAPHICS AND STATISTICS</a>  (2005)  <i>2005 Disability Status Reports</i>.  Ithaca, NY: Cornell University.</p><p>
+</p><p>
+<a name="sasaki2006">SASAKI</a> Y, Flann N S, and Box P W   (2006)  "The multi-agent games by reinforcement learning applied to online optimization of traffic policy".  In Chen et al, (Eds.) <i>Computational economics: a perspective from computational intelligence</i>, Hershey, PA, Idea Group.</p><p>
+</p><p>
+<a name="sutton1999">SUTTON</a> R S and Barto A G  (1999)  <i>Reinforcement learning: an introduction.</i>  Cambridge, MA, MIT Press.</p><p>
+</p><p>
+<a name="u.s.2006">U.S.</a> CENSUS BUREAU  (08-Nov-2006).  State and County Quick Facts.  Data derived from Population Estimates, 2000.  Washington, D.C.: U.S. Department of Commerce.</p><p>
+</p><p>
+<a name="usfa1999">U.S. FIRE ADMINISTRATION</a> (September 1999)  <i>Removing the Barriers; A Fire Safety Factsheet for People with Disabilities and their Caregivers.</i>  Emmetsburg, MD: Office of Fire Management Programs.</p><p>
+</p><p>
+<a name="watkins1989">WATKINS</a> C J C H   (1989)  <i>Learning from delayed rewards.</i>  Ph.D. thesis, Cambridge University.</p><p>
+</p><p>
+<a name="watkins1992">WATKINS</a> C J C H and Dayan P  (1992)  Q-learning. <i>Machine Learning</i>, 8, 279-292.</p><p>
+</p><p>
+<a name="wright1999">WRIGHT</a> M S, Cook G K, and Webber G M B (1999)  Emergency lighting and wayfinding provision systems for visually impaired people: Phase I of a study. <i>Lighting Research Technology, 31</i>(2), 35-42.
+
+
+
+</p></dd></dl><img src="./Keith Christensen and Yuya Sasaki  Agent-Based Emergency Evacuation Simulation with Individuals with Disabilities in the Population_files/bar.gif" width="100%" height="3" alt="----"><p>
+<a href="http://jasss.soc.surrey.ac.uk/11/3/contents.html"><img src="./Keith Christensen and Yuya Sasaki  Agent-Based Emergency Evacuation Simulation with Individuals with Disabilities in the Population_files/JASSSBut.JPG" width="71" height="68" border="0" align="RIGHT" alt="Button">Return to Contents of this issue</a>
+</p><p>
+<font size="1">©<a href="http://jasss.soc.surrey.ac.uk/admin/copyright.html"> 
+ Copyright Journal of Artificial Societies and Social Simulation, 
+ [2008]</a></font>
+
+</p></body></html>
