@@ -35,22 +35,22 @@ public class Main extends SimpleApplication {
         inputManager.addMapping("toggle wireframe", new KeyTrigger(KeyInput.KEY_T));
         inputManager.addListener(actionListener, "toggle wireframe");
         
-        Spatial rooms = assetManager.loadModel("Models/MichaelMaze/MichaelMaze.j3o");
+        Spatial ship = assetManager.loadModel("Models/AccurateModelExp/AccurateModelExp.j3o");
         
         
         Node node;
-        node = (Node) rooms;
+        node = (Node) ship;
         Node chil1 = (Node) node.getChildren().get(2);
-        System.out.println(node.getChildren().size() + " " + chil1.getChildren().size());
         Geometry chil = (Geometry) chil1.getChildren().get(0);
         
-        Mesh roomMesh = chil.getMesh();
-        NavMesh roomsNM = new NavMesh();
-        roomsNM.loadFromMesh(roomMesh);
+        Mesh shipMesh = chil.getMesh();
+        NavMesh shipNM = new NavMesh();
+        shipNM.loadFromMesh(shipMesh);
         
         
+        System.out.println(chil1.getChildren().size());
         mat = chil.getMaterial();
-        rootNode.attachChild(node);
+        rootNode.attachChild(chil1);
     }
 
     @Override
