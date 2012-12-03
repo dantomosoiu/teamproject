@@ -7,6 +7,7 @@ import com.jme3.scene.Geometry;
 import com.jme3.scene.Mesh;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
+import java.awt.event.ActionListener;
 import jme3tools.navmesh.NavMesh;
 
 /**
@@ -19,6 +20,17 @@ public class Main extends SimpleApplication {
         Main app = new Main();
         app.start();
     }
+    private ActionListener actionListener = new ActionListener() {
+    @Override
+    public void onAction(String name, boolean pressed, float tpf) {
+      // toggle wireframe
+      if (name.equals("toggle wireframe") && !pressed) {
+        wireframe = !wireframe; // toggle boolean
+        mat.getAdditionalRenderState().setWireframe(wireframe); 
+      }
+      // else ... other input tests.
+    }
+  };
 
     @Override
     public void simpleInitApp() {
