@@ -43,6 +43,11 @@ public class Main extends SimpleApplication {
         Node chil1 = (Node) node.getChildren().get(2);
         Geometry chil = (Geometry) chil1.getChildren().get(0);
         
+        Mesh shipMesh = chil.getMesh();
+        NavMesh shipNM = new NavMesh();
+        shipNM.loadFromMesh(shipMesh);
+        
+        
         System.out.println(chil1.getChildren().size());
         mat = chil.getMaterial();
         rootNode.attachChild(chil1);
