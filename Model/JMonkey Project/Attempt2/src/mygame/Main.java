@@ -44,6 +44,8 @@ public class Main extends SimpleApplication {
         System.out.println(node.getChildren().size() + " " + chil1.getChildren().size());
         Geometry chil = (Geometry) chil1.getChildren().get(0);
         
+        
+        
         Mesh roomMesh = chil.getMesh();
         NavMesh roomsNM = new NavMesh();
         roomsNM.loadFromMesh(roomMesh);
