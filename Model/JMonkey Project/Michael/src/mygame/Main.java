@@ -36,10 +36,10 @@ public class Main extends SimpleApplication {
     @Override
     public void simpleInitApp() {
 
-        inputManager.addMapping("toggle wireframe", new KeyTrigger(KeyInput.KEY_T));
-        inputManager.addListener(actionListener, "toggle wireframe");
+        //inputManager.addMapping("toggle wireframe", new KeyTrigger(KeyInput.KEY_T));
+        //inputManager.addListener(actionListener, "toggle wireframe");
 
-        Spatial ship = assetManager.loadModel("Models/AccurateModelExp/AccurateModelExp.j3o");
+        Spatial ship = assetManager.loadModel("Models/MichaelMaze/MichaelMaze.j3o");
 
 
         Node node;
@@ -52,11 +52,12 @@ public class Main extends SimpleApplication {
         Mesh shipMesh = chil.getMesh();
         NavMesh shipNM = new NavMesh();
         
-        //NavMeshGenerator generator = new NavMeshGenerator();
+        NavMeshGenerator generator = new NavMeshGenerator();
         
-        //Mesh optimisedMesh = generator.optimize(shipMesh);
+        Mesh optimisedMesh = generator.optimize(shipMesh);
         
-        shipNM.loadFromMesh(shipMesh);
+        shipNM.loadFromMesh(optimisedMesh);
+        
 
 
         for (int i = 0; i < shipNM.getNumCells(); i++) {
