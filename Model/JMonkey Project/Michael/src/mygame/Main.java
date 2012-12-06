@@ -1,7 +1,9 @@
 package mygame;
 
+import Population.Population;
 import com.bulletphysics.collision.shapes.TriangleShape;
 import com.jme3.app.SimpleApplication;
+import com.jme3.font.BitmapText;
 import com.jme3.input.KeyInput;
 import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
@@ -27,7 +29,12 @@ public class Main extends SimpleApplication {
 
     boolean wireframe;
     Material mat;
+    boolean solid = false;
+    public static NavMesh shipNM;
+    public static Node root;
 
+    public static Geometry[] AgentGeometries;
+    
     public static void main(String[] args) {
         Main app = new Main();
         app.start();
@@ -39,6 +46,7 @@ public class Main extends SimpleApplication {
         //inputManager.addMapping("toggle wireframe", new KeyTrigger(KeyInput.KEY_T));
         //inputManager.addListener(actionListener, "toggle wireframe");
 
+        
         Spatial ship = assetManager.loadModel("Models/MichaelMaze/MichaelMaze.j3o");
 
 
@@ -50,7 +58,7 @@ public class Main extends SimpleApplication {
         
         
         Mesh shipMesh = chil.getMesh();
-        NavMesh shipNM = new NavMesh();
+        shipNM = new NavMesh();
         
         NavMeshGenerator generator = new NavMeshGenerator();
         
@@ -58,7 +66,13 @@ public class Main extends SimpleApplication {
         
         shipNM.loadFromMesh(optimisedMesh);
         
+        Node navMeshHolder = new Node();
+        rootNode.attachChild(navMeshHolder);
+        
+        
 
+        node = rootNode;
+        
 
         for (int i = 0; i < shipNM.getNumCells(); i++) {
             TriangleShape tr;
@@ -75,7 +89,7 @@ public class Main extends SimpleApplication {
             Geometry lineGeometry = new Geometry("line", lineMesh);
             Material lineMaterial = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
             lineGeometry.setMaterial(lineMaterial);
-            rootNode.attachChild(lineGeometry);
+            navMeshHolder.attachChild(lineGeometry);
             
             lineMesh = new Mesh();
             lineMesh.setMode(Mesh.Mode.Lines);
@@ -86,7 +100,7 @@ public class Main extends SimpleApplication {
             lineGeometry = new Geometry("line", lineMesh);
             lineMaterial = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
             lineGeometry.setMaterial(lineMaterial);
-            rootNode.attachChild(lineGeometry);
+            navMeshHolder.attachChild(lineGeometry);
             
             lineMesh = new Mesh();
             lineMesh.setMode(Mesh.Mode.Lines);
@@ -97,17 +111,58 @@ public class Main extends SimpleApplication {
             lineGeometry = new Geometry("line", lineMesh);
             lineMaterial = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
             lineGeometry.setMaterial(lineMaterial);
-            rootNode.attachChild(lineGeometry);
+            navMeshHolder.attachChild(lineGeometry);
+            
+            
+            
+            guiFont = assetManager.loadFont("Interface/Fonts/Default.fnt");
+            BitmapText helloText = new BitmapText(guiFont, false);
+            helloText.setSize(0.05f);
+            helloText.setText(v0.toString());
+            helloText.setLocalTranslation(v0.x, v0.y, v0.z);
+            rootNode.attachChild(helloText);
+            
+            helloText = new BitmapText(guiFont, false);
+            helloText.setSize(0.05f);
+            helloText.setText(v1.toString());
+            helloText.setLocalTranslation(v1.x, v1.y, v1.z);
+            rootNode.attachChild(helloText);
+            
+            helloText = new BitmapText(guiFont, false);
+            helloText.setSize(0.05f);
+            helloText.setText(v2.toString());
+            helloText.setLocalTranslation(v2.x, v2.y, v2.z);
+            rootNode.attachChild(helloText);
+            
         }
+        
+        Population population = new Population(rootNode, shipNM, this);
+        int populationSize = 1;
+        AgentGeometries = new Geometry[populationSize];
+        population.populate(populationSize);
+        
+        population.evacuate();
 
+        guiFont = assetManager.loadFont("Interface/Fonts/Default.fnt");
+        BitmapText helloText = new BitmapText(guiFont, false);
+        helloText.setSize(0.1f);
+        helloText.setText("ORIGIN");
+        helloText.setLocalTranslation(0,0,0);
+        rootNode.attachChild(helloText);
+        
+        
+
+        
+        
+        
         //System.out.println(chil1.getChildren().size());
         //mat = chil.getMaterial();
-        //rootNode.attachChild(chil1);
+        //rootNode.attachChild(chil);
     }
 
     @Override
     public void simpleUpdate(float tpf) {
-        //TODO: add update code
+        
     }
 
     @Override
