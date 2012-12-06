@@ -12,24 +12,8 @@ import org.critterai.nmgen.TriangleMesh;
 public class NavMeshGenerator {
 
     private org.critterai.nmgen.NavmeshGenerator nmgen;
-//    private float cellSize = 1f;
-//    private float cellHeight = 1.5f;
-//    private float minTraversableHeight = 7.5f;
-//    private float maxTraversableStep = 1f;
-//    private float maxTraversableSlope = 48.0f;
-//    private boolean clipLedges = false;
-//    private float traversableAreaBorderSize = 1.2f;
-//    private int smoothingThreshold = 2;
-//    private boolean useConservativeExpansion = true;
-//    private int minUnconnectedRegionSize = 3;
-//    private int mergeRegionSize = 10;
-//    private float maxEdgeLength = 0;
-//    private float edgeMaxDeviation = 2.4f;
-//    private int maxVertsPerPoly = 6;
-//    private float contourSampleDistance = 25;
-//    private float contourMaxDeviation = 25;
     
-    private float cellSize = 0.1f;
+    private float cellSize = 0.05f;
     private float cellHeight = 0.1f;
     private float minTraversableHeight = 0.2f;
     private float maxTraversableStep = 0.2f;
