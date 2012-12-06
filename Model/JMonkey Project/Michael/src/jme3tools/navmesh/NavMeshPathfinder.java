@@ -8,6 +8,10 @@ public class NavMeshPathfinder {
 
     private NavMesh navMesh;
     private Path path = new Path();
+
+    public Path getPath() {
+        return path;
+    }
     private float entityRadius;
 
     private Vector2f currentPos = new Vector2f();
@@ -62,6 +66,7 @@ public class NavMeshPathfinder {
             return false;
         }
         nextWaypoint = path.getFirst();
+        
         return true;
     }
 

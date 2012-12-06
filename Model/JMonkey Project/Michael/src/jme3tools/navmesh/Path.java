@@ -160,7 +160,7 @@ public class Path implements Iterable<Waypoint> {
 
         Waypoint testPoint = waypointList.get(++i);
         if (testPoint == getLast()) {
-            System.out.println(" WAY IND was last");
+            //System.out.println(" WAY IND was last");
             return testPoint;
         }
 
