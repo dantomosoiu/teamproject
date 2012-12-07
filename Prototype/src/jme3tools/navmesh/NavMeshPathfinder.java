@@ -120,4 +120,70 @@ public class NavMeshPathfinder {
         currentCell = nextWaypoint.getCell();
     }
 
+    //EXTENDED_MICHAEL : Added is line of sight method
+    public boolean isInLineOfSight(Vector3f point){
+        return navMesh.isInLineOfSight(currentCell,currentPos3d, point);
+    }
+    //EXTENDED-MICHAEL : Added getters setters for variables
+
+    public NavMesh getNavMesh() {
+        return navMesh;
+    }
+
+    public Vector2f getCurrentPos() {
+        return currentPos;
+    }
+
+    public void setCurrentPos(Vector2f currentPos) {
+        this.currentPos = currentPos;
+    }
+
+    public Vector3f getCurrentPos3d() {
+        return currentPos3d;
+    }
+
+    public void setCurrentPos3d(Vector3f currentPos3d) {
+        this.currentPos3d = currentPos3d;
+    }
+
+    public Cell getCurrentCell() {
+        return currentCell;
+    }
+
+    public void setCurrentCell(Cell currentCell) {
+        this.currentCell = currentCell;
+    }
+
+    public Vector2f getGoalPos() {
+        return goalPos;
+    }
+
+    public void setGoalPos(Vector2f goalPos) {
+        this.goalPos = goalPos;
+    }
+
+    public Vector3f getGoalPos3d() {
+        return goalPos3d;
+    }
+
+    public void setGoalPos3d(Vector3f goalPos3d) {
+        this.goalPos3d = goalPos3d;
+    }
+
+    public Cell getGoalCell() {
+        return goalCell;
+    }
+
+    public void setGoalCell(Cell goalCell) {
+        this.goalCell = goalCell;
+    }
+
+    public Waypoint getNextWaypoint() {
+        return nextWaypoint;
+    }
+
+    public void setNextWaypoint(Waypoint nextWaypoint) {
+        this.nextWaypoint = nextWaypoint;
+    }
+    
 }

@@ -13,8 +13,11 @@ import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 import com.jme3.input.controls.ActionListener;
 import com.jme3.scene.VertexBuffer;
+import goal.Goal;
+import java.util.ArrayList;
 import jme3tools.navmesh.NavMesh;
 import jme3tools.navmesh.util.NavMeshGenerator;
+import population.BehaviourModel;
 
 /**
  * test
@@ -128,12 +131,7 @@ public class Main extends SimpleApplication {
             
         }
         
-        Population population = new Population(rootNode, shipNM, this);
-        int populationSize = 1;
-        AgentGeometries = new Geometry[populationSize];
-        population.populate(populationSize);
         
-        population.evacuate();
 
         guiFont = assetManager.loadFont("Interface/Fonts/Default.fnt");
         BitmapText helloText = new BitmapText(guiFont, false);
@@ -142,14 +140,24 @@ public class Main extends SimpleApplication {
         helloText.setLocalTranslation(0,0,0);
         rootNode.attachChild(helloText);
         
+        ArrayList<Goal> goals = new ArrayList<Goal>();
+        goals.add(new Goal(new Vector3f(3.3f,0f,3f)));
+        goals.add(new Goal(new Vector3f(-2.0f,0f,4.0f)));
+        for(Goal g : goals){
+            helloText = new BitmapText(guiFont, false);
+            helloText.setSize(0.05f);
+            helloText.setText("GOAL: "+ g.getLocation().toString());
+            helloText.setLocalTranslation(g.getLocation().x, g.getLocation().y,g.getLocation().z);
+            rootNode.attachChild(helloText);
+        }  
+        BehaviourModel.setGoals(goals);
         
-
+        Population population = new Population(rootNode, shipNM, this);
+        int populationSize = 1;
+        AgentGeometries = new Geometry[populationSize];
+        population.populate(populationSize);
         
-        
-        
-        //System.out.println(chil1.getChildren().size());
-        //mat = chil.getMaterial();
-        //rootNode.attachChild(chil);
+        population.evacuate();
     }
 
     @Override
@@ -161,6 +169,7 @@ public class Main extends SimpleApplication {
     public void simpleRender(RenderManager rm) {
         //TODO: add render code
     }
+    
     private ActionListener actionListener = new ActionListener() {
         @Override
         public void onAction(String name, boolean pressed, float tpf) {
