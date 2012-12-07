@@ -32,22 +32,23 @@ public class NavMeshGenerator {
 //    private float contourSampleDistance = 1f;
 //    private float contourMaxDeviation = 1f;
     
-    private float cellSize = 0.001f;
-    private float cellHeight = 0.002f;
-    private float minTraversableHeight = 0.001f;
-    private float maxTraversableStep = 0.002f;
-    private float maxTraversableSlope = 48.0f;
-    private boolean clipLedges = false;
-    private float traversableAreaBorderSize = 0.002f;
-    private int smoothingThreshold = 2;
-    private boolean useConservativeExpansion = true;
+    private float cellSize = 0.05f;
+    private float cellHeight = 0.1f;
+    private float minTraversableHeight = 0.05f;
+    private float maxTraversableStep = 0.02f;
+    private float maxTraversableSlope = 20.0f;
+    private boolean clipLedges = true;
+    private float traversableAreaBorderSize = 0.02f;
+    private int smoothingThreshold = 4;
+    private boolean useConservativeExpansion = false;
     private int minUnconnectedRegionSize = 1;
     private int mergeRegionSize = 1;
     private float maxEdgeLength = 0;
-    private float edgeMaxDeviation = 0.01f;
+    private float edgeMaxDeviation = 0.1f;
     private int maxVertsPerPoly = 3;
     private float contourSampleDistance = 1f;
     private float contourMaxDeviation = 1f;
+    
 
     public NavMeshGenerator() {
     }
