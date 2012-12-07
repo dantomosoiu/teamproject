@@ -47,30 +47,39 @@ public class Main extends SimpleApplication {
         //inputManager.addListener(actionListener, "toggle wireframe");
 
         
-        Spatial ship = assetManager.loadModel("Models/MichaelMaze/MichaelMaze.j3o");
+        Spatial ship = assetManager.loadModel("Models/Export2/Export.j3o");
 
 
         Node node;
         node = (Node) ship;
-        Node chil1 = (Node) node.getChildren().get(2);
+        Node chil1 = (Node) node.getChildren().get(4);
         Geometry chil = (Geometry) chil1.getChildren().get(0);
 
+        
+        
+//        Mesh shipMesh = chil.getMesh();
+//        shipNM = new NavMesh();
+//        
+//        NavMeshGenerator generator = new NavMeshGenerator();
+//        
+//        Mesh optimisedMesh = generator.optimize(shipMesh);
+//        
+//        shipNM.loadFromMesh(optimisedMesh);
+//        
+//        Node navMeshHolder = new Node();
+//        rootNode.attachChild(navMeshHolder);
         
         
         Mesh shipMesh = chil.getMesh();
         shipNM = new NavMesh();
         
-        NavMeshGenerator generator = new NavMeshGenerator();
         
-        Mesh optimisedMesh = generator.optimize(shipMesh);
-        
-        shipNM.loadFromMesh(optimisedMesh);
+        shipNM.loadFromMesh(shipMesh);
         
         Node navMeshHolder = new Node();
         rootNode.attachChild(navMeshHolder);
         
         
-
         node = rootNode;
         
 
@@ -115,33 +124,33 @@ public class Main extends SimpleApplication {
             
             
             
-            guiFont = assetManager.loadFont("Interface/Fonts/Default.fnt");
-            BitmapText helloText = new BitmapText(guiFont, false);
-            helloText.setSize(0.05f);
-            helloText.setText(v0.toString());
-            helloText.setLocalTranslation(v0.x, v0.y, v0.z);
-            rootNode.attachChild(helloText);
-            
-            helloText = new BitmapText(guiFont, false);
-            helloText.setSize(0.05f);
-            helloText.setText(v1.toString());
-            helloText.setLocalTranslation(v1.x, v1.y, v1.z);
-            rootNode.attachChild(helloText);
-            
-            helloText = new BitmapText(guiFont, false);
-            helloText.setSize(0.05f);
-            helloText.setText(v2.toString());
-            helloText.setLocalTranslation(v2.x, v2.y, v2.z);
-            rootNode.attachChild(helloText);
+//            guiFont = assetManager.loadFont("Interface/Fonts/Default.fnt");
+//            BitmapText helloText = new BitmapText(guiFont, false);
+//            helloText.setSize(0.05f);
+//            helloText.setText(v0.toString());
+//            helloText.setLocalTranslation(v0.x, v0.y, v0.z);
+//            rootNode.attachChild(helloText);
+//            
+//            helloText = new BitmapText(guiFont, false);
+//            helloText.setSize(0.05f);
+//            helloText.setText(v1.toString());
+//            helloText.setLocalTranslation(v1.x, v1.y, v1.z);
+//            rootNode.attachChild(helloText);
+//            
+//            helloText = new BitmapText(guiFont, false);
+//            helloText.setSize(0.05f);
+//            helloText.setText(v2.toString());
+//            helloText.setLocalTranslation(v2.x, v2.y, v2.z);
+//            rootNode.attachChild(helloText);
             
         }
         
-        Population population = new Population(rootNode, shipNM, this);
-        int populationSize = 1;
-        AgentGeometries = new Geometry[populationSize];
-        population.populate(populationSize);
-        
-        population.evacuate();
+//        Population population = new Population(rootNode, shipNM, this);
+//        int populationSize = 1;
+//        AgentGeometries = new Geometry[populationSize];
+//        population.populate(populationSize);
+//        
+//        population.evacuate();
 
         guiFont = assetManager.loadFont("Interface/Fonts/Default.fnt");
         BitmapText helloText = new BitmapText(guiFont, false);
