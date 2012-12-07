@@ -369,7 +369,7 @@ public class Cell implements Savable {
             // is Not on the right side of this wall...
             Line2D.PointSide end = sides[i].getSide(
                     MotionPath.getPointB(), 0.0f);
-            if (end != Line2D.PointSide.Right) {
+            if (end != Line2D.PointSide.Right && end != Line2D.PointSide.OnLine) {
 //					&& end != Line2D.POINT_CLASSIFICATION.ON_LINE) {
                 // ..and the starting endpoint of the MotionPath
                 // is Not on the left side of this wall...
