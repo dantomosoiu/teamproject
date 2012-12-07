@@ -46,27 +46,11 @@ public class Person extends NavMeshPathfinder implements Runnable {
         rootNode.attachChild(geom);
     }
 
-    /*Locomotion Methods*/
-    private void moveForward() {
-    }
 
-    private void pivotLeft() {
-    }
+   
+   
 
-    private void pivotRight() {
-    }
-
-    private void sideStepLeft() {
-    }
-
-    private void sideStepRight() {
-    }
-
-    /*Scan forward area for goal nodes*/
-    private void scan() {
-    }
-
-    ;
+    
 	
 	@Override
     public void run() {
@@ -94,7 +78,7 @@ public class Person extends NavMeshPathfinder implements Runnable {
         while (!isAtGoalWaypoint()) {
             System.out.println("CURRENT LOCATION:" + this.getPosition().toString() + "\n\n");
             Vector3f oldPosition = new Vector3f(this.getPosition());
-            
+            BehaviourModel.percieveDecideAct(this); // actions being taken
             this.gotoToNextWaypoint();
             geom.move(new Vector3f(this.getPosition().x - oldPosition.x, this.getPosition().y - oldPosition.y, this.getPosition().z - oldPosition.z));
             
@@ -121,8 +105,7 @@ public class Person extends NavMeshPathfinder implements Runnable {
             
         }
     }
-           
-    
+
 
     public int getSpeed() {
         return speed;
