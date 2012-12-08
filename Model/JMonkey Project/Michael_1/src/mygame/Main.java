@@ -16,6 +16,8 @@ import com.jme3.scene.Spatial;
 import com.jme3.scene.shape.Box;
 import com.jme3.input.controls.ActionListener;
 import com.jme3.input.controls.KeyTrigger;
+import com.jme3.light.AmbientLight;
+import com.jme3.light.DirectionalLight;
 import com.jme3.scene.VertexBuffer;
 import jme3tools.navmesh.NavMesh;
 import jme3tools.navmesh.util.NavMeshGenerator;
@@ -78,7 +80,7 @@ public class Main extends SimpleApplication {
 //        Node navMeshHolder = new Node();
 //        rootNode.attachChild(navMeshHolder);
 
-
+        setUpLight();
         node = rootNode;
 
         Vector3f minX = new Vector3f(1000f, 1000f, 1000f);
@@ -89,7 +91,7 @@ public class Main extends SimpleApplication {
         Vector3f maxZ = new Vector3f(-1000f, -1000f, -1000f);
 
 
-        for (int i = 0; i < shipNM.getNumCells(); i++) {
+        /*for (int i = 0; i < shipNM.getNumCells(); i++) {
             TriangleShape tr;
             Vector3f v0 = shipNM.getCell(i).getVertex(0);
             Vector3f v1 = shipNM.getCell(i).getVertex(1);
@@ -207,7 +209,8 @@ public class Main extends SimpleApplication {
             helloText.setLocalTranslation(v2.x, v2.y, v2.z);
             rootNode.attachChild(helloText);
 
-        }
+        }*/
+        rootNode.attachChild(chil1);
 
 //        Population population = new Population(rootNode, shipNM, this);
 //        int populationSize = 1;
@@ -241,6 +244,18 @@ public class Main extends SimpleApplication {
 
 
     }
+    
+    private void setUpLight() {
+    // Add light so we see the scene
+    AmbientLight al = new AmbientLight();
+    al.setColor(ColorRGBA.White.mult(5f));
+    rootNode.addLight(al);
+ 
+    DirectionalLight dl = new DirectionalLight();
+    dl.setColor(ColorRGBA.White);
+    dl.setDirection(new Vector3f(5.6f, -5.6f, -5.6f).normalizeLocal());
+    rootNode.addLight(dl);
+  }
 
     @Override
     public void simpleUpdate(float tpf) {
