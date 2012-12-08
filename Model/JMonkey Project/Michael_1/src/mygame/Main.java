@@ -1,22 +1,22 @@
 package mygame;
 
+import Population.Population;
 import com.bulletphysics.collision.shapes.TriangleShape;
 import com.jme3.app.SimpleApplication;
 import com.jme3.font.BitmapText;
+import com.jme3.input.KeyInput;
 import com.jme3.material.Material;
+import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector3f;
 import com.jme3.renderer.RenderManager;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.Mesh;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
+import com.jme3.scene.shape.Box;
 import com.jme3.input.controls.ActionListener;
+import com.jme3.input.controls.KeyTrigger;
 import com.jme3.scene.VertexBuffer;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.PrintStream;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import jme3tools.navmesh.NavMesh;
 import jme3tools.navmesh.util.NavMeshGenerator;
 
@@ -46,19 +46,13 @@ public class Main extends SimpleApplication {
         //inputManager.addMapping("toggle wireframe", new KeyTrigger(KeyInput.KEY_T));
         //inputManager.addListener(actionListener, "toggle wireframe");
 
-        try {
-            PrintStream out = new PrintStream(new FileOutputStream("output.txt"));
-            System.setOut(out);
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-        }
         
-        Spatial ship = assetManager.loadModel("Models/Export2/Export.j3o");
+        Spatial ship = assetManager.loadModel("Models/MichaelMaze/RampedMaze.j3o");
 
 
         Node node;
         node = (Node) ship;
-        Node chil1 = (Node) node.getChildren().get(4);
+        Node chil1 = (Node) node.getChildren().get(2);
         Geometry chil = (Geometry) chil1.getChildren().get(0);
 
         

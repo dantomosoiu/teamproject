@@ -14,11 +14,12 @@ public class NavMeshGenerator {
 
     private org.critterai.nmgen.NavmeshGenerator nmgen;
     //these work for the room thingie
+    //these work for the room thingie
     private float cellSize = 0.05f;
-    private float cellHeight = 0.1f;
-    private float minTraversableHeight = 0.2f;
+    private float cellHeight = 0.2f;
+    private float minTraversableHeight = 0.4f;
     private float maxTraversableStep = 0.1f;
-    private float maxTraversableSlope = 30f;
+    private float maxTraversableSlope = 60.0f;
     private boolean clipLedges = false;
     private float traversableAreaBorderSize = 0.01f;
     private int smoothingThreshold = 2;
@@ -27,22 +28,11 @@ public class NavMeshGenerator {
     private int mergeRegionSize = 1;
     private float maxEdgeLength = 0;
     private float edgeMaxDeviation = 0.1f;
-    private int maxVertsPerPoly = 3;
-    private float contourSampleDistance = 0f;
-    private float contourMaxDeviation = 0f;
-    private float cellSizeArray[] = {0.5f, 0.01f, 0.005f, 0.001f};
-    private float cellHeightArray[] = {0.2f, 0.1f, 0.05f, 0.01f};
-    private boolean clipLedgesArray[] = {true, false};
-    private float traversableAreaBorderSizeArray[] = {0f, 1f, 0.06f, 0.05f, 0,01f, 0.006f, 0.002f};
-    private int smoothingThresholdArray[] = {0, 1, 2, 4};
-    private boolean useConservativeExpansionArray[] = {false, true};
-    private int minUnconnectedRegionSizeArray[] = {1, 3, 9, 13, 30, 60, 2000};
-    private int mergeRegionSizeArray[] = {0, 1, 3, 9, 50, 200};
-    private float edgeMaxDeviationArray[] = {0f, 5f, 1f, 0.2f, 0.05f, 0.01f};
-    private int maxVertsPerPolyArray[] = {3, 6};
-    private float contourSampleDistanceArray[] = {0f, 0.95f, 1f, 1.2f, 1.5f, 3.f, 6f, 10f};
-    private float contourMaxDeviationArray[] = {0f, 0.5f, 0.95f, 1f, 1.2f, 1.5f, 3.f, 6f, 10f};
-    
+    private int maxVertsPerPoly = 6;
+    private float contourSampleDistance = 1f;
+    private float contourMaxDeviation = 1f;
+
+
     public NavMeshGenerator() {
     }
 
@@ -66,7 +56,7 @@ public class NavMeshGenerator {
     }
 
     public Mesh optimize(Mesh mesh) {
-        System.out.println("starting\n"+mesh.getTriangleCount()+" triangles");
+
         FloatBuffer pb;
         IndexBuffer ib;
         float[] positions;
@@ -75,27 +65,11 @@ public class NavMeshGenerator {
 
 
         int found = 0;
-        int foundT = 0;
-        int tried = 0;
+        int foundFT = 0;
 
         Random r = new Random();
 
         while (true) {
-            tried++;
-            cellSize = cellSizeArray[r.nextInt(cellSizeArray.length)];
-            cellHeight = cellHeightArray[r.nextInt(cellHeightArray.length)];
-            minTraversableHeight = cellHeight * (r.nextInt(9) + 1);
-            maxTraversableStep = cellSize * (r.nextInt(4) + 2);
-            clipLedges = clipLedgesArray[r.nextInt(clipLedgesArray.length)];
-            traversableAreaBorderSize = traversableAreaBorderSizeArray[r.nextInt(traversableAreaBorderSizeArray.length)];
-            smoothingThreshold = smoothingThresholdArray[r.nextInt(smoothingThresholdArray.length)];
-            useConservativeExpansion = useConservativeExpansionArray[r.nextInt(useConservativeExpansionArray.length)];
-            minUnconnectedRegionSize = minUnconnectedRegionSizeArray[r.nextInt(minUnconnectedRegionSizeArray.length)];
-            mergeRegionSize = mergeRegionSizeArray[r.nextInt(mergeRegionSizeArray.length)];
-            edgeMaxDeviation = edgeMaxDeviationArray[r.nextInt(edgeMaxDeviationArray.length)];
-            maxVertsPerPoly = maxVertsPerPolyArray[r.nextInt(maxVertsPerPolyArray.length)];
-            contourSampleDistance = contourSampleDistanceArray[r.nextInt(contourSampleDistanceArray.length)];
-            contourMaxDeviation = contourMaxDeviationArray[r.nextInt(contourMaxDeviationArray.length)] * cellSize;
 
             nmgen = new NavmeshGenerator(cellSize, cellHeight, minTraversableHeight,
                     maxTraversableStep, maxTraversableSlope,
@@ -123,21 +97,22 @@ public class NavMeshGenerator {
 
             if (triMesh != null && triMesh.triangleRegions.length > 10) {
                 found++;
-                if (triMesh.triangleRegions.length > 300) {
-                    foundT++;
+                if (triMesh.triangleRegions.length > 50) {
+                    foundFT++;
                 }
                 System.out.println("************\n\n");
-                System.out.println(foundT + "/" + found + "/" + tried);
+                System.out.println(foundFT + "/" + found);
                 System.out.println(triMesh.triangleRegions.length + "triangles");
                 printParams();
                 System.out.println("\n\n************");
 
-                if (foundT > 20000) {
+                if (foundFT > 2000) {
                     break;
                 }
+                
             }
 
-
+            break;
         }
 
         if (triMesh == null) {
