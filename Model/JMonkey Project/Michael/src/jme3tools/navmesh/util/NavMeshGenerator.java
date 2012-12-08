@@ -1,6 +1,7 @@
 package jme3tools.navmesh.util;
 
 import com.jme3.math.FastMath;
+import com.jme3.math.Vector3f;
 import com.jme3.scene.Mesh;
 import com.jme3.scene.VertexBuffer.Type;
 import com.jme3.scene.mesh.IndexBuffer;
@@ -14,35 +15,39 @@ public class NavMeshGenerator {
 
     private org.critterai.nmgen.NavmeshGenerator nmgen;
     //these work for the room thingie
-    private float cellSize = 0.05f;
-    private float cellHeight = 0.1f;
-    private float minTraversableHeight = 0.2f;
-    private float maxTraversableStep = 0.1f;
+    private float agentRadius = 0.5f;
+    private float maxAgentStep = 0.25f;
+    private float agentHeight = 2.2f;
+    private float agentRadiusArray[] = {1f, 0.8f, 0.5f, 0.3f, 0.1f, 0.05f};
+    private float cellSize = agentRadius / 3f;
+    private float cellHeight = maxAgentStep / 2.5f;
+    private float minTraversableHeight = agentHeight * 1.2f;
+    private float maxTraversableStep = maxAgentStep;
     private float maxTraversableSlope = 30f;
     private boolean clipLedges = false;
-    private float traversableAreaBorderSize = 0.01f;
+    private float traversableAreaBorderSize = agentRadius;
     private int smoothingThreshold = 2;
     private boolean useConservativeExpansion = true;
-    private int minUnconnectedRegionSize = 1;
-    private int mergeRegionSize = 1;
-    private float maxEdgeLength = 0;
-    private float edgeMaxDeviation = 0.1f;
+    private int minUnconnectedRegionSize = 13;
+    private int mergeRegionSize = 9;
+    private float maxEdgeLength = agentRadius * 8;
+    private float edgeMaxDeviation = 1.5f;
     private int maxVertsPerPoly = 3;
-    private float contourSampleDistance = 0f;
-    private float contourMaxDeviation = 0f;
-    private float cellSizeArray[] = {0.5f, 0.01f, 0.005f, 0.001f};
+    private float contourSampleDistance = 1f;
+    private float contourMaxDeviation = cellSize * 20f;
+    private float cellSizeArray[] = {0.1f, 0.2f, 0.5f};
     private float cellHeightArray[] = {0.2f, 0.1f, 0.05f, 0.01f};
     private boolean clipLedgesArray[] = {true, false};
-    private float traversableAreaBorderSizeArray[] = {0f, 1f, 0.06f, 0.05f, 0,01f, 0.006f, 0.002f};
-    private int smoothingThresholdArray[] = {0, 1, 2, 4};
+    private float traversableAreaBorderSizeArray[] = {0f, 1f, 0.06f, 0.05f, 0, 0.1f, 0.006f, 0.002f};
+    private int smoothingThresholdArray[] = {0, 1, 4};
     private boolean useConservativeExpansionArray[] = {false, true};
-    private int minUnconnectedRegionSizeArray[] = {1, 3, 9, 13, 30, 60, 2000};
-    private int mergeRegionSizeArray[] = {0, 1, 3, 9, 50, 200};
-    private float edgeMaxDeviationArray[] = {0f, 5f, 1f, 0.2f, 0.05f, 0.01f};
+    private int minUnconnectedRegionSizeArray[] = {1, 3, 9, 13, 30, 60, 500, 2000};
+    private int mergeRegionSizeArray[] = {0, 1, 3, 9, 50, 200, 500};
+    private float edgeMaxDeviationArray[] = {1.5f, 2f, 1f, 1.2f, 1.5f, 0.8f, 0.4f, 0.1f, 0.05f};
     private int maxVertsPerPolyArray[] = {3, 6};
     private float contourSampleDistanceArray[] = {0f, 0.95f, 1f, 1.2f, 1.5f, 3.f, 6f, 10f};
     private float contourMaxDeviationArray[] = {0f, 0.5f, 0.95f, 1f, 1.2f, 1.5f, 3.f, 6f, 10f};
-    
+
     public NavMeshGenerator() {
     }
 
@@ -66,7 +71,7 @@ public class NavMeshGenerator {
     }
 
     public Mesh optimize(Mesh mesh) {
-        System.out.println("starting\n"+mesh.getTriangleCount()+" triangles");
+        System.out.println("starting\n" + mesh.getTriangleCount() + " triangles");
         FloatBuffer pb;
         IndexBuffer ib;
         float[] positions;
@@ -82,62 +87,163 @@ public class NavMeshGenerator {
 
         while (true) {
             tried++;
-            cellSize = cellSizeArray[r.nextInt(cellSizeArray.length)];
-            cellHeight = cellHeightArray[r.nextInt(cellHeightArray.length)];
-            minTraversableHeight = cellHeight * (r.nextInt(9) + 1);
-            maxTraversableStep = cellSize * (r.nextInt(4) + 2);
-            clipLedges = clipLedgesArray[r.nextInt(clipLedgesArray.length)];
-            traversableAreaBorderSize = traversableAreaBorderSizeArray[r.nextInt(traversableAreaBorderSizeArray.length)];
-            smoothingThreshold = smoothingThresholdArray[r.nextInt(smoothingThresholdArray.length)];
-            useConservativeExpansion = useConservativeExpansionArray[r.nextInt(useConservativeExpansionArray.length)];
-            minUnconnectedRegionSize = minUnconnectedRegionSizeArray[r.nextInt(minUnconnectedRegionSizeArray.length)];
-            mergeRegionSize = mergeRegionSizeArray[r.nextInt(mergeRegionSizeArray.length)];
-            edgeMaxDeviation = edgeMaxDeviationArray[r.nextInt(edgeMaxDeviationArray.length)];
-            maxVertsPerPoly = maxVertsPerPolyArray[r.nextInt(maxVertsPerPolyArray.length)];
-            contourSampleDistance = contourSampleDistanceArray[r.nextInt(contourSampleDistanceArray.length)];
-            contourMaxDeviation = contourMaxDeviationArray[r.nextInt(contourMaxDeviationArray.length)] * cellSize;
 
-            nmgen = new NavmeshGenerator(cellSize, cellHeight, minTraversableHeight,
-                    maxTraversableStep, maxTraversableSlope,
-                    clipLedges, traversableAreaBorderSize,
-                    smoothingThreshold, useConservativeExpansion,
-                    minUnconnectedRegionSize, mergeRegionSize,
-                    maxEdgeLength, edgeMaxDeviation, maxVertsPerPoly,
-                    contourSampleDistance, contourMaxDeviation);
+            try {
+//                cellSize = cellSizeArray[r.nextInt(cellSizeArray.length)];
+//                cellHeight = cellHeightArray[r.nextInt(cellHeightArray.length)];
+//                minTraversableHeight = cellHeight * (r.nextInt(20) + 1);
+//                maxTraversableStep = cellSize * (r.nextInt(20) + 2);
+//                clipLedges = clipLedgesArray[r.nextInt(clipLedgesArray.length)];
+//                traversableAreaBorderSize = traversableAreaBorderSizeArray[r.nextInt(traversableAreaBorderSizeArray.length)];
+//                smoothingThreshold = smoothingThresholdArray[r.nextInt(smoothingThresholdArray.length)];
+//                useConservativeExpansion = useConservativeExpansionArray[r.nextInt(useConservativeExpansionArray.length)];
+//                minUnconnectedRegionSize = minUnconnectedRegionSizeArray[r.nextInt(minUnconnectedRegionSizeArray.length)];
+//                mergeRegionSize = mergeRegionSizeArray[r.nextInt(mergeRegionSizeArray.length)];
+//                edgeMaxDeviation = edgeMaxDeviationArray[r.nextInt(edgeMaxDeviationArray.length)];
+//                maxVertsPerPoly = maxVertsPerPolyArray[r.nextInt(maxVertsPerPolyArray.length)];
+//                contourSampleDistance = contourSampleDistanceArray[r.nextInt(contourSampleDistanceArray.length)];
+//                contourMaxDeviation = contourMaxDeviationArray[r.nextInt(contourMaxDeviationArray.length)] * cellSize;
 
-            pb = mesh.getFloatBuffer(Type.Position);
-            ib = mesh.getIndexBuffer();
+                agentRadius = agentRadiusArray[r.nextInt(agentRadiusArray.length)];
+                agentHeight = agentRadius * 3f;
+                maxAgentStep = agentRadius;
 
-            // copy positions to float array
-            positions = new float[pb.capacity()];
-            pb.clear();
-            pb.get(positions);
 
-            // generate int array of indices
-            indices = new int[ib.size()];
-            for (int i = 0; i < indices.length; i++) {
-                indices[i] = ib.get(i);
-            }
+                cellSize = agentRadius / 3f;
+                cellHeight = maxAgentStep / 2.5f;
+                minTraversableHeight = agentHeight * 1.2f;
+                maxTraversableStep = maxAgentStep;
+                traversableAreaBorderSize = agentRadius;
+                maxEdgeLength = agentRadius * (r.nextInt(8) + 1);
+                edgeMaxDeviation = edgeMaxDeviationArray[r.nextInt(edgeMaxDeviationArray.length)];
+                contourMaxDeviation = cellSize * 20f;
 
-            triMesh = nmgen.build(positions, indices, null, null);
 
-            if (triMesh != null && triMesh.triangleRegions.length > 10) {
-                found++;
-                if (triMesh.triangleRegions.length > 300) {
-                    foundT++;
+                nmgen = new NavmeshGenerator(cellSize, cellHeight, minTraversableHeight,
+                        maxTraversableStep, maxTraversableSlope,
+                        clipLedges, traversableAreaBorderSize,
+                        smoothingThreshold, useConservativeExpansion,
+                        minUnconnectedRegionSize, mergeRegionSize,
+                        maxEdgeLength, edgeMaxDeviation, maxVertsPerPoly,
+                        contourSampleDistance, contourMaxDeviation);
+
+                pb = mesh.getFloatBuffer(Type.Position);
+                ib = mesh.getIndexBuffer();
+
+                // copy positions to float array
+                positions = new float[pb.capacity()];
+                pb.clear();
+                pb.get(positions);
+
+                // generate int array of indices
+                indices = new int[ib.size()];
+                for (int i = 0; i < indices.length; i++) {
+                    indices[i] = ib.get(i);
                 }
-                System.out.println("************\n\n");
-                System.out.println(foundT + "/" + found + "/" + tried);
-                System.out.println(triMesh.triangleRegions.length + "triangles");
-                printParams();
-                System.out.println("\n\n************");
 
-                if (foundT > 20000) {
-                    break;
+                triMesh = nmgen.build(positions, indices, null, null);
+
+                if (triMesh != null && triMesh.triangleRegions.length > 300) {
+                    found++;
+                    if (triMesh.triangleRegions.length > 2000) {
+                        foundT++;
+                    }
+                    System.out.println("************\n\n");
+                    System.out.println(foundT + "/" + found + "/" + tried);
+                    System.out.println(triMesh.triangleRegions.length + "triangles");
+                    printParams();
+
+
+
+
+                    float minX = 1000f;
+                    float minY = 1000f;
+                    float minZ = 1000f;
+
+                    float maxX = -1000f;
+                    float maxY = -1000f;
+                    float maxZ = -1000f;
+
+
+
+                    for (int i = 0; i < triMesh.vertices.length; i += 3) {
+                        float x = triMesh.vertices[i];
+                        float y = triMesh.vertices[i + 1];
+                        float z = triMesh.vertices[i + 2];
+
+
+                        if (x > maxX) {
+                            maxX = x;
+                        }
+                        if (x > maxX) {
+                            maxX = x;
+                        }
+                        if (x > maxX) {
+                            maxX = x;
+                        }
+                        if (x < minX) {
+                            minX = x;
+                        }
+                        if (x < minX) {
+                            minX = x;
+                        }
+                        if (x < minX) {
+                            minX = x;
+                        }
+
+                        if (y > maxY) {
+                            maxY = y;
+                        }
+                        if (y > maxY) {
+                            maxY = y;
+                        }
+                        if (y > maxY) {
+                            maxY = y;
+                        }
+                        if (y < minY) {
+                            minY = y;
+                        }
+                        if (y < minY) {
+                            minY = y;
+                        }
+                        if (y < minY) {
+                            minY = y;
+                        }
+
+                        if (z > maxZ) {
+                            maxZ = y;
+                        }
+                        if (z > maxZ) {
+                            maxZ = y;
+                        }
+                        if (z > maxZ) {
+                            maxZ = y;
+                        }
+                        if (z < minZ) {
+                            minZ = y;
+                        }
+                        if (z < minZ) {
+                            minZ = y;
+                        }
+                        if (z < minZ) {
+                            minZ = y;
+                        }
+                    }
+
+                    System.out.println("X range: " + (maxX - minX));
+                    System.out.println("Y range: " + (maxY - minY));
+                    System.out.println("Z range: " + (maxZ - minZ));
+                    System.out.println("\n\n************");
+                    if (foundT > 20000) {
+                        break;
+                    }
+
+                    
                 }
+
+            } catch (Exception ex) {
+                System.err.println("\n\n" + ex.getMessage() + "\n\n");
             }
-
-
         }
 
         if (triMesh == null) {

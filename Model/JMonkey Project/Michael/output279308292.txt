@@ -1,0 +1,1202 @@
+starting
+57387 triangles
+************
+
+
+1/1/2
+520triangles
+Cell Size: 0.0010
+Cell Height: 0.05
+Min Trav. Height: 0.25
+Max Trav. Step: 0.0030
+Max Trav. Slope: 30.0
+Clip Ledges: false
+Trav. Area Border Size: 0.06
+Smooth Thresh.: 0
+Use Cons. Expansion: true
+Min Unconn. Region Size: 60
+Merge Region Size: 50
+Max Edge Length: 0.0
+Edge Max Dev.: 0.0
+Max Verts/Poly: 3
+Contour Sample Dist: 0.95
+Contour Max Dev.: 0.0
+
+
+************
+************
+
+
+1/2/5
+17triangles
+Cell Size: 0.0050
+Cell Height: 0.05
+Min Trav. Height: 0.45000002
+Max Trav. Step: 0.015
+Max Trav. Slope: 30.0
+Clip Ledges: false
+Trav. Area Border Size: 0.06
+Smooth Thresh.: 1
+Use Cons. Expansion: false
+Min Unconn. Region Size: 30
+Merge Region Size: 0
+Max Edge Length: 0.0
+Edge Max Dev.: 0.01
+Max Verts/Poly: 3
+Contour Sample Dist: 1.5
+Contour Max Dev.: 0.03
+
+
+************
+************
+
+
+1/3/8
+50triangles
+Cell Size: 0.0050
+Cell Height: 0.1
+Min Trav. Height: 0.6
+Max Trav. Step: 0.015
+Max Trav. Slope: 30.0
+Clip Ledges: false
+Trav. Area Border Size: 0.06
+Smooth Thresh.: 1
+Use Cons. Expansion: false
+Min Unconn. Region Size: 13
+Merge Region Size: 3
+Max Edge Length: 0.0
+Edge Max Dev.: 5.0E-4
+Max Verts/Poly: 3
+Contour Sample Dist: 1.0
+Contour Max Dev.: 0.0060
+
+
+************
+************
+
+
+2/4/9
+424triangles
+Cell Size: 0.0010
+Cell Height: 0.1
+Min Trav. Height: 0.1
+Max Trav. Step: 0.0020
+Max Trav. Slope: 30.0
+Clip Ledges: true
+Trav. Area Border Size: 0.0
+Smooth Thresh.: 1
+Use Cons. Expansion: true
+Min Unconn. Region Size: 9
+Merge Region Size: 50
+Max Edge Length: 0.0
+Edge Max Dev.: 0.0010
+Max Verts/Poly: 3
+Contour Sample Dist: 0.0
+Contour Max Dev.: 0.0
+
+
+************
+************
+
+
+2/5/12
+11triangles
+Cell Size: 0.0010
+Cell Height: 0.2
+Min Trav. Height: 1.0
+Max Trav. Step: 0.0050000004
+Max Trav. Slope: 30.0
+Clip Ledges: true
+Trav. Area Border Size: 0.06
+Smooth Thresh.: 0
+Use Cons. Expansion: false
+Min Unconn. Region Size: 1
+Merge Region Size: 200
+Max Edge Length: 0.0
+Edge Max Dev.: 0.01
+Max Verts/Poly: 3
+Contour Sample Dist: 6.0
+Contour Max Dev.: 5.0E-4
+
+
+************
+************
+
+
+2/6/14
+274triangles
+Cell Size: 0.0010
+Cell Height: 0.1
+Min Trav. Height: 0.1
+Max Trav. Step: 0.0050000004
+Max Trav. Slope: 30.0
+Clip Ledges: false
+Trav. Area Border Size: 0.0020
+Smooth Thresh.: 1
+Use Cons. Expansion: true
+Min Unconn. Region Size: 3
+Merge Region Size: 0
+Max Edge Length: 0.0
+Edge Max Dev.: 0.0010
+Max Verts/Poly: 3
+Contour Sample Dist: 10.0
+Contour Max Dev.: 0.0015
+
+
+************
+************
+
+
+2/7/17
+80triangles
+Cell Size: 0.0050
+Cell Height: 0.1
+Min Trav. Height: 0.5
+Max Trav. Step: 0.01
+Max Trav. Slope: 30.0
+Clip Ledges: false
+Trav. Area Border Size: 0.05
+Smooth Thresh.: 1
+Use Cons. Expansion: true
+Min Unconn. Region Size: 60
+Merge Region Size: 9
+Max Edge Length: 0.0
+Edge Max Dev.: 0.0010
+Max Verts/Poly: 3
+Contour Sample Dist: 1.0
+Contour Max Dev.: 0.0025
+
+
+************
+************
+
+
+2/8/19
+180triangles
+Cell Size: 0.0050
+Cell Height: 0.1
+Min Trav. Height: 0.1
+Max Trav. Step: 0.01
+Max Trav. Slope: 30.0
+Clip Ledges: false
+Trav. Area Border Size: 0.0060
+Smooth Thresh.: 0
+Use Cons. Expansion: true
+Min Unconn. Region Size: 2000
+Merge Region Size: 0
+Max Edge Length: 0.0
+Edge Max Dev.: 0.0
+Max Verts/Poly: 3
+Contour Sample Dist: 0.95
+Contour Max Dev.: 0.0025
+
+
+************
+************
+
+
+2/9/23
+40triangles
+Cell Size: 0.0010
+Cell Height: 0.2
+Min Trav. Height: 0.4
+Max Trav. Step: 0.0050000004
+Max Trav. Slope: 30.0
+Clip Ledges: true
+Trav. Area Border Size: 0.06
+Smooth Thresh.: 0
+Use Cons. Expansion: false
+Min Unconn. Region Size: 60
+Merge Region Size: 3
+Max Edge Length: 0.0
+Edge Max Dev.: 0.0010
+Max Verts/Poly: 3
+Contour Sample Dist: 3.0
+Contour Max Dev.: 0.0060
+
+
+************
+************
+
+
+2/10/28
+70triangles
+Cell Size: 0.01
+Cell Height: 0.01
+Min Trav. Height: 0.01
+Max Trav. Step: 0.049999997
+Max Trav. Slope: 30.0
+Clip Ledges: false
+Trav. Area Border Size: 0.06
+Smooth Thresh.: 0
+Use Cons. Expansion: false
+Min Unconn. Region Size: 60
+Merge Region Size: 1
+Max Edge Length: 0.0
+Edge Max Dev.: 5.0E-4
+Max Verts/Poly: 3
+Contour Sample Dist: 10.0
+Contour Max Dev.: 0.012
+
+
+************
+************
+
+
+2/11/32
+15triangles
+Cell Size: 0.01
+Cell Height: 0.2
+Min Trav. Height: 1.2
+Max Trav. Step: 0.04
+Max Trav. Slope: 30.0
+Clip Ledges: false
+Trav. Area Border Size: 0.0
+Smooth Thresh.: 1
+Use Cons. Expansion: false
+Min Unconn. Region Size: 13
+Merge Region Size: 200
+Max Edge Length: 0.0
+Edge Max Dev.: 0.05
+Max Verts/Poly: 3
+Contour Sample Dist: 10.0
+Contour Max Dev.: 0.01
+
+
+************
+************
+
+
+2/12/33
+24triangles
+Cell Size: 0.01
+Cell Height: 0.05
+Min Trav. Height: 0.15
+Max Trav. Step: 0.02
+Max Trav. Slope: 30.0
+Clip Ledges: true
+Trav. Area Border Size: 0.1
+Smooth Thresh.: 0
+Use Cons. Expansion: true
+Min Unconn. Region Size: 13
+Merge Region Size: 50
+Max Edge Length: 0.0
+Edge Max Dev.: 5.0E-4
+Max Verts/Poly: 3
+Contour Sample Dist: 0.95
+Contour Max Dev.: 0.0050
+
+
+************
+************
+
+
+2/13/34
+18triangles
+Cell Size: 0.01
+Cell Height: 0.05
+Min Trav. Height: 0.3
+Max Trav. Step: 0.04
+Max Trav. Slope: 30.0
+Clip Ledges: false
+Trav. Area Border Size: 0.0
+Smooth Thresh.: 1
+Use Cons. Expansion: true
+Min Unconn. Region Size: 60
+Merge Region Size: 0
+Max Edge Length: 0.0
+Edge Max Dev.: 0.05
+Max Verts/Poly: 3
+Contour Sample Dist: 1.5
+Contour Max Dev.: 0.012
+
+
+************
+************
+
+
+3/14/35
+316triangles
+Cell Size: 0.0050
+Cell Height: 0.01
+Min Trav. Height: 0.06
+Max Trav. Step: 0.01
+Max Trav. Slope: 30.0
+Clip Ledges: true
+Trav. Area Border Size: 0.0020
+Smooth Thresh.: 0
+Use Cons. Expansion: false
+Min Unconn. Region Size: 3
+Merge Region Size: 3
+Max Edge Length: 0.0
+Edge Max Dev.: 5.0E-4
+Max Verts/Poly: 3
+Contour Sample Dist: 10.0
+Contour Max Dev.: 0.00475
+
+
+************
+************
+
+
+3/15/44
+13triangles
+Cell Size: 0.01
+Cell Height: 0.2
+Min Trav. Height: 1.8000001
+Max Trav. Step: 0.04
+Max Trav. Slope: 30.0
+Clip Ledges: true
+Trav. Area Border Size: 0.0020
+Smooth Thresh.: 1
+Use Cons. Expansion: false
+Min Unconn. Region Size: 3
+Merge Region Size: 200
+Max Edge Length: 0.0
+Edge Max Dev.: 0.05
+Max Verts/Poly: 3
+Contour Sample Dist: 1.2
+Contour Max Dev.: 0.099999994
+
+
+************
+************
+
+
+3/16/48
+96triangles
+Cell Size: 0.0050
+Cell Height: 0.05
+Min Trav. Height: 0.2
+Max Trav. Step: 0.015
+Max Trav. Slope: 30.0
+Clip Ledges: false
+Trav. Area Border Size: 0.06
+Smooth Thresh.: 1
+Use Cons. Expansion: true
+Min Unconn. Region Size: 30
+Merge Region Size: 200
+Max Edge Length: 0.0
+Edge Max Dev.: 0.0
+Max Verts/Poly: 3
+Contour Sample Dist: 3.0
+Contour Max Dev.: 0.0060
+
+
+************
+************
+
+
+3/17/49
+12triangles
+Cell Size: 0.01
+Cell Height: 0.2
+Min Trav. Height: 0.4
+Max Trav. Step: 0.02
+Max Trav. Slope: 30.0
+Clip Ledges: false
+Trav. Area Border Size: 0.06
+Smooth Thresh.: 0
+Use Cons. Expansion: true
+Min Unconn. Region Size: 3
+Merge Region Size: 200
+Max Edge Length: 0.0
+Edge Max Dev.: 0.05
+Max Verts/Poly: 3
+Contour Sample Dist: 3.0
+Contour Max Dev.: 0.06
+
+
+************
+************
+
+
+4/18/51
+584triangles
+Cell Size: 0.0010
+Cell Height: 0.01
+Min Trav. Height: 0.03
+Max Trav. Step: 0.0050000004
+Max Trav. Slope: 30.0
+Clip Ledges: false
+Trav. Area Border Size: 0.05
+Smooth Thresh.: 1
+Use Cons. Expansion: true
+Min Unconn. Region Size: 3
+Merge Region Size: 1
+Max Edge Length: 0.0
+Edge Max Dev.: 0.0
+Max Verts/Poly: 3
+Contour Sample Dist: 6.0
+Contour Max Dev.: 0.010000001
+
+
+************
+************
+
+
+4/19/55
+14triangles
+Cell Size: 0.0050
+Cell Height: 0.05
+Min Trav. Height: 0.2
+Max Trav. Step: 0.015
+Max Trav. Slope: 30.0
+Clip Ledges: false
+Trav. Area Border Size: 0.0020
+Smooth Thresh.: 1
+Use Cons. Expansion: false
+Min Unconn. Region Size: 2000
+Merge Region Size: 50
+Max Edge Length: 0.0
+Edge Max Dev.: 0.01
+Max Verts/Poly: 3
+Contour Sample Dist: 10.0
+Contour Max Dev.: 0.0060
+
+
+************
+************
+
+
+4/20/64
+86triangles
+Cell Size: 0.0050
+Cell Height: 0.2
+Min Trav. Height: 1.2
+Max Trav. Step: 0.01
+Max Trav. Slope: 30.0
+Clip Ledges: true
+Trav. Area Border Size: 0.05
+Smooth Thresh.: 1
+Use Cons. Expansion: true
+Min Unconn. Region Size: 9
+Merge Region Size: 50
+Max Edge Length: 0.0
+Edge Max Dev.: 0.0
+Max Verts/Poly: 3
+Contour Sample Dist: 1.5
+Contour Max Dev.: 0.03
+
+
+************
+************
+
+
+4/21/69
+20triangles
+Cell Size: 0.01
+Cell Height: 0.2
+Min Trav. Height: 1.8000001
+Max Trav. Step: 0.03
+Max Trav. Slope: 30.0
+Clip Ledges: false
+Trav. Area Border Size: 0.1
+Smooth Thresh.: 1
+Use Cons. Expansion: true
+Min Unconn. Region Size: 1
+Merge Region Size: 0
+Max Edge Length: 0.0
+Edge Max Dev.: 5.0E-4
+Max Verts/Poly: 3
+Contour Sample Dist: 6.0
+Contour Max Dev.: 0.012
+
+
+************
+************
+
+
+4/22/73
+124triangles
+Cell Size: 0.0050
+Cell Height: 0.05
+Min Trav. Height: 0.1
+Max Trav. Step: 0.01
+Max Trav. Slope: 30.0
+Clip Ledges: false
+Trav. Area Border Size: 0.06
+Smooth Thresh.: 0
+Use Cons. Expansion: true
+Min Unconn. Region Size: 1
+Merge Region Size: 1
+Max Edge Length: 0.0
+Edge Max Dev.: 0.0
+Max Verts/Poly: 3
+Contour Sample Dist: 1.5
+Contour Max Dev.: 0.0
+
+
+************
+************
+
+
+4/23/74
+21triangles
+Cell Size: 0.0050
+Cell Height: 0.05
+Min Trav. Height: 0.2
+Max Trav. Step: 0.015
+Max Trav. Slope: 30.0
+Clip Ledges: true
+Trav. Area Border Size: 0.05
+Smooth Thresh.: 1
+Use Cons. Expansion: false
+Min Unconn. Region Size: 9
+Merge Region Size: 3
+Max Edge Length: 0.0
+Edge Max Dev.: 0.0050
+Max Verts/Poly: 3
+Contour Sample Dist: 3.0
+Contour Max Dev.: 0.0
+
+
+************
+************
+
+
+4/24/82
+76triangles
+Cell Size: 0.0050
+Cell Height: 0.1
+Min Trav. Height: 0.3
+Max Trav. Step: 0.015
+Max Trav. Slope: 30.0
+Clip Ledges: false
+Trav. Area Border Size: 0.1
+Smooth Thresh.: 1
+Use Cons. Expansion: true
+Min Unconn. Region Size: 1
+Merge Region Size: 0
+Max Edge Length: 0.0
+Edge Max Dev.: 0.0010
+Max Verts/Poly: 3
+Contour Sample Dist: 0.95
+Contour Max Dev.: 0.0075
+
+
+************
+************
+
+
+4/25/83
+33triangles
+Cell Size: 0.0050
+Cell Height: 0.01
+Min Trav. Height: 0.07
+Max Trav. Step: 0.02
+Max Trav. Slope: 30.0
+Clip Ledges: false
+Trav. Area Border Size: 0.05
+Smooth Thresh.: 1
+Use Cons. Expansion: false
+Min Unconn. Region Size: 30
+Merge Region Size: 50
+Max Edge Length: 0.0
+Edge Max Dev.: 0.01
+Max Verts/Poly: 3
+Contour Sample Dist: 1.0
+Contour Max Dev.: 0.0025
+
+
+************
+************
+
+
+4/26/85
+50triangles
+Cell Size: 0.01
+Cell Height: 0.2
+Min Trav. Height: 0.8
+Max Trav. Step: 0.03
+Max Trav. Slope: 30.0
+Clip Ledges: false
+Trav. Area Border Size: 0.06
+Smooth Thresh.: 0
+Use Cons. Expansion: false
+Min Unconn. Region Size: 60
+Merge Region Size: 50
+Max Edge Length: 0.0
+Edge Max Dev.: 0.0050
+Max Verts/Poly: 3
+Contour Sample Dist: 1.2
+Contour Max Dev.: 0.0
+
+
+************
+************
+
+
+5/27/87
+321triangles
+Cell Size: 0.0050
+Cell Height: 0.2
+Min Trav. Height: 0.4
+Max Trav. Step: 0.02
+Max Trav. Slope: 30.0
+Clip Ledges: true
+Trav. Area Border Size: 0.0
+Smooth Thresh.: 1
+Use Cons. Expansion: true
+Min Unconn. Region Size: 1
+Merge Region Size: 50
+Max Edge Length: 0.0
+Edge Max Dev.: 0.0
+Max Verts/Poly: 3
+Contour Sample Dist: 0.0
+Contour Max Dev.: 0.015
+
+
+************
+************
+
+
+5/28/88
+90triangles
+Cell Size: 0.0050
+Cell Height: 0.1
+Min Trav. Height: 0.5
+Max Trav. Step: 0.01
+Max Trav. Slope: 30.0
+Clip Ledges: false
+Trav. Area Border Size: 0.05
+Smooth Thresh.: 0
+Use Cons. Expansion: true
+Min Unconn. Region Size: 1
+Merge Region Size: 1
+Max Edge Length: 0.0
+Edge Max Dev.: 5.0E-4
+Max Verts/Poly: 3
+Contour Sample Dist: 1.2
+Contour Max Dev.: 0.0
+
+
+************
+************
+
+
+5/29/90
+22triangles
+Cell Size: 0.0050
+Cell Height: 0.05
+Min Trav. Height: 0.05
+Max Trav. Step: 0.024999999
+Max Trav. Slope: 30.0
+Clip Ledges: false
+Trav. Area Border Size: 0.05
+Smooth Thresh.: 1
+Use Cons. Expansion: true
+Min Unconn. Region Size: 60
+Merge Region Size: 1
+Max Edge Length: 0.0
+Edge Max Dev.: 0.01
+Max Verts/Poly: 3
+Contour Sample Dist: 6.0
+Contour Max Dev.: 0.0060
+
+
+************
+************
+
+
+5/30/91
+18triangles
+Cell Size: 0.0050
+Cell Height: 0.05
+Min Trav. Height: 0.15
+Max Trav. Step: 0.015
+Max Trav. Slope: 30.0
+Clip Ledges: true
+Trav. Area Border Size: 0.05
+Smooth Thresh.: 1
+Use Cons. Expansion: true
+Min Unconn. Region Size: 13
+Merge Region Size: 9
+Max Edge Length: 0.0
+Edge Max Dev.: 0.01
+Max Verts/Poly: 3
+Contour Sample Dist: 1.5
+Contour Max Dev.: 0.015
+
+
+************
+************
+
+
+5/31/100
+48triangles
+Cell Size: 0.01
+Cell Height: 0.05
+Min Trav. Height: 0.25
+Max Trav. Step: 0.04
+Max Trav. Slope: 30.0
+Clip Ledges: false
+Trav. Area Border Size: 0.06
+Smooth Thresh.: 1
+Use Cons. Expansion: false
+Min Unconn. Region Size: 30
+Merge Region Size: 1
+Max Edge Length: 0.0
+Edge Max Dev.: 0.0010
+Max Verts/Poly: 3
+Contour Sample Dist: 10.0
+Contour Max Dev.: 0.0095
+
+
+************
+************
+
+
+5/32/102
+23triangles
+Cell Size: 0.01
+Cell Height: 0.01
+Min Trav. Height: 0.06
+Max Trav. Step: 0.049999997
+Max Trav. Slope: 30.0
+Clip Ledges: true
+Trav. Area Border Size: 0.06
+Smooth Thresh.: 1
+Use Cons. Expansion: false
+Min Unconn. Region Size: 1
+Merge Region Size: 50
+Max Edge Length: 0.0
+Edge Max Dev.: 0.01
+Max Verts/Poly: 3
+Contour Sample Dist: 10.0
+Contour Max Dev.: 0.03
+
+
+************
+************
+
+
+6/33/109
+590triangles
+Cell Size: 0.0010
+Cell Height: 0.05
+Min Trav. Height: 0.2
+Max Trav. Step: 0.0020
+Max Trav. Slope: 30.0
+Clip Ledges: true
+Trav. Area Border Size: 0.05
+Smooth Thresh.: 1
+Use Cons. Expansion: false
+Min Unconn. Region Size: 2000
+Merge Region Size: 3
+Max Edge Length: 0.0
+Edge Max Dev.: 0.0
+Max Verts/Poly: 3
+Contour Sample Dist: 1.0
+Contour Max Dev.: 0.0030
+
+
+************
+************
+
+
+6/34/110
+182triangles
+Cell Size: 0.0050
+Cell Height: 0.2
+Min Trav. Height: 0.4
+Max Trav. Step: 0.015
+Max Trav. Slope: 30.0
+Clip Ledges: false
+Trav. Area Border Size: 0.0060
+Smooth Thresh.: 1
+Use Cons. Expansion: false
+Min Unconn. Region Size: 1
+Merge Region Size: 0
+Max Edge Length: 0.0
+Edge Max Dev.: 5.0E-4
+Max Verts/Poly: 3
+Contour Sample Dist: 1.2
+Contour Max Dev.: 0.0075
+
+
+************
+************
+
+
+6/35/111
+102triangles
+Cell Size: 0.01
+Cell Height: 0.01
+Min Trav. Height: 0.089999996
+Max Trav. Step: 0.03
+Max Trav. Slope: 30.0
+Clip Ledges: true
+Trav. Area Border Size: 0.0060
+Smooth Thresh.: 0
+Use Cons. Expansion: false
+Min Unconn. Region Size: 60
+Merge Region Size: 50
+Max Edge Length: 0.0
+Edge Max Dev.: 0.0010
+Max Verts/Poly: 3
+Contour Sample Dist: 0.0
+Contour Max Dev.: 0.0
+
+
+************
+************
+
+
+6/36/113
+28triangles
+Cell Size: 0.0050
+Cell Height: 0.1
+Min Trav. Height: 0.4
+Max Trav. Step: 0.015
+Max Trav. Slope: 30.0
+Clip Ledges: false
+Trav. Area Border Size: 0.0060
+Smooth Thresh.: 1
+Use Cons. Expansion: true
+Min Unconn. Region Size: 13
+Merge Region Size: 9
+Max Edge Length: 0.0
+Edge Max Dev.: 0.01
+Max Verts/Poly: 3
+Contour Sample Dist: 6.0
+Contour Max Dev.: 0.0060
+
+
+************
+************
+
+
+6/37/120
+41triangles
+Cell Size: 0.01
+Cell Height: 0.1
+Min Trav. Height: 0.7
+Max Trav. Step: 0.03
+Max Trav. Slope: 30.0
+Clip Ledges: false
+Trav. Area Border Size: 0.0
+Smooth Thresh.: 0
+Use Cons. Expansion: true
+Min Unconn. Region Size: 13
+Merge Region Size: 50
+Max Edge Length: 0.0
+Edge Max Dev.: 0.01
+Max Verts/Poly: 3
+Contour Sample Dist: 0.0
+Contour Max Dev.: 0.0
+
+
+************
+************
+
+
+6/38/124
+142triangles
+Cell Size: 0.0050
+Cell Height: 0.2
+Min Trav. Height: 1.0
+Max Trav. Step: 0.015
+Max Trav. Slope: 30.0
+Clip Ledges: false
+Trav. Area Border Size: 0.0
+Smooth Thresh.: 1
+Use Cons. Expansion: true
+Min Unconn. Region Size: 2000
+Merge Region Size: 200
+Max Edge Length: 0.0
+Edge Max Dev.: 5.0E-4
+Max Verts/Poly: 3
+Contour Sample Dist: 0.0
+Contour Max Dev.: 0.015
+
+
+************
+************
+
+
+7/39/127
+548triangles
+Cell Size: 0.0010
+Cell Height: 0.05
+Min Trav. Height: 0.05
+Max Trav. Step: 0.0020
+Max Trav. Slope: 30.0
+Clip Ledges: false
+Trav. Area Border Size: 0.06
+Smooth Thresh.: 0
+Use Cons. Expansion: true
+Min Unconn. Region Size: 13
+Merge Region Size: 3
+Max Edge Length: 0.0
+Edge Max Dev.: 5.0E-4
+Max Verts/Poly: 3
+Contour Sample Dist: 3.0
+Contour Max Dev.: 0.0030
+
+
+************
+************
+
+
+8/40/131
+1112triangles
+Cell Size: 0.0010
+Cell Height: 0.05
+Min Trav. Height: 0.25
+Max Trav. Step: 0.0020
+Max Trav. Slope: 30.0
+Clip Ledges: true
+Trav. Area Border Size: 0.0060
+Smooth Thresh.: 0
+Use Cons. Expansion: false
+Min Unconn. Region Size: 1
+Merge Region Size: 3
+Max Edge Length: 0.0
+Edge Max Dev.: 5.0E-4
+Max Verts/Poly: 3
+Contour Sample Dist: 0.0
+Contour Max Dev.: 0.0060
+
+
+************
+************
+
+
+8/41/132
+27triangles
+Cell Size: 0.0010
+Cell Height: 0.05
+Min Trav. Height: 0.45000002
+Max Trav. Step: 0.0050000004
+Max Trav. Slope: 30.0
+Clip Ledges: true
+Trav. Area Border Size: 0.05
+Smooth Thresh.: 0
+Use Cons. Expansion: true
+Min Unconn. Region Size: 60
+Merge Region Size: 50
+Max Edge Length: 0.0
+Edge Max Dev.: 0.0050
+Max Verts/Poly: 3
+Contour Sample Dist: 1.0
+Contour Max Dev.: 0.0012
+
+
+************
+************
+
+
+8/42/134
+120triangles
+Cell Size: 0.0050
+Cell Height: 0.01
+Min Trav. Height: 0.04
+Max Trav. Step: 0.01
+Max Trav. Slope: 30.0
+Clip Ledges: true
+Trav. Area Border Size: 0.06
+Smooth Thresh.: 0
+Use Cons. Expansion: true
+Min Unconn. Region Size: 3
+Merge Region Size: 1
+Max Edge Length: 0.0
+Edge Max Dev.: 0.0
+Max Verts/Poly: 3
+Contour Sample Dist: 10.0
+Contour Max Dev.: 0.0060
+
+
+************
+************
+
+
+9/43/135
+1195triangles
+Cell Size: 0.0010
+Cell Height: 0.1
+Min Trav. Height: 0.1
+Max Trav. Step: 0.0030
+Max Trav. Slope: 30.0
+Clip Ledges: false
+Trav. Area Border Size: 0.0060
+Smooth Thresh.: 0
+Use Cons. Expansion: false
+Min Unconn. Region Size: 1
+Merge Region Size: 200
+Max Edge Length: 0.0
+Edge Max Dev.: 5.0E-4
+Max Verts/Poly: 3
+Contour Sample Dist: 6.0
+Contour Max Dev.: 0.0012
+
+
+************
+************
+
+
+9/44/136
+102triangles
+Cell Size: 0.01
+Cell Height: 0.01
+Min Trav. Height: 0.089999996
+Max Trav. Step: 0.049999997
+Max Trav. Slope: 30.0
+Clip Ledges: true
+Trav. Area Border Size: 0.0020
+Smooth Thresh.: 0
+Use Cons. Expansion: false
+Min Unconn. Region Size: 9
+Merge Region Size: 3
+Max Edge Length: 0.0
+Edge Max Dev.: 5.0E-4
+Max Verts/Poly: 3
+Contour Sample Dist: 10.0
+Contour Max Dev.: 0.0095
+
+
+************
+************
+
+
+10/45/139
+1274triangles
+Cell Size: 0.0010
+Cell Height: 0.05
+Min Trav. Height: 0.25
+Max Trav. Step: 0.0050000004
+Max Trav. Slope: 30.0
+Clip Ledges: false
+Trav. Area Border Size: 0.0060
+Smooth Thresh.: 1
+Use Cons. Expansion: false
+Min Unconn. Region Size: 13
+Merge Region Size: 3
+Max Edge Length: 0.0
+Edge Max Dev.: 0.0
+Max Verts/Poly: 3
+Contour Sample Dist: 1.5
+Contour Max Dev.: 0.0030
+
+
+************
+************
+
+
+11/46/142
+650triangles
+Cell Size: 0.0010
+Cell Height: 0.01
+Min Trav. Height: 0.06
+Max Trav. Step: 0.0050000004
+Max Trav. Slope: 30.0
+Clip Ledges: true
+Trav. Area Border Size: 0.06
+Smooth Thresh.: 1
+Use Cons. Expansion: false
+Min Unconn. Region Size: 1
+Merge Region Size: 50
+Max Edge Length: 0.0
+Edge Max Dev.: 5.0E-4
+Max Verts/Poly: 3
+Contour Sample Dist: 1.2
+Contour Max Dev.: 9.5E-4
+
+
+************
+************
+
+
+11/47/146
+20triangles
+Cell Size: 0.01
+Cell Height: 0.01
+Min Trav. Height: 0.089999996
+Max Trav. Step: 0.04
+Max Trav. Slope: 30.0
+Clip Ledges: false
+Trav. Area Border Size: 0.0
+Smooth Thresh.: 1
+Use Cons. Expansion: true
+Min Unconn. Region Size: 13
+Merge Region Size: 1
+Max Edge Length: 0.0
+Edge Max Dev.: 0.05
+Max Verts/Poly: 3
+Contour Sample Dist: 0.0
+Contour Max Dev.: 0.0095
+
+
+************
+************
+
+
+11/48/148
+38triangles
+Cell Size: 0.01
+Cell Height: 0.1
+Min Trav. Height: 0.4
+Max Trav. Step: 0.04
+Max Trav. Slope: 30.0
+Clip Ledges: false
+Trav. Area Border Size: 0.1
+Smooth Thresh.: 0
+Use Cons. Expansion: true
+Min Unconn. Region Size: 1
+Merge Region Size: 9
+Max Edge Length: 0.0
+Edge Max Dev.: 5.0E-4
+Max Verts/Poly: 3
+Contour Sample Dist: 6.0
+Contour Max Dev.: 0.015
+
+
+************
+************
+
+
+12/49/149
+2002triangles
+Cell Size: 0.0010
+Cell Height: 0.05
+Min Trav. Height: 0.15
+Max Trav. Step: 0.0050000004
+Max Trav. Slope: 30.0
+Clip Ledges: true
+Trav. Area Border Size: 0.0
+Smooth Thresh.: 0
+Use Cons. Expansion: true
+Min Unconn. Region Size: 2000
+Merge Region Size: 200
+Max Edge Length: 0.0
+Edge Max Dev.: 0.0
+Max Verts/Poly: 3
+Contour Sample Dist: 1.2
+Contour Max Dev.: 0.0015
+
+
+************
+************
+
+
+12/50/151
+20triangles
+Cell Size: 0.0050
+Cell Height: 0.05
+Min Trav. Height: 0.35
+Max Trav. Step: 0.01
+Max Trav. Slope: 30.0
+Clip Ledges: false
+Trav. Area Border Size: 0.05
+Smooth Thresh.: 0
+Use Cons. Expansion: true
+Min Unconn. Region Size: 60
+Merge Region Size: 0
+Max Edge Length: 0.0
+Edge Max Dev.: 0.01
+Max Verts/Poly: 3
+Contour Sample Dist: 10.0
+Contour Max Dev.: 0.0025
+
+
+************

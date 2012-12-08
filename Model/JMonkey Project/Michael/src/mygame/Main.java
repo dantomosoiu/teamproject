@@ -15,6 +15,7 @@ import com.jme3.scene.VertexBuffer;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import jme3tools.navmesh.NavMesh;
@@ -37,6 +38,7 @@ public class Main extends SimpleApplication {
     
     public static void main(String[] args) {
         Main app = new Main();
+        app.setShowSettings(false);
         app.start();
     }
 
@@ -46,22 +48,22 @@ public class Main extends SimpleApplication {
         //inputManager.addMapping("toggle wireframe", new KeyTrigger(KeyInput.KEY_T));
         //inputManager.addListener(actionListener, "toggle wireframe");
 
+        Random rand = new Random();
+        
         try {
-            PrintStream out = new PrintStream(new FileOutputStream("output.txt"));
+            PrintStream out = new PrintStream(new FileOutputStream("../output" + rand.nextInt(Integer.MAX_VALUE) + ".txt"));
             System.setOut(out);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        Spatial ship = assetManager.loadModel("Models/Export2/Export.j3o");
+        Spatial ship = assetManager.loadModel("Models/NoHullScaled/Export.j3o");
 
 
         Node node;
         node = (Node) ship;
         Node chil1 = (Node) node.getChildren().get(4);
-        Geometry chil = (Geometry) chil1.getChildren().get(0);
-
-        
+        Geometry chil = (Geometry) chil1.getChildren().get(0);        
         
         Mesh shipMesh = chil.getMesh();
         shipNM = new NavMesh();

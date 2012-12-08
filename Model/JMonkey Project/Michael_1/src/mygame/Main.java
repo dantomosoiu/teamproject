@@ -32,44 +32,43 @@ public class Main extends SimpleApplication {
     boolean solid = false;
     public static NavMesh shipNM;
     public static Node root;
-
     public static Geometry[] AgentGeometries;
-    
+
     public static void main(String[] args) {
         Main app = new Main();
+        app.setShowSettings(false);
         app.start();
     }
 
     @Override
     public void simpleInitApp() {
 
-        //inputManager.addMapping("toggle wireframe", new KeyTrigger(KeyInput.KEY_T));
-        //inputManager.addListener(actionListener, "toggle wireframe");
+        inputManager.addMapping("toggle wireframe", new KeyTrigger(KeyInput.KEY_T));
+        inputManager.addListener(actionListener, "toggle wireframe");
+        rootNode.setCullHint(Spatial.CullHint.Never);
 
-        
-        Spatial ship = assetManager.loadModel("Models/MichaelMaze/RampedMaze.j3o");
+        Spatial ship = assetManager.loadModel("Models/NoHullScaled/Export.j3o");
 
 
         Node node;
         node = (Node) ship;
-        Node chil1 = (Node) node.getChildren().get(2);
+        Node chil1 = (Node) node.getChildren().get(4);
         Geometry chil = (Geometry) chil1.getChildren().get(0);
 
-        
-        
+
         Mesh shipMesh = chil.getMesh();
         shipNM = new NavMesh();
-        
+
         NavMeshGenerator generator = new NavMeshGenerator();
-        
+
         Mesh optimisedMesh = generator.optimize(shipMesh);
-        
+
         shipNM.loadFromMesh(optimisedMesh);
-        
+
         Node navMeshHolder = new Node();
         rootNode.attachChild(navMeshHolder);
-        
-        
+
+
 //        Mesh shipMesh = chil.getMesh();
 //        shipNM = new NavMesh();
 //        
@@ -78,16 +77,81 @@ public class Main extends SimpleApplication {
 //        
 //        Node navMeshHolder = new Node();
 //        rootNode.attachChild(navMeshHolder);
-        
-        
+
+
         node = rootNode;
-        
+
+        Vector3f minX = new Vector3f(1000f, 1000f, 1000f);
+        Vector3f minY = new Vector3f(1000f, 1000f, 1000f);
+        Vector3f minZ = new Vector3f(1000f, 1000f, 1000f);
+        Vector3f maxX = new Vector3f(-1000f, -1000f, -1000f);
+        Vector3f maxY = new Vector3f(-1000f, -1000f, -1000f);
+        Vector3f maxZ = new Vector3f(-1000f, -1000f, -1000f);
+
 
         for (int i = 0; i < shipNM.getNumCells(); i++) {
             TriangleShape tr;
             Vector3f v0 = shipNM.getCell(i).getVertex(0);
             Vector3f v1 = shipNM.getCell(i).getVertex(1);
             Vector3f v2 = shipNM.getCell(i).getVertex(2);
+
+            if (v0.x > maxX.x) {
+                maxX = v0;
+            }
+            if (v1.x > maxX.x) {
+                maxX = v1;
+            }
+            if (v2.x > maxX.x) {
+                maxX = v2;
+            }
+            if (v0.x < minX.x) {
+                minX = v0;
+            }
+            if (v1.x < minX.x) {
+                minX = v1;
+            }
+            if (v2.x < minX.x) {
+                minX = v2;
+            }
+
+            if (v0.y > maxY.y) {
+                maxY = v0;
+            }
+            if (v1.y > maxY.y) {
+                maxY = v1;
+            }
+            if (v2.y > maxY.y) {
+                maxY = v2;
+            }
+            if (v0.y < minY.y) {
+                minY = v0;
+            }
+            if (v1.y < minY.y) {
+                minY = v1;
+            }
+            if (v2.y < minY.y) {
+                minY = v2;
+            }
+
+            if (v0.z > maxZ.z) {
+                maxZ = v0;
+            }
+            if (v1.z > maxZ.z) {
+                maxZ = v1;
+            }
+            if (v2.z > maxZ.z) {
+                maxZ = v2;
+            }
+            if (v0.z < minZ.z) {
+                minZ = v0;
+            }
+            if (v1.z < minZ.z) {
+                minZ = v1;
+            }
+            if (v2.z < minZ.z) {
+                minZ = v2;
+            }
+
 
             Mesh lineMesh = new Mesh();
             lineMesh.setMode(Mesh.Mode.Lines);
@@ -99,7 +163,7 @@ public class Main extends SimpleApplication {
             Material lineMaterial = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
             lineGeometry.setMaterial(lineMaterial);
             navMeshHolder.attachChild(lineGeometry);
-            
+
             lineMesh = new Mesh();
             lineMesh.setMode(Mesh.Mode.Lines);
             lineMesh.setBuffer(VertexBuffer.Type.Position, 3, new float[]{v0.x, v0.y, v0.z, v2.x, v2.y, v2.z});
@@ -110,7 +174,7 @@ public class Main extends SimpleApplication {
             lineMaterial = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
             lineGeometry.setMaterial(lineMaterial);
             navMeshHolder.attachChild(lineGeometry);
-            
+
             lineMesh = new Mesh();
             lineMesh.setMode(Mesh.Mode.Lines);
             lineMesh.setBuffer(VertexBuffer.Type.Position, 3, new float[]{v2.x, v2.y, v2.z, v1.x, v1.y, v1.z});
@@ -121,30 +185,30 @@ public class Main extends SimpleApplication {
             lineMaterial = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
             lineGeometry.setMaterial(lineMaterial);
             navMeshHolder.attachChild(lineGeometry);
+
+
+
+            guiFont = assetManager.loadFont("Interface/Fonts/Default.fnt");
+            BitmapText helloText = new BitmapText(guiFont, false);
+            helloText.setSize(0.05f);
+            helloText.setText(v0.toString());
+            helloText.setLocalTranslation(v0.x, v0.y, v0.z);
+            rootNode.attachChild(helloText);
             
+            helloText = new BitmapText(guiFont, false);
+            helloText.setSize(0.05f);
+            helloText.setText(v1.toString());
+            helloText.setLocalTranslation(v1.x, v1.y, v1.z);
+            rootNode.attachChild(helloText);
             
-            
-//            guiFont = assetManager.loadFont("Interface/Fonts/Default.fnt");
-//            BitmapText helloText = new BitmapText(guiFont, false);
-//            helloText.setSize(0.05f);
-//            helloText.setText(v0.toString());
-//            helloText.setLocalTranslation(v0.x, v0.y, v0.z);
-//            rootNode.attachChild(helloText);
-//            
-//            helloText = new BitmapText(guiFont, false);
-//            helloText.setSize(0.05f);
-//            helloText.setText(v1.toString());
-//            helloText.setLocalTranslation(v1.x, v1.y, v1.z);
-//            rootNode.attachChild(helloText);
-//            
-//            helloText = new BitmapText(guiFont, false);
-//            helloText.setSize(0.05f);
-//            helloText.setText(v2.toString());
-//            helloText.setLocalTranslation(v2.x, v2.y, v2.z);
-//            rootNode.attachChild(helloText);
-            
+            helloText = new BitmapText(guiFont, false);
+            helloText.setSize(0.05f);
+            helloText.setText(v2.toString());
+            helloText.setLocalTranslation(v2.x, v2.y, v2.z);
+            rootNode.attachChild(helloText);
+
         }
-        
+
 //        Population population = new Population(rootNode, shipNM, this);
 //        int populationSize = 1;
 //        AgentGeometries = new Geometry[populationSize];
@@ -156,22 +220,30 @@ public class Main extends SimpleApplication {
         BitmapText helloText = new BitmapText(guiFont, false);
         helloText.setSize(0.1f);
         helloText.setText("ORIGIN");
-        helloText.setLocalTranslation(0,0,0);
+        helloText.setLocalTranslation(0, 0, 0);
         rootNode.attachChild(helloText);
-        
+
+
+
+
+
+        System.out.println("X range: " + (maxX.x - minX.x));
+        System.out.println("Y range: " + (maxY.y - minY.y));
+        System.out.println("Z range: " + (maxZ.z - minZ.z));
         
 
-        
-        
-        
-        //System.out.println(chil1.getChildren().size());
-        //mat = chil.getMaterial();
-        //rootNode.attachChild(chil);
+        System.out.println("minX " + minX.toString());
+        System.out.println("minY " + minY.toString());
+        System.out.println("minZ " + minZ.toString());
+        System.out.println("maxX " + maxX.toString());
+        System.out.println("maxY " + maxY.toString());
+        System.out.println("maxZ " + maxZ.toString());
+
+
     }
 
     @Override
     public void simpleUpdate(float tpf) {
-        
     }
 
     @Override
