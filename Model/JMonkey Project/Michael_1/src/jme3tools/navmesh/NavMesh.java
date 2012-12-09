@@ -77,6 +77,10 @@ public class NavMesh implements Savable {
     public Cell getCell(int index) {
         return (cellList.get(index));
     }
+    
+    public ArrayList<Cell> getCells() {
+        return cellList;
+    }
 
     /**
      * Force a point to be inside the cell

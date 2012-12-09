@@ -297,6 +297,10 @@ public class Cell implements Savable {
     public Vector3f getVertex(int Vert) {
         return (verticies[Vert]);
     }
+    
+    public Vector3f[] getVertices() {
+        return verticies;
+    }
 
     public Vector3f getCenter() {
         return (center);
