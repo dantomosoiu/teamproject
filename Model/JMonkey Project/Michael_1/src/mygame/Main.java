@@ -56,7 +56,8 @@ public class Main extends SimpleApplication {
         node = (Node) ship;
         Node chil1 = (Node) node.getChildren().get(4);
         Geometry chil = (Geometry) chil1.getChildren().get(0);
-
+        Vector3f scale = chil1.getLocalScale();
+        
 
         Mesh shipMesh = chil.getMesh();
         shipNM = new NavMesh();
@@ -68,7 +69,12 @@ public class Main extends SimpleApplication {
         shipNM.loadFromMesh(optimisedMesh);
 
         Node navMeshHolder = new Node();
+        navMeshHolder.setLocalScale(scale);
         rootNode.attachChild(navMeshHolder);
+        
+        Node coOrdsMeshHolder = new Node();
+        coOrdsMeshHolder.setLocalScale(scale);
+        rootNode.attachChild(coOrdsMeshHolder);
 
 
 //        Mesh shipMesh = chil.getMesh();
@@ -91,7 +97,7 @@ public class Main extends SimpleApplication {
         Vector3f maxZ = new Vector3f(-1000f, -1000f, -1000f);
 
 
-        /*for (int i = 0; i < shipNM.getNumCells(); i++) {
+        for (int i = 0; i < shipNM.getNumCells(); i++) {
             TriangleShape tr;
             Vector3f v0 = shipNM.getCell(i).getVertex(0);
             Vector3f v1 = shipNM.getCell(i).getVertex(1);
@@ -195,22 +201,23 @@ public class Main extends SimpleApplication {
             helloText.setSize(0.05f);
             helloText.setText(v0.toString());
             helloText.setLocalTranslation(v0.x, v0.y, v0.z);
-            rootNode.attachChild(helloText);
+            coOrdsMeshHolder.attachChild(helloText);
             
             helloText = new BitmapText(guiFont, false);
             helloText.setSize(0.05f);
             helloText.setText(v1.toString());
             helloText.setLocalTranslation(v1.x, v1.y, v1.z);
-            rootNode.attachChild(helloText);
+            coOrdsMeshHolder.attachChild(helloText);
             
             helloText = new BitmapText(guiFont, false);
             helloText.setSize(0.05f);
             helloText.setText(v2.toString());
             helloText.setLocalTranslation(v2.x, v2.y, v2.z);
-            rootNode.attachChild(helloText);
+            coOrdsMeshHolder.attachChild(helloText);
 
-        }*/
-        rootNode.attachChild(chil1);
+        }
+        
+        //rootNode.attachChild(chil);
 
 //        Population population = new Population(rootNode, shipNM, this);
 //        int populationSize = 1;
