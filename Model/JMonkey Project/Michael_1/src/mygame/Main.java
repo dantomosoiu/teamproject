@@ -61,19 +61,19 @@ public class Main extends SimpleApplication {
         
         Mesh shipMesh = chil.getMesh();
         shipNM = new NavMesh();
-
+        
         NavMeshGenerator generator = new NavMeshGenerator();
 
         Mesh optimisedMesh = generator.optimize(shipMesh);
 
-        shipNM.loadFromMesh(optimisedMesh);
+        shipNM.loadFromMesh(optimisedMesh, scale);
 
         Node navMeshHolder = new Node();
-        navMeshHolder.setLocalScale(scale);
+        //navMeshHolder.setLocalScale(scale);
         rootNode.attachChild(navMeshHolder);
         
         Node coOrdsMeshHolder = new Node();
-        coOrdsMeshHolder.setLocalScale(scale);
+        //coOrdsMeshHolder.setLocalScale(scale);
         rootNode.attachChild(coOrdsMeshHolder);
 
 
@@ -190,21 +190,21 @@ public class Main extends SimpleApplication {
             guiFont = assetManager.loadFont("Interface/Fonts/Default.fnt");
             BitmapText helloText = new BitmapText(guiFont, false);
             helloText.setSize(0.04f);
-            helloText.setText(v0.mult(scale).toString());
+            helloText.setText(v0.toString());
             helloText.setColor(ColorRGBA.Green);
             helloText.setLocalTranslation(v0.x, v0.y, v0.z);
             coOrdsMeshHolder.attachChild(helloText);
             
             helloText = new BitmapText(guiFont, false);
             helloText.setSize(0.04f);
-            helloText.setText(v1.mult(scale).toString());
+            helloText.setText(v1.toString());
             helloText.setColor(ColorRGBA.Green);
             helloText.setLocalTranslation(v1.x, v1.y, v1.z);
             coOrdsMeshHolder.attachChild(helloText);
             
             helloText = new BitmapText(guiFont, false);
             helloText.setSize(0.04f);
-            helloText.setText(v2.mult(scale).toString());
+            helloText.setText(v2.toString());
             helloText.setColor(ColorRGBA.Green);
             helloText.setLocalTranslation(v2.x, v2.y, v2.z);
             coOrdsMeshHolder.attachChild(helloText);

@@ -37,6 +37,7 @@ public class NavMesh implements Savable {
      * the cells that make up this mesh
      */
     private ArrayList<Cell> cellList = new ArrayList<Cell>();
+    
 
     /**
      * path finding data...
@@ -469,7 +470,7 @@ public class NavMesh implements Savable {
         linkCells();
     }
 
-    public void loadFromMesh(Mesh mesh) {
+    public void loadFromMesh(Mesh mesh, Vector3f scale) {
         clear();
 
         Vector3f a = new Vector3f();
@@ -498,7 +499,7 @@ public class NavMesh implements Savable {
                 continue;
             }
 
-            addFace(a, b, c);
+            addFace(a.mult(scale), b.mult(scale), c.mult(scale));
         }
 
         linkCells();
