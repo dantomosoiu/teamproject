@@ -48,6 +48,7 @@ public class Main extends SimpleApplication {
         inputManager.addMapping("toggle wireframe", new KeyTrigger(KeyInput.KEY_T));
         inputManager.addListener(actionListener, "toggle wireframe");
         rootNode.setCullHint(Spatial.CullHint.Never);
+        this.flyCam.setMoveSpeed(this.flyCam.getMoveSpeed()*10);
 
         Spatial ship = assetManager.loadModel("Models/NoHullScaled/Export.j3o");
 
@@ -96,7 +97,9 @@ public class Main extends SimpleApplication {
         Vector3f maxY = new Vector3f(-1000f, -1000f, -1000f);
         Vector3f maxZ = new Vector3f(-1000f, -1000f, -1000f);
 
-
+        Material mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
+        mat.setColor("Color", ColorRGBA.Green);
+        
         for (int i = 0; i < shipNM.getNumCells(); i++) {
             TriangleShape tr;
             Vector3f v0 = shipNM.getCell(i).getVertex(0);
@@ -168,8 +171,8 @@ public class Main extends SimpleApplication {
             lineMesh.updateBound();
             lineMesh.updateCounts();
             Geometry lineGeometry = new Geometry("line", lineMesh);
-            Material lineMaterial = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
-            lineGeometry.setMaterial(lineMaterial);
+            
+            lineGeometry.setMaterial(mat);
             navMeshHolder.attachChild(lineGeometry);
 
             lineMesh = new Mesh();
@@ -179,8 +182,7 @@ public class Main extends SimpleApplication {
             lineMesh.updateBound();
             lineMesh.updateCounts();
             lineGeometry = new Geometry("line", lineMesh);
-            lineMaterial = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
-            lineGeometry.setMaterial(lineMaterial);
+            lineGeometry.setMaterial(mat);
             navMeshHolder.attachChild(lineGeometry);
 
             lineMesh = new Mesh();
@@ -190,28 +192,30 @@ public class Main extends SimpleApplication {
             lineMesh.updateBound();
             lineMesh.updateCounts();
             lineGeometry = new Geometry("line", lineMesh);
-            lineMaterial = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
-            lineGeometry.setMaterial(lineMaterial);
+            lineGeometry.setMaterial(mat);
             navMeshHolder.attachChild(lineGeometry);
 
 
 
             guiFont = assetManager.loadFont("Interface/Fonts/Default.fnt");
             BitmapText helloText = new BitmapText(guiFont, false);
-            helloText.setSize(0.02f);
+            helloText.setSize(0.04f);
             helloText.setText(v0.toString());
+            helloText.setColor(ColorRGBA.Green);
             helloText.setLocalTranslation(v0.x, v0.y, v0.z);
             coOrdsMeshHolder.attachChild(helloText);
             
             helloText = new BitmapText(guiFont, false);
-            helloText.setSize(0.02f);
+            helloText.setSize(0.04f);
             helloText.setText(v1.toString());
+            helloText.setColor(ColorRGBA.Green);
             helloText.setLocalTranslation(v1.x, v1.y, v1.z);
             coOrdsMeshHolder.attachChild(helloText);
             
             helloText = new BitmapText(guiFont, false);
-            helloText.setSize(0.02f);
+            helloText.setSize(0.04f);
             helloText.setText(v2.toString());
+            helloText.setColor(ColorRGBA.Green);
             helloText.setLocalTranslation(v2.x, v2.y, v2.z);
             coOrdsMeshHolder.attachChild(helloText);
 
@@ -228,8 +232,9 @@ public class Main extends SimpleApplication {
 
         guiFont = assetManager.loadFont("Interface/Fonts/Default.fnt");
         BitmapText helloText = new BitmapText(guiFont, false);
-        helloText.setSize(0.1f);
+        helloText.setSize(0.4f);
         helloText.setText("ORIGIN");
+        helloText.setColor(ColorRGBA.Green);
         helloText.setLocalTranslation(0, 0, 0);
         rootNode.attachChild(helloText);
 
