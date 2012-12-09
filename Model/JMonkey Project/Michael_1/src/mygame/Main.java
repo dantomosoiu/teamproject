@@ -198,19 +198,19 @@ public class Main extends SimpleApplication {
 
             guiFont = assetManager.loadFont("Interface/Fonts/Default.fnt");
             BitmapText helloText = new BitmapText(guiFont, false);
-            helloText.setSize(0.05f);
+            helloText.setSize(0.02f);
             helloText.setText(v0.toString());
             helloText.setLocalTranslation(v0.x, v0.y, v0.z);
             coOrdsMeshHolder.attachChild(helloText);
             
             helloText = new BitmapText(guiFont, false);
-            helloText.setSize(0.05f);
+            helloText.setSize(0.02f);
             helloText.setText(v1.toString());
             helloText.setLocalTranslation(v1.x, v1.y, v1.z);
             coOrdsMeshHolder.attachChild(helloText);
             
             helloText = new BitmapText(guiFont, false);
-            helloText.setSize(0.05f);
+            helloText.setSize(0.02f);
             helloText.setText(v2.toString());
             helloText.setLocalTranslation(v2.x, v2.y, v2.z);
             coOrdsMeshHolder.attachChild(helloText);
