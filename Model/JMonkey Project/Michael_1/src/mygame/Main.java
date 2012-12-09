@@ -59,7 +59,6 @@ public class Main extends SimpleApplication {
         Geometry chil = (Geometry) chil1.getChildren().get(0);
         Vector3f scale = chil1.getLocalScale();
         
-
         Mesh shipMesh = chil.getMesh();
         shipNM = new NavMesh();
 
@@ -77,15 +76,6 @@ public class Main extends SimpleApplication {
         coOrdsMeshHolder.setLocalScale(scale);
         rootNode.attachChild(coOrdsMeshHolder);
 
-
-//        Mesh shipMesh = chil.getMesh();
-//        shipNM = new NavMesh();
-//        
-//        
-//        shipNM.loadFromMesh(shipMesh);
-//        
-//        Node navMeshHolder = new Node();
-//        rootNode.attachChild(navMeshHolder);
 
         setUpLight();
         node = rootNode;
@@ -200,21 +190,21 @@ public class Main extends SimpleApplication {
             guiFont = assetManager.loadFont("Interface/Fonts/Default.fnt");
             BitmapText helloText = new BitmapText(guiFont, false);
             helloText.setSize(0.04f);
-            helloText.setText(v0.toString());
+            helloText.setText(v0.mult(scale).toString());
             helloText.setColor(ColorRGBA.Green);
             helloText.setLocalTranslation(v0.x, v0.y, v0.z);
             coOrdsMeshHolder.attachChild(helloText);
             
             helloText = new BitmapText(guiFont, false);
             helloText.setSize(0.04f);
-            helloText.setText(v1.toString());
+            helloText.setText(v1.mult(scale).toString());
             helloText.setColor(ColorRGBA.Green);
             helloText.setLocalTranslation(v1.x, v1.y, v1.z);
             coOrdsMeshHolder.attachChild(helloText);
             
             helloText = new BitmapText(guiFont, false);
             helloText.setSize(0.04f);
-            helloText.setText(v2.toString());
+            helloText.setText(v2.mult(scale).toString());
             helloText.setColor(ColorRGBA.Green);
             helloText.setLocalTranslation(v2.x, v2.y, v2.z);
             coOrdsMeshHolder.attachChild(helloText);
