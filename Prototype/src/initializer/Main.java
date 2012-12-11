@@ -180,7 +180,7 @@ public class Main extends SimpleApplication {
 		 */
 
 		this.population = new Population(rootNode, shipNM, this);
-		int populationSize = 1;
+		int populationSize = 5;
 		AgentGeometries = new Geometry[populationSize];
 		population.populate(populationSize);
 

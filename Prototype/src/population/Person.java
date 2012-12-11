@@ -1,6 +1,8 @@
 package population;
 
 import com.jme3.app.SimpleApplication;
+import com.jme3.bullet.collision.shapes.BoxCollisionShape;
+import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.cinematic.MotionPath;
 import com.jme3.cinematic.events.MotionEvent;
 import com.jme3.material.Material;
@@ -40,11 +42,14 @@ public class Person extends NavMeshPathfinder implements Runnable {
     /**Control for movement of visual representation*/
     private MotionEvent motionControl;
 
-    public Person(NavMesh navMesh, com.jme3.scene.Node rootNode, SimpleApplication simp) {
+    //Collision Variables
+    private PersonCollisionControl collisionControl;
+    
+    public Person(NavMesh navMesh, com.jme3.scene.Node rootNode, SimpleApplication simp, Vector3f initialLocation) {
         super(navMesh);
         this.rootNode = rootNode;
 
-        initialLocation = new Vector3f(-4f, 0, 4);
+        this.initialLocation = initialLocation;
         
         path = new MotionPath();
         path.addWayPoint(initialLocation);
@@ -56,6 +61,11 @@ public class Person extends NavMeshPathfinder implements Runnable {
         mat1.setColor("Color", ColorRGBA.Green);
         geom.setMaterial(mat1);
         geom.setLocalTranslation(initialLocation);
+        
+        collisionControl = new PersonCollisionControl(new BoxCollisionShape(new Vector3f(0.1f,0f,0.1f)));
+        geom.addControl(collisionControl);
+        
+        
         rootNode.attachChild(geom);
        
         this.simp = simp;
@@ -66,6 +76,9 @@ public class Person extends NavMeshPathfinder implements Runnable {
         motionControl.setRotation(new Quaternion().fromAngleNormalAxis(-FastMath.HALF_PI, Vector3f.UNIT_Y));
         motionControl.setInitialDuration(10f);
         motionControl.setSpeed(0.5f);
+        
+       
+       
     }
 
 	
@@ -83,48 +96,15 @@ public class Person extends NavMeshPathfinder implements Runnable {
         if (!computePath(Population.GOAL)) {
             System.out.println("GOAL CANNOT BE REACHED"); // path cant be found
         }
-        
-        Path p = this.getPath();
-        for(Path.Waypoint w : p){
-            System.out.println(w.toString() + " - ");
-        }
 
       
         while (!isAtGoalWaypoint()) {
-            System.out.println("CURRENT LOCATION:" + this.getPosition().toString() + "\n\n");
             Vector3f oldPosition = new Vector3f(this.getPosition());
             
             this.gotoToNextWaypoint(0.1f);
             
             Vector3f newPosition = new Vector3f(this.getPosition());
-            
-            //personControl.makeMove(oldPosition, newPosition);
-            //personControl.makeMove(oldPosition, newPosition);
-            //geom.move(new Vector3f(this.getPosition().x - oldPosition.x, this.getPosition().y - oldPosition.y, this.getPosition().z - oldPosition.z));
-            if (isAtGoalWaypoint()) {
-                System.out.println("AT GOAL");
-            }
-            //geom.forceRefresh(true, true, true);
-            
-            //this.onMove(new Vector3f(this.getPosition().x - oldPosition.x, this.getPosition().y - oldPosition.y, this.getPosition().z - oldPosition.z));
-            
-            //simp.update();
-            
-            /*
-            try {
-            	//rootNode.detachChild(geom);
-				Thread.sleep(200);
-				geom.forceRefresh(true, true, true);
-				simp.getRenderer().resetGLObjects();
-				simp.gainFocus();
-				
-				//rootNode.attachChild(geom);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-            
-          */
+          
 
             
             Sphere circle = new Sphere(30, 30, 0.05f);
@@ -165,8 +145,7 @@ public class Person extends NavMeshPathfinder implements Runnable {
                 path.addWayPoint(this.getPosition());
     		
     	
-    	}
-    	System.out.println(path.getNbWayPoints());
+        }
     	warp(this.getNextWaypoint().getPosition());
     	path.addWayPoint(this.getPosition());
     }

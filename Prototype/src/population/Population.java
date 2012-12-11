@@ -5,6 +5,7 @@
 package population;
 
 import com.jme3.app.SimpleApplication;
+import com.jme3.math.FastMath;
 import com.jme3.math.Vector3f;
 import jme3tools.navmesh.NavMesh;
 import com.jme3.scene.Node;
@@ -32,7 +33,7 @@ public class Population{
 		people = new Person[popNumber];
 		peopleThreads = new Thread[popNumber];
 		for(int i = 0; i<popNumber; i++){
-			people[i] = new Person(mesh, rootNode, simp);
+			people[i] = new Person(mesh, rootNode, simp, new Vector3f(FastMath.nextRandomInt(-3, 3),0,FastMath.nextRandomInt(-3, 3)));
 			peopleThreads[i] = new Thread(people[i]);
 		}
 	}
