@@ -18,24 +18,26 @@ import com.jme3.scene.shape.Box;
 import com.jme3.scene.shape.Sphere;
 import jme3tools.navmesh.*;
 import jme3tools.navmesh.Path.Waypoint;
-import mygame.Main;
 
 /**
  * Base class representing a single person within the simulation's population.
  */
 public class Person extends NavMeshPathfinder implements Runnable {
 
-    /**
-     * The maximum number of grid nodes this person can move per turn
-     */
-    private int speed;
+  
+    /**Provides visual representation of a person*/
     private Geometry geom;
     private SimpleApplication simp;
     private com.jme3.scene.Node rootNode;
+    /**Spawn location*/
     private Vector3f initialLocation;
     private Material mat1;
+    /**Index of current navmesh waypoint on the path*/
     private int positionOnPath = 0; //stores index of waypoint in current path
+    
+    /**Path for movement of visual representation*/
     private MotionPath path;
+    /**Control for movement of visual representation*/
     private MotionEvent motionControl;
 
     public Person(NavMesh navMesh, com.jme3.scene.Node rootNode, SimpleApplication simp) {
@@ -66,27 +68,6 @@ public class Person extends NavMeshPathfinder implements Runnable {
         motionControl.setSpeed(0.5f);
     }
 
-    /*Locomotion Methods*/
-    private void moveForward() {
-    }
-
-    private void pivotLeft() {
-    }
-
-    private void pivotRight() {
-    }
-
-    private void sideStepLeft() {
-    }
-
-    private void sideStepRight() {
-    }
-
-    /*Scan forward area for goal nodes*/
-    private void scan() {
-    }
-
-    ;
 	
 	@Override
     public void run() {
@@ -113,7 +94,7 @@ public class Person extends NavMeshPathfinder implements Runnable {
             System.out.println("CURRENT LOCATION:" + this.getPosition().toString() + "\n\n");
             Vector3f oldPosition = new Vector3f(this.getPosition());
             
-            this.gotoToNextWaypoint(10f);
+            this.gotoToNextWaypoint(0.1f);
             
             Vector3f newPosition = new Vector3f(this.getPosition());
             
@@ -167,15 +148,21 @@ public class Person extends NavMeshPathfinder implements Runnable {
             
         }
     }
-           
-    public void gotoToNextWaypoint(float speed) {
-    	Vector3f startPosition = this.getPosition();
-    	setNextWaypoint(this.getPath().getFurthestVisibleWayPoint(getNextWaypoint()));
-    	Vector3f unitVector;
-    	while (speed < getDistanceToWaypoint()) {
-    		unitVector = getDirectionToWaypoint();
-    		warp(this.getPosition().add(unitVector.mult(speed)));
-    		path.addWayPoint(this.getPosition());
+    
+    /**Moves person to next available waypoint in the navmesh path.
+     * @param moveDistance scalar indicating the distance a person should move per step, in graph units.
+     **/
+    public void gotoToNextWaypoint(float moveDistance) {
+        //find furthest visible navmesh waypoint from current position and set this to the next waypoint
+    	setNextWaypoint(this.getPath().getFurthestVisibleWayPoint(getNextWaypoint())); 
+    	Vector3f unitVector; 
+        //while the move distance is less than the remaining distance to the next navmesh waypoint
+    	while (moveDistance < getDistanceToWaypoint()) { 
+    		unitVector = getDirectionToWaypoint(); //obtain unit vector directed from current pos to waypoint
+                //update the logical representation of position first
+    		warp(this.getPosition().add(unitVector.mult(moveDistance))); //scale this vector by the move distance and move along this vector
+    		//now update the visual representation by adding a waypoint to the motion control path
+                path.addWayPoint(this.getPosition());
     		
     	
     	}
@@ -184,18 +171,6 @@ public class Person extends NavMeshPathfinder implements Runnable {
     	path.addWayPoint(this.getPosition());
     }
 
-    public int getSpeed() {
-        return speed;
-    }
-
-    public void setSpeed(int speed) {
-        this.speed = speed;
-    }
-
-    public Geometry getGeom() {
-        return geom;
-    }
-    
     public void play() {
     	motionControl.play();
     }

@@ -8,7 +8,6 @@ import com.jme3.app.SimpleApplication;
 import com.jme3.math.Vector3f;
 import jme3tools.navmesh.NavMesh;
 import com.jme3.scene.Node;
-import mygame.Main;
 
 /*
  *

@@ -1,29 +1,25 @@
 package initializer;
 
-import Population.Person;
-import Population.Population;
 import com.bulletphysics.collision.shapes.TriangleShape;
 import com.jme3.app.SimpleApplication;
 import com.jme3.font.BitmapText;
 import com.jme3.input.KeyInput;
 import com.jme3.material.Material;
-import com.jme3.math.ColorRGBA;
-import com.jme3.math.FastMath;
 import com.jme3.math.Vector3f;
 import com.jme3.renderer.RenderManager;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.Mesh;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
-import com.jme3.scene.shape.Box;
 import com.jme3.input.controls.ActionListener;
 import com.jme3.input.controls.KeyTrigger;
 import com.jme3.scene.VertexBuffer;
 import jme3tools.navmesh.NavMesh;
 import jme3tools.navmesh.util.NavMeshGenerator;
-import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import population.Person;
+import population.Population;
 
 /**
  * test
@@ -75,7 +71,7 @@ public class Main extends SimpleApplication {
 		Logger.getLogger("").setLevel(Level.SEVERE);
 		//cam.setLocation(new Vector3f(-4f, 1.1f, 4f));
 		//cam.lookAtDirection(new Vector3f(0f, 1f, 0f), new Vector3f(0f, 1f, 0f));
-		Spatial ship = assetManager.loadModel("Models/MichaelMaze/MichaelMaze.j3o");
+		Spatial ship = assetManager.loadModel("Models/Room/Room.j3o");
 
 		Node node = (Node) ship;
 		Node chil1 = (Node) node.getChildren().get(2);
@@ -234,16 +230,16 @@ public class Main extends SimpleApplication {
 */
 	}
 
-	public void updatePosition(Vector3f pos) {
-
-
-		if (update && updateTimes != 9) {
-			Person p = new Person(shipNM, rootNode, this);
-			p.getGeom().setLocalTranslation(pos);
-			p.getGeom().getMaterial();
-			updateTimes++;
-		}
-	}
+//	public void updatePosition(Vector3f pos) {
+//
+//
+//		if (update && updateTimes != 9) {
+//			Person p = new Person(shipNM, rootNode, this);
+//			p.getGeom().setLocalTranslation(pos);
+//			p.getGeom().getMaterial();
+//			updateTimes++;
+//		}
+//	}
 
 	@Override
 	public void simpleRender(RenderManager rm) {
