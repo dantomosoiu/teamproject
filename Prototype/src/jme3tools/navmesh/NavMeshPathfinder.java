@@ -45,7 +45,7 @@ public class NavMeshPathfinder {
         this.entityRadius = entityRadius;
     }
 
-    public Vector3f warp(Vector3f newPos){
+    public synchronized Vector3f warp(Vector3f newPos){
         Vector3f newPos2d = new Vector3f(newPos.x, 0, newPos.z);
         currentCell = navMesh.findClosestCell(newPos2d);
         currentPos3d.set(navMesh.snapPointToCell(currentCell, newPos2d));
@@ -54,7 +54,7 @@ public class NavMeshPathfinder {
         return currentPos3d;
     }
 
-    public boolean computePath(Vector3f goal){
+    public synchronized boolean computePath(Vector3f goal){
         goalPos3d = goal;
         goalPos = new Vector2f(goalPos3d.getX(), goalPos3d.getZ());
         Vector3f goalPos2d = new Vector3f(goalPos.getX(), 0, goalPos.getY());
@@ -70,27 +70,27 @@ public class NavMeshPathfinder {
         return true;
     }
 
-    public void clearPath(){
+    public synchronized void clearPath(){
         path.clear();
         goalPos = null;
         goalCell = null;
         nextWaypoint = null;
     }
 
-    public Vector3f getWaypointPosition(){
+    public synchronized Vector3f getWaypointPosition(){
         return nextWaypoint.getPosition();
     }
 
-    public Vector3f getDirectionToWaypoint(){
+    public synchronized Vector3f getDirectionToWaypoint(){
         Vector3f waypt = nextWaypoint.getPosition();
         return waypt.subtract(currentPos3d).normalizeLocal();
     }
 
-    public float getDistanceToWaypoint(){
+    public synchronized float getDistanceToWaypoint(){
         return currentPos3d.distance(nextWaypoint.getPosition());
     }
     
-    public Vector3f onMove(Vector3f moveVec){
+    public synchronized Vector3f onMove(Vector3f moveVec){
         if (moveVec.equals(Vector3f.ZERO))
             return currentPos3d;
 
@@ -107,11 +107,11 @@ public class NavMeshPathfinder {
         return newPos2d;
     }
 
-    public boolean isAtGoalWaypoint(){
+    public synchronized boolean isAtGoalWaypoint(){
         return nextWaypoint == path.getLast();
     }
 
-    public void gotoToNextWaypoint(){
+    public synchronized void gotoToNextWaypoint(){
         nextWaypoint = path.getFurthestVisibleWayPoint(nextWaypoint);
         Vector3f waypt = nextWaypoint.getPosition();
         currentPos3d.setX(waypt.getX());
@@ -121,7 +121,7 @@ public class NavMeshPathfinder {
     }
 
     //EXTENDED_MICHAEL : Added is line of sight method
-    public boolean isInLineOfSight(Vector3f point){
+    public synchronized boolean isInLineOfSight(Vector3f point){
         return navMesh.isInLineOfSight(currentCell,currentPos3d, point);
     }
     //EXTENDED-MICHAEL : Added getters setters for variables
@@ -130,59 +130,59 @@ public class NavMeshPathfinder {
         return navMesh;
     }
 
-    public Vector2f getCurrentPos() {
+    public synchronized Vector2f getCurrentPos() {
         return currentPos;
     }
 
-    public void setCurrentPos(Vector2f currentPos) {
+    public synchronized void setCurrentPos(Vector2f currentPos) {
         this.currentPos = currentPos;
     }
 
-    public Vector3f getCurrentPos3d() {
+    public synchronized Vector3f getCurrentPos3d() {
         return currentPos3d;
     }
 
-    public void setCurrentPos3d(Vector3f currentPos3d) {
+    public synchronized void setCurrentPos3d(Vector3f currentPos3d) {
         this.currentPos3d = currentPos3d;
     }
 
-    public Cell getCurrentCell() {
+    public synchronized Cell getCurrentCell() {
         return currentCell;
     }
 
-    public void setCurrentCell(Cell currentCell) {
+    public synchronized void setCurrentCell(Cell currentCell) {
         this.currentCell = currentCell;
     }
 
-    public Vector2f getGoalPos() {
+    public synchronized Vector2f getGoalPos() {
         return goalPos;
     }
 
-    public void setGoalPos(Vector2f goalPos) {
+    public synchronized void setGoalPos(Vector2f goalPos) {
         this.goalPos = goalPos;
     }
 
-    public Vector3f getGoalPos3d() {
+    public synchronized Vector3f getGoalPos3d() {
         return goalPos3d;
     }
 
-    public void setGoalPos3d(Vector3f goalPos3d) {
+    public synchronized void setGoalPos3d(Vector3f goalPos3d) {
         this.goalPos3d = goalPos3d;
     }
 
-    public Cell getGoalCell() {
+    public synchronized Cell getGoalCell() {
         return goalCell;
     }
 
-    public void setGoalCell(Cell goalCell) {
+    public synchronized void setGoalCell(Cell goalCell) {
         this.goalCell = goalCell;
     }
 
-    public Waypoint getNextWaypoint() {
+    public synchronized Waypoint getNextWaypoint() {
         return nextWaypoint;
     }
 
-    public void setNextWaypoint(Waypoint nextWaypoint) {
+    public synchronized void setNextWaypoint(Waypoint nextWaypoint) {
         this.nextWaypoint = nextWaypoint;
     }
     

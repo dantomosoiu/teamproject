@@ -21,6 +21,7 @@ import com.jme3.scene.shape.Sphere;
 import com.jme3.scene.shape.Torus;
 import jme3tools.navmesh.*;
 import jme3tools.navmesh.Path.Waypoint;
+import net.java.games.input.Component;
 
 /**
  * Base class representing a single person within the simulation's population.
@@ -42,6 +43,54 @@ public class Person extends NavMeshPathfinder implements Runnable {
     private MotionPath path;
     /**Control for movement of visual representation*/
     private MotionEvent motionControl;
+    private float surfaceArea = 1f;
+
+    public float getSurfaceArea() {
+        return surfaceArea;
+    }
+
+    public void setSurfaceArea(float surfaceArea) {
+        this.surfaceArea = surfaceArea;
+    }
+    
+    /**
+     * Returns a PersonBoundary representing the opening/closing position 
+     * of the surface covered by the person on the specified axis.
+     * @param axis Short representing the index of the axis (0=x, 1=y, 2=z).
+     * @param opening The position out of which to get the boundary for 
+     * (for example, for x axis, true is left and false is right).
+     * @return resulted PersonBoundary instance.
+     */
+    public PersonBoundary getBoundary(short axis, boolean opening){
+        PersonBoundary boundary = new PersonBoundary();
+        boundary.person = this;
+        boundary.opening = opening;
+        boundary.axis = axis;
+        switch(axis){
+            case 0:
+                if(opening){
+                    boundary.position = this.getPosition().x - surfaceArea/2;
+                } else {
+                    boundary.position = this.getPosition().x + surfaceArea/2;
+                }
+                break;
+            case 1:
+                if(opening){
+                    boundary.position = this.getPosition().y - surfaceArea/2;
+                } else {
+                    boundary.position = this.getPosition().y + surfaceArea/2;
+                }
+                break;
+            case 2:
+                if(opening){
+                    boundary.position = this.getPosition().z - surfaceArea/2;
+                } else {
+                    boundary.position = this.getPosition().z + surfaceArea/2;
+                }
+                break;
+        }
+        return boundary;
+    }
 
     //Collision Variables
     private PersonCollisionControl collisionControl;
@@ -52,18 +101,21 @@ public class Person extends NavMeshPathfinder implements Runnable {
 
         this.initialLocation = initialLocation;
         
+        this.setPosition(initialLocation);
+        
         path = new MotionPath();
         path.addWayPoint(initialLocation);
         
         //Box box = new Box(Vector3f.ZERO, 0.2f, 0f, 0.2f);
-        Torus box = new Torus(3, 2, 1, 1);
+        //Torus box = new Torus(3, 2, 1, 1);
+        Sphere box = new Sphere(32, 32, 0.5f);
         geom = new Geometry("Box", box);
         mat1 = new Material(simp.getAssetManager(),
                 "Common/MatDefs/Misc/Unshaded.j3md");
         mat1.setColor("Color", ColorRGBA.randomColor());
         geom.setMaterial(mat1);
         geom.setLocalTranslation(initialLocation);
-        geom.scale(0.1f); //reduce size of shape
+        //geom.scale(0.1f); //reduce size of shape
         
         collisionControl = new PersonCollisionControl(new BoxCollisionShape(new Vector3f(0.1f,0f,0.1f)));
         geom.addControl(collisionControl);
@@ -164,5 +216,7 @@ public class Person extends NavMeshPathfinder implements Runnable {
     public void play() {
     	motionControl.play();
     }
+    
+    
 }
 

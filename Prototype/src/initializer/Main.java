@@ -42,6 +42,7 @@ public class Main extends SimpleApplication {
 
 	public static void main(String[] args) {
 		Main app = new Main();
+                app.setShowSettings(false);
 		app.start();
 
 	}
@@ -180,7 +181,7 @@ public class Main extends SimpleApplication {
 		 */
 
 		this.population = new Population(rootNode, shipNM, this);
-		int populationSize = 5;
+		int populationSize = 10;
 		AgentGeometries = new Geometry[populationSize];
 		population.populate(populationSize);
 
