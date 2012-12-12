@@ -1,8 +1,6 @@
 package population;
 
 import com.jme3.app.SimpleApplication;
-import com.jme3.bullet.collision.shapes.BoxCollisionShape;
-import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.cinematic.MotionPath;
 import com.jme3.cinematic.events.MotionEvent;
 import com.jme3.material.Material;
@@ -18,57 +16,44 @@ import com.jme3.scene.Node;
 import com.jme3.scene.VertexBuffer;
 import com.jme3.scene.shape.Box;
 import com.jme3.scene.shape.Sphere;
-import com.jme3.scene.shape.Torus;
 import jme3tools.navmesh.*;
 import jme3tools.navmesh.Path.Waypoint;
+import mygame.Main;
 
 /**
  * Base class representing a single person within the simulation's population.
  */
 public class Person extends NavMeshPathfinder implements Runnable {
 
-  
-    /**Provides visual representation of a person*/
+    /**
+     * The maximum number of grid nodes this person can move per turn
+     */
+    private int speed;
     private Geometry geom;
     private SimpleApplication simp;
     private com.jme3.scene.Node rootNode;
-    /**Spawn location*/
     private Vector3f initialLocation;
     private Material mat1;
-    /**Index of current navmesh waypoint on the path*/
     private int positionOnPath = 0; //stores index of waypoint in current path
-    
-    /**Path for movement of visual representation*/
     private MotionPath path;
-    /**Control for movement of visual representation*/
     private MotionEvent motionControl;
 
-    //Collision Variables
-    private PersonCollisionControl collisionControl;
-    
-    public Person(NavMesh navMesh, com.jme3.scene.Node rootNode, SimpleApplication simp, Vector3f initialLocation) {
+    public Person(NavMesh navMesh, com.jme3.scene.Node rootNode, SimpleApplication simp) {
         super(navMesh);
         this.rootNode = rootNode;
 
-        this.initialLocation = initialLocation;
+        initialLocation = new Vector3f(-4f, 0, 4);
         
         path = new MotionPath();
         path.addWayPoint(initialLocation);
         
-        //Box box = new Box(Vector3f.ZERO, 0.2f, 0f, 0.2f);
-        Torus box = new Torus(3, 2, 1, 1);
+        Box box = new Box(Vector3f.ZERO, 0.2f, 0f, 0.2f);
         geom = new Geometry("Box", box);
         mat1 = new Material(simp.getAssetManager(),
                 "Common/MatDefs/Misc/Unshaded.j3md");
-        mat1.setColor("Color", ColorRGBA.randomColor());
+        mat1.setColor("Color", ColorRGBA.Green);
         geom.setMaterial(mat1);
         geom.setLocalTranslation(initialLocation);
-        geom.scale(0.1f); //reduce size of shape
-        
-        collisionControl = new PersonCollisionControl(new BoxCollisionShape(new Vector3f(0.1f,0f,0.1f)));
-        geom.addControl(collisionControl);
-        
-        
         rootNode.attachChild(geom);
        
         this.simp = simp;
@@ -79,10 +64,29 @@ public class Person extends NavMeshPathfinder implements Runnable {
         motionControl.setRotation(new Quaternion().fromAngleNormalAxis(-FastMath.HALF_PI, Vector3f.UNIT_Y));
         motionControl.setInitialDuration(10f);
         motionControl.setSpeed(0.5f);
-        //path.enableDebugShape(simp.getAssetManager(), rootNode);
-      
     }
 
+    /*Locomotion Methods*/
+    private void moveForward() {
+    }
+
+    private void pivotLeft() {
+    }
+
+    private void pivotRight() {
+    }
+
+    private void sideStepLeft() {
+    }
+
+    private void sideStepRight() {
+    }
+
+    /*Scan forward area for goal nodes*/
+    private void scan() {
+    }
+
+    ;
 	
 	@Override
     public void run() {
@@ -98,20 +102,53 @@ public class Person extends NavMeshPathfinder implements Runnable {
         if (!computePath(Population.GOAL)) {
             System.out.println("GOAL CANNOT BE REACHED"); // path cant be found
         }
+        
+        Path p = this.getPath();
+        for(Path.Waypoint w : p){
+            System.out.println(w.toString() + " - ");
+        }
 
       
         while (!isAtGoalWaypoint()) {
+            System.out.println("CURRENT LOCATION:" + this.getPosition().toString() + "\n\n");
             Vector3f oldPosition = new Vector3f(this.getPosition());
             
-            this.gotoToNextWaypoint(0.1f);
+            this.gotoToNextWaypoint(10f);
             
             Vector3f newPosition = new Vector3f(this.getPosition());
-          
+            
+            //personControl.makeMove(oldPosition, newPosition);
+            //personControl.makeMove(oldPosition, newPosition);
+            //geom.move(new Vector3f(this.getPosition().x - oldPosition.x, this.getPosition().y - oldPosition.y, this.getPosition().z - oldPosition.z));
+            if (isAtGoalWaypoint()) {
+                System.out.println("AT GOAL");
+            }
+            //geom.forceRefresh(true, true, true);
+            
+            //this.onMove(new Vector3f(this.getPosition().x - oldPosition.x, this.getPosition().y - oldPosition.y, this.getPosition().z - oldPosition.z));
+            
+            //simp.update();
+            
+            /*
+            try {
+            	//rootNode.detachChild(geom);
+				Thread.sleep(200);
+				geom.forceRefresh(true, true, true);
+				simp.getRenderer().resetGLObjects();
+				simp.gainFocus();
+				
+				//rootNode.attachChild(geom);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+            
+          */
 
             
             Sphere circle = new Sphere(30, 30, 0.05f);
             Geometry sphereGeom = new Geometry("Sphere", circle);
-            mat1.setColor("Color", ColorRGBA.randomColor());
+            mat1.setColor("Color", ColorRGBA.Green);
             sphereGeom.setMaterial(mat1);
             sphereGeom.move(oldPosition);
             rootNode.attachChild(sphereGeom);
@@ -130,29 +167,35 @@ public class Person extends NavMeshPathfinder implements Runnable {
             
         }
     }
-    
-    /**Moves person to next available waypoint in the navmesh path.
-     * @param moveDistance scalar indicating the distance a person should move per step, in graph units.
-     **/
-    public void gotoToNextWaypoint(float moveDistance) {
-        //find furthest visible navmesh waypoint from current position and set this to the next waypoint
-    	setNextWaypoint(this.getPath().getFurthestVisibleWayPoint(getNextWaypoint())); 
-    	Vector3f unitVector; 
-        //while the move distance is less than the remaining distance to the next navmesh waypoint
-    	while (moveDistance < getDistanceToWaypoint()) { 
-    		unitVector = getDirectionToWaypoint(); //obtain unit vector directed from current pos to waypoint
-                //update the logical representation of position first
-    		warp(this.getPosition().add(unitVector.mult(moveDistance))); //scale this vector by the move distance and move along this vector
-    		//now update the visual representation by adding a waypoint to the motion control path
-                path.addWayPoint(this.getPosition());
+           
+    public void gotoToNextWaypoint(float speed) {
+    	Vector3f startPosition = this.getPosition();
+    	setNextWaypoint(this.getPath().getFurthestVisibleWayPoint(getNextWaypoint()));
+    	Vector3f unitVector;
+    	while (speed < getDistanceToWaypoint()) {
+    		unitVector = getDirectionToWaypoint();
+    		warp(this.getPosition().add(unitVector.mult(speed)));
+    		path.addWayPoint(this.getPosition());
     		
     	
-        }
+    	}
+    	System.out.println(path.getNbWayPoints());
     	warp(this.getNextWaypoint().getPosition());
     	path.addWayPoint(this.getPosition());
-        path.setCurveTension(0.0f);
     }
 
+    public int getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
+    }
+
+    public Geometry getGeom() {
+        return geom;
+    }
+    
     public void play() {
     	motionControl.play();
     }
