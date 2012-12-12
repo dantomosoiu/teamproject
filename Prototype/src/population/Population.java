@@ -93,8 +93,9 @@ public class Population implements Runnable {
         for (LinkedList<Person> currentXGroup : xGroups) {
 
             if (currentXGroup.size() == 1) {
-                yGroups.add(currentXGroup);
-                groupCount++;
+                //System.out.println("(" + groupCount + ")" + currentXGroup.get(0).getPosition());
+                tempNeighbourList.add(currentXGroup);
+                //groupCount++;
                 continue;
             }
 
@@ -138,8 +139,9 @@ public class Population implements Runnable {
         for (LinkedList<Person> currentYGroup : yGroups) {
 
             if (currentYGroup.size() == 1) {
-                zGroups.add(currentYGroup);
-                groupCount++;
+                //System.out.println("(" + groupCount + ")" + currentYGroup.get(0).getPosition());
+                tempNeighbourList.add(currentYGroup);
+                //groupCount++;
                 continue;
             }
 
@@ -173,17 +175,18 @@ public class Population implements Runnable {
                 }
             }
         }
-        
+
         ArrayList<LinkedList<Person>> XXGroups = new ArrayList<LinkedList<Person>>();
 
         groupCount = 0;
         System.out.println("XX Groups:");
 
-        for (LinkedList<Person> currentZGroup : yGroups) {
+        for (LinkedList<Person> currentZGroup : zGroups) {
 
             if (currentZGroup.size() == 1) {
-                XXGroups.add(currentZGroup);
-                groupCount++;
+                //System.out.println("(" + groupCount + ")" + currentZGroup.get(0).getPosition());
+                tempNeighbourList.add(currentZGroup);
+                //groupCount++;
                 continue;
             }
 
@@ -217,17 +220,18 @@ public class Population implements Runnable {
                 }
             }
         }
-        
+
         ArrayList<LinkedList<Person>> YYGroups = new ArrayList<LinkedList<Person>>();
 
         groupCount = 0;
         System.out.println("YY Groups:");
 
-        for (LinkedList<Person> currentXXGroup : yGroups) {
+        for (LinkedList<Person> currentXXGroup : XXGroups) {
 
             if (currentXXGroup.size() == 1) {
-                YYGroups.add(currentXXGroup);
-                groupCount++;
+                //System.out.println("(" + groupCount + ")" + currentXXGroup.get(0).getPosition());
+                tempNeighbourList.add(currentXXGroup);
+                //groupCount++;
                 continue;
             }
 
@@ -261,10 +265,11 @@ public class Population implements Runnable {
                 }
             }
         }
+
+
+        tempNeighbourList.addAll(YYGroups);
         
-        
-        neighbourList = YYGroups;
-        System.out.println(YYGroups.size());
+        System.out.println(tempNeighbourList.size());
     }
 
     public void evacuate() {
