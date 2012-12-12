@@ -18,6 +18,7 @@ import com.jme3.scene.Node;
 import com.jme3.scene.VertexBuffer;
 import com.jme3.scene.shape.Box;
 import com.jme3.scene.shape.Sphere;
+import com.jme3.scene.shape.Torus;
 import jme3tools.navmesh.*;
 import jme3tools.navmesh.Path.Waypoint;
 
@@ -54,13 +55,15 @@ public class Person extends NavMeshPathfinder implements Runnable {
         path = new MotionPath();
         path.addWayPoint(initialLocation);
         
-        Box box = new Box(Vector3f.ZERO, 0.2f, 0f, 0.2f);
+        //Box box = new Box(Vector3f.ZERO, 0.2f, 0f, 0.2f);
+        Torus box = new Torus(3, 2, 1, 1);
         geom = new Geometry("Box", box);
         mat1 = new Material(simp.getAssetManager(),
                 "Common/MatDefs/Misc/Unshaded.j3md");
-        mat1.setColor("Color", ColorRGBA.Green);
+        mat1.setColor("Color", ColorRGBA.randomColor());
         geom.setMaterial(mat1);
         geom.setLocalTranslation(initialLocation);
+        geom.scale(0.1f); //reduce size of shape
         
         collisionControl = new PersonCollisionControl(new BoxCollisionShape(new Vector3f(0.1f,0f,0.1f)));
         geom.addControl(collisionControl);
@@ -76,9 +79,8 @@ public class Person extends NavMeshPathfinder implements Runnable {
         motionControl.setRotation(new Quaternion().fromAngleNormalAxis(-FastMath.HALF_PI, Vector3f.UNIT_Y));
         motionControl.setInitialDuration(10f);
         motionControl.setSpeed(0.5f);
-        
-       
-       
+        //path.enableDebugShape(simp.getAssetManager(), rootNode);
+      
     }
 
 	
@@ -109,7 +111,7 @@ public class Person extends NavMeshPathfinder implements Runnable {
             
             Sphere circle = new Sphere(30, 30, 0.05f);
             Geometry sphereGeom = new Geometry("Sphere", circle);
-            mat1.setColor("Color", ColorRGBA.Green);
+            mat1.setColor("Color", ColorRGBA.randomColor());
             sphereGeom.setMaterial(mat1);
             sphereGeom.move(oldPosition);
             rootNode.attachChild(sphereGeom);
@@ -148,6 +150,7 @@ public class Person extends NavMeshPathfinder implements Runnable {
         }
     	warp(this.getNextWaypoint().getPosition());
     	path.addWayPoint(this.getPosition());
+        path.setCurveTension(0.0f);
     }
 
     public void play() {
