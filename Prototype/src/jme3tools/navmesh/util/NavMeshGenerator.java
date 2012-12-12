@@ -21,7 +21,7 @@ public class NavMeshGenerator {
     private float maxTraversableStep = 0.1f;
     private float maxTraversableSlope = 48.0f;
     private boolean clipLedges = false;
-    private float traversableAreaBorderSize = 0.01f;
+    private float traversableAreaBorderSize = 0.03f;
     private int smoothingThreshold = 2;
     private boolean useConservativeExpansion = true;
     private int minUnconnectedRegionSize = 1;
