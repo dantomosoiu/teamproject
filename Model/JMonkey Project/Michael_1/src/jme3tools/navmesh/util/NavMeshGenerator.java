@@ -30,7 +30,7 @@
     //    private float contourSampleDistance = 5f;
     //    private float contourMaxDeviation = 0.1f;
        
-         private float cellSize = 0.016666f;
+         private float cellSize = 0.05f;
         private float cellHeight = 0.02f;
         private float minTraversableHeight = 0.15f;
         private float maxTraversableStep = 0.05f;

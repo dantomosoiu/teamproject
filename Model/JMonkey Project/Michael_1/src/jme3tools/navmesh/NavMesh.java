@@ -503,7 +503,11 @@ public class NavMesh implements Savable {
                 continue;
             }
 
-            addFace(a.mult(scale), b.mult(scale), c.mult(scale));
+            a = a.mult(scale);
+            b = b.mult(scale);
+            c = c.mult(scale);
+            
+            addFace(a,b,c);
         }
 
         linkCells();
