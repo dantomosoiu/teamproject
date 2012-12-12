@@ -77,12 +77,16 @@ public class Person extends NavMeshPathfinder implements Runnable {
         motionControl = new MotionEvent(geom, path);
         motionControl.setDirectionType(MotionEvent.Direction.PathAndRotation);
         motionControl.setRotation(new Quaternion().fromAngleNormalAxis(-FastMath.HALF_PI, Vector3f.UNIT_Y));
-        motionControl.setInitialDuration(10f);
-        motionControl.setSpeed(0.5f);
+      
         //path.enableDebugShape(simp.getAssetManager(), rootNode);
       
     }
 
+    public float calculateMotionTime(float speedUnitsPerSecond, MotionPath path){
+        float distance = path.getLength();
+        float time = distance / speedUnitsPerSecond;
+        return time;
+    }
 	
 	@Override
     public void run() {
@@ -129,6 +133,10 @@ public class Person extends NavMeshPathfinder implements Runnable {
             rootNode.attachChild(lineGeometry);
             
         }
+        float speed = 1f; //in units per second
+        float time = this.calculateMotionTime(speed, path);
+        motionControl.setInitialDuration(time);
+        motionControl.setSpeed(1);
     }
     
     /**Moves person to next available waypoint in the navmesh path.
