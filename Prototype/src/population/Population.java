@@ -45,7 +45,7 @@ public class Population implements Runnable {
             peopleThreads[i] = new Thread(people[i]);
         }
         neighbourList = new ArrayList<LinkedList<Person>>(popNumber);
-        refreshNeighbourList();
+        //refreshNeighbourList();
     }
 
     private void refreshNeighbourList() {
