@@ -22,7 +22,7 @@ import population.Person;
 import population.Population;
 
 /**
- * test
+ * cocotest
  *
  * @author normenhansen
  */
