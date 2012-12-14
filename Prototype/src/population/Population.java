@@ -57,9 +57,20 @@ public class Population implements Runnable {
         neighbourList = new ArrayList<LinkedList<Person>>(popNumber);
         //refreshNeighbourList();
     }
+    
+    private class neighbourGroups{
+        ArrayList<LinkedList<Person>> neighbourList;
+        
+        private neighbourGroups(int length){
+            neighbourList = new ArrayList<LinkedList<Person>>(length);
+        }
+        
+    }
 
     private void refreshNeighbourList() {
-        ArrayList<LinkedList<Person>> tempNeighbourList = new ArrayList<LinkedList<Person>>(people.length);
+         
+        neighbourGroups nGroup = new neighbourGroups(people.length);
+        
         LinkedList<PersonBoundary> xSorted = new LinkedList<PersonBoundary>();
 
         for (Person p : people) {
@@ -67,6 +78,8 @@ public class Population implements Runnable {
             xSorted.add(p.getBoundary((short) 0, false));
         }
 
+        
+        
         LinkedList<Person> group = new LinkedList<Person>();
         ArrayList<LinkedList<Person>> xGroups = new ArrayList<LinkedList<Person>>();
 
@@ -104,7 +117,7 @@ public class Population implements Runnable {
 
             if (currentXGroup.size() == 1) {
                 //System.out.println("(" + groupCount + ")" + currentXGroup.get(0).getPosition());
-                tempNeighbourList.add(currentXGroup);
+                nGroup.neighbourList.add(currentXGroup);
                 //groupCount++;
                 continue;
             }
@@ -150,7 +163,7 @@ public class Population implements Runnable {
 
             if (currentYGroup.size() == 1) {
                 //System.out.println("(" + groupCount + ")" + currentYGroup.get(0).getPosition());
-                tempNeighbourList.add(currentYGroup);
+                nGroup.neighbourList.add(currentYGroup);
                 //groupCount++;
                 continue;
             }
@@ -195,7 +208,7 @@ public class Population implements Runnable {
 
             if (currentZGroup.size() == 1) {
                 //System.out.println("(" + groupCount + ")" + currentZGroup.get(0).getPosition());
-                tempNeighbourList.add(currentZGroup);
+                nGroup.neighbourList.add(currentZGroup);
                 //groupCount++;
                 continue;
             }
@@ -240,7 +253,7 @@ public class Population implements Runnable {
 
             if (currentXXGroup.size() == 1) {
                 //System.out.println("(" + groupCount + ")" + currentXXGroup.get(0).getPosition());
-                tempNeighbourList.add(currentXXGroup);
+                nGroup.neighbourList.add(currentXXGroup);
                 //groupCount++;
                 continue;
             }
@@ -277,9 +290,9 @@ public class Population implements Runnable {
         }
 
 
-        tempNeighbourList.addAll(YYGroups);
+        nGroup.neighbourList.addAll(YYGroups);
         
-        System.out.println(tempNeighbourList.size());
+        System.out.println(nGroup.neighbourList.size());
     }
 
     public void evacuate() {
