@@ -46,16 +46,17 @@ public class Main extends SimpleApplication {
         this.flyCam.setMoveSpeed(this.flyCam.getMoveSpeed()*10);
 
         //Load Ship Model
-        Spatial ship = assetManager.loadModel("Models/NoHullScaled/Export.j3o");
+        Spatial ship = assetManager.loadModel("Models/Export1/Export1.j3o");
 
         //Make a NavMesh from the ship Model
         Node shipNode = (Node) ship;
-        shipNode = (Node) shipNode.getChildren().get(4);
+        shipNode = (Node) shipNode.getChildren().get(0);
+        
         Geometry shipGeom = (Geometry) shipNode.getChildren().get(0);
         Mesh shipMesh = shipGeom.getMesh();
-        shipMesh = new NavMeshGenerator().optimize(shipMesh);
+        if ((shipMesh = new NavMeshGenerator().optimize(shipMesh))!= null) {
         shipNM = new NavMesh();
-        shipNM.loadFromMesh(shipMesh, shipNode.getLocalScale());
+        shipNM.loadFromMesh(shipMesh, new Vector3f(1,1,1));
 
         //Holder Nodes for Navmesh / Coords (Allows easy adding / removing)
         Node navMeshHolder = new Node();
@@ -90,7 +91,7 @@ public class Main extends SimpleApplication {
                 
                 //Adds CoOrds Text to Node
                 BitmapText helloText = new BitmapText(guiFont, false);
-                helloText.setSize(1.2f);
+                helloText.setSize(0.2f);
                 helloText.setText(v.toString());
                 helloText.setColor(ColorRGBA.Green);
                 helloText.setLocalTranslation(v.x, v.y, v.z);
@@ -111,15 +112,6 @@ public class Main extends SimpleApplication {
             }
 
         }
-        
-        //Adds Origin Text
-        BitmapText helloText = new BitmapText(guiFont, false);
-        helloText.setSize(0.4f);
-        helloText.setText("ORIGIN");
-        helloText.setColor(ColorRGBA.Green);
-        helloText.setLocalTranslation(0, 0, 0);
-        rootNode.attachChild(helloText);
-        
         //Prints debug Numbers
         System.out.println("X range: " + (maxX.x - minX.x));
         System.out.println("Y range: " + (maxY.y - minY.y));
@@ -131,6 +123,16 @@ public class Main extends SimpleApplication {
         System.out.println("maxX " + maxX.toString());
         System.out.println("maxY " + maxY.toString());
         System.out.println("maxZ " + maxZ.toString());
+        }
+        //Adds Origin Text
+        BitmapText helloText = new BitmapText(guiFont, false);
+        helloText.setSize(0.4f);
+        helloText.setText("ORIGIN");
+        helloText.setColor(ColorRGBA.Green);
+        helloText.setLocalTranslation(0, 0, 0);
+        rootNode.attachChild(helloText);
+        
+        
 
     }
 

@@ -30,16 +30,16 @@
     //    private float contourSampleDistance = 5f;
     //    private float contourMaxDeviation = 0.1f;
        
-         private float cellSize = 0.05f;
+        private float cellSize = 0.07f;
         private float cellHeight = 0.02f;
-        private float minTraversableHeight = 0.15f;
-        private float maxTraversableStep = 0.05f;
-        private float maxTraversableSlope = 30.0f;
+        private float minTraversableHeight = 0.35f;
+        private float maxTraversableStep = 0.45f;
+        private float maxTraversableSlope = 80.0f;
         private boolean clipLedges = false;
         private float traversableAreaBorderSize = 0.05f;
         private int smoothingThreshold = 4;
         private boolean useConservativeExpansion = true;
-        private int minUnconnectedRegionSize = 13;
+        private int minUnconnectedRegionSize = 100;
         private int mergeRegionSize = 20;
         private float maxEdgeLength = 2f;
         private float edgeMaxDeviation = 0.1f;
