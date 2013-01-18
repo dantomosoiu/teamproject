@@ -1,0 +1,788 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html
+      xmlns="http://www.w3.org/1999/xhtml"
+      xml:lang="en"
+      lang="en">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <title>Sign In </title>
+      <meta name="googlebot" content="NOODP" />
+      <meta name="HW.ad-path" content="/cgi/content/reprint/16/6/414" />
+      <link rel="stylesheet" type="text/css" media="all" href="/shared/css/hw-global.css" />
+      <link rel="stylesheet" type="text/css" media="print" href="/shared/css/hw-print.css" />
+      <link rel="stylesheet" type="text/css" media="all"
+            href="/shared/css/standard-designs/design2/main.css" />
+      <link rel="stylesheet" type="text/css" media="all"
+            href="/publisher/css/hw-publisher-global.css" />
+      <link rel="stylesheet" type="text/css" media="all"
+            href="/local/css/hw-local-global.css" />
+      <link rel="stylesheet" type="text/css" media="all"
+            href="/local/css/hw-local-sidebars.css" />
+      <link rel="stylesheet" type="text/css" media="all"
+            href="/site/misc/css/local_styles.css" />
+      <link rel="stylesheet" type="text/css" media="all"
+            href="/shared/css/hw-page-login.css" />
+      <link rel="stylesheet" type="text/css" media="all"
+            href="/shared/css/standard-designs/design2/login-page.css" />
+      <link rel="stylesheet" type="text/css" media="all"
+            href="/publisher/css/hw-sagepub-page-login.css" /><script type="text/javascript" id="session-d95391181e1">var callbackToken='36272E55E4665E7';</script><meta content="0" name="session-search-history-count" id="session-d95391181e3" />
+      <meta content="0" name="session-marked-citation-count" id="session-d95391181e4" />
+      <meta content="" name="session-marked-citations" id="session-d95391181e5" /><script type="text/javascript" src="/shared/js/jquery-min.js"></script><script type="text/javascript" src="/shared/js/hw-shared.js"></script><script type="text/javascript" src="/publisher/js/hw-sagepub-shared.js"></script><script type="text/javascript" src="/site/misc/js/hw-publisher-custom.js"></script><script type="text/javascript" src="/shared/js/gen/local-js-settings.js"></script><script type="text/javascript" src="/shared/js/date_utils.js"></script><script type="text/javascript" src="/shared/js/catalog_client.js"></script></head>
+   <body>
+      <div class="hw-gen-page pagetype-content" id="pageid-login">
+         <div id="header-initialNav">
+            
+            
+            <div id="header-authString">
+               
+               <div class="header-authStringImgLeft"></div>
+               
+               <div id="authstring">
+                  
+                  <ul>
+                     
+                     <li><a href="/login?uri=http://jfs.sagepub.com/content/16/6/414.full.pdf+html">Sign In</a> to gain access to subscriptions and/or My Tools.
+                     </li>
+                     
+                  </ul>           
+                  
+               </div>
+               
+               <ul class="h-auth-list">
+                  
+                  
+                  <li class="first">
+                     <img height="13" width="12" alt="sign in icon" src="/publisher/icons/Signin_img.gif" />
+                     <a href="/login">Sign In</a>
+                     
+                  </li>
+                  
+                  <li class="normal">|</li>
+                  
+                  <li class="normal">
+                     <a href="http://online.sagepub.com/site/misc/tools.xhtml">My Tools</a>
+                     
+                  </li>
+                  
+                  
+                  <li class="normal">|</li>
+                  
+                  <li class="normal">
+                     <a href="/feedback">Contact Us</a>
+                     
+                  </li>
+                  
+                  <li class="normal">|</li>
+                  
+                  		
+                  <li class="last"><a href="/switch/help?fromid=pageid-login&amp;fromres=&amp;fromsite=Journal%20of%20Fire%20Sciences&amp;is-sage-open=&amp;returnurl=http%3A%2F%2Fjfs.sagepub.com%2Fcontent%2F16%2F6%2F414.full.pdf%2Bhtml">HELP</a></li>
+                  
+               </ul>
+               
+               <div class="header-authStringImgRight"></div>
+               
+            </div>
+            
+            
+            <div id="header-SJO">
+               <a href="http://online.sagepub.com">
+                  <img alt="SJO banner" src="/publisher/icons/SJO_banner.gif" />
+                  </a>
+               
+            </div>
+            
+            <div id="header-search">
+               
+               <div>
+                  
+                  
+                  <div>
+                     
+                     <form action="http://online.sagepub.com/search/results" id="portal-qs-form"
+                           method="get">
+                        <label id="header-search-label" for="header-input">Search all journals</label>
+                        <input type="hidden" name="submit" value="yes" />
+                        <input type="hidden" name="src" value="hw" />
+                        <input type="hidden" name="andorexactfulltext" value="and" />
+                        <span class="sheader_l"></span>
+                        <span class="sheader">
+                           								<input type="text" id="header-input" name="fulltext" title="Search all journals"
+                                  value="" />
+                           </span>
+                        <span class="sheader_r">
+                           <input type="image" src="/publisher/icons/srch_r.gif" alt="Link: Go" value="GO" />
+                           </span>
+                        
+                     </form>
+                     
+                  </div>
+                  
+                  <div id="header-browse">
+                     
+                     <ul>
+                        
+                        <li class="header-browseSpan headerFirst">
+                           <a href="http://online.sagepub.com/search">Advanced Search <img src="/publisher/icons/header-browseGo.gif" alt="Go" /></a>
+                           
+                        </li>
+                        
+                        <li class="header-browseSpan headerMiddle">
+                           <a href="http://online.sagepub.com/search/history ">Search History <img src="/publisher/icons/header-browseGo.gif" alt="Go" /></a>
+                           
+                        </li>
+                        
+                        
+                        <li class="header-browseSpan headerLast">
+                           <a href="http://online.sagepub.com/browse/by/title">Browse Journals <img src="/publisher/icons/header-browseGo.gif" alt="Go" /></a>
+                           
+                        </li>
+                        
+                     </ul>
+                     
+                  </div>
+                  
+               </div>
+               
+            </div>
+            
+            <div id="header-Sign">
+               
+            </div>
+            
+            
+            <div id="header-Uni">
+               		
+               
+            </div>
+            
+         </div><img src="/shared/img/pages/login/login_hit_hidden.gif?timestamp=2012-12-17T03:39:06.915-08:00"
+              id="hw-login-tracking-gif"
+              width="2"
+              height="2"
+              alt=" " /><div id="content-block">
+            <div id="hw-login-msg-box">
+               
+               
+               <div id="hw-login-msg-box-text">
+                  
+                  
+                  
+                  <div>
+                     <span>
+                        
+                        
+                        
+                        <p xmlns="">
+                           
+                           <strong>This item requires a subscription 
+                              
+                              to Journal of Fire Sciences.
+                           </strong>
+                           
+                        </p>
+                        
+                        </span>
+                     
+                  </div>
+                  
+               </div> 
+               
+            </div>
+            <div id="hw-login-item-group">
+               
+               <div id="hw-login-content-item-group">
+                  
+                  
+                  <div id="hw-login-content-item"><span id="hw-login-item-view">Full Text (PDF)</span>
+                     
+                     
+                     <div class="cit">
+                        <div class="cit-metadata"><span class="cit-first-element cit-section">Articles<span class="cit-sep cit-sep-after-article-section">:</span> </span><ul class="cit-auth-list">
+                              <li class="first-item"><span class="cit-auth cit-auth-type-author">E.R. Galea</span></li>  
+                           </ul><span class="cit-title">A General Approach to Validating Evacuation Models with an Application to EXODUS </span> <cite><span class="site-title">Journal of Fire Sciences </span><span class="cit-print-date">November 1998 </span><span class="cit-vol">16<span class="cit-sep cit-sep-after-article-vol">: </span></span><span class="cit-pages"><span class="cit-first-page">414</span><span class="cit-sep">-</span><span class="cit-last-page">436</span></span><span class="cit-sep cit-sep-after-article-pages">, </span><span class="cit-doi"><span class="cit-sep cit-sep-before-article-doi">doi:</span>10.1177/073490419801600603 </span></cite>  
+                        </div>
+                        <div class="cit-extra">
+                           <ul class="cit-views">
+                              <li class="first-item"><a href="/content/16/6/414.abstract" rel="abstract">Abstract</a></li>
+                              <li><a href="/content/16/6/414.full.pdf+html" rel="full-text.pdf">Full Text (PDF)</a></li>
+                              <li class="last-item"><a href="/content/16/6/414.refs" rel="references-only">References</a></li>
+                           </ul>  
+                        </div> 
+                     </div>
+                     
+                  </div>
+                  
+               </div>
+               
+               
+               
+            </div>
+            <div id="hw-login-instruction">To view this item, select one of the options below:</div>
+            <div id="hw-login-sign-in-group">
+               
+               <div id="hw-login-sign-in-header" class="hw-login-section-header">
+                  <img alt="*" width="9" height="15" src="/shared/img/pages/login/redtri.gif" /> 
+                  Sign In
+               </div>
+               <div class="hw-login-option-list hw-login-section-body"><strong>Already  an individual subscriber?</strong><br />
+                  If so, please sign in to SAGE Journals with your User Name and Password.
+                  
+               </div>
+               
+               <div id="hw-login-sign-in-box">
+                  
+                  <form action="/content/16/6/414.full.pdf+html" method="post"
+                        class="hw-ac-standalone-form hw-login-form">
+                     
+                     
+                     <fieldset>
+                        <input value="http://jfs.sagepub.com/content/16/6/414.short" type="hidden"
+                               name="login_referer" />
+                        
+                        <legend class="ext-legend">Sign In</legend>
+                        <span>
+                           <label for="username"> 
+                              User Name
+                              </label>
+                           <input type="text" name="username" value="" size="10" maxlength="150" tabindex="1"
+                                  id="username" />
+                           </span>
+                        
+                        <span>
+                           <label for="password">Password</label>
+                           <input type="password" name="code" value="" size="10" maxlength="25" tabindex="2"
+                                  id="password" />
+                           </span>
+                        <span class="login-submit">
+                           <input type="submit" name="signin" value="Sign In" tabindex="3" /></span>
+                        
+                        <span class="save-pwd">
+                           <input type="checkbox" name="storepwd" value="yes" id="savepwd" />
+                           <label for="savepwd">Remember my user name &amp; password.</label>
+                           </span>
+                        
+                     </fieldset>
+                     
+                     <div id="hw-login-forgot-pwd">
+                        <a href="http://online.sagepub.com/cgi/recnamepwd">Forgot</a>
+                        your user name or password?
+                        
+                     </div>
+                     
+                     <ul class="hw-login-option-list">
+                        
+                        
+                        
+                        <li>
+                           <a href="/help/subscriptions/privacy-policy#cookie-problems">Can't get past this page?</a> 
+                           
+                        </li>
+                        
+                        <li>
+                           <a href="/help/subscriptions/privacy-policy">Help with Cookies.</a> 
+                           
+                        </li>
+                        
+                        <li>
+                           <a href="/site/subscriptions">Need to Activate?</a> 
+                           
+                        </li>
+                        
+                        
+                     </ul>
+                     
+                  </form>
+                  
+               </div>
+               
+               
+               
+            </div>
+            <div id="hw-login-ppv-group" class="hw-login-extra-group">
+               
+               <div id="hw-login-ppv-header" class="hw-login-section-header"><img alt="*" width="9" height="15" src="/shared/img/pages/login/redtri.gif" /> 
+                  Purchase Short-Term Access
+               </div>
+               
+               
+               <ul id="hw-login-ppv-options" class="hw-login-option-list">
+                  
+                  <li id="hw-login-ppa-option"><a href="/cookietest?for=ppv&amp;uri=%2Fcgi%2Fsecure_ppv%3Fjcode%3Dspjfs%26resource_id%3Dspjfs%3B16%2F6%2F414%26type%3Dppv%26ppv_type%3Darticle%26url%3Dhttp%253A%252F%252Fjfs.sagepub.com%252Fcontent%252F16%252F6%252F414.full.pdf%252Bhtml">Pay per Article
+                        </a> 
+                     - You may purchase <strong>this article</strong> for US$32.00. You must download your purchase, which is yours to keep, within  <span>24 hours</span>.
+                  </li>
+                  
+                  
+                  
+                  <li id="hw-login-ppv-regain-option"><a href="/cookietest?for=ppv&amp;uri=%2Fcgi%2Fsecure_ppvregain%3Furl%3Dhttp%253A%252F%252Fjfs.sagepub.com%252Fcontent%252F16%252F6%252F414.full.pdf%252Bhtml">Regain Access</a> - You can regain 
+                     access to a recent  Pay per Article purchase  if your access 
+                     period has not yet expired.
+                  </li>
+                  
+                  
+               </ul>
+               
+               
+               
+            </div>
+            <div id="hw-login-shib-athens-group" class="hw-login-extra-group">
+               
+               
+               <div id="hw-login-openathens-header" class="hw-login-section-header"><img alt="*" width="9" height="15" src="/shared/img/pages/login/redtri.gif" />
+                  OpenAthens Users
+                  
+               </div>
+               <ul class="hw-login-option-list hw-login-section-body">
+                  
+                  <li><a href="http://openathens.highwire.org/initiate-login?returnURL=http%3A%2F%2Fjfs.sagepub.com%2Fcontent%2F16%2F6%2F414.full.pdf%2Bhtml&amp;subcode=sagepub">
+                        	        Sign in via OpenAthens
+                        	    </a>: If your organization uses OpenAthens, you can log in using your OpenAthens username and password. Contact your library for
+                     more details.
+                  </li>
+                  
+                  <li><a href="http://auth.athensams.net/orglist.php">List of OpenAthens registered sites</a>, including contact details.
+                  </li>
+                  
+               </ul>
+               <div id="hw-login-shib-athens-group" class="hw-login-extra-group">
+                  	        
+                  <div id="hw-login-shib-only-header" class="hw-login-section-header">
+                     	            <img alt="*" width="9" height="15" src="/shared/img/pages/login/redtri.gif" />
+                     	            Login via Your Institution
+                     	        
+                  </div>
+                  	        
+                  <ul class="hw-login-option-list hw-login-section-body">
+                     	            
+                     <li>
+                        	                <a href="http://online.sagepub.com/cgi/shibboleth?federation=http%3A%2F%2Fukfederation.org.uk&amp;uri=http%3A%2F%2Fjfs.sagepub.com%2Fcontent%2F16%2F6%2F414.full.pdf%2Bhtml">Login via your institution</a>
+                        	                : You may be able to gain access using your login credentials for your institution. Contact your library
+                        if you do not have a username and password.
+                        	            
+                     </li>
+                     	        
+                  </ul>
+                  
+               </div> 
+               
+            </div>
+            <div id="hw-login-sign-up-group" class="hw-login-extra-group">
+               
+               <div id="hw-login-sign-up-header" class="hw-login-section-header"><img alt="*" width="9" height="15" src="/shared/img/pages/login/redtri.gif" />
+                  Subscribe/Recommend
+               </div>
+               
+               <ul class="hw-login-option-list hw-login-section-body">
+                  
+                  <li><a href="/subscriptions">Click here</a> to subscribe to the print and/or online journal.
+                  </li>
+                  <li><a href="http://www.sagepub.com/LibraryRecForm.pdf">Click here</a> to download a Library Recommendation Form.
+                  </li>
+                  
+               </ul>
+               
+            </div>
+         </div>
+         <div id="col-2">
+            
+            <div id="articleImag"></div>
+            <div>
+               
+               <div class="header-qs-2">
+                  
+                  <form class="searchbox" action="/search/results" method="get">
+                     
+                     <div id="headerSearch">
+                        <label for="header-qs-input" id="header-qs-search-label">Search this journal</label>
+                        <span class="sbox_l"></span>
+                        <span class="sbox">
+                           <input type="text" id="header-qs-input" name="fulltext" title="Search this journal"
+                                  value="" />
+                           </span>
+                        <span class="sbox_r">
+                           <input type="image" src="/publisher/icons/srch_r.gif" alt="Link: Go" value="GO" />
+                           </span>
+                        <input type="hidden" name="submit" value="yes" />
+                        <input value="spjfs" type="hidden" name="journal_set" />
+                        <input type="hidden" name="src" value="selected" />
+                        <input type="hidden" name="andorexactfulltext" value="and" />
+                        
+                     </div>
+                     
+                     <div class="adv-search-link"><a href="/search">Advanced Journal Search »</a></div>
+                     
+                  </form>
+                  
+                  
+               </div>
+               
+               <div class="pdfNav">
+                  
+                  
+                  
+                  
+               </div>
+               
+            </div>
+            
+            <div class="content-box" id="article-cb-main">
+               <div class="cb-contents">
+                  <h3 class="cb-contents-header"><span>This Article</span></h3>
+                  <div class="cb-section cb-slug">
+                     <ol>
+                        
+                        
+                        
+                        
+                        <li>
+                           <div id="slugline">
+                              
+                              
+                              
+                              
+                              doi:
+                              <span title="10.1177/073490419801600603" class="slug-doi">10.1177/073490419801600603
+                                 </span>
+                              <cite>
+                                 <abbr title="Journal of Fire Sciences" class="slug-jnl-abbrev">
+                                    Journal of Fire Sciences</abbr><span class="slug-pub-date">
+                                    	    November 1998 
+                                    </span>
+                                 <span class="slug-vol">
+                                    vol. 16 
+                                    </span><span class="slug-issue">
+                                    no. 6 
+                                    </span><span class="slug-pages">
+                                    414-436
+                                    </span>
+                                 </cite>
+                              
+                              
+                              
+                           </div>
+                        </li>
+                        
+                        
+                        
+                     </ol>
+                  </div>
+                  <div class="cb-section cb-views">
+                     <ol>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <li><a href="/content/16/6/414.full.pdf" class="pdf-direct-link">Show PDF in full window</a></li>
+                        
+                        
+                        
+                        <li class="abstract-view-link primary"><a href="/content/16/6/414.abstract" rel="view-abstract">Abstract</a><span class="viewspecificaccesscheck spjfs;16/6/414 abstract"></span></li>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <li class="notice full-text-pdf-view-link primary"><span class="variant-indicator">» <span>Full Text (PDF)</span></span><span class="viewspecificaccesscheck spjfs;16/6/414 reprint"></span></li>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <li><a href="/content/16/6/414.refs" rel="view-references-only">References</a><span class="viewspecificaccesscheck spjfs;16/6/414 refs"></span></li>
+                        
+                        
+                        
+                        
+                        
+                        
+                     </ol>
+                  </div>
+                  <div class="cb-section collapsible" id="cb-art-svcs">
+                     <h4 class="cb-section-header"><span>Services</span></h4>
+                     <ol>
+                        
+                        
+                        
+                        
+                        
+                        <li class="mail-a-friend-link icon-link"><a href="/email?gca=spjfs;16/6/414&amp;current-view-path=/content/16/6/414.full.pdf+html">
+                              Email this article to a colleague</a></li>
+                        
+                        
+                        
+                        <li class="alert-link icon-link"><a href="/cgi/alerts/ctalert?alertType=citedby&amp;addAlert=cited_by&amp;cited_by_criteria_resid=spjfs;16/6/414&amp;saveAlert=no&amp;return-type=article&amp;return_url=http://jfs.sagepub.com/content/16/6/414.full.pdf+html">Alert me when this article is cited</a></li>
+                        <li class="alert-link icon-link"><a href="/cgi/alerts/ctalert?alertType=correction&amp;addAlert=correction&amp;correction_criteria_value=16/6/414&amp;saveAlert=no&amp;return-type=article&amp;return_url=http://jfs.sagepub.com/content/16/6/414.full.pdf+html">Alert me if a correction is posted</a></li>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <li class="similar-link"><a href="/search?qbe=spjfs;16/6/414&amp;citation=Galea%2016%20%286%29:%20414&amp;src=selected&amp;journal_set=spjfs&amp;submit=yes">Similar articles in this journal</a></li>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <li class="cit-man-link icon-link cite-link"><a href="/citmgr?gca=spjfs;16/6/414">Download to citation manager</a></li>
+                        
+                        
+                        
+                        
+                        <li><a class="request-permissions"
+                              href="https://s100.copyright.com/AppDispatchServlet?publisherName=sageuk&amp;publication=L823&amp;title=A%20General%20Approach%20to%20Validating%20Evacuation%20Models%20with%20an%20Application%20to%20EXODUS%3A&amp;publicationDate=11%2F01%2F1998&amp;author=E.R.%20Galea&amp;startPage=414&amp;contentID=10.1177%2F073490419801600603&amp;orderBeanReset=true&amp;publicationType=STM&amp;trimSize=6%20x%209%20%28229%20x%20153%29&amp;copyright=SAGE%20Publications&amp;isn=0734-9041&amp;endPage=436&amp;volumeNum=16&amp;issueNum=6&amp;article_permission=yes"
+                              rel="external-nw">Request Permissions</a></li>
+                        
+                        
+                        
+                        
+                        
+                        
+                        <li><a href="http://www.sagepub.com/journalsReprints.nav">Request Reprints</a></li>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <li><a href="/content/16/6/414.full.pdf+html?patientinform-links=yes&amp;legid=spjfs;16/6/414#patientinform-links"
+                              id="cb-patientinform">Load <em>patient</em>INFORMation</a></li>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                     </ol>
+                  </div>
+                  <div class="cb-section collapsible" id="cb-art-cit">
+                     <h4 class="cb-section-header"><span>Citing Articles</span></h4>
+                     <ol>
+                        
+                        
+                        
+                        
+                        
+                        
+                        <li><a href="/content/16/6/414.full.pdf+html?cited-by=yes&amp;legid=spjfs;16/6/414#cited-by"
+                              id="cb-hw-citing-articles">Load citing article information</a></li>
+                        
+                        
+                        
+                        
+                        <li><a href="/scopus-links/spjfs/16/6/414?access_num=/spjfs/16/6/414"
+                              rel="external-nw"
+                              id="cb-scopus-citing-articles">Citing articles via Scopus</a></li>
+                        
+                        
+                        
+                        <li><a href="/external-ref?access_num=%2Fspjfs%2F16%2F6%2F414&amp;link_type=ISI_CITING&amp;accnum_type=native"
+                              rel="external-nw"
+                              id="cb-isi-citing-articles">Citing articles via Web of Science</a></li>
+                        
+                        
+                        
+                        <li><a href="/external-ref?access_num=http://jfs.sagepub.com/content/16/6/414.abstract&amp;link_type=GOOGLESCHOLAR">Citing articles via Google Scholar</a></li>
+                        
+                        
+                        
+                     </ol>
+                  </div>
+                  <div class="cb-section collapsible" id="cb-art-gs">
+                     <h4 class="cb-section-header"><span>Google Scholar</span></h4>
+                     <ol>
+                        
+                        
+                        
+                        <li><a href="http://scholar.google.com/scholar?q=%22author%3AGalea%20author%3AE.%22">Articles by  Galea, E.</a></li>
+                        
+                        
+                        
+                        
+                        <li><a href="/external-ref?access_num=http://jfs.sagepub.com/content/16/6/414.abstract&amp;link_type=GOOGLESCHOLARRELATED">Search for related content</a></li>
+                        
+                        
+                        
+                     </ol>
+                  </div>
+                  <div class="cb-section collapsible" id="cb-art-rel">
+                     <h4 class="cb-section-header"><span>Related Content</span></h4>
+                     <ol>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <li><a href="/content/16/6/414.full.pdf+html?related-urls=yes&amp;legid=spjfs;16/6/414#related-urls"
+                              id="cb-related-urls">Load related web page information</a></li>
+                        
+                        
+                        
+                        
+                     </ol>
+                  </div>
+               </div>
+            </div>
+            
+            
+            <div class="pageNavPdf">
+               
+               <li class="first"><a href="/"><img alt="journal home" src="/publisher/icons/li-arrow-2.gif" />Journal Home</a></li>
+               
+               <li><a href="/subscriptions"><img alt="/subscriptions" src="/publisher/icons/li-arrow-2.gif" />Subscriptions</a></li>
+               
+               <li><a href="/content"><img alt="/content" src="/publisher/icons/li-arrow-2.gif" />Archive</a></li>
+               
+               <li><a href="/feedback"><img alt="feedback" src="/publisher/icons/li-arrow-2.gif" />Contact Us</a></li>
+               
+               <li class="last"><a href="/content/16/6.toc"><img alt="Table of contents" src="/publisher/icons/li-arrow-2.gif" />Table of Contents</a></li>
+               
+               
+               
+            </div>
+            
+         </div>
+         <div id="footer">
+            
+            <div class="bar">
+               
+               <div class="footer-group footer-col-left">
+                  
+                  <ul class="button-list footer-buttons">
+                     
+                     <li class="first"><a href="/" title="HOME"><span>HOME</span></a></li>
+                     
+                     
+                     <li><a href="/content" title="ALL ISSUES"><span>ALL ISSUES</span></a></li>
+                     
+                     <li><a href="/feedback" title="FEEDBACK"><span>FEEDBACK</span></a></li>
+                     
+                     <li><a href="/site/subscriptions/" title="SUBSCRIBE"><span>SUBSCRIBE</span></a></li>
+                     
+                     <li class="img-button"><a href="/rss" title="RSS "><span>RSS </span>
+                           
+                           <img src="/shared/img/common/rss.gif" alt="rss" /></a>
+                        
+                        
+                        
+                     </li>
+                     
+                     <li><a href="/cgi/alerts" title="EMAIL ALERTS"><span>EMAIL ALERTS</span></a></li>
+                     
+                     		
+                     <li class="last last"><a href="/switch/help?fromid=pageid-login&amp;fromres=&amp;fromsite=Journal%20of%20Fire%20Sciences&amp;is-sage-open=&amp;returnurl=http%3A%2F%2Fjfs.sagepub.com%2Fcontent%2F16%2F6%2F414.full.pdf%2Bhtml">HELP</a></li>
+                     
+                  </ul>
+                  
+                  <div class="copyright">
+                     <a href="/site/misc/terms.xhtml">Copyright ©
+                        2012 by SAGE Publications</a>
+                     
+                  </div>
+                  
+               </div>
+               
+               <div class="footer-group footer-col-right">
+                  
+                  <ul class="issns">
+                     
+                     <li>
+                        <span>Print ISSN: </span>
+                        <span class="issn">0734-9041</span>
+                        
+                     </li>
+                     
+                     <li>
+                        <span>Online ISSN: </span>
+                        <span class="issn">1530-8049</span>
+                        
+                     </li>
+                     
+                  </ul>
+                  
+               </div>
+               
+            </div>
+            
+            
+            <div class="block-2 sb-div"></div>
+            <script type="text/javascript"> var gaJsHost = (("https:" == document.location.protocol) ?
+      "https://ssl." : "http://www."); document.write(unescape("%3Cscript src='" + gaJsHost +
+      "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E")); </script><script type="text/javascript"> try { var pageTracker = _gat._getTracker("UA-15682863-10"); pageTracker._trackPageview(); }
+      catch(err) {} </script><script type="text/javascript"> var gaJsHost = (("https:" == document.location.protocol) ?
+      "https://ssl." : "http://www."); document.write(unescape("%3Cscript src='" + gaJsHost +
+      "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E")); </script><script type="text/javascript"> try { 
+      var pageTracker = _gat._getTracker("UA-7865995-1");
+      pageTracker._trackPageview(); } catch(err) {} </script>
+            </div><script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+        </script><script type="text/javascript">
+        try {
+        var pageTracker = _gat._getTracker("UA-189672-26");
+        pageTracker._setDomainName(".sagepub.com");
+        pageTracker._trackPageview();
+        } catch(err) {}
+        </script></div>
+   </body>
+</html>

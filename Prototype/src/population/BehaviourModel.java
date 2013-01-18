@@ -4,6 +4,7 @@
  */
 package population;
 
+import com.jme3.math.Vector3f;
 import java.util.ArrayList;
 import goal.Goal;
 /**
@@ -13,13 +14,13 @@ import goal.Goal;
 public abstract class BehaviourModel {
     private static ArrayList<Goal> goals;
     
-    public static void percieveDecideAct(Person person){
-        ArrayList<Goal> visibleGoals = scan(person);
+    public static void perceiveDecideAct(Person person){
+        ArrayList<Goal> visibleGoals = perceive(person);
         
     }
             
             
-    private static ArrayList<Goal> scan(Person person){
+    private static ArrayList<Goal> perceive(Person person){
         ArrayList<Goal> visibleGoals = new ArrayList<Goal>();
         for(Goal g : goals){
             if(person.isInLineOfSight(g.getLocation())){
@@ -30,6 +31,13 @@ public abstract class BehaviourModel {
         return visibleGoals;
     }
 
+    private static Vector3f decide(ArrayList<Goal> goals){
+        return Vector3f.ZERO;
+    }
+    
+    private void act(Person person, Vector3f goalPosition){
+        person.moveTo(goalPosition, 0.01f);
+    }
     public static ArrayList<Goal> getGoals() {
         return goals;
     }
