@@ -28,20 +28,20 @@ public class NavMeshPathfinder {
         this.navMesh = navMesh;
     }
 
-    public Vector3f getPosition() {
+    public synchronized Vector3f getPosition() {
         return currentPos3d;
     }
 
-    public void setPosition(Vector3f position) {
+    public synchronized void setPosition(Vector3f position) {
         this.currentPos3d.set(position);
         this.currentPos.set(currentPos3d.x, currentPos3d.z);
     }
 
-    public float getEntityRadius() {
+    public synchronized float getEntityRadius() {
         return entityRadius;
     }
 
-    public void setEntityRadius(float entityRadius) {
+    public synchronized void setEntityRadius(float entityRadius) {
         this.entityRadius = entityRadius;
     }
 

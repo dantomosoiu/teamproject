@@ -9,6 +9,9 @@ import com.jme3.math.FastMath;
 import com.jme3.math.Vector3f;
 import jme3tools.navmesh.NavMesh;
 import com.jme3.scene.Node;
+import goal.ExitGoal;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -31,13 +34,23 @@ public class Population implements Runnable {
     private ArrayList<LinkedList<Person>> neighbourList;
     private BoundaryComparator bComp = new BoundaryComparator();
 
-    public Population(com.jme3.scene.Node rootNode, NavMesh mesh, SimpleApplication simp) {
+    public Population(com.jme3.scene.Node rootNode, NavMesh mesh, SimpleApplication simp) throws FileNotFoundException {
         this.mesh = mesh;
         this.simp = simp;
         this.rootNode = rootNode;
+        GoalParser.parseGoals("assets/Input/Goals.csv");
+        BehaviourModel.getExits().add(new ExitGoal(new Vector3f(1f,0f,1f),0.05f));
+        BehaviourModel.getExits().add(new ExitGoal(new Vector3f(1f,0f,2f),0.05f));
+        BehaviourModel.getExits().add(new ExitGoal(new Vector3f(3.5f,0f,3.5f),0.05f));
+        for(ExitGoal exit: BehaviourModel.getExits()){
+            System.out.println("EXIT: " + exit.getLocation());
+        }
+        
+
     }
 
     public void populate(int popNumber) {
+       // GoalParser.parseGoals("/users/level3/1003819k/teamproject/Prototype/assets/Input/Goals.csv");
         people = new Person[popNumber];
         peopleThreads = new Thread[popNumber];
         for (int i = 0; i < popNumber; i++) {

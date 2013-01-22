@@ -43,6 +43,8 @@ public class Person extends NavMeshPathfinder implements Runnable {
     private MotionPath path;
     /**Control for movement of visual representation*/
     private MotionEvent motionControl;
+    
+    //Dan's Algorithm Variables
     private float surfaceArea = 1f;
 
     public float getSurfaceArea() {
@@ -92,74 +94,60 @@ public class Person extends NavMeshPathfinder implements Runnable {
         return boundary;
     }
 
-    //Collision Variables
-    private PersonCollisionControl collisionControl;
     
     public Person(NavMesh navMesh, com.jme3.scene.Node rootNode, SimpleApplication simp, Vector3f initialLocation) {
+        //Initialize Variables
         super(navMesh);
         this.rootNode = rootNode;
-
+        this.simp = simp;
         this.initialLocation = initialLocation;
-        
         this.setPosition(initialLocation);
         
+        //Create new motion pat for visual representation
         path = new MotionPath();
         path.addWayPoint(initialLocation);
-        
-        //Box box = new Box(Vector3f.ZERO, 0.2f, 0f, 0.2f);
-        //Torus box = new Torus(3, 2, 1, 1);
+
+        //Create Visual Representation
         Sphere box = new Sphere(32, 32, 0.5f);
         geom = new Geometry("Box", box);
-        mat1 = new Material(simp.getAssetManager(),
-                "Common/MatDefs/Misc/Unshaded.j3md");
+        mat1 = new Material(simp.getAssetManager(), "Common/MatDefs/Misc/Unshaded.j3md");
         mat1.setColor("Color", ColorRGBA.randomColor());
         geom.setMaterial(mat1);
         geom.setLocalTranslation(initialLocation);
-        //geom.scale(0.1f); //reduce size of shape
-        
-        collisionControl = new PersonCollisionControl(new BoxCollisionShape(new Vector3f(0.1f,0f,0.1f)));
-        geom.addControl(collisionControl);
-        
-        
         rootNode.attachChild(geom);
        
-        this.simp = simp;
-        
-        
+        //Build motionControl for visual representation 
         motionControl = new MotionEvent(geom, path);
         motionControl.setDirectionType(MotionEvent.Direction.PathAndRotation);
         motionControl.setRotation(new Quaternion().fromAngleNormalAxis(-FastMath.HALF_PI, Vector3f.UNIT_Y));
-      
-        //path.enableDebugShape(simp.getAssetManager(), rootNode);
-      
+   
     }
 
+    /**Calculates to time in seconds that an object must take to move through
+     * a motionPath at a given speed in graph units per second
+     * @param speedUnitsPerSecond magnitude of distance by which the object should move down the motionPath, in units per second
+     * @param path MotionPath to be move along
+     * */
     public float calculateMotionTime(float speedUnitsPerSecond, MotionPath path){
-        float distance = path.getLength();
-        float time = distance / speedUnitsPerSecond;
+        float distance = path.getLength(); //get the distance of the path
+        float time = distance / speedUnitsPerSecond; // t=d/v ... Produces time which movement should occur for
         return time;
     }
 	
-	@Override
+    @Override
     public void run() {
-        /*Procedure is as follows
-         * WHILE not exited
-         * scan()
-         * decide()
-         * move()
-         */
-
-        this.warp(initialLocation);
-
-        if (!computePath(Population.GOAL)) {
+        this.warp(initialLocation); //place person on the navmesh at initial location
+        Vector3f goal = BehaviourModel.getExits().get(0).getLocation();
+        System.out.println("GOAL:"+goal);
+        if (!computePath(goal) ){ //compute the path
             System.out.println("GOAL CANNOT BE REACHED"); // path cant be found
         }
 
       
-        while (!isAtGoalWaypoint()) {
+        while (!isAtGoalWaypoint()) { //while the person has nopt reached their goal
             Vector3f oldPosition = new Vector3f(this.getPosition());
             
-            this.gotoToNextWaypoint(0.1f);
+            this.gotoToNextWaypoint(0.1f); // move toward the next waypoint 
             
             Vector3f newPosition = new Vector3f(this.getPosition());
           

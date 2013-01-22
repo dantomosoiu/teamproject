@@ -1,0 +1,110 @@
+starting
+745 triangles
+************
+
+
+1/1/3
+4718triangles
+Cell Size: 0.033333335
+Cell Height: 0.04
+Min Trav. Height: 0.36
+Max Trav. Step: 0.1
+Max Trav. Slope: 30.0
+Clip Ledges: false
+Trav. Area Border Size: 0.1
+Smooth Thresh.: 2
+Use Cons. Expansion: true
+Min Unconn. Region Size: 13
+Merge Region Size: 9
+Max Edge Length: 0.1
+Edge Max Dev.: 1.0
+Max Verts/Poly: 3
+Contour Sample Dist: 1.0
+Contour Max Dev.: 0.6666667
+X range: 1.7666668
+Y range: 1.92
+Z range: 0.120000005
+
+
+************
+************
+
+
+2/2/4
+9813triangles
+Cell Size: 0.016666668
+Cell Height: 0.02
+Min Trav. Height: 0.18
+Max Trav. Step: 0.05
+Max Trav. Slope: 30.0
+Clip Ledges: false
+Trav. Area Border Size: 0.05
+Smooth Thresh.: 2
+Use Cons. Expansion: true
+Min Unconn. Region Size: 13
+Merge Region Size: 9
+Max Edge Length: 0.1
+Edge Max Dev.: 0.4
+Max Verts/Poly: 3
+Contour Sample Dist: 1.0
+Contour Max Dev.: 0.33333334
+X range: 1.9000001
+Y range: 1.9399999
+Z range: 0.58
+
+
+************
+************
+
+
+3/3/5
+5084triangles
+Cell Size: 0.016666668
+Cell Height: 0.02
+Min Trav. Height: 0.18
+Max Trav. Step: 0.05
+Max Trav. Slope: 30.0
+Clip Ledges: false
+Trav. Area Border Size: 0.05
+Smooth Thresh.: 2
+Use Cons. Expansion: true
+Min Unconn. Region Size: 13
+Merge Region Size: 9
+Max Edge Length: 0.2
+Edge Max Dev.: 0.4
+Max Verts/Poly: 3
+Contour Sample Dist: 1.0
+Contour Max Dev.: 0.33333334
+X range: 1.9000001
+Y range: 1.9399999
+Z range: 0.56
+
+
+************
+************
+
+
+3/4/8
+767triangles
+Cell Size: 0.033333335
+Cell Height: 0.04
+Min Trav. Height: 0.36
+Max Trav. Step: 0.1
+Max Trav. Slope: 30.0
+Clip Ledges: false
+Trav. Area Border Size: 0.1
+Smooth Thresh.: 2
+Use Cons. Expansion: true
+Min Unconn. Region Size: 13
+Merge Region Size: 9
+Max Edge Length: 0.7
+Edge Max Dev.: 0.05
+Max Verts/Poly: 3
+Contour Sample Dist: 1.0
+Contour Max Dev.: 0.6666667
+X range: 1.7666668
+Y range: 1.92
+Z range: 0.120000005
+
+
+************
