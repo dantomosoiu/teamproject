@@ -13,11 +13,10 @@ import goal.ExitGoal;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.Hashtable;
 import java.util.LinkedList;
-import java.util.List;
+import java.util.Random;
 
 /*
  *
@@ -31,8 +30,8 @@ public class Population implements Runnable {
     private Thread peopleThreads[];
     private com.jme3.scene.Node rootNode;
     private NavMesh mesh;
-    private ArrayList<LinkedList<Person>> neighbourList;
-    private BoundaryComparator bComp = new BoundaryComparator();
+    private ArrayList<PersonCluster> personClusterList; //list of clusters of closely positioned persons
+    private BoundaryComparator bComp = new BoundaryComparator(); //comparator used in sorting the persons based on an individual axis
 
     public Population(com.jme3.scene.Node rootNode, NavMesh mesh, SimpleApplication simp) {
         this.mesh = mesh;
@@ -49,250 +48,110 @@ public class Population implements Runnable {
     public void populate(int popNumber) {
        // GoalParser.parseGoals("/users/level3/1003819k/teamproject/Prototype/assets/Input/Goals.csv");
         people = new Person[popNumber];
+
+        ArrayList<Vector3f> personPositions = new ArrayList<Vector3f>();
+        int totalCells = mesh.getNumCells();
+        Random rand = new Random();
+
         peopleThreads = new Thread[popNumber];
+
+
         for (int i = 0; i < popNumber; i++) {
-            people[i] = new Person(mesh, rootNode, simp, new Vector3f(FastMath.nextRandomInt(-3, 3) + FastMath.nextRandomFloat(), 0, FastMath.nextRandomInt(-3, 3) + FastMath.nextRandomFloat()));
-            peopleThreads[i] = new Thread(people[i]);
+            boolean foundCandidate = false;
+            while (!foundCandidate) {
+                Vector3f candidate = mesh.getCell(rand.nextInt(totalCells)).getRandomPoint();
+                boolean overlaps = false;
+                for (Vector3f position : personPositions) {
+                    if (position.distance(candidate) < 0.02f) {
+                        overlaps = true;
+                        break;
+                    }
+                }
+                
+                if(overlaps){
+                    continue;
+                }
+                foundCandidate = true;
+                personPositions.add(candidate);
+                people[i] = new Person(mesh, rootNode, simp, candidate);
+                peopleThreads[i] = new Thread(people[i]);
+            }
+
+            //people[i] = new Person(mesh, rootNode, simp, new Vector3f(FastMath.nextRandomInt(-3, 3) + FastMath.nextRandomFloat(), 0, FastMath.nextRandomInt(-3, 3) + FastMath.nextRandomFloat()));
+            //peopleThreads[i] = new Thread(people[i]);
         }
-        neighbourList = new ArrayList<LinkedList<Person>>(popNumber);
-        //refreshNeighbourList();
+        refreshPersonClusters();
     }
-    
-    private class neighbourGroups{
-        ArrayList<LinkedList<Person>> neighbourList;
-        
-        private neighbourGroups(int length){
-            neighbourList = new ArrayList<LinkedList<Person>>(length);
+
+    private class PersonCluster {
+
+        LinkedList<Person> persons;
+        int lastSplitDimention;
+
+        private PersonCluster() {
+            this.persons = new LinkedList<Person>();
+            this.lastSplitDimention = -1;
         }
-        
+
+        private PersonCluster(int x) {
+            this.persons = new LinkedList<Person>();
+            this.lastSplitDimention = x;
+        }
     }
 
-    private void refreshNeighbourList() {
-         
-        neighbourGroups nGroup = new neighbourGroups(people.length);
-        
-        LinkedList<PersonBoundary> xSorted = new LinkedList<PersonBoundary>();
+    private void refreshPersonClusters() {
+        ArrayList<PersonCluster> newClusterList = new ArrayList<PersonCluster>();
 
-        for (Person p : people) {
-            xSorted.add(p.getBoundary((short) 0, true));
-            xSorted.add(p.getBoundary((short) 0, false));
+        PersonCluster allPersons = new PersonCluster(0);
+        allPersons.persons.addAll(Arrays.asList(people));
+
+        RDC(newClusterList, allPersons, 0);
+
+        this.personClusterList = newClusterList;
+        System.out.println(personClusterList.size());
+    }
+
+    private void RDC(ArrayList<PersonCluster> finalClusterList, PersonCluster currentCluster, int dimension) {
+        //assert (dimension > -1);
+
+        LinkedList<PersonBoundary> sortedBoundaries = new LinkedList<PersonBoundary>();
+        for (Person p : currentCluster.persons) {
+            sortedBoundaries.add(p.getBoundary((short) dimension, true)); //adds the "left" boundary of specified dimension
+            sortedBoundaries.add(p.getBoundary((short) dimension, false)); //adds the "right" boundary of specified dimension
         }
 
-        
-        
-        LinkedList<Person> group = new LinkedList<Person>();
-        ArrayList<LinkedList<Person>> xGroups = new ArrayList<LinkedList<Person>>();
-
-        Collections.sort(xSorted, bComp);
-        int groupCount = 0;
+        Collections.sort(sortedBoundaries, bComp); //sorts the list of boundaries
 
         int openCount = 0;
+        LinkedList<PersonCluster> subClusters = new LinkedList<PersonCluster>(); //will hold the clusters that were split in this recursion step
+        subClusters.add(new PersonCluster(dimension));
 
-        System.out.println("X Groups:");
-
-        for (PersonBoundary b : xSorted) {
+        for (PersonBoundary b : sortedBoundaries) {
             if (b.opening) {
                 openCount++;
-                group.add(b.person);
+                subClusters.getLast().persons.add(b.person); //there's a new person, add it to the current cluster
             } else {
                 openCount--;
-                if (openCount == 0) {
-                    xGroups.add(new LinkedList<Person>());
-                    for (Person p : group) {
-                        System.out.println("(" + groupCount + ")" + p.getPosition());
-                        xGroups.get(groupCount).add(p);
-                    }
-                    group = new LinkedList<Person>();
-                    groupCount++;
+                if (openCount == 0) { //no more persons in this clusters, create a new one
+                    subClusters.add(new PersonCluster(dimension));
                 }
             }
         }
 
-        ArrayList<LinkedList<Person>> yGroups = new ArrayList<LinkedList<Person>>();
+        subClusters.removeLast(); //remove the last (empty) cluster
 
-        groupCount = 0;
-        System.out.println("Y Groups:");
-
-        for (LinkedList<Person> currentXGroup : xGroups) {
-
-            if (currentXGroup.size() == 1) {
-                //System.out.println("(" + groupCount + ")" + currentXGroup.get(0).getPosition());
-                nGroup.neighbourList.add(currentXGroup);
-                //groupCount++;
-                continue;
+        if (subClusters.size() == 1) { //current cluster wasn't divided, check if time to end recursion
+            if ((currentCluster.lastSplitDimention + 2) % 3 == dimension) { //all 3 dimensions were tested
+                finalClusterList.add(currentCluster);
+                // return
+            } else {
+                RDC(finalClusterList, currentCluster, (dimension + 1) % 3); //test on the next dimension
             }
-
-            LinkedList<PersonBoundary> ySorted = new LinkedList<PersonBoundary>();
-
-            for (Person p : currentXGroup) {
-                ySorted.add(p.getBoundary((short) 1, true));
-                ySorted.add(p.getBoundary((short) 1, false));
-            }
-
-            Collections.sort(ySorted, bComp);
-
-            openCount = 0;
-
-            for (PersonBoundary b : ySorted) {
-                if (b.opening) {
-                    openCount++;
-                    group.add(b.person);
-                } else {
-                    openCount--;
-                    if (openCount == 0) {
-                        yGroups.add(new LinkedList<Person>());
-
-                        for (Person p : group) {
-                            System.out.println("(" + groupCount + ")" + p.getPosition());
-                            yGroups.get(groupCount).add(p);
-                        }
-                        group = new LinkedList<Person>();
-                        groupCount++;
-                    }
-                }
+        } else {
+            for (PersonCluster c : subClusters) { //for each subcluster that was split in this step, 
+                RDC(finalClusterList, c, (dimension + 1) % 3); //recurse again
             }
         }
-
-
-        ArrayList<LinkedList<Person>> zGroups = new ArrayList<LinkedList<Person>>();
-
-        groupCount = 0;
-        System.out.println("Z Groups:");
-
-        for (LinkedList<Person> currentYGroup : yGroups) {
-
-            if (currentYGroup.size() == 1) {
-                //System.out.println("(" + groupCount + ")" + currentYGroup.get(0).getPosition());
-                nGroup.neighbourList.add(currentYGroup);
-                //groupCount++;
-                continue;
-            }
-
-            LinkedList<PersonBoundary> zSorted = new LinkedList<PersonBoundary>();
-
-            for (Person p : currentYGroup) {
-                zSorted.add(p.getBoundary((short) 2, true));
-                zSorted.add(p.getBoundary((short) 2, false));
-            }
-
-            Collections.sort(zSorted, bComp);
-
-            openCount = 0;
-
-            for (PersonBoundary b : zSorted) {
-                if (b.opening) {
-                    openCount++;
-                    group.add(b.person);
-                } else {
-                    openCount--;
-                    if (openCount == 0) {
-                        zGroups.add(new LinkedList<Person>());
-
-                        for (Person p : group) {
-                            zGroups.get(groupCount).add(p);
-                            System.out.println("(" + groupCount + ")" + p.getPosition());
-                        }
-                        group = new LinkedList<Person>();
-                        groupCount++;
-                    }
-                }
-            }
-        }
-
-        ArrayList<LinkedList<Person>> XXGroups = new ArrayList<LinkedList<Person>>();
-
-        groupCount = 0;
-        System.out.println("XX Groups:");
-
-        for (LinkedList<Person> currentZGroup : zGroups) {
-
-            if (currentZGroup.size() == 1) {
-                //System.out.println("(" + groupCount + ")" + currentZGroup.get(0).getPosition());
-                nGroup.neighbourList.add(currentZGroup);
-                //groupCount++;
-                continue;
-            }
-
-            LinkedList<PersonBoundary> XXSorted = new LinkedList<PersonBoundary>();
-
-            for (Person p : currentZGroup) {
-                XXSorted.add(p.getBoundary((short) 0, true));
-                XXSorted.add(p.getBoundary((short) 0, false));
-            }
-
-            Collections.sort(XXSorted, bComp);
-
-            openCount = 0;
-
-            for (PersonBoundary b : XXSorted) {
-                if (b.opening) {
-                    openCount++;
-                    group.add(b.person);
-                } else {
-                    openCount--;
-                    if (openCount == 0) {
-                        XXGroups.add(new LinkedList<Person>());
-
-                        for (Person p : group) {
-                            XXGroups.get(groupCount).add(p);
-                            System.out.println("(" + groupCount + ")" + p.getPosition());
-                        }
-                        group = new LinkedList<Person>();
-                        groupCount++;
-                    }
-                }
-            }
-        }
-
-        ArrayList<LinkedList<Person>> YYGroups = new ArrayList<LinkedList<Person>>();
-
-        groupCount = 0;
-        System.out.println("YY Groups:");
-
-        for (LinkedList<Person> currentXXGroup : XXGroups) {
-
-            if (currentXXGroup.size() == 1) {
-                //System.out.println("(" + groupCount + ")" + currentXXGroup.get(0).getPosition());
-                nGroup.neighbourList.add(currentXXGroup);
-                //groupCount++;
-                continue;
-            }
-
-            LinkedList<PersonBoundary> YYSorted = new LinkedList<PersonBoundary>();
-
-            for (Person p : currentXXGroup) {
-                YYSorted.add(p.getBoundary((short) 1, true));
-                YYSorted.add(p.getBoundary((short) 1, false));
-            }
-
-            Collections.sort(YYSorted, bComp);
-
-            openCount = 0;
-
-            for (PersonBoundary b : YYSorted) {
-                if (b.opening) {
-                    openCount++;
-                    group.add(b.person);
-                } else {
-                    openCount--;
-                    if (openCount == 0) {
-                        YYGroups.add(new LinkedList<Person>());
-
-                        for (Person p : group) {
-                            YYGroups.get(groupCount).add(p);
-                            System.out.println("(" + groupCount + ")" + p.getPosition());
-                        }
-                        group = new LinkedList<Person>();
-                        groupCount++;
-                    }
-                }
-            }
-        }
-
-
-        nGroup.neighbourList.addAll(YYGroups);
-        
-        System.out.println(nGroup.neighbourList.size());
     }
 
     public void evacuate() {
