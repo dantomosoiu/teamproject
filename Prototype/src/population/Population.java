@@ -39,9 +39,6 @@ public class Population implements Runnable {
         this.simp = simp;
         this.rootNode = rootNode;
         GoalParser.parseGoals("assets/Input/Goals.csv");
-        BehaviourModel.getExits().add(new ExitGoal(new Vector3f(1f,0f,1f),0.05f));
-        BehaviourModel.getExits().add(new ExitGoal(new Vector3f(1f,0f,2f),0.05f));
-        BehaviourModel.getExits().add(new ExitGoal(new Vector3f(3.5f,0f,3.5f),0.05f));
         for(ExitGoal exit: BehaviourModel.getExits()){
             System.out.println("EXIT: " + exit.getLocation());
         }

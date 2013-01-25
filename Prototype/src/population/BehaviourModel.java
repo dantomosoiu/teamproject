@@ -52,6 +52,17 @@ public abstract class BehaviourModel {
     public static void setExits(ArrayList<ExitGoal> exits) {
         BehaviourModel.exits = exits;
     }
+    
+    public static Vector3f nearestExit(Vector3f personlocation){
+         //possibly improve efficiency for larger amounts of exits
+        Vector3f closeExit = exits.get(0).getLocation();
+        for(ExitGoal exit: exits){
+            if(personlocation.distance(exit.getLocation()) < personlocation.distance(closeExit)){
+                closeExit = exit.getLocation();
+            }
+        }
+        return closeExit;
+    }
 
    
 

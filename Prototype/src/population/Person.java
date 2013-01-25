@@ -120,7 +120,9 @@ public class Person extends NavMeshPathfinder implements Runnable {
         motionControl = new MotionEvent(geom, path);
         motionControl.setDirectionType(MotionEvent.Direction.PathAndRotation);
         motionControl.setRotation(new Quaternion().fromAngleNormalAxis(-FastMath.HALF_PI, Vector3f.UNIT_Y));
-   
+        
+        //Code for navmesh/visualisation syncronization of position
+        path.addListener(new PersonMovementListener(this));
     }
 
     /**Calculates to time in seconds that an object must take to move through
@@ -137,7 +139,9 @@ public class Person extends NavMeshPathfinder implements Runnable {
     @Override
     public void run() {
         this.warp(initialLocation); //place person on the navmesh at initial location
-        Vector3f goal = BehaviourModel.getExits().get(0).getLocation();
+       
+        Vector3f goal = BehaviourModel.nearestExit(initialLocation);
+      
         System.out.println("GOAL:"+goal);
         if (!computePath(goal) ){ //compute the path
             System.out.println("GOAL CANNOT BE REACHED"); // path cant be found
