@@ -244,9 +244,10 @@ public class Main extends SimpleApplication {
 	}
 
 	public void go() {
-
-		this.population = new Population(rootNode, shipNM, this);
-		int populationSize = 1;
+                try{
+                    this.population = new Population(rootNode, shipNM, this);
+                }catch(Exception e){}
+                int populationSize = 1;
 		AgentGeometries = new Geometry[populationSize];
 		population.populate(populationSize);
 
@@ -375,8 +376,10 @@ public class Main extends SimpleApplication {
         System.out.println("WAITED!!!!!!!!!!!!!!!!!!!!");
         Thread.yield();
 		 */
-
-		this.population = new Population(rootNode, shipNM, this);
+                try{
+                    this.population = new Population(rootNode, shipNM, this);
+                }catch(Exception e){}
+		
 		int populationSize = 10;
 		AgentGeometries = new Geometry[populationSize];
 		population.populate(populationSize);

@@ -22,6 +22,9 @@ import com.jme3.scene.shape.Torus;
 import jme3tools.navmesh.*;
 import jme3tools.navmesh.Path.Waypoint;
 import net.java.games.input.Component;
+import com.jme3.scene.Spatial;
+import com.jme3.cinematic.events.CinematicEvent;
+import com.jme3.cinematic.events.CinematicEventListener;
 
 /**
  * Base class representing a single person within the simulation's population.
@@ -30,7 +33,6 @@ public class Person extends NavMeshPathfinder implements Runnable {
 
   
     /**Provides visual representation of a person*/
-    private Geometry geom;
     private SimpleApplication simp;
     private com.jme3.scene.Node rootNode;
     /**Spawn location*/
@@ -43,6 +45,8 @@ public class Person extends NavMeshPathfinder implements Runnable {
     private MotionPath path;
     /**Control for movement of visual representation*/
     private MotionEvent motionControl;
+    
+    private Spatial person;
     
     //Dan's Algorithm Variables
     private float surfaceArea = 1f;
@@ -95,10 +99,10 @@ public class Person extends NavMeshPathfinder implements Runnable {
     }
 
     
-    public Person(NavMesh navMesh, com.jme3.scene.Node rootNode, SimpleApplication simp, Vector3f initialLocation) {
+    public Person(NavMesh navMesh, com.jme3.scene.Node rootNode1, SimpleApplication simp, Vector3f initialLocation) {
         //Initialize Variables
         super(navMesh);
-        this.rootNode = rootNode;
+        this.rootNode = rootNode1;
         this.simp = simp;
         this.initialLocation = initialLocation;
         this.setPosition(initialLocation);
@@ -108,18 +112,28 @@ public class Person extends NavMeshPathfinder implements Runnable {
         path.addWayPoint(initialLocation);
 
         //Create Visual Representation
-        Sphere box = new Sphere(32, 32, 0.5f);
-        geom = new Geometry("Box", box);
-        mat1 = new Material(simp.getAssetManager(), "Common/MatDefs/Misc/Unshaded.j3md");
+        person = simp.getAssetManager().loadModel("Models/Ninja/Ninja.mesh.xml");
+        Material mat_default = new Material( 
+                    simp.getAssetManager(), "Common/MatDefs/Misc/ShowNormals.j3md");
+        person.setMaterial(mat_default);
+        person.scale(0.002f);
+        person.setLocalTranslation(initialLocation);
+        mat1 = new Material(simp.getAssetManager(),
+                "Common/MatDefs/Misc/Unshaded.j3md");
         mat1.setColor("Color", ColorRGBA.randomColor());
-        geom.setMaterial(mat1);
-        geom.setLocalTranslation(initialLocation);
-        rootNode.attachChild(geom);
+        rootNode.attachChild(person);
        
         //Build motionControl for visual representation 
-        motionControl = new MotionEvent(geom, path);
+        motionControl = new MotionEvent(person, path);
         motionControl.setDirectionType(MotionEvent.Direction.PathAndRotation);
         motionControl.setRotation(new Quaternion().fromAngleNormalAxis(-FastMath.HALF_PI, Vector3f.UNIT_Y));
+//        motionControl.addListener(new CinematicEventListener(){
+//            public void onPlay(CinematicEvent cinematic){}
+//            public void onPause(CinematicEvent cinematic){}
+//            public void onStop(CinematicEvent cinematic){
+//                rootNode.detachChild(person);
+//            }
+//        });
         
         //Code for navmesh/visualisation syncronization of position
         path.addListener(new PersonMovementListener(this));
@@ -154,15 +168,6 @@ public class Person extends NavMeshPathfinder implements Runnable {
             this.gotoToNextWaypoint(0.1f); // move toward the next waypoint 
             
             Vector3f newPosition = new Vector3f(this.getPosition());
-          
-
-            
-            Sphere circle = new Sphere(30, 30, 0.05f);
-            Geometry sphereGeom = new Geometry("Sphere", circle);
-            mat1.setColor("Color", ColorRGBA.randomColor());
-            sphereGeom.setMaterial(mat1);
-            sphereGeom.move(oldPosition);
-            rootNode.attachChild(sphereGeom);
             
             Mesh lineMesh = new Mesh();
             lineMesh.setMode(Mesh.Mode.Lines);
