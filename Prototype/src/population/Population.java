@@ -34,7 +34,7 @@ public class Population implements Runnable {
     private ArrayList<LinkedList<Person>> neighbourList;
     private BoundaryComparator bComp = new BoundaryComparator();
 
-    public Population(com.jme3.scene.Node rootNode, NavMesh mesh, SimpleApplication simp) throws FileNotFoundException {
+    public Population(com.jme3.scene.Node rootNode, NavMesh mesh, SimpleApplication simp) {
         this.mesh = mesh;
         this.simp = simp;
         this.rootNode = rootNode;

@@ -200,7 +200,6 @@ public class Person extends NavMeshPathfinder implements Runnable {
     		
     	
         }
-    	warp(this.getNextWaypoint().getPosition());
     	path.addWayPoint(this.getPosition());
         path.setCurveTension(0.0f);
     }
