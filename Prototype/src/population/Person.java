@@ -49,7 +49,10 @@ public class Person extends NavMeshPathfinder implements Runnable {
     private Spatial person;
     
     //Dan's Algorithm Variables
-    private float surfaceArea = 1f;
+    
+    //this needs to be set depending on the actual value of a person's 
+    //surface area used when generating the navmesh
+    private float surfaceArea = 0.1f; 
 
     public float getSurfaceArea() {
         return surfaceArea;
@@ -160,11 +163,11 @@ public class Person extends NavMeshPathfinder implements Runnable {
         if (!computePath(goal) ){ //compute the path
             System.out.println("GOAL CANNOT BE REACHED"); // path cant be found
         }
-
-      
+        
+        System.out.println("Starting to calculate path towards goal (" + goal.toString() + ")");
         while (!isAtGoalWaypoint()) { //while the person has nopt reached their goal
             Vector3f oldPosition = new Vector3f(this.getPosition());
-            
+            System.out.println("currently at " + oldPosition.toString());
             this.gotoToNextWaypoint(0.1f); // move toward the next waypoint 
             
             Vector3f newPosition = new Vector3f(this.getPosition());
@@ -182,6 +185,7 @@ public class Person extends NavMeshPathfinder implements Runnable {
             rootNode.attachChild(lineGeometry);
             
         }
+        System.out.println("Finished");
         float speed = 1f; //in units per second
         float time = this.calculateMotionTime(speed, path);
         motionControl.setInitialDuration(time);

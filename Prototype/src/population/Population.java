@@ -31,7 +31,12 @@ public class Population implements Runnable {
     private com.jme3.scene.Node rootNode;
     private NavMesh mesh;
     private ArrayList<PersonCluster> personClusterList; //list of clusters of closely positioned persons
-    private BoundaryComparator bComp = new BoundaryComparator(); //comparator used in sorting the persons based on an individual axis
+    private BoundaryComparator bComp = new BoundaryComparator(); //comparator used in sorting the persons based on an indvidual axis
+    
+    //distance from the center of a person to the edge of its surface area.
+    //used in generating non-overlaping persons
+    //should be linked with a persons surface area
+    private float personCollisionDistance = 0.2f; 
 
     public Population(com.jme3.scene.Node rootNode, NavMesh mesh, SimpleApplication simp) {
         this.mesh = mesh;
@@ -55,14 +60,14 @@ public class Population implements Runnable {
 
         peopleThreads = new Thread[popNumber];
 
-
+        //creates the persons with randomly generated (non-overlaping) positions on the navmesh
         for (int i = 0; i < popNumber; i++) {
             boolean foundCandidate = false;
             while (!foundCandidate) {
                 Vector3f candidate = mesh.getCell(rand.nextInt(totalCells)).getRandomPoint();
                 boolean overlaps = false;
                 for (Vector3f position : personPositions) {
-                    if (position.distance(candidate) < 0.02f) {
+                    if (position.distance(candidate) < personCollisionDistance) {
                         overlaps = true;
                         break;
                     }
@@ -76,13 +81,14 @@ public class Population implements Runnable {
                 people[i] = new Person(mesh, rootNode, simp, candidate);
                 peopleThreads[i] = new Thread(people[i]);
             }
-
-            //people[i] = new Person(mesh, rootNode, simp, new Vector3f(FastMath.nextRandomInt(-3, 3) + FastMath.nextRandomFloat(), 0, FastMath.nextRandomInt(-3, 3) + FastMath.nextRandomFloat()));
-            //peopleThreads[i] = new Thread(people[i]);
         }
-        refreshPersonClusters();
+        
+        //refreshPersonClusters();
     }
-
+    
+    /**
+     * Contains a list of persons that are situated closely to each-other.
+     */
     private class PersonCluster {
 
         LinkedList<Person> persons;
@@ -98,7 +104,12 @@ public class Population implements Runnable {
             this.lastSplitDimention = x;
         }
     }
-
+    /** Refreshes the list holding the groups (clusters) holding 
+     * neighbourhoods of closely-positioned persons.
+     * This method needs to be called periodically to ensure that persons
+     * have enough informations about their current neighbourhood in order
+     * to safely avoid collisions.
+     */
     private void refreshPersonClusters() {
         ArrayList<PersonCluster> newClusterList = new ArrayList<PersonCluster>();
 
@@ -108,9 +119,15 @@ public class Population implements Runnable {
         RDC(newClusterList, allPersons, 0);
 
         this.personClusterList = newClusterList;
-        System.out.println(personClusterList.size());
+        //System.out.println(personClusterList.size());
     }
 
+    /**
+     * Recursively splits the current PersonCluster along the 3 dimensions, until no splits can be made.
+     * @param finalClusterList The list holding the final clusters of neighbours.
+     * @param currentCluster The current cluster to be tested for splitting.
+     * @param dimension The current dimension on which to check for clustering.
+     */
     private void RDC(ArrayList<PersonCluster> finalClusterList, PersonCluster currentCluster, int dimension) {
         //assert (dimension > -1);
 
