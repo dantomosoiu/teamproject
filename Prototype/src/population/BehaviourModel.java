@@ -24,16 +24,16 @@ public abstract class BehaviourModel {
     }
             
             
-    private static ArrayList<Goal> perceive(Person person){
-        ArrayList<Goal> visibleGoals = new ArrayList<Goal>();
-        for(Goal g : goals){
-            if(person.isInLineOfSight(g.getLocation())){
-                visibleGoals.add(g);
-                System.out.println(g.getLocation().toString()); //debugging line
-            }
-        }
-        return visibleGoals;
-    }
+//    private static ArrayList<Goal> perceive(Person person){
+//        ArrayList<Goal> visibleGoals = new ArrayList<Goal>();
+//        for(Goal g : goals){
+//            if(person.isInLineOfSight(g.getLocation())){
+//                visibleGoals.add(g);
+//                System.out.println(g.getLocation().toString()); //debugging line
+//            }
+//        }
+//        return visibleGoals;
+//    }
     
     
 

@@ -379,7 +379,7 @@ public class Main extends SimpleApplication {
                 try{
                     this.population = new Population(rootNode, shipNM, this);
                 }catch(Exception e){}
-		int populationSize = 10;
+		int populationSize = 20;
 		
 		AgentGeometries = new Geometry[populationSize];
 		population.populate(populationSize);

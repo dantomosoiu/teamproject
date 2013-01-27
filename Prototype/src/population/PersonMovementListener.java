@@ -18,7 +18,7 @@ public class PersonMovementListener implements MotionPathListener{
         person = p;
     }
     public void onWayPointReach(MotionEvent motionControl, int wayPointIndex) {
-        person.warp(motionControl.getSpatial().getLocalTranslation());
+       System.out.println("Person pos:" + person.getPerson().getLocalTranslation());
         
     }
     

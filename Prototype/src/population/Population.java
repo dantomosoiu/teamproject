@@ -23,8 +23,9 @@ import java.util.Random;
  * @author michael, tony, dan
  */
 public class Population implements Runnable {
-
-    public static Vector3f GOAL = new Vector3f(1f, 0f, 1f);
+    public static float DISTANCEBETWEENMOTIONWAYPOINTS = 0.01f;
+    public static float BASESPEED = 1;
+    
     private SimpleApplication simp;
     private Person people[];
     private Thread peopleThreads[];
@@ -78,7 +79,7 @@ public class Population implements Runnable {
                 }
                 foundCandidate = true;
                 personPositions.add(candidate);
-                people[i] = new Person(mesh, rootNode, simp, candidate);
+                people[i] = new Person(simp,rootNode,mesh,candidate,BASESPEED);
                 peopleThreads[i] = new Thread(people[i]);
             }
         }
@@ -116,7 +117,7 @@ public class Population implements Runnable {
         PersonCluster allPersons = new PersonCluster(0);
         allPersons.persons.addAll(Arrays.asList(people));
 
-        RDC(newClusterList, allPersons, 0);
+       // RDC(newClusterList, allPersons, 0);
 
         this.personClusterList = newClusterList;
         //System.out.println(personClusterList.size());
@@ -128,48 +129,48 @@ public class Population implements Runnable {
      * @param currentCluster The current cluster to be tested for splitting.
      * @param dimension The current dimension on which to check for clustering.
      */
-    private void RDC(ArrayList<PersonCluster> finalClusterList, PersonCluster currentCluster, int dimension) {
-        //assert (dimension > -1);
-
-        LinkedList<PersonBoundary> sortedBoundaries = new LinkedList<PersonBoundary>();
-        for (Person p : currentCluster.persons) {
-            sortedBoundaries.add(p.getBoundary((short) dimension, true)); //adds the "left" boundary of specified dimension
-            sortedBoundaries.add(p.getBoundary((short) dimension, false)); //adds the "right" boundary of specified dimension
-        }
-
-        Collections.sort(sortedBoundaries, bComp); //sorts the list of boundaries
-
-        int openCount = 0;
-        LinkedList<PersonCluster> subClusters = new LinkedList<PersonCluster>(); //will hold the clusters that were split in this recursion step
-        subClusters.add(new PersonCluster(dimension));
-
-        for (PersonBoundary b : sortedBoundaries) {
-            if (b.opening) {
-                openCount++;
-                subClusters.getLast().persons.add(b.person); //there's a new person, add it to the current cluster
-            } else {
-                openCount--;
-                if (openCount == 0) { //no more persons in this clusters, create a new one
-                    subClusters.add(new PersonCluster(dimension));
-                }
-            }
-        }
-
-        subClusters.removeLast(); //remove the last (empty) cluster
-
-        if (subClusters.size() == 1) { //current cluster wasn't divided, check if time to end recursion
-            if ((currentCluster.lastSplitDimention + 2) % 3 == dimension) { //all 3 dimensions were tested
-                finalClusterList.add(currentCluster);
-                // return
-            } else {
-                RDC(finalClusterList, currentCluster, (dimension + 1) % 3); //test on the next dimension
-            }
-        } else {
-            for (PersonCluster c : subClusters) { //for each subcluster that was split in this step, 
-                RDC(finalClusterList, c, (dimension + 1) % 3); //recurse again
-            }
-        }
-    }
+//    private void RDC(ArrayList<PersonCluster> finalClusterList, PersonCluster currentCluster, int dimension) {
+//        //assert (dimension > -1);
+//
+//        LinkedList<PersonBoundary> sortedBoundaries = new LinkedList<PersonBoundary>();
+//        for (Person p : currentCluster.persons) {
+//            sortedBoundaries.add(p.getBoundary((short) dimension, true)); //adds the "left" boundary of specified dimension
+//            sortedBoundaries.add(p.getBoundary((short) dimension, false)); //adds the "right" boundary of specified dimension
+//        }
+//
+//        Collections.sort(sortedBoundaries, bComp); //sorts the list of boundaries
+//
+//        int openCount = 0;
+//        LinkedList<PersonCluster> subClusters = new LinkedList<PersonCluster>(); //will hold the clusters that were split in this recursion step
+//        subClusters.add(new PersonCluster(dimension));
+//
+//        for (PersonBoundary b : sortedBoundaries) {
+//            if (b.opening) {
+//                openCount++;
+//                subClusters.getLast().persons.add(b.person); //there's a new person, add it to the current cluster
+//            } else {
+//                openCount--;
+//                if (openCount == 0) { //no more persons in this clusters, create a new one
+//                    subClusters.add(new PersonCluster(dimension));
+//                }
+//            }
+//        }
+//
+//        subClusters.removeLast(); //remove the last (empty) cluster
+//
+//        if (subClusters.size() == 1) { //current cluster wasn't divided, check if time to end recursion
+//            if ((currentCluster.lastSplitDimention + 2) % 3 == dimension) { //all 3 dimensions were tested
+//                finalClusterList.add(currentCluster);
+//                // return
+//            } else {
+//                RDC(finalClusterList, currentCluster, (dimension + 1) % 3); //test on the next dimension
+//            }
+//        } else {
+//            for (PersonCluster c : subClusters) { //for each subcluster that was split in this step, 
+//                RDC(finalClusterList, c, (dimension + 1) % 3); //recurse again
+//            }
+//        }
+ // }
 
     public void evacuate() {
         for (int i = 0; i < peopleThreads.length; i++) {
