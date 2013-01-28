@@ -164,15 +164,19 @@ public class Path implements Iterable<Waypoint> {
             return testPoint;
         }
 
+        Vector3f oldSlope = vantagePoint.getPosition().interpolate(testPoint.getPosition(), 1);
+        Vector3f newSlope = new Vector3f(oldSlope);
+        
         Waypoint visibleWaypoint = testPoint;
         while (testPoint != getLast()) {
             if (!owner.isInLineOfSight(vantagePoint.cell, vantagePoint.position,
-                    testPoint.position)) {
+                    testPoint.position) || oldSlope.y != newSlope.y) {
 //		System.out.println(" WAY IND was:" + i);
                 return visibleWaypoint;
             }
             visibleWaypoint = testPoint;
             testPoint = waypointList.get(++i);
+            newSlope = vantagePoint.getPosition().interpolate(testPoint.getPosition(), 1);
         }
         return testPoint;
     }

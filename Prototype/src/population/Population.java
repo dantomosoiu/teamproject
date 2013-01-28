@@ -23,7 +23,7 @@ import java.util.Random;
  * @author michael, tony, dan
  */
 public class Population implements Runnable {
-    public static float DISTANCEBETWEENMOTIONWAYPOINTS = 0.01f;
+    public static float DISTANCEBETWEENMOTIONWAYPOINTS = 0.1f;
     public static float BASESPEED = 1;
     
     private SimpleApplication simp;

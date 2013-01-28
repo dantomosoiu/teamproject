@@ -267,6 +267,8 @@ public class Main extends SimpleApplication {
 		inputManager.addMapping("play", new KeyTrigger(KeyInput.KEY_P));
 		inputManager.addListener(actionListener, "play");
 
+                this.flyCam.setMoveSpeed(this.flyCam.getMoveSpeed()*10);
+                
 		Logger.getLogger("").setLevel(Level.SEVERE);
 		//cam.setLocation(new Vector3f(-4f, 1.1f, 4f));
 		//cam.lookAtDirection(new Vector3f(0f, 1f, 0f), new Vector3f(0f, 1f, 0f));
