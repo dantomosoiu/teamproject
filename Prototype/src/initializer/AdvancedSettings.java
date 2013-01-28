@@ -4,6 +4,12 @@
  */
 package initializer;
 
+import java.awt.Dimension;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
+import java.awt.Insets;
+import java.awt.Toolkit;
+
 /**
  *
  * @author hector
@@ -15,6 +21,16 @@ public class AdvancedSettings extends javax.swing.JFrame {
      */
     public AdvancedSettings() {
         initComponents();
+        //Finds the size of the screen and item. Uses this to calculate how to position the frame in the center of the screen.
+        Toolkit kit = this.getToolkit();
+        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        GraphicsDevice[] gs = ge.getScreenDevices();
+        Insets in = kit.getScreenInsets(gs[0].getDefaultConfiguration());
+        Dimension d = kit.getScreenSize();
+        int max_width = (d.width - in.left - in.right);
+        int max_height = (d.height - in.top - in.bottom);
+        this.setSize(Math.min(max_width, 555), Math.min(max_height, 353));//whatever size you want but smaller the insets
+        this.setLocation((int) (max_width - this.getWidth()) / 2, (int) (max_height - this.getHeight()) / 2);
     }
 
     /**
