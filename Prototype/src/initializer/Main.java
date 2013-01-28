@@ -269,10 +269,10 @@ public class Main extends SimpleApplication {
 		Logger.getLogger("").setLevel(Level.SEVERE);
 		//cam.setLocation(new Vector3f(-4f, 1.1f, 4f));
 		//cam.lookAtDirection(new Vector3f(0f, 1f, 0f), new Vector3f(0f, 1f, 0f));
-		Spatial ship = assetManager.loadModel("Models/Room/Room.j3o");
+		Spatial ship = assetManager.loadModel("Models/FlatModel/FlatModel.j3o");
 
 		Node node = (Node) ship;
-		Node chil1 = (Node) node.getChildren().get(2);
+		Node chil1 = (Node) node.getChildren().get(0);
 		Geometry chil = (Geometry) chil1.getChildren().get(0);
 
 

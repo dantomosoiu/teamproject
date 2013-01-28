@@ -19,7 +19,7 @@ public class NavMeshGenerator {
     private float cellHeight = 0.1f;
     private float minTraversableHeight = 0.2f;
     private float maxTraversableStep = 0.1f;
-    private float maxTraversableSlope = 48.0f;
+    private float maxTraversableSlope = 80.0f;
     private boolean clipLedges = false;
     private float traversableAreaBorderSize = 0.03f;
     private int smoothingThreshold = 2;

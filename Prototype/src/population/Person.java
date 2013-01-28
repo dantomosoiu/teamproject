@@ -79,6 +79,7 @@ public class Person implements Runnable{
            PersonNavmeshRoutePlanner routeplan = new PersonNavmeshRoutePlanner(navmesh,initialLocation,goal);
        
             if(!routeplan.computePath(goal)){
+                System.err.println("Could not Compute path to exit");
                return;
             }
             while(!routeplan.isAtGoalWaypoint()){
