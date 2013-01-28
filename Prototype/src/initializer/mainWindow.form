@@ -204,7 +204,7 @@
               <Color blue="af" green="af" red="af" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="Loading. Please Wait..."/>
+            <Property name="text" type="java.lang.String" value="Loading, Please Wait..."/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">

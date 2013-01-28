@@ -97,7 +97,7 @@ public class mainWindow extends javax.swing.JFrame {
         loadingText.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         loadingText.setForeground(new java.awt.Color(175, 175, 175));
         loadingText.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        loadingText.setText("Loading. Please Wait...");
+        loadingText.setText("Loading, Please Wait...");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
