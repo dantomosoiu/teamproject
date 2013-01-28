@@ -91,6 +91,7 @@ public class Main extends SimpleApplication {
               window = new mainWindow();
               
               
+              
               // create new canvas application
               Main canvasApplication = new Main();
               canvasApplication.setShowSettings(false);
@@ -235,6 +236,7 @@ public class Main extends SimpleApplication {
             public void run() {
               // create new JME appsettings
               createComponents();
+              
             }
           });
             
@@ -260,6 +262,7 @@ public class Main extends SimpleApplication {
 	public void simpleInitApp() {
 
 		flyCam.setDragToRotate(true);
+                this.setDisplayStatView(false); // to hide the statistics 
 		
 		inputManager.addMapping("evac", new KeyTrigger(KeyInput.KEY_E));
 		inputManager.addListener(actionListener, "evac");
