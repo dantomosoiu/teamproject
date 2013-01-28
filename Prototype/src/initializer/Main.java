@@ -70,7 +70,7 @@ public class Main extends SimpleApplication {
 
 	public static Geometry[] AgentGeometries;
         
-        private static JFrame window;
+        private static mainWindow window;
         private static JButton settingBut;
         private static JButton helpBut;
         private static JButton playPauseBut;
@@ -84,12 +84,11 @@ public class Main extends SimpleApplication {
         
         private static void createComponents(){
             
-            AppSettings settings = new AppSettings(true);
+              AppSettings settings = new AppSettings(true);
               settings.setWidth(800);
               settings.setHeight(600);
               
-              window = new JFrame("Evacuation Simulator -- Team L");
-              window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+              window = new mainWindow();
               
               
               // create new canvas application
@@ -101,14 +100,14 @@ public class Main extends SimpleApplication {
               ctx.setSystemListener(canvasApplication);
               Dimension dim = new Dimension(800, 580);
               ctx.getCanvas().setSize(dim);
-              leftPanel = new JPanel();
-              leftPanel.add(ctx.getCanvas());
-              leftPanel.setBorder(BorderFactory.createMatteBorder(
-                                    1, 1, 1, 1, Color.BLACK));
+              //leftPanel = new JPanel();
+              
+              //leftPanel.setBorder(BorderFactory.createMatteBorder(
+              //                      1, 1, 1, 1, Color.BLACK));
 
-              JPanel container = new JPanel(new GridBagLayout());
+              /*JPanel container = new JPanel(new GridBagLayout());
               JPanel bottomPanel = new JPanel(new FlowLayout());
-              JPanel rightPanel = new JPanel(new GridBagLayout());
+              JPanel rightPanel = new JPanel(new GridBagLayout());*/
               GridBagConstraints c = new GridBagConstraints();
               c.fill = GridBagConstraints.HORIZONTAL;
               c.weightx = 1.0;
@@ -118,7 +117,9 @@ public class Main extends SimpleApplication {
               c.gridx = 0;
               c.gridy = 0;
               
+              window.setContainer(ctx.getCanvas(), c);
               
+              /*
               final ImageIcon playIcon = new ImageIcon("images/play.jpg", "Play");
               final ImageIcon pauseIcon = new ImageIcon("images/pause.jpg", "Pause");
               final ImageIcon settingIcon = new ImageIcon("images/setting.jpg", "Setting");
@@ -222,9 +223,9 @@ public class Main extends SimpleApplication {
               window.add(container);
               window.setResizable(false);
               window.pack();
-              // Display Swing window including JME canvas!
+              // Display Swing window including JME canvas!*/
               window.setVisible(true);
-              window.setLocationRelativeTo(null);
+              //window.setLocationRelativeTo(null);
               
         }
 
