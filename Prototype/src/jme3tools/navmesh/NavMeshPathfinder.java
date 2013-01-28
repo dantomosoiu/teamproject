@@ -48,9 +48,14 @@ public class NavMeshPathfinder {
     public  Vector3f warp(Vector3f newPos){
         Vector3f newPos2d = new Vector3f(newPos.x, 0, newPos.z);
         currentCell = navMesh.findClosestCell(newPos2d);
+        Vector3f oldPos = new Vector3f(currentPos3d);
         currentPos3d.set(navMesh.snapPointToCell(currentCell, newPos2d));
         currentPos3d.setY(newPos.getY());
         currentPos.set(currentPos3d.getX(), currentPos3d.getZ());
+        
+        if(oldPos.equals(currentPos3d)){
+            System.err.println("warp failed: tried to get to " + newPos.toString() + " but stuck at " + oldPos.toString());
+        }
         return currentPos3d;
     }
 

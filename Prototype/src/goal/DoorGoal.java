@@ -28,12 +28,12 @@ public class DoorGoal extends Goal{
     
       
     public Vector3f registerWithGoal(Person p){
-         noOfPeople++;
-         Vector3f personPos = p.getCurrentPos3d();
-         if(personPos.distance(sideA) < personPos.distance(sideB))
-             return sideB;
-         else
-             return sideA;
-         
+//         noOfPeople++;
+//         Vector3f personPos = p.getCurrentPos3d();
+//         if(personPos.distance(sideA) < personPos.distance(sideB))
+//             return sideB;
+//         else
+//             return sideA;
+         return null;
     }
 }

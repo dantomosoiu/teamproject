@@ -39,10 +39,21 @@ public class PersonNavmeshRoutePlanner extends NavMeshPathfinder {
     	Vector3f unitVector; 
         //while the move distance is less than the remaining distance to the next navmesh waypoint
     	while (moveDistance < getDistanceToWaypoint()) { 
+                //System.err.println(getDistanceToWaypoint());
     		unitVector = getDirectionToWaypoint(); //obtain unit vector directed from current pos to waypoint
                 //update the logical representation of position first
     		warp(this.getPosition().add(unitVector.mult(moveDistance))); //scale this vector by the move distance and move along this vector
     		//now update the visual representation by adding a waypoint to the motion control path
+                for (int i = 0; i< motionpath.getNbWayPoints(); i++){
+                    if(motionpath.getWayPoint(i).equals(this.getPosition())){
+                        motionpath.setCycle(true);
+                        break;
+                    }
+                }
+                if(motionpath.isCycle()){
+                    System.err.println("Cycle detected!");
+                    return;
+                }
                 motionpath.addWayPoint(this.getPosition());
         }
         warp(this.getNextWaypoint().getPosition());

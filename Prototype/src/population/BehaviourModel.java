@@ -18,10 +18,10 @@ public abstract class BehaviourModel {
     private static ArrayList<Goal> goals = new ArrayList<Goal>();
     private static ArrayList<ExitGoal> exits = new ArrayList<ExitGoal>();
     
-    public static void percieveDecideAct(Person person){
-        ArrayList<Goal> visibleGoals = perceive(person);
-        
-    }
+//    public static void percieveDecideAct(Person person){
+//        ArrayList<Goal> visibleGoals = perceive(person);
+//        
+//    }
             
             
 //    private static ArrayList<Goal> perceive(Person person){

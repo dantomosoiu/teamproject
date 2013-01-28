@@ -14,7 +14,7 @@ public class NavMeshGenerator {
     private org.critterai.nmgen.NavmeshGenerator nmgen;
 
     
-    //these work for the room thingie
+    //these work for the flat shit
     private float cellSize = 0.05f;
     private float cellHeight = 0.1f;
     private float minTraversableHeight = 0.2f;
@@ -24,7 +24,7 @@ public class NavMeshGenerator {
     private float traversableAreaBorderSize = 0.03f;
     private int smoothingThreshold = 2;
     private boolean useConservativeExpansion = true;
-    private int minUnconnectedRegionSize = 1;
+    private int minUnconnectedRegionSize = 3000;
     private int mergeRegionSize = 1;
     private float maxEdgeLength = 0;
     private float edgeMaxDeviation = 0.1f;
