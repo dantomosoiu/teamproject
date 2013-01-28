@@ -369,6 +369,7 @@ public class Main extends SimpleApplication {
 		helloText.setLocalTranslation(0,0,0);
 		rootNode.attachChild(helloText);
 
+                window.loadDone();
 
 
 		/*

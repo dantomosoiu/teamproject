@@ -38,8 +38,7 @@ public class mainWindow extends javax.swing.JFrame {
         int max_height = (d.height - in.top - in.bottom);
         this.setSize(Math.min(max_width, 1070), Math.min(max_height, 630));//whatever size you want but smaller the insets
         this.setLocation((int) (max_width - this.getWidth()) / 2, (int) (max_height - this.getHeight()) / 2);
-        
-        container.setBackground(Color.black);
+
         container.setMinimumSize(new Dimension(800,640));
         
     }
@@ -48,6 +47,9 @@ public class mainWindow extends javax.swing.JFrame {
         container.add(c, g);
     }
 
+    public void loadDone() {
+        container.remove(loadingText);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -56,8 +58,10 @@ public class mainWindow extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         container = new javax.swing.JPanel();
+        loadingText = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -86,18 +90,20 @@ public class mainWindow extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(1050, 610));
         setResizable(false);
 
+        container.setBackground(new java.awt.Color(1, 1, 1));
         container.setPreferredSize(new java.awt.Dimension(800, 580));
+        container.setLayout(new java.awt.GridBagLayout());
 
-        javax.swing.GroupLayout containerLayout = new javax.swing.GroupLayout(container);
-        container.setLayout(containerLayout);
-        containerLayout.setHorizontalGroup(
-            containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
-        );
-        containerLayout.setVerticalGroup(
-            containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 580, Short.MAX_VALUE)
-        );
+        loadingText.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        loadingText.setForeground(new java.awt.Color(175, 175, 175));
+        loadingText.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        loadingText.setText("Loading. Please Wait...");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(223, 295, 339, 364);
+        container.add(loadingText, gridBagConstraints);
 
         jButton1.setText("Evacuate");
 
@@ -243,9 +249,9 @@ public class mainWindow extends javax.swing.JFrame {
                                             .addComponent(jButton8))))
                                 .addGap(8, 8, 8)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton5)
-                            .addComponent(jButton3))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton3)
+                            .addComponent(jButton5))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton2)
@@ -316,5 +322,6 @@ public class mainWindow extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JSlider jSlider1;
     private javax.swing.JSpinner jSpinner1;
+    private javax.swing.JLabel loadingText;
     // End of variables declaration//GEN-END:variables
 }
