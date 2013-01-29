@@ -17,12 +17,15 @@ import com.jme3.scene.Mesh;
 import com.jme3.scene.Spatial;
 import com.jme3.scene.VertexBuffer;
 import jme3tools.navmesh.NavMesh;
+import com.jme3.cinematic.events.CinematicEvent;
+import com.jme3.cinematic.events.CinematicEventListener;
+import initializer.Main;
 
 /**
  *
  * @author michael
  */
-public class Person implements Runnable {
+public class Person implements Runnable{
 
     /**
      * Owning SimpleApplication
@@ -56,12 +59,13 @@ public class Person implements Runnable {
     private float speed;
     private float stress;
 
-    public Person(SimpleApplication simp, com.jme3.scene.Node rootNode, NavMesh navmesh, Vector3f initialLocation, float speed) {
+    public Person(SimpleApplication simp, com.jme3.scene.Node rootNode, NavMesh navmesh, Vector3f initialLocation, float speed, Population p) {
         this.simp = simp;
         this.rootNode = rootNode;
         this.navmesh = navmesh;
         this.initialLocation = initialLocation;
         this.speed = speed;
+
         //Create Visual Representation
         person = simp.getAssetManager().loadModel("Models/Ninja/Ninja.mesh.xml");
         Material mat_default = new Material(simp.getAssetManager(), "Common/MatDefs/Misc/ShowNormals.j3md");
@@ -125,10 +129,23 @@ public class Person implements Runnable {
         motionControl.setRotation(new Quaternion().fromAngleNormalAxis(-FastMath.HALF_PI, Vector3f.UNIT_Y));
         motionControl.setInitialDuration(time);
         motionControl.setSpeed(1);//note this is not the same as the movement speed for the person
-
-
+        motionControl.addListener(new CinematicEventListener(){
+            public void onPlay(CinematicEvent e){}
+            public void onPause(CinematicEvent e){}
+            public void onStop(CinematicEvent e){
+                Main.updateStatus();
+                Main.getPopulation().updateNumberOfPeople();
+            }
+        });
     }
-
+    
+//    public void onPlay(CinematicEvent e){}
+//    public void onPause(CinematicEvent e){}
+//    public synchronized void onStop(CinematicEvent e){
+//        System.out.println("done1111111111111111111111111111111111");
+//        Main.getPopulation().updateNumberOfPeople();
+//    }
+    
     public void play() {
         if (motionControl != null) {
             motionControl.play();

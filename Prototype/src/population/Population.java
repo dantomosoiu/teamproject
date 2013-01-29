@@ -33,16 +33,19 @@ public class Population implements Runnable {
     private NavMesh mesh;
     private ArrayList<PersonCluster> personClusterList; //list of clusters of closely positioned persons
     private BoundaryComparator bComp = new BoundaryComparator(); //comparator used in sorting the persons based on an indvidual axis
-    
+    private  boolean evacuationDone;
     //distance from the center of a person to the edge of its surface area.
     //used in generating non-overlaping persons
     //should be linked with a persons surface area
     private float personCollisionDistance = 0.2f; 
+    private int numEvacuated;
 
     public Population(com.jme3.scene.Node rootNode, NavMesh mesh, SimpleApplication simp) {
         this.mesh = mesh;
         this.simp = simp;
         this.rootNode = rootNode;
+        this.evacuationDone = false;
+        this.numEvacuated = 0;
         GoalParser.parseGoals("assets/Input/Goals.csv");
         for(ExitGoal exit: BehaviourModel.getExits()){
             System.out.println("EXIT: " + exit.getLocation());
@@ -79,7 +82,7 @@ public class Population implements Runnable {
                 }
                 foundCandidate = true;
                 personPositions.add(candidate);
-                people[i] = new Person(simp,rootNode,mesh,candidate,BASESPEED);
+                people[i] = new Person(simp,rootNode,mesh,candidate,BASESPEED, this);
                 peopleThreads[i] = new Thread(people[i]);
             }
         }
@@ -195,7 +198,21 @@ public class Population implements Runnable {
         //    people[i].update(tpf);
         //}
     }
+    
+    public void updateNumberOfPeople(){
+        if (++this.numEvacuated == people.length){
+            this.evacuationDone = true;
+        }
+    }
+    
+    public int getNumberOfEvacuee(){
+        return this.numEvacuated;
+    }
 
+    public boolean isDone(){
+        return this.evacuationDone;
+    }
+    
     public void run() {
     }
 }
