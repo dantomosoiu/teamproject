@@ -582,7 +582,7 @@ class SettingDlg extends JDialog{
         createDistributionPanel();
 
         container.add(tabbedPane);
-//        this.setLocationRelativeTo(null);
+        this.setLocationRelativeTo(null);
         this.setTitle("Advanced Settings");
         this.setModal(true);
         this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -594,7 +594,10 @@ class SettingDlg extends JDialog{
     }
     
     private void createDistributionPanel(){
-        distributionPanel = new JPanel(new GridBagLayout());
+        distributionPanel = new JPanel(new GridLayout());
+        
+//        JTable table = new JTable();
+        
         c = new GridBagConstraints();
         
         c.gridx = 0;
@@ -723,7 +726,7 @@ class SettingDlg extends JDialog{
         c.gridx = 2;
         populationPanel.add(new JSeparator(SwingConstants.HORIZONTAL), c);     
                 
-        c.insets = new Insets(4, 0, 0, 8);
+        c.insets = new Insets(4, 0, 5, 8);
         c.gridx = 0;
         c.gridy = 6;
         c.fill = GridBagConstraints.NONE;
