@@ -50,7 +50,6 @@ public class Main extends SimpleApplication {
     //Settings
     public static Settings set;
     
-    //boolean solid = false;
     static int m = 0, s = 0;
     public static NavMesh shipNM;
     public static Node root;
@@ -102,8 +101,8 @@ public class Main extends SimpleApplication {
     @Override
     public void simpleInitApp() {
         
-        this.setDisplayStatView(false);
-        this.setDisplayFps(set.isShowFPS());
+        this.setDisplayStatView(false); //Hides debug info
+        this.setDisplayFps(set.isShowFPS()); //Depending on settings hides FPS
         
         //Sets cam mouse controls
         flyCam.setDragToRotate(true);
@@ -111,12 +110,13 @@ public class Main extends SimpleApplication {
         inputManager.addMapping("play", new KeyTrigger(KeyInput.KEY_P));
         inputManager.addListener(actionListener, "play");
 
+        //Sets Cam speed
         this.flyCam.setMoveSpeed(set.getCamSpeed());
 
         Logger.getLogger("").setLevel(Level.SEVERE);
 
+        //Loads Model
         Spatial ship = assetManager.loadModel(set.getModelLocation());
-
         Node node = (Node) ship;
         Node chil1 = (Node) node.getChildren().get(0);
         Geometry chil = (Geometry) chil1.getChildren().get(0);
@@ -130,6 +130,7 @@ public class Main extends SimpleApplication {
 
         shipNM.loadFromMesh(optimisedMesh);
 
+        //Draws NavMesh
         if (set.isShowNavMesh()) {
             drawNavmesh();
         }
@@ -141,9 +142,6 @@ public class Main extends SimpleApplication {
         helloText.setLocalTranslation(0, 0, 0);
         rootNode.attachChild(helloText);
 
-
-
-
         try {
             population = new Population(rootNode, shipNM, this);
         } catch (Exception e) {
@@ -154,6 +152,7 @@ public class Main extends SimpleApplication {
         AgentGeometries = new Geometry[populationSize];
         population.populate(populationSize);
 
+        //Hides Loading Text
         window.loadDone();
 
     }
