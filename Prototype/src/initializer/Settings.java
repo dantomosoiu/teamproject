@@ -4,9 +4,7 @@
  */
 package initializer;
 
-import com.jme3.font.BitmapFont;
 import java.awt.Color;
-import java.awt.Dimension;
 
 /**
  *
