@@ -114,6 +114,11 @@ public class mainWindow extends javax.swing.JFrame {
         jButton1.setText("Evacuate");
 
         jButton2.setText("Populate");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText(" ");
 
@@ -293,6 +298,10 @@ public class mainWindow extends javax.swing.JFrame {
         as.setAlwaysOnTop(true);
         as.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
