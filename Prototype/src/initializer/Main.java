@@ -1,6 +1,5 @@
 package initializer;
 
-import com.bulletphysics.collision.shapes.TriangleShape;
 import com.jme3.app.SimpleApplication;
 import com.jme3.font.BitmapText;
 import com.jme3.input.KeyInput;
@@ -9,35 +8,15 @@ import com.jme3.input.controls.KeyTrigger;
 import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector3f;
-import com.jme3.renderer.RenderManager;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.Mesh;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 import com.jme3.scene.VertexBuffer;
-import com.jme3.system.AppSettings;
 import com.jme3.system.JmeCanvasContext;
-import java.awt.Color;
-import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.GridLayout;
-import java.awt.Insets;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JDialog;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JSeparator;
-import javax.swing.JSlider;
-import javax.swing.JSpinner;
-import javax.swing.JTabbedPane;
-import javax.swing.JTextField;
-import javax.swing.SpinnerNumberModel;
-import javax.swing.SwingConstants;
 import jme3tools.navmesh.NavMesh;
 import jme3tools.navmesh.util.NavMeshGenerator;
 import population.Population;
@@ -50,7 +29,6 @@ public class Main extends SimpleApplication {
     //Settings
     public static Settings set;
     
-    //boolean solid = false;
     static int m = 0, s = 0;
     public static NavMesh shipNM;
     public static Node root;
@@ -102,8 +80,8 @@ public class Main extends SimpleApplication {
     @Override
     public void simpleInitApp() {
         
-        this.setDisplayStatView(false);
-        this.setDisplayFps(set.isShowFPS());
+        this.setDisplayStatView(false); //Hides debug info
+        this.setDisplayFps(set.isShowFPS()); //Depending on settings hides FPS
         
         //Sets cam mouse controls
         flyCam.setDragToRotate(true);
@@ -111,12 +89,13 @@ public class Main extends SimpleApplication {
         inputManager.addMapping("play", new KeyTrigger(KeyInput.KEY_P));
         inputManager.addListener(actionListener, "play");
 
+        //Sets Cam speed
         this.flyCam.setMoveSpeed(set.getCamSpeed());
 
         Logger.getLogger("").setLevel(Level.SEVERE);
 
+        //Loads Model
         Spatial ship = assetManager.loadModel(set.getModelLocation());
-
         Node node = (Node) ship;
         Node chil1 = (Node) node.getChildren().get(0);
         Geometry chil = (Geometry) chil1.getChildren().get(0);
@@ -130,6 +109,7 @@ public class Main extends SimpleApplication {
 
         shipNM.loadFromMesh(optimisedMesh);
 
+        //Draws NavMesh
         if (set.isShowNavMesh()) {
             drawNavmesh();
         }
@@ -141,9 +121,6 @@ public class Main extends SimpleApplication {
         helloText.setLocalTranslation(0, 0, 0);
         rootNode.attachChild(helloText);
 
-
-
-
         try {
             population = new Population(rootNode, shipNM, this);
         } catch (Exception e) {
@@ -154,6 +131,7 @@ public class Main extends SimpleApplication {
         AgentGeometries = new Geometry[populationSize];
         population.populate(populationSize);
 
+        //Hides Loading Text
         window.loadDone();
 
     }

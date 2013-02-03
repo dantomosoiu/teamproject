@@ -5,14 +5,12 @@
 package initializer;
 
 import java.awt.Canvas;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.Toolkit;
-import javax.swing.JPanel;
 
 /**
  *
@@ -31,7 +29,7 @@ public class mainWindow extends javax.swing.JFrame {
         
         as = new AdvancedSettings();
         
-        this.setTitle("TeamL Evacuation Simulator: Glenlee, Glasgow");
+        this.setTitle("TeamL Evacuation Simulator: ");
         
         //Finds the size of the screen and item. Uses this to calculate how to position the frame in the center of the screen.
         Toolkit kit = this.getToolkit();
@@ -56,6 +54,7 @@ public class mainWindow extends javax.swing.JFrame {
         showHull.setSelected(set.isShowHullFarSide());
         camSpeed.setValue((int)Math.round(set.getCamSpeed()));
         as.update(set);
+        this.setTitle("TeamL Evacuation Simulator: " + set.getModelName());
     }
     
     public void setContainer(Canvas c) {

@@ -4,9 +4,7 @@
  */
 package initializer;
 
-import com.jme3.font.BitmapFont;
 import java.awt.Color;
-import java.awt.Dimension;
 
 /**
  *
@@ -17,6 +15,7 @@ public class Settings {
     private String modelLocation; //Location of j30 file. Should be in Models!
     private int populationNumber; //Number of people to populate model with
     private float camSpeed; //Camera move speed
+    private String modelName;
     
     //GUI Settings
     //private Dimension windowSize;
@@ -44,6 +43,7 @@ public class Settings {
         showFPS = true;
         saveSettings = true;
         hideCamPanel = false;
+        modelName = "Glenlee, Glasgow";
     }
     
     public void loadFromFile() {
@@ -155,6 +155,14 @@ public class Settings {
 
     public void setGuiFont(String guiFont) {
         this.guiFont = guiFont;
+    }
+
+    public String getModelName() {
+        return modelName;
+    }
+
+    public void setModelName(String modelName) {
+        this.modelName = modelName;
     }
     
 }
