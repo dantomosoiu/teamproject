@@ -6,23 +6,27 @@ package goal;
 
 import com.jme3.math.Vector3f;
 import population.Person;
+import population.PersonNavmeshRoutePlanner;
 
 /**
  *
  * @author 1003819k
  */
-public class ExitGoal extends Goal {
-    float clearance;
-
+public class ExitGoal extends PassableGoal {
     public ExitGoal( Vector3f location, float clearance) {
-        super(location);
-        this.clearance = clearance;
+        super(location, clearance);
+       
+    }
+    
+    public boolean isInExitProximity(PersonNavmeshRoutePlanner p){ //signifies when a person has exited
+       if(p.isInLineOfSight(this.getLocation()) && (p.getPosition().distance(this.getLocation()) <= this.clearance)){
+            noOfPeopleQueueing--;
+            return true;
+        }
+        return false;
     }
 
-    @Override
-    public Vector3f registerWithGoal(Person p) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
+    
     
     
     

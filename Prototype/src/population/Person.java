@@ -19,6 +19,7 @@ import com.jme3.scene.VertexBuffer;
 import jme3tools.navmesh.NavMesh;
 import com.jme3.cinematic.events.CinematicEvent;
 import com.jme3.cinematic.events.CinematicEventListener;
+import goal.Goal;
 import initializer.Main;
 
 /**
@@ -56,6 +57,7 @@ public class Person implements Runnable{
      * Attributes of a person
      */
     private Vector3f initialLocation;
+    private Goal currentGoal;
     private float speed;
     private float stress;
 
@@ -89,10 +91,10 @@ public class Person implements Runnable{
 
     @Override
     public void run() {
-        Vector3f goal = BehaviourModel.nearestExit(initialLocation);
-        PersonNavmeshRoutePlanner routeplan = new PersonNavmeshRoutePlanner(navmesh, initialLocation, goal);
+        currentGoal = BehaviourModel.nearestExit(initialLocation);
+        PersonNavmeshRoutePlanner routeplan = new PersonNavmeshRoutePlanner(navmesh, initialLocation, currentGoal.getLocation());
 
-        if (!routeplan.computePath(goal)) {
+        if (!routeplan.computePath(currentGoal.getLocation())) {
             System.err.println("Could not Compute path to exit");
             return;
         }
@@ -155,4 +157,21 @@ public class Person implements Runnable{
     public Spatial getPerson() {
         return person;
     }
+
+    public float getSpeed() {
+        return speed;
+    }
+
+    public float getStress() {
+        return stress;
+    }
+
+    public NavMesh getNavmesh() {
+        return navmesh;
+    }
+
+    public Goal getCurrentGoal() {
+        return currentGoal;
+    }
+
 }
