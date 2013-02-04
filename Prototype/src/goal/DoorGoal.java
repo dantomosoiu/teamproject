@@ -12,7 +12,6 @@ import population.Person;
  * @author 1003819k
  */
 public class DoorGoal extends PassableGoal{
-    private  int noOfPeople = 0;
     private  Vector3f normal;
     private  Vector3f sideA;
     private  Vector3f sideB;
@@ -25,15 +24,5 @@ public class DoorGoal extends PassableGoal{
         sideB = location.subtract(normal.mult(c));
         
     }
-    
-      
-    public Vector3f registerWithGoal(Person p){
-//         noOfPeople++;
-//         Vector3f personPos = p.getCurrentPos3d();
-//         if(personPos.distance(sideA) < personPos.distance(sideB))
-//             return sideB;
-//         else
-//             return sideA;
-         return null;
-    }
+
 }

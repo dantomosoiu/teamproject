@@ -13,8 +13,8 @@ import population.PersonNavmeshRoutePlanner;
  */
 public abstract class PassableGoal extends Goal {
     public static float QUEUEINGDISTANCE = 1f;
-    float clearance;
-    int noOfPeopleQueueing;
+    private float clearance;
+    private int noOfPeopleQueueing;
    
     PassableGoal(Vector3f location,float clearance ){
         super(location);
@@ -33,6 +33,11 @@ public abstract class PassableGoal extends Goal {
     public int getNoOfPeopleQueueing() {
         return noOfPeopleQueueing;
     }
+
+    public float getClearance() {
+        return clearance;
+    }
+    
     
     public boolean isInQueueingProximity(PersonNavmeshRoutePlanner p){
         if(p.isInLineOfSight(this.getLocation()) && (p.getPosition().distance(this.getLocation()) <= QUEUEINGDISTANCE)){
@@ -41,4 +46,11 @@ public abstract class PassableGoal extends Goal {
         return false;
     }
     
+    public void incrementNoOfPeopleQueueing(){
+        noOfPeopleQueueing++;
+    }
+    
+    public void decrementNoOfPeopleQueueing(){
+        noOfPeopleQueueing--;
+    }
 }

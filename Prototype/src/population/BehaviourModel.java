@@ -24,6 +24,7 @@ public abstract class BehaviourModel {
     
     public static void percieveDecideAct(Person person){
         PersonNavmeshRoutePlanner personOnNavmesh = new PersonNavmeshRoutePlanner(person.getNavmesh(),person.getPerson().getLocalTranslation());
+        //Check if person is moveing through an exit - if so return 
         ArrayList<Goal> visibleGoals = perceive(personOnNavmesh);
         ArrayList<ExitGoal>  visibleExits = new ArrayList<ExitGoal>();
         
