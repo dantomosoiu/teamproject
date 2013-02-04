@@ -31,7 +31,7 @@ public class Settings {
 
     
     public Settings() {
-        modelLocation = "Models/FlatModel/FlatModel.j3o";
+        modelLocation = "Models/FlatModel2/FlatModel2.j3o";
         populationNumber = 20;
         camSpeed = 10;
         showCoordinates = true;
