@@ -13,16 +13,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Random;
+import java.util.Vector;
 
 /*
  *
  * @author michael, tony, dan
  */
 public class Population implements Runnable {
-    public static float DISTANCEBETWEENMOTIONWAYPOINTS = 0.1f;
+    public static float DISTANCEBETWEENMOTIONWAYPOINTS = 0.5f;
     public static float BASESPEED = 1;
-    
-   
     
     private SimpleApplication simp;
     private Person people[];
@@ -81,6 +80,11 @@ public class Population implements Runnable {
                 }
                 foundCandidate = true;
                 personPositions.add(candidate);
+                
+                //remove this
+                //candidate = new Vector3f(-0.63556033f, -1.2945915f, 14.966727f);
+                //
+                
                 people[i] = new Person(simp,rootNode,mesh,candidate,BASESPEED, this);
                 peopleThreads[i] = new Thread(people[i]);
             }

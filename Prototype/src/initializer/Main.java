@@ -172,7 +172,7 @@ public class Main extends SimpleApplication {
                 helloText.setSize(0.05f);
                 helloText.setText(vt[0].toString());
                 helloText.setLocalTranslation(vt[0].x, vt[0].y, vt[0].z);
-                navMeshHolder.attachChild(helloText);
+                //navMeshHolder.attachChild(helloText);
             }
         }
     }

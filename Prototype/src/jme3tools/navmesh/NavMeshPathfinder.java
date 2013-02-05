@@ -28,42 +28,37 @@ public class NavMeshPathfinder {
         this.navMesh = navMesh;
     }
 
-    public synchronized Vector3f getPosition() {
+    public Vector3f getPosition() {
         return currentPos3d;
     }
 
-    public synchronized void setPosition(Vector3f position) {
+    public void setPosition(Vector3f position) {
         this.currentPos3d.set(position);
         this.currentPos.set(currentPos3d.x, currentPos3d.z);
     }
 
-    public synchronized float getEntityRadius() {
+    public float getEntityRadius() {
         return entityRadius;
     }
 
-    public synchronized void setEntityRadius(float entityRadius) {
+    public void setEntityRadius(float entityRadius) {
         this.entityRadius = entityRadius;
     }
 
-    public  Vector3f warp(Vector3f newPos){
-        //Vector3f newPos2d = new Vector3f(newPos.x, 0, newPos.z);
-        currentCell = navMesh.findClosestCell(newPos);
-        Vector3f oldPos = new Vector3f(currentPos3d);
-        currentPos3d.set(navMesh.snapPointToCell(currentCell, newPos));
+    public Vector3f warp(Vector3f newPos){
+        Vector3f newPos2d = new Vector3f(newPos.x, 0, newPos.z);
+        currentCell = navMesh.findClosestCell(newPos2d);
+        currentPos3d.set(navMesh.snapPointToCell(currentCell, newPos2d));
         currentPos3d.setY(newPos.getY());
         currentPos.set(currentPos3d.getX(), currentPos3d.getZ());
-        
-        if(oldPos.equals(currentPos3d)){
-            System.err.println("warp failed: tried to get to " + newPos.toString() + " but stuck at " + oldPos.toString());
-        }
         return currentPos3d;
     }
 
-    public synchronized boolean computePath(Vector3f goal){
+    public boolean computePath(Vector3f goal){
         goalPos3d = goal;
         goalPos = new Vector2f(goalPos3d.getX(), goalPos3d.getZ());
-        //Vector3f goalPos2d = new Vector3f(goalPos.getX(), 0, goalPos.getY());
-        goalCell = navMesh.findClosestCell(goal);
+        Vector3f goalPos2d = new Vector3f(goalPos.getX(), 0, goalPos.getY());
+        goalCell = navMesh.findClosestCell(goalPos2d);
         boolean result = navMesh.buildNavigationPath(path, currentCell, currentPos3d, goalCell, goalPos3d, entityRadius);
         if (!result){
             goalPos = null;
