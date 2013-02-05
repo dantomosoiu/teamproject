@@ -148,6 +148,8 @@ public class Person implements Runnable{
     
     public void play() {
         if (motionControl != null) {
+            motionControl.setDirectionType(MotionEvent.Direction.PathAndRotation);
+            motionControl.setRotation(new Quaternion(new float[]{0, 135, 0}));
             motionControl.play();
         }
     }

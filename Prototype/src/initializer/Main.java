@@ -40,6 +40,16 @@ import javax.swing.JDialog;
 import java.awt.GridLayout;
 import java.awt.Container;
 
+import javax.swing.event.CellEditorListener;
+import javax.swing.table.TableCellEditor;
+import javax.swing.table.AbstractTableModel;
+import java.util.EventObject;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumn;
+import javax.swing.JTable;
+import javax.swing.JScrollPane;
+import java.awt.Component;
+
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.JTabbedPane;
@@ -273,10 +283,23 @@ public class Main extends SimpleApplication {
               c.gridy = 3;
               container.add(helpBut, c);
               c.insets = new Insets(0, 0, 0, 0);
+              
+              JPanel controlPanel = new JPanel(new FlowLayout());
+              c.gridy = 4;
+              
+              title = BorderFactory.createTitledBorder("System Status");
+              controlPanel.setBorder(title);
+              JButton test = new JButton("test");
+//              controlPanel.add(new JButton("test"));
+//              controlPanel.add(test);
+//              controlPanel.add(new JButton("XXX"));
+              container.add(controlPanel, c);
 
               c.gridy = 5;
               c.gridx = 0;
               container.add(bottomPanel, c);
+              
+              
               
               window.add(container);
               window.setResizable(false);
@@ -564,6 +587,8 @@ class SettingDlg extends JDialog{
     
     //distributionPanel components
     private JSlider sldDisabled, sldInfant, sldAthlete;
+    private JTable table;
+    private DistributionModel model;
     
     private GridBagConstraints c;
     
@@ -587,54 +612,32 @@ class SettingDlg extends JDialog{
         this.setModal(true);
         this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 //        this.pack();
-        this.setSize(500, 200);
+        this.setSize(500, 210);
         this.setResizable(false);
         this.setVisible(true);
 
     }
     
     private void createDistributionPanel(){
-        distributionPanel = new JPanel(new GridBagLayout());
-        c = new GridBagConstraints();
         
-        c.gridx = 0;
-        c.gridy = 0;
-        c.anchor = c.LINE_END;
-        JLabel label = new JLabel("Disabled");
-        distributionPanel.add(label, c);
+        distributionPanel = new JPanel(new GridLayout());
         
-        c.gridx = 1;
-        sldDisabled = new JSlider(JSlider.HORIZONTAL, FPS_MIN, FPS_MAX, FPS_INIT);
-        sldDisabled.setMajorTickSpacing(20);
-        sldDisabled.setPaintTicks(true);
-        sldDisabled.setPaintLabels(true);
-        distributionPanel.add(sldDisabled, c);
+        model = new DistributionModel();
+        table = new JTable(model);
+        table.setRowHeight(40);
+        table.getTableHeader().setResizingAllowed(false);
+        table.getTableHeader().setReorderingAllowed(false);
         
-        c.gridx = 0;
-        c.gridy = 1;
-        c.anchor = c.LINE_END;
-        label = new JLabel("Infant");
-        distributionPanel.add(label, c);
+        DistributionCellRenderer renderer = new DistributionCellRenderer();
+        DistributionCellEditor editor = new DistributionCellEditor();
+        TableColumn tableColumn = table.getColumnModel().getColumn(1);
+        tableColumn.setCellRenderer(renderer);
+        tableColumn.setCellEditor(editor);
         
-        c.gridx = 1;
-        sldInfant = new JSlider(JSlider.HORIZONTAL, FPS_MIN, FPS_MAX, FPS_INIT);
-        sldInfant.setMajorTickSpacing(20);
-        sldInfant.setPaintTicks(true);
-        sldInfant.setPaintLabels(true);
-        distributionPanel.add(sldInfant, c);
         
-        c.gridx = 0;
-        c.gridy = 2;
-        c.anchor = c.LINE_END;
-        label = new JLabel("Atheletes");
-        distributionPanel.add(label, c);
-        
-        c.gridx = 1;
-        sldAthlete = new JSlider(JSlider.HORIZONTAL, FPS_MIN, FPS_MAX, FPS_INIT);
-        sldAthlete.setMajorTickSpacing(20);
-        sldAthlete.setPaintTicks(true);
-        sldAthlete.setPaintLabels(true);
-        distributionPanel.add(sldAthlete, c);
+
+        JScrollPane scrollPane = new JScrollPane(table);
+        distributionPanel.add(scrollPane);
         
         tabbedPane.addTab("Distribution", distributionPanel);
     }
@@ -654,7 +657,7 @@ class SettingDlg extends JDialog{
         JLabel label = new JLabel("Category: ");
         populationPanel.add(label, c);
         c.gridx = 1;
-        categoryCombo = new JComboBox(new Object[]{"tesdf1", "test2asdfasfsdfewr", "test3"});
+        categoryCombo = new JComboBox(new Object[]{"Atheletes", "test2asdfasfsdfewr", "test3"});
         populationPanel.add(categoryCombo, c);
         
         c.gridx = 2;
@@ -746,7 +749,153 @@ class SettingDlg extends JDialog{
     
 }
 
+class DistributionCellEditor implements TableCellEditor {
+    
+    static final int FPS_MIN = 0;
+    static final int FPS_MAX = 100;
+    
+    private JSlider slider;
+        
+	
+    public DistributionCellEditor() {
+        slider = new JSlider(JSlider.HORIZONTAL);
+        slider.setMinimum(FPS_MIN);
+        slider.setMaximum(FPS_MAX);
+        slider.setMajorTickSpacing(20);
+        slider.setPaintTicks(true);
+        slider.setPaintLabels(true);
+    }
 
+    public Object getCellEditorValue() {
+        return slider.getValue();
+    }
+    public boolean isCellEditable(EventObject anEvent) {
+        return true;
+    }
+    public boolean shouldSelectCell(EventObject anEvent) {
+        return true;
+    }
+    public boolean stopCellEditing() {
+        return true;
+    }
+    public void cancelCellEditing() {
+
+    }
+    public void addCellEditorListener(CellEditorListener l) {
+
+    }
+    public void removeCellEditorListener(CellEditorListener l) {
+    }
+    public Component getTableCellEditorComponent(JTable table, Object value,
+                    boolean isSelected, int row, int column) {
+        slider = new JSlider(JSlider.HORIZONTAL);
+        slider.setMinimum(FPS_MIN);
+        slider.setMaximum(FPS_MAX);
+        slider.setMajorTickSpacing(20);
+        slider.setPaintTicks(true);
+        slider.setPaintLabels(true);
+        slider.setValue((Integer)value);
+        
+        return slider;
+    }
+}
+
+class DistributionCellRenderer implements TableCellRenderer {
+
+    static final int FPS_MIN = 0;
+    static final int FPS_MAX = 100;
+    
+    public JSlider slider;
+    
+
+
+    public DistributionCellRenderer() {
+        slider = new JSlider(JSlider.HORIZONTAL);
+        slider.setMinimum(FPS_MIN);
+        slider.setMaximum(FPS_MAX);
+        slider.setMajorTickSpacing(20);
+        slider.setPaintTicks(true);
+        slider.setPaintLabels(true);
+    }
+
+    public Component getTableCellRendererComponent(JTable table, Object value,
+                    boolean selected, boolean focused, int row, int column) {
+        slider.setValue((Integer)value);
+        
+        return slider;
+    }
+
+}
+
+class Data{
+    
+    protected String category;
+    protected int value;
+    
+    public Data(String cat, int val){
+        this.category = cat;
+        this.value = val;
+    }
+}
+
+class DistributionModel extends AbstractTableModel {
+	public ArrayList<Data> data;
+	private static final String COL_NAMES[] = {"Category", "Value"};
+
+	public DistributionModel() {
+            data = new ArrayList<Data>();
+            setData();
+	}
+	
+	public void setData(){
+            data.add(new Data("Disabled", 20));
+            data.add(new Data("Infant", 10));
+            data.add(new Data("Old", 40));
+            data.add(new Data("Atheletes", 90));
+            data.add(new Data("Teenager", 90));
+	}
+
+	public int getColumnCount() {
+            return COL_NAMES.length;
+	}
+
+	public String getColumnName(int col) {
+            return COL_NAMES[col];
+	}
+
+	public int getRowCount() {
+            return data.size();
+	}
+
+	public Object getValueAt(int nRow, int nCol) {
+            Data row = (Data) data.get(nRow);
+            switch(nCol){
+                case 0:
+                    return row.category;
+                case 1:
+                    return row.value;
+            }
+            return "";
+	}
+
+	public boolean isCellEditable(int row, int col) {
+            if (col == 1){
+		return true;
+            }
+            return false;
+	}
+
+	public void setValueAt(Object value, int nRow, int nCol) {
+            if (nRow < 0 || nRow >= getRowCount() || value == null)
+                return;
+            Data row = (Data) data.get(nRow);
+            Data newData = (Data)value;
+            row.category = (String)newData.category;
+            row.value = (Integer)newData.value;
+            fireTableCellUpdated(nRow, nCol);
+	}
+
+}
 
 
 
