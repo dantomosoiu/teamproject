@@ -18,8 +18,6 @@ public abstract class Goal {
     public Goal(Vector3f location) {
         this.location = location;
     }
-
-    public abstract Vector3f registerWithGoal(Person p);
     
     public Vector3f getLocation() {
         return location;    

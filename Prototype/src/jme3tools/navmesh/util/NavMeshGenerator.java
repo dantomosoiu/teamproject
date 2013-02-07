@@ -15,22 +15,22 @@ public class NavMeshGenerator {
 
     
     //these work for the flat shit
-    private float cellSize = 0.05f;
-    private float cellHeight = 0.1f;
+    private float cellSize = 0.06f;
+    private float cellHeight = 0.06f;
     private float minTraversableHeight = 0.2f;
     private float maxTraversableStep = 0.1f;
-    private float maxTraversableSlope = 80.0f;
+    private float maxTraversableSlope = 50.0f;
     private boolean clipLedges = false;
-    private float traversableAreaBorderSize = 0.03f;
+    private float traversableAreaBorderSize = 0.4f;
     private int smoothingThreshold = 2;
     private boolean useConservativeExpansion = true;
-    private int minUnconnectedRegionSize = 3000;
-    private int mergeRegionSize = 1;
-    private float maxEdgeLength = 0;
-    private float edgeMaxDeviation = 0.1f;
+    private int minUnconnectedRegionSize = 2000;
+    private int mergeRegionSize = 100;
+    private float maxEdgeLength = 2;
+    private float edgeMaxDeviation = 0.02f;
     private int maxVertsPerPoly = 3;
-    private float contourSampleDistance = 1f;
-    private float contourMaxDeviation = 1f;
+    private float contourSampleDistance = 0.1f;
+    private float contourMaxDeviation = 0.1f;
 
     public NavMeshGenerator() {
     }

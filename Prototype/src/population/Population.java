@@ -5,29 +5,27 @@
 package population;
 
 import com.jme3.app.SimpleApplication;
-import com.jme3.math.FastMath;
+import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector3f;
 import jme3tools.navmesh.NavMesh;
-import com.jme3.scene.Node;
 import goal.ExitGoal;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Random;
+import java.util.Vector;
 
 /*
  *
  * @author michael, tony, dan
  */
 public class Population implements Runnable {
-    public static float DISTANCEBETWEENMOTIONWAYPOINTS = 0.1f;
+    public static float DISTANCEBETWEENMOTIONWAYPOINTS = 0.5f;
     public static float BASESPEED = 1;
     
     private SimpleApplication simp;
     private Person people[];
+    private ArrayList<PersonCategory> personCategories = new ArrayList<PersonCategory>();
     private Thread peopleThreads[];
     private com.jme3.scene.Node rootNode;
     private NavMesh mesh;
@@ -82,6 +80,11 @@ public class Population implements Runnable {
                 }
                 foundCandidate = true;
                 personPositions.add(candidate);
+                
+                //remove this
+                //candidate = new Vector3f(-0.63556033f, -1.2945915f, 14.966727f);
+                //
+                
                 people[i] = new Person(simp,rootNode,mesh,candidate,BASESPEED, this);
                 peopleThreads[i] = new Thread(people[i]);
             }
@@ -89,6 +92,16 @@ public class Population implements Runnable {
         
         //refreshPersonClusters();
     }
+    
+    public boolean addPersonCategory(String name, float minspeed, float maxspeed, float minstress, float maxstress, ColorRGBA color, int number){
+       return personCategories.add(new PersonCategory(name,minspeed,maxspeed,minstress,maxstress,color,number));
+    }
+    
+    public ArrayList<PersonCategory> returnCategories(){
+         return personCategories;
+    }
+    
+  
     
     /**
      * Contains a list of persons that are situated closely to each-other.

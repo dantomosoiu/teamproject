@@ -12,6 +12,13 @@ public class PersonNavmeshRoutePlanner extends NavMeshPathfinder {
     private Vector3f initialLocation;
     private Vector3f goalLocation;
     MotionPath motionpath;
+    
+    public PersonNavmeshRoutePlanner(NavMesh navmesh, Vector3f location){
+        super(navmesh);
+        this.initialLocation = location;
+        warp(initialLocation);
+        this.goalLocation = null;
+    }
     public PersonNavmeshRoutePlanner(NavMesh navmesh, Vector3f initialLocation, Vector3f goalLocation){
         super(navmesh);
         this.initialLocation = initialLocation;
@@ -64,5 +71,13 @@ public class PersonNavmeshRoutePlanner extends NavMeshPathfinder {
         return motionpath;
     }
      
+    @Override
+    public boolean isInLineOfSight(Vector3f point){
+        return super.isInLineOfSight(point);
+    }
      
+    public NavMesh getNavmesh(){
+        return super.getNavMesh();
+    }
+   
 }
