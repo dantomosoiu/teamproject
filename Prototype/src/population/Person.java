@@ -83,6 +83,10 @@ public class Person implements Runnable{
 
     }
 
+    /**Calculates the time a Person should take to traverse a path at a given speed
+     * @param speedUnitsPerSecond The Person's movement speed in metres per second
+     * @param motionpath The MotionPath over which the person moves
+     */
     public float calculateMotionTime(float speedUnitsPerSecond, MotionPath motionpath) {
         float distance = motionpath.getLength(); //get the distance of the motionpath
         float time = distance / speedUnitsPerSecond; // t=d/v ... Produces time which movement should occur for
@@ -141,12 +145,6 @@ public class Person implements Runnable{
         });
     }
     
-//    public void onPlay(CinematicEvent e){}
-//    public void onPause(CinematicEvent e){}
-//    public synchronized void onStop(CinematicEvent e){
-//        System.out.println("done1111111111111111111111111111111111");
-//        Main.getPopulation().updateNumberOfPeople();
-//    }
     
     public void play() {
         if (motionControl != null) {
