@@ -15,7 +15,13 @@ import javax.swing.BorderFactory;
 import javax.swing.border.TitledBorder;
 import java.awt.Color;
 import javax.swing.JTextField;
-
+import java.awt.event.MouseListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.Cursor;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.border.EtchedBorder;
 /**
  *
  * @author hector
@@ -28,6 +34,26 @@ public class mainWindow extends javax.swing.JFrame {
     /**
      * Creates new form mainWindow
      */
+    
+    MouseListener l = new MouseAdapter() {
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+            JLabel label = (JLabel)e.getComponent();
+            label.setCursor(new Cursor(Cursor.HAND_CURSOR));
+            label.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+            JLabel label = (JLabel)e.getComponent();
+            label.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+            label.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
+        }
+
+
+    };
+    
     public mainWindow() {
         initComponents();
         
@@ -46,9 +72,9 @@ public class mainWindow extends javax.swing.JFrame {
         this.setLocation((int) (max_width - this.getWidth()) / 2, (int) (max_height - this.getHeight()) / 2);
         TitledBorder title = BorderFactory.createTitledBorder("System Status");
         statusPanel.setBorder(title);
-        populationControlPanel.setBorder(BorderFactory.createTitledBorder("PopulationControlPanel"));
+        populationControlPanel.setBorder(BorderFactory.createTitledBorder("Population Panel"));
         controlPanel.setBorder(BorderFactory.createTitledBorder("Control Panel"));
-        
+        popSize.setForeground(Color.BLUE);
         timeElapsed.setForeground(Color.BLUE);
         timeElapsed.setHorizontalAlignment(JTextField.RIGHT);
 //
@@ -62,26 +88,48 @@ public class mainWindow extends javax.swing.JFrame {
         numPeople.setEditable(false);
 //        peopleEvacuated = new JTextField(4);
 //
+        cameraPosition.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Overview", "Exits", "Deck" }));
+        
         numEvacuated.setText("0");
         numEvacuated.setForeground(Color.BLUE);
         numEvacuated.setHorizontalAlignment(JTextField.RIGHT);
         numEvacuated.setEditable(false);
         numEvacuated.setBorder(BorderFactory.createEtchedBorder());
+
+//        ImageIcon icon = new ImageIcon("images/up.jpg", "up");
+        up.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
+        down.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
+        left.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
+        right.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
+        gUp.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
+        gDown.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
+        dLeft.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
+        dRight.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
+        up.setIcon(new ImageIcon("images/up.jpg", "up"));
+        up.addMouseListener(l);
+        up.setText("");
+        down.setIcon(new ImageIcon("images/down.jpg", "down"));
+        down.addMouseListener(l);
+        down.setText("");
+        left.setIcon(new ImageIcon("images/left.jpg", "left"));
+        left.addMouseListener(l);
+        left.setText("");
+        right.setIcon(new ImageIcon("images/right.jpg", "right"));
+        right.addMouseListener(l);
+        right.setText("");
+        gUp.setIcon(new ImageIcon("images/G_up.jpg"));
+        gUp.addMouseListener(l);
+        gDown.setIcon(new ImageIcon("images/G_down.jpg"));
+        gDown.addMouseListener(l);
+        gUp.setText("");
+        gDown.setText("");
         
-//        JPanel top = new JPanel(new FlowLayout());
-//        top.add(timeElapsed);
-//        top.add(new JLabel("time elapsed        "));
-//        JPanel middle = new JPanel(new FlowLayout());
-//        middle.add(numPeople);
-//        middle.add(new JLabel("number of people"));
-//        JPanel bottom = new JPanel(new FlowLayout());
-//        bottom.add(peopleEvacuated);
-//        bottom.add(new JLabel("people evacuated"));
-//        JPanel temp = new JPanel(new GridLayout(3, 1));
-//        temp.add(top);
-//        temp.add(middle);
-//        temp.add(bottom);
-////        this.statusPanel
+        dLeft.setText("");
+        dRight.setText("");
+        dLeft.setIcon(new ImageIcon("images/d_left.jpg"));
+        dRight.setIcon(new ImageIcon("images/d_right.jpg"));
+        dLeft.addMouseListener(l);
+        dRight.addMouseListener(l);
         container.setMinimumSize(new Dimension(800,640));
         
     }
@@ -155,7 +203,15 @@ public class mainWindow extends javax.swing.JFrame {
         showHull = new javax.swing.JCheckBox();
         jLabel1 = new javax.swing.JLabel();
         camSpeed = new javax.swing.JSlider();
-        jComboBox1 = new javax.swing.JComboBox();
+        cameraPosition = new javax.swing.JComboBox();
+        up = new javax.swing.JLabel();
+        down = new javax.swing.JLabel();
+        right = new javax.swing.JLabel();
+        left = new javax.swing.JLabel();
+        gUp = new javax.swing.JLabel();
+        gDown = new javax.swing.JLabel();
+        dLeft = new javax.swing.JLabel();
+        dRight = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -192,6 +248,8 @@ public class mainWindow extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
+
+        statusPanel.setPreferredSize(new java.awt.Dimension(321, 128));
 
         jLabel6.setText("number of people:");
 
@@ -271,7 +329,23 @@ public class mainWindow extends javax.swing.JFrame {
 
         jLabel1.setText("Cam Speed");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cameraPosition.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        up.setText("u");
+
+        down.setText("d");
+
+        right.setText("right");
+
+        left.setText("left");
+
+        gUp.setText("gUp");
+
+        gDown.setText("gDown");
+
+        dLeft.setText("dLeft");
+
+        dRight.setText("dRight");
 
         javax.swing.GroupLayout controlPanelLayout = new javax.swing.GroupLayout(controlPanel);
         controlPanel.setLayout(controlPanelLayout);
@@ -286,17 +360,36 @@ public class mainWindow extends javax.swing.JFrame {
                         .addComponent(showDecks)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(showHull))
+                    .addComponent(cameraPosition, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(controlPanelLayout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addGroup(controlPanelLayout.createSequentialGroup()
+                                .addGap(11, 11, 11)
+                                .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(gDown)
+                                    .addComponent(gUp))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(camSpeed, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(controlPanelLayout.createSequentialGroup()
+                                .addComponent(left)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(up)
+                                    .addComponent(down))
+                                .addGap(3, 3, 3)
+                                .addComponent(right))
+                            .addComponent(camSpeed, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+            .addGroup(controlPanelLayout.createSequentialGroup()
+                .addGap(51, 51, 51)
+                .addComponent(dLeft)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(dRight))
         );
         controlPanelLayout.setVerticalGroup(
             controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(controlPanelLayout.createSequentialGroup()
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cameraPosition, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(showNavmesh)
@@ -306,7 +399,26 @@ public class mainWindow extends javax.swing.JFrame {
                 .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1)
                     .addComponent(camSpeed, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(179, Short.MAX_VALUE))
+                .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(controlPanelLayout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(gUp)
+                        .addGap(30, 30, 30)
+                        .addComponent(gDown))
+                    .addGroup(controlPanelLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(up)
+                        .addGap(7, 7, 7)
+                        .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(right)
+                            .addComponent(left))
+                        .addGap(3, 3, 3)
+                        .addComponent(down)))
+                .addGap(18, 18, 18)
+                .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(dLeft)
+                    .addComponent(dRight))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jButton3.setText("Rte");
@@ -346,17 +458,17 @@ public class mainWindow extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(container, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(populationControlPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(statusPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(controlPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE))
-                .addGap(0, 356, Short.MAX_VALUE))
+                    .addComponent(controlPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(populationControlPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(statusPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE))
+                .addGap(0, 368, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -372,7 +484,7 @@ public class mainWindow extends javax.swing.JFrame {
                         .addComponent(statusPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(controlPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 135, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton2)
                             .addComponent(jButton1)
@@ -438,12 +550,17 @@ public class mainWindow extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JSlider camSpeed;
+    private javax.swing.JComboBox cameraPosition;
     private javax.swing.JPanel container;
     private javax.swing.JPanel controlPanel;
+    private javax.swing.JLabel dLeft;
+    private javax.swing.JLabel dRight;
+    private javax.swing.JLabel down;
+    private javax.swing.JLabel gDown;
+    private javax.swing.JLabel gUp;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -456,15 +573,18 @@ public class mainWindow extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JLabel left;
     private javax.swing.JLabel loadingText;
     private javax.swing.JTextField numEvacuated;
     private javax.swing.JTextField numPeople;
     private javax.swing.JSpinner popSize;
     private javax.swing.JPanel populationControlPanel;
+    private javax.swing.JLabel right;
     private javax.swing.JCheckBox showDecks;
     private javax.swing.JCheckBox showHull;
     private javax.swing.JCheckBox showNavmesh;
     private javax.swing.JPanel statusPanel;
     private javax.swing.JTextField timeElapsed;
+    private javax.swing.JLabel up;
     // End of variables declaration//GEN-END:variables
 }

@@ -20,7 +20,10 @@ import java.util.logging.Logger;
 import jme3tools.navmesh.NavMesh;
 import jme3tools.navmesh.util.NavMeshGenerator;
 import population.Population;
+import population.PersonCategory;
 import java.awt.Insets;
+import java.util.Map;
+import java.util.HashMap;
 
 import java.util.ArrayList;
 
@@ -53,6 +56,7 @@ import javax.swing.Timer;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import javax.swing.event.ChangeEvent;
 /**
  *
  */
@@ -182,6 +186,14 @@ public class Main extends SimpleApplication {
             population = new Population(rootNode, shipNM, this);
         } catch (Exception e) {
         }
+        PersonCategory athletes = new PersonCategory("Athletes", 2.2f, 10.0f, 5f, 7f, ColorRGBA.Blue, 5);
+        PersonCategory infants = new PersonCategory("Infant", 1f, 3f, 2f, 3f, ColorRGBA.Red, 3);
+        PersonCategory old = new PersonCategory("Old", 2f, 6f, 2f, 5f, ColorRGBA.Green, 8);
+        PersonCategory teenager = new PersonCategory("Teenager", 2.2f, 9f, 5f, 8.2f, ColorRGBA.Gray, 10);
+        population.addPersonCategoryObj(athletes);
+        population.addPersonCategoryObj(infants);
+        population.addPersonCategoryObj(old);
+        population.addPersonCategoryObj(teenager);
 
         
 
@@ -256,18 +268,24 @@ class SettingDlg extends JDialog{
     static final int FPS_INIT = 15;
     
     private Container container;
+    private ArrayList<PersonCategory> personCategories;
+    private Map<String,ColorRGBA> colorMap;
+    private PersonCategory selectedCategory;
+    
     
     // populationPanel components
     private JTabbedPane tabbedPane;
     private JTextField txtCategory;
-    private JComboBox categoryCombo;
+    private JComboBox categoryCombo, colorCombo;
+    private JTable populationTable;
     private JButton addBut, removeBut;
-    private JSpinner speedSpinner, stressSpinner, spaceSpinner, prioritySpinner;
+    private JSpinner minSpeedSpinner, maxSpeedSpinner;
+    private JSpinner minStressSpinner, maxStressSpinner;
+    private JSpinner peopleNum;
     private JPanel generalPanel, populationPanel, distributionPanel;
     
     //distributionPanel components
-    private JSlider sldDisabled, sldInfant, sldAthlete;
-    private JTable table;
+    private JTable distributionTable;
     private DistributionModel model;
     
     private GridBagConstraints c;
@@ -275,7 +293,22 @@ class SettingDlg extends JDialog{
     
     
     public SettingDlg(){
-        
+        personCategories = Main.getPopulation().returnCategories();
+        selectedCategory = personCategories.get(0);
+        colorMap = new HashMap<String,ColorRGBA>(){{
+            put("Red", ColorRGBA.Red);
+            put("Blue", ColorRGBA.Blue);
+            put("Brown", ColorRGBA.Brown);
+            put("Cyan", ColorRGBA.Cyan);
+            put("Gray", ColorRGBA.Gray);
+            put("Green", ColorRGBA.Green);
+            put("Magenta", ColorRGBA.Magenta);
+            put("Orange", ColorRGBA.Orange);
+            put("Pink", ColorRGBA.Pink);
+            put("White", ColorRGBA.White);
+            put("Yellow", ColorRGBA.Yellow);
+            
+        }};
         container = this.getContentPane();
         container.setLayout(new GridLayout(1, 1));
         tabbedPane = new JTabbedPane();
@@ -287,7 +320,7 @@ class SettingDlg extends JDialog{
         createDistributionPanel();
 
         container.add(tabbedPane);
-//        this.setLocationRelativeTo(null);
+        this.setLocationRelativeTo(null);
         this.setTitle("Advanced Settings");
         this.setModal(true);
         this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -308,28 +341,62 @@ class SettingDlg extends JDialog{
         
         distributionPanel = new JPanel(new GridLayout());
         
-        model = new DistributionModel();
-        table = new JTable(model);
-        table.setRowHeight(40);
-        table.getTableHeader().setResizingAllowed(false);
-        table.getTableHeader().setReorderingAllowed(false);
+        model = new DistributionModel(personCategories);
+        distributionTable = new JTable(model);
+        distributionTable.setRowHeight(40);
+        distributionTable.getTableHeader().setResizingAllowed(false);
+        distributionTable.getTableHeader().setReorderingAllowed(false);
         
         DistributionCellRenderer renderer = new DistributionCellRenderer();
         DistributionCellEditor editor = new DistributionCellEditor();
-        TableColumn tableColumn = table.getColumnModel().getColumn(1);
+        TableColumn tableColumn = distributionTable.getColumnModel().getColumn(1);
         tableColumn.setCellRenderer(renderer);
         tableColumn.setCellEditor(editor);
         
         
 
-        JScrollPane scrollPane = new JScrollPane(table);
+        JScrollPane scrollPane = new JScrollPane(distributionTable);
         distributionPanel.add(scrollPane);
         
         tabbedPane.addTab("Distribution", distributionPanel);
 
     }
     
+    private void setData(PersonCategory p){
+        
+        if (p != null){
+            categoryCombo.removeActionListener(l);
+            categoryCombo.removeAllItems();
+            for (String s: Main.getPopulation().getPersonCategoryNames()){
+                System.out.println(s);
+                categoryCombo.addItem(s);
+            }
+            categoryCombo.addActionListener(l);
+            selectedCategory = p;
+            for (Object s: colorMap.keySet().toArray()){
+                if (selectedCategory.getColor() == colorMap.get(s)){
+                    colorCombo.setSelectedItem(s);
+                }
+            }
+            peopleNum.setValue(selectedCategory.getNumberOfPeople());
+            minSpeedSpinner.setValue(selectedCategory.getMinspeed());
+            maxSpeedSpinner.setValue(selectedCategory.getMaxspeed());
+            minStressSpinner.setValue(selectedCategory.getMinStress());
+            maxStressSpinner.setValue(selectedCategory.getMaxStress());
+        }else{
+            selectedCategory = null;
+            peopleNum.setValue(1);
+            minSpeedSpinner.setValue(0d);
+            maxSpeedSpinner.setValue(0d);
+            minStressSpinner.setValue(0d);
+            maxStressSpinner.setValue(0d);
+        }
+        
+        
+    }
+    
     private void createPopulationPanel(){
+        
         populationPanel = new JPanel(new GridBagLayout());
         c.gridx = 0;
         c.gridy = 0;
@@ -338,69 +405,144 @@ class SettingDlg extends JDialog{
         JLabel label = new JLabel("Category: ");
         populationPanel.add(label, c);
         c.gridx = 1;
-        categoryCombo = new JComboBox(new Object[]{"Atheletes", "test2asdfasfsdfewr", "test3"});
+        c.fill = GridBagConstraints.HORIZONTAL;
+        categoryCombo = new JComboBox();
+        categoryCombo.addActionListener(l);
         populationPanel.add(categoryCombo, c);
         
         c.gridx = 2;
+        c.fill = GridBagConstraints.NONE;
         removeBut = new JButton("Remove");
+        removeBut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                personCategories.remove(selectedCategory);
+                if (personCategories.size() > 0){
+                    setData(personCategories.get(0));
+                }else{
+                    setData(null);
+                }
+            }
+        });
         populationPanel.add(removeBut, c);
         
         c.gridx = 0;
         c.gridy = 1;
-        label = new JLabel("Speed: ");
+        label = new JLabel("Color: ");
         populationPanel.add(label, c);
         
         c.gridx = 1;
         c.fill = GridBagConstraints.HORIZONTAL;
-        float value = 0.0f;
-        float min = 0.0f;
-        float max = 10.0f;
-        float step = 0.1f;
-        SpinnerNumberModel speedModel = new SpinnerNumberModel(value, min, max, step);
-        speedSpinner = new JSpinner(speedModel);
-        populationPanel.add(speedSpinner, c);
+        colorCombo = new JComboBox(colorMap.keySet().toArray());
+        colorCombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                ColorRGBA color = colorMap.get(colorCombo.getSelectedItem());
+                selectedCategory.setColor(color);
+            }
+        });
+        
+        populationPanel.add(colorCombo, c);
         
         c.gridx = 0;
         c.gridy = 2;
-        c.fill = GridBagConstraints.NONE;
-        label = new JLabel("Initial Stress: ");
+        label = new JLabel("Number of people: ");
         populationPanel.add(label, c);
         
         c.gridx = 1;
         c.fill = GridBagConstraints.HORIZONTAL;
-        SpinnerNumberModel stressModel = new SpinnerNumberModel(value, min, 100.0f, step);
-        stressSpinner = new JSpinner(stressModel);
-        populationPanel.add(stressSpinner, c);
+        peopleNum = new JSpinner(new SpinnerNumberModel(selectedCategory.getNumberOfPeople(), 1, 50, 1));
+        peopleNum.addChangeListener(new javax.swing.event.ChangeListener() {
+
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                int numOfPeople = (Integer)peopleNum.getValue();
+                selectedCategory.setNumberOfPeople(numOfPeople);
+            }
+
+        });
+        
+        populationPanel.add(peopleNum, c);
+        
         
         c.gridx = 0;
         c.gridy = 3;
-        c.fill = GridBagConstraints.NONE;
-        label = new JLabel("Personal Space(m.): ");
+        c.fill = GridBagConstraints.LINE_END;
+        label = new JLabel("Speed(min-max): ");
         populationPanel.add(label, c);
         
         c.gridx = 1;
         c.fill = GridBagConstraints.HORIZONTAL;
-        SpinnerNumberModel spaceModel = new SpinnerNumberModel(value, min, 5.0f, step);
-        spaceSpinner = new JSpinner(spaceModel);
-        populationPanel.add(spaceSpinner, c);
+        minSpeedSpinner = new JSpinner(new SpinnerNumberModel(selectedCategory.getMinspeed(),
+                                                    0.0f, 10.0f, 0.1f));
+        minSpeedSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
+
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                double minSpeed = (Double)minSpeedSpinner.getValue();
+                selectedCategory.setMinspeed(minSpeed);
+            }
+
+        });
+        
+        populationPanel.add(minSpeedSpinner, c);
+        
+        c.gridx = 2;
+        maxSpeedSpinner = new JSpinner(new SpinnerNumberModel(selectedCategory.getMaxspeed(),
+                                                        0.0f, 10.0f, 0.1f));
+        maxSpeedSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
+
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                double maxSpeed = (Double)maxSpeedSpinner.getValue();
+                selectedCategory.setMaxspeed(maxSpeed);
+            }
+
+        });
+        
+        populationPanel.add(maxSpeedSpinner, c);
         
         c.gridx = 0;
         c.gridy = 4;
-        c.fill = GridBagConstraints.NONE;
-        label = new JLabel("Social Priority: ");
+        c.fill = GridBagConstraints.LINE_END;
+        
+        label = new JLabel("Stress(min-max): ");
         populationPanel.add(label, c);
         
         c.gridx = 1;
-        c.gridy = 4;
         c.fill = GridBagConstraints.HORIZONTAL;
-        SpinnerNumberModel priorityModel = new SpinnerNumberModel(value, min, 1.0f, step);
-        prioritySpinner = new JSpinner(priorityModel);
-        populationPanel.add(prioritySpinner, c);
+        minStressSpinner = new JSpinner(new SpinnerNumberModel(selectedCategory.getMinStress(),
+                                                    0.0f, 10.0f, 0.1f));
+        minStressSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
+
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                double minStress = (Double)minStressSpinner.getValue();
+                selectedCategory.setMinStress(minStress);
+            }
+
+        });
+        
+        populationPanel.add(minStressSpinner, c);
+        
+        c.gridx = 2;
+        maxStressSpinner = new JSpinner(new SpinnerNumberModel(selectedCategory.getMaxStress(),
+                                                        0.0f, 10.0f, 0.1f));
+        maxStressSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
+
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                double maxStress = (Double)maxStressSpinner.getValue();
+                selectedCategory.setMaxStress(maxStress);
+            }
+
+        });
+        
+        populationPanel.add(maxStressSpinner, c);
         
         c.gridx = 0;
         c.gridy = 5;
+        
         c.insets = new Insets(10, 0, 0, 0);
-        txtCategory = new JTextField(10);
+        txtCategory = new JTextField(5);
         populationPanel.add(new JSeparator(SwingConstants.HORIZONTAL), c);
         c.gridx = 1;
         populationPanel.add(new JSeparator(SwingConstants.HORIZONTAL), c);
@@ -421,10 +563,35 @@ class SettingDlg extends JDialog{
         
         c.gridx = 2;
         addBut = new JButton("Add");
+        addBut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                if (txtCategory.getText().equals("")){
+                    return ;
+                }
+                String categoryName = txtCategory.getText();                
+                PersonCategory p = new PersonCategory(categoryName, 0d, 0d, 0d, 0d, ColorRGBA.Blue, 1);
+                personCategories.add(0, p);
+                setData(p);
+                txtCategory.setText("");
+            }
+        });
         populationPanel.add(addBut, c);
+        
+        setData(selectedCategory);
 
         tabbedPane.addTab("Population", populationPanel);
     }
+    
+    private java.awt.event.ActionListener l = new java.awt.event.ActionListener() {
+        public void actionPerformed(ActionEvent evt) {
+            for (PersonCategory p: personCategories){
+                if (p.getName().equals(categoryCombo.getSelectedItem())){
+                    setData(p);
+                }
+            }
+        }
+    };
+    
 }
 
 class DistributionCellEditor implements TableCellEditor {
@@ -505,32 +672,12 @@ class DistributionCellRenderer implements TableCellRenderer {
 
 }
 
-class Data{
-    
-    protected String category;
-    protected int value;
-    
-    public Data(String cat, int val){
-        this.category = cat;
-        this.value = val;
-    }
-}
-
 class DistributionModel extends AbstractTableModel {
-	public ArrayList<Data> data;
-	private static final String COL_NAMES[] = {"Category", "Value"};
+	public ArrayList<PersonCategory> data;
+	private static final String COL_NAMES[] = {"Category", "%"};
 
-	public DistributionModel() {
-            data = new ArrayList<Data>();
-            setData();
-	}
-	
-	public void setData(){
-            data.add(new Data("Disabled", 20));
-            data.add(new Data("Infant", 10));
-            data.add(new Data("Old", 40));
-            data.add(new Data("Atheletes", 90));
-            data.add(new Data("Teenager", 90));
+	public DistributionModel(ArrayList<PersonCategory> arr) {
+            data = arr;
 	}
 
 	public int getColumnCount() {
@@ -546,12 +693,12 @@ class DistributionModel extends AbstractTableModel {
 	}
 
 	public Object getValueAt(int nRow, int nCol) {
-            Data row = (Data) data.get(nRow);
+            PersonCategory row = (PersonCategory) data.get(nRow);
             switch(nCol){
                 case 0:
-                    return row.category;
+                    return row.getName();
                 case 1:
-                    return row.value;
+                    return row.getNumberOfPeople();
             }
             return "";
 	}
@@ -566,11 +713,9 @@ class DistributionModel extends AbstractTableModel {
 	public void setValueAt(Object value, int nRow, int nCol) {
             if (nRow < 0 || nRow >= getRowCount() || value == null)
                 return;
-            Data row = (Data) data.get(nRow);
-            Data newData = (Data)value;
-            row.category = (String)newData.category;
-            row.value = (Integer)newData.value;
-            fireTableCellUpdated(nRow, nCol);
+//            PersonCategory row = (PersonCategory) data.get(nRow);
+//            PersonCategory newData = (PersonCategory)value;
+//            row.value = (Integer)newData.value;
+//            fireTableCellUpdated(nRow, nCol);
 	}
-
 }
