@@ -142,6 +142,9 @@ public class Main extends SimpleApplication {
 
         inputManager.addMapping("play", new KeyTrigger(KeyInput.KEY_P));
         inputManager.addListener(actionListener, "play");
+        
+        inputManager.addMapping("route", new KeyTrigger(KeyInput.KEY_R));
+        inputManager.addListener(actionListener, "route");
 
         //Sets Cam speed
         this.flyCam.setMoveSpeed(set.getCamSpeed());
@@ -236,9 +239,11 @@ public class Main extends SimpleApplication {
         @Override
         public void onAction(String name, boolean pressed, float tpf) {
             if (name.equals("play") && !pressed) {
-                population.evacuate();
                 population.play();
                 timer.start();
+            }
+            else if (name.equals("route") && !pressed) {
+                population.evacuate();
             }
         }
     };
