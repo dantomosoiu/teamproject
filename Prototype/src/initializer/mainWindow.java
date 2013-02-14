@@ -32,6 +32,7 @@ public class mainWindow extends javax.swing.JFrame {
         initComponents();
         
         
+        
         this.setTitle("TeamL Evacuation Simulator: ");
         
         //Finds the size of the screen and item. Uses this to calculate how to position the frame in the center of the screen.
@@ -99,7 +100,9 @@ public class mainWindow extends javax.swing.JFrame {
         numPeople.setText("" + n);
     }
     
-    
+    public void updateCanvas() {
+        
+    }
     
     public void update(Settings s) {
         set = s;
@@ -372,7 +375,7 @@ public class mainWindow extends javax.swing.JFrame {
                         .addComponent(statusPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(controlPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton2)
                             .addComponent(jButton1)

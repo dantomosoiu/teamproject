@@ -59,7 +59,7 @@ import java.awt.event.WindowEvent;
 public class Main extends SimpleApplication {
     
     //Settings
-    public static Settings set;
+    public static Settings settings;
     
     static int m = 0, s = 0;
     private static Timer timer;
@@ -90,7 +90,7 @@ public class Main extends SimpleApplication {
         Dimension dim = new Dimension(800, 580);
         ctx.getCanvas().setSize(dim);
         //Sets the canvas in the panel on the JFrame
-        populationSize = set.getPopulationNumber();
+        populationSize = settings.getPopulationNumber();
         window.setContainer(ctx.getCanvas());
         window.setNumOfPeople(populationSize);
         timer = new Timer(1000, new java.awt.event.ActionListener() {
@@ -117,11 +117,11 @@ public class Main extends SimpleApplication {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 //Load Settings
-                set = new Settings();
-                set.loadFromFile();
+                settings = new Settings();
+                settings.loadFromFile();
                 //Creates components of GUI
                 createComponents();
-                window.update(set);
+                window.update(settings);
             }
         });
 
@@ -135,7 +135,7 @@ public class Main extends SimpleApplication {
     public void simpleInitApp() {
         
         this.setDisplayStatView(false); //Hides debug info
-        this.setDisplayFps(set.isShowFPS()); //Depending on settings hides FPS
+        this.setDisplayFps(settings.isShowFPS()); //Depending on settings hides FPS
         
         //Sets cam mouse controls
         flyCam.setDragToRotate(true);
@@ -147,12 +147,12 @@ public class Main extends SimpleApplication {
         inputManager.addListener(actionListener, "route");
 
         //Sets Cam speed
-        this.flyCam.setMoveSpeed(set.getCamSpeed());
+        this.flyCam.setMoveSpeed(settings.getCamSpeed());
 
         Logger.getLogger("").setLevel(Level.SEVERE);
 
         //Loads Model
-        Spatial ship = assetManager.loadModel(set.getModelLocation());
+        Spatial ship = assetManager.loadModel(settings.getModelLocation());
         Node node = (Node) ship;
         Node chil1 = (Node) node.getChildren().get(0);
         Geometry chil = (Geometry) chil1.getChildren().get(0);
@@ -167,11 +167,11 @@ public class Main extends SimpleApplication {
         shipNM.loadFromMesh(optimisedMesh);
 
         //Draws NavMesh
-        if (set.isShowNavMesh()) {
+        if (settings.isShowNavMesh()) {
             drawNavmesh();
         }
 
-        guiFont = assetManager.loadFont(set.getGuiFont());
+        guiFont = assetManager.loadFont(settings.getGuiFont());
         BitmapText helloText = new BitmapText(guiFont, false);
         helloText.setSize(0.1f);
         helloText.setText("ORIGIN");
@@ -195,7 +195,7 @@ public class Main extends SimpleApplication {
     
     public static void updateStatus() {
         window.updateStatus(populationSize, population.getNumberOfEvacuee());
-        window.update(set);
+        window.update(settings);
     }
     
     public void removeNavmesh() {
