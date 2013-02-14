@@ -12,14 +12,14 @@ import com.jme3.math.ColorRGBA;
  */
 public class PersonCategory {
     private String name;
-    private float minspeed;
-    private float maxspeed;
-    private float minstress;
-    private float maxstress;
+    private double minspeed;
+    private double maxspeed;
+    private double minstress;
+    private double maxstress;
     private ColorRGBA color;
     private int numberOfPeople;
 
-    public PersonCategory(String name, float minspeed, float maxspeed, float minstress, float maxstress, ColorRGBA color, int numberOfPeople) {
+    public PersonCategory(String name, double minspeed, double maxspeed, double minstress, double maxstress, ColorRGBA color, int numberOfPeople) {
         this.name = name;
         this.minspeed = minspeed;
         this.maxspeed = maxspeed;
@@ -37,20 +37,36 @@ public class PersonCategory {
         this.name = name;
     }
 
-    public float getMinspeed() {
+    public double getMinspeed() {
         return minspeed;
     }
 
-    public void setMinspeed(float minspeed) {
+    public void setMinspeed(double minspeed) {
         this.minspeed = minspeed;
     }
 
-    public float getMaxspeed() {
+    public double getMaxspeed() {
         return maxspeed;
     }
 
-    public void setMaxspeed(float maxspeed) {
+    public void setMaxspeed(double maxspeed) {
         this.maxspeed = maxspeed;
+    }
+    
+    public void setMinStress(double minStress){
+        this.minstress = minStress;
+    }
+    
+    public double getMinStress(){
+        return this.minstress;
+    }
+    
+    public void setMaxStress(double maxStress){
+        this.maxstress = maxStress;
+    }
+    
+    public double getMaxStress(){
+        return this.maxstress;
     }
 
     public ColorRGBA getColor() {

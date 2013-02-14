@@ -93,6 +93,24 @@ public class Population implements Runnable {
         //refreshPersonClusters();
     }
     
+    public String[] getPersonCategoryNames(){
+        String[] categoryNames = new String[personCategories.size()];
+        for (int i = 0; i < personCategories.size(); i++){
+            categoryNames[i] = personCategories.get(i).getName();
+        }
+        return categoryNames;
+    }
+    
+    public boolean addPersonCategoryObj(PersonCategory cat){
+        for (PersonCategory p: personCategories){
+            if (p.getName().equals(cat.getName())){
+                return false;
+            }
+        }
+        personCategories.add(cat);
+        return true;
+    }
+    
     public boolean addPersonCategory(String name, float minspeed, float maxspeed, float minstress, float maxstress, ColorRGBA color, int number){
        return personCategories.add(new PersonCategory(name,minspeed,maxspeed,minstress,maxstress,color,number));
     }
