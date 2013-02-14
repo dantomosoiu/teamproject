@@ -1,4 +1,5 @@
-.class
+*.class
+TLEvacSim/TLEvacSim/build/
 /Model/JMonkey Project/Attempt2 (copy)/build/
 /Model/JMonkey Project/Attempt2 (copy)/nbproject/private/
 /Model/JMonkey Project/Michael/build/
