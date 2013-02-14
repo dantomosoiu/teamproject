@@ -118,6 +118,10 @@ public class EvacSim extends SimpleApplication {
         population.stopSim();
     }
     
+    public void camControl(String s) {
+        flyCam.onAnalog(s, .1f, .1f);
+    }
+    
     public void setCam(String cl) {
         CamLoc c = appSettings.getCamLocations().get(cl);
         if (c != null) {

@@ -335,7 +335,7 @@ public class SidePanel extends javax.swing.JPanel {
     private void evacButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_evacButtonActionPerformed
         if (evacButton.isSelected()) {
             parent.evac(Integer.parseInt(popRem.getText()));
-            evacButton.setText("Stop");
+            evacButton.setText("Pause");
         }
         else {
             evacButton.setText("Resume");

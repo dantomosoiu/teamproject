@@ -108,6 +108,13 @@ public class EvacSimMainFrame extends javax.swing.JFrame {
         canvas.getComponent(0).requestFocus();
     }
     
+    public void camControl(String s) {
+        if (evacSim != null) {
+            evacSim.camControl(s);
+            canvas.getComponent(0).requestFocus();
+        }
+    }
+    
     public void setcam(String s) {
         if (evacSim != null) {
             evacSim.setCam(s);

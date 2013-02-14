@@ -147,8 +147,10 @@ public class Person implements Runnable{
             public void onPause(CinematicEvent e){}
             public void onStop(CinematicEvent e){
                 fin = true;
+                
                 EvacSim.updateStatus();
                 EvacSim.getPopulation().updateNumberOfPeople();
+                rootNode.detachChild(person);
             }
         });
     }

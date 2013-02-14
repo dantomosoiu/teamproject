@@ -77,7 +77,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="camSpeed" min="-2" pref="28" max="-2" attributes="0"/>
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               </Group>
@@ -146,6 +146,9 @@
           <Dimension value="[95, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="panRightActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="panLeft">
       <Properties>
@@ -160,16 +163,25 @@
           <Dimension value="[95, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="panLeftActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="panUp">
       <Properties>
-        <Property name="toolTipText" type="java.lang.String" value="Pan Up"/>
+        <Property name="toolTipText" type="java.lang.String" value="Rise"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="panUpActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="panDown">
       <Properties>
-        <Property name="toolTipText" type="java.lang.String" value="Pan Down"/>
+        <Property name="toolTipText" type="java.lang.String" value="Lower"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="panDownActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="mLeft">
       <Properties>
@@ -184,6 +196,9 @@
           <Dimension value="[95, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mLeftActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="mRight">
       <Properties>
@@ -198,10 +213,13 @@
           <Dimension value="[95, 30]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mRightActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="mDown">
       <Properties>
-        <Property name="toolTipText" type="java.lang.String" value="Move Down"/>
+        <Property name="toolTipText" type="java.lang.String" value="Move Backwards"/>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 95]"/>
         </Property>
@@ -212,13 +230,16 @@
           <Dimension value="[30, 75]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mDownActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="mUp">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Ubuntu" size="15" style="0"/>
         </Property>
-        <Property name="toolTipText" type="java.lang.String" value="Move Up"/>
+        <Property name="toolTipText" type="java.lang.String" value="Move Forward"/>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 95]"/>
         </Property>
@@ -229,6 +250,9 @@
           <Dimension value="[30, 75]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mUpActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

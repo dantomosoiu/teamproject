@@ -68,36 +68,76 @@ public class camControls extends javax.swing.JPanel {
         panRight.setMaximumSize(new java.awt.Dimension(95, 30));
         panRight.setMinimumSize(new java.awt.Dimension(95, 30));
         panRight.setPreferredSize(new java.awt.Dimension(95, 30));
+        panRight.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                panRightActionPerformed(evt);
+            }
+        });
 
         panLeft.setText("Pan Left");
         panLeft.setMaximumSize(new java.awt.Dimension(95, 30));
         panLeft.setMinimumSize(new java.awt.Dimension(95, 30));
         panLeft.setPreferredSize(new java.awt.Dimension(95, 30));
+        panLeft.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                panLeftActionPerformed(evt);
+            }
+        });
 
-        panUp.setToolTipText("Pan Up");
+        panUp.setToolTipText("Rise");
+        panUp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                panUpActionPerformed(evt);
+            }
+        });
 
-        panDown.setToolTipText("Pan Down");
+        panDown.setToolTipText("Lower");
+        panDown.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                panDownActionPerformed(evt);
+            }
+        });
 
         mLeft.setText("Left");
         mLeft.setMaximumSize(new java.awt.Dimension(95, 30));
         mLeft.setMinimumSize(new java.awt.Dimension(95, 30));
         mLeft.setPreferredSize(new java.awt.Dimension(95, 30));
+        mLeft.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mLeftActionPerformed(evt);
+            }
+        });
 
         mRight.setText("Right");
         mRight.setMaximumSize(new java.awt.Dimension(95, 30));
         mRight.setMinimumSize(new java.awt.Dimension(95, 30));
         mRight.setPreferredSize(new java.awt.Dimension(95, 30));
+        mRight.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mRightActionPerformed(evt);
+            }
+        });
 
-        mDown.setToolTipText("Move Down");
+        mDown.setToolTipText("Move Backwards");
         mDown.setMaximumSize(new java.awt.Dimension(30, 95));
         mDown.setMinimumSize(new java.awt.Dimension(30, 95));
         mDown.setPreferredSize(new java.awt.Dimension(30, 75));
+        mDown.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mDownActionPerformed(evt);
+            }
+        });
 
         mUp.setFont(new java.awt.Font("Ubuntu", 0, 15)); // NOI18N
-        mUp.setToolTipText("Move Up");
+        mUp.setToolTipText("Move Forward");
         mUp.setMaximumSize(new java.awt.Dimension(30, 95));
         mUp.setMinimumSize(new java.awt.Dimension(30, 95));
         mUp.setPreferredSize(new java.awt.Dimension(30, 75));
+        mUp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mUpActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -140,7 +180,7 @@ public class camControls extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(camSpeed, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -172,6 +212,38 @@ public class camControls extends javax.swing.JPanel {
             mainframe.setCamSpeed(camSpeed.getValue());
         }
     }//GEN-LAST:event_camSpeedStateChanged
+
+    private void mLeftActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mLeftActionPerformed
+        if (mainframe != null) mainframe.camControl("FLYCAM_StrafeLeft");
+    }//GEN-LAST:event_mLeftActionPerformed
+
+    private void mRightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mRightActionPerformed
+        if (mainframe != null) mainframe.camControl("FLYCAM_StrafeRight");
+    }//GEN-LAST:event_mRightActionPerformed
+
+    private void mUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mUpActionPerformed
+        if (mainframe != null) mainframe.camControl("FLYCAM_Forward");
+    }//GEN-LAST:event_mUpActionPerformed
+
+    private void mDownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mDownActionPerformed
+        if (mainframe != null) mainframe.camControl("FLYCAM_Backward");
+    }//GEN-LAST:event_mDownActionPerformed
+
+    private void panLeftActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_panLeftActionPerformed
+        if (mainframe != null) mainframe.camControl("FLYCAM_Left");
+    }//GEN-LAST:event_panLeftActionPerformed
+
+    private void panRightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_panRightActionPerformed
+        if (mainframe != null) mainframe.camControl("FLYCAM_Right");
+    }//GEN-LAST:event_panRightActionPerformed
+
+    private void panUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_panUpActionPerformed
+        if (mainframe != null) mainframe.camControl("FLYCAM_Rise");
+    }//GEN-LAST:event_panUpActionPerformed
+
+    private void panDownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_panDownActionPerformed
+        if (mainframe != null) mainframe.camControl("FLYCAM_Lower");
+    }//GEN-LAST:event_panDownActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JSlider camSpeed;
