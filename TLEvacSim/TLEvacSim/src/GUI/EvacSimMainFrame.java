@@ -249,7 +249,7 @@ public class EvacSimMainFrame extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(canvas, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(sidePanel, javax.swing.GroupLayout.DEFAULT_SIZE, 695, Short.MAX_VALUE))
+                    .addComponent(sidePanel, javax.swing.GroupLayout.DEFAULT_SIZE, 699, Short.MAX_VALUE))
                 .addContainerGap())
         );
 

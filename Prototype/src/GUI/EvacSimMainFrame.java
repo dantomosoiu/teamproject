@@ -5,6 +5,7 @@
 package GUI;
 
 import EvacSim.EvacSim;
+import GUI.Components.AdvancedSettings;
 import Init.Settings;
 import com.jme3.system.JmeCanvasContext;
 import java.awt.Dimension;
@@ -29,6 +30,7 @@ public class EvacSimMainFrame extends javax.swing.JFrame {
     private GridBagConstraints g;
     JmeCanvasContext ctx;
     int newPopSize;
+    private AdvancedSettings adset;
     
     
 
@@ -114,6 +116,9 @@ public class EvacSimMainFrame extends javax.swing.JFrame {
             canvas.getComponent(0).requestFocus();
         }
     }
+    public void hideCamCont() {
+        sidePanel.updateSettings(settings);
+    }
     
     public void setcam(String s) {
         if (evacSim != null) {
@@ -194,6 +199,14 @@ public class EvacSimMainFrame extends javax.swing.JFrame {
         sidePanel = new GUI.Components.SidePanel();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
+        importMod = new javax.swing.JMenuItem();
+        expSet = new javax.swing.JMenuItem();
+        goAway = new javax.swing.JMenuItem();
+        settingsMenu = new javax.swing.JMenu();
+        advanSet = new javax.swing.JMenuItem();
+        saveSet = new javax.swing.JMenuItem();
+        resSet = new javax.swing.JMenuItem();
+        help = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1000, 690));
@@ -224,12 +237,48 @@ public class EvacSimMainFrame extends javax.swing.JFrame {
             canvasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(canvasLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(loadingText, javax.swing.GroupLayout.DEFAULT_SIZE, 667, Short.MAX_VALUE)
+                .addComponent(loadingText, javax.swing.GroupLayout.DEFAULT_SIZE, 677, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         fileMenu.setText("File");
+
+        importMod.setText("Import Model");
+        fileMenu.add(importMod);
+
+        expSet.setText("Export Settings");
+        fileMenu.add(expSet);
+
+        goAway.setText("Exit");
+        goAway.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                goAwayActionPerformed(evt);
+            }
+        });
+        fileMenu.add(goAway);
+
         menuBar.add(fileMenu);
+
+        settingsMenu.setText("Settings");
+
+        advanSet.setText("Advanced Settings");
+        advanSet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                advanSetActionPerformed(evt);
+            }
+        });
+        settingsMenu.add(advanSet);
+
+        saveSet.setText("Save Settings");
+        settingsMenu.add(saveSet);
+
+        resSet.setText("Restore Default Settings");
+        settingsMenu.add(resSet);
+
+        help.setText("Help");
+        settingsMenu.add(help);
+
+        menuBar.add(settingsMenu);
 
         setJMenuBar(menuBar);
 
@@ -248,7 +297,7 @@ public class EvacSimMainFrame extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(canvas, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(sidePanel, javax.swing.GroupLayout.DEFAULT_SIZE, 695, Short.MAX_VALUE))
+                    .addComponent(sidePanel, javax.swing.GroupLayout.DEFAULT_SIZE, 701, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -260,6 +309,19 @@ public class EvacSimMainFrame extends javax.swing.JFrame {
             canvas.getComponent(0).setSize(canvas.getSize());
         }
     }//GEN-LAST:event_canvasComponentResized
+
+    private void goAwayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goAwayActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_goAwayActionPerformed
+
+    private void advanSetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_advanSetActionPerformed
+        if (adset == null) {
+            adset = new AdvancedSettings();
+        }
+        settingsMenu.setPopupMenuVisible(false);
+        adset.setVisible(true);
+        adset.update(this, settings);
+    }//GEN-LAST:event_advanSetActionPerformed
 
     /**
      * @param args the command line arguments
@@ -296,10 +358,18 @@ public class EvacSimMainFrame extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem advanSet;
     private javax.swing.JPanel canvas;
+    private javax.swing.JMenuItem expSet;
     private javax.swing.JMenu fileMenu;
+    private javax.swing.JMenuItem goAway;
+    private javax.swing.JMenuItem help;
+    private javax.swing.JMenuItem importMod;
     private javax.swing.JLabel loadingText;
     private javax.swing.JMenuBar menuBar;
+    private javax.swing.JMenuItem resSet;
+    private javax.swing.JMenuItem saveSet;
+    private javax.swing.JMenu settingsMenu;
     private GUI.Components.SidePanel sidePanel;
     // End of variables declaration//GEN-END:variables
 }
