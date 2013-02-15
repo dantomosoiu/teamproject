@@ -9,6 +9,7 @@ import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
 import java.awt.Color;
 import java.util.HashMap;
+import javax.swing.UIManager;
 
 /**
  *
@@ -33,6 +34,7 @@ public class Settings {
     private boolean saveSettings;
     private boolean hideCamPanel;
     private HashMap<String, CamLoc> camLocations;
+    private static String theme;
 
 
     
@@ -53,6 +55,7 @@ public class Settings {
         camLocations = new HashMap<String, CamLoc>();
         camLocations.put("Default", new CamLoc(new Vector3f( 0,0,10), new Quaternion(0,1,0,0)));
         camLocations.put("Exits", new CamLoc(new Vector3f( 8.117443f, 5.746009f, 12.390097f), new Quaternion(-0.00167683f, 0.98768485f, -0.15608728f, -0.010609908f)));
+        theme = UIManager.getSystemLookAndFeelClassName();
     }
     
     public void loadFromFile() {
@@ -68,6 +71,10 @@ public class Settings {
     }
     public void saveToFile(String fileName) {
         
+    }
+    
+    public static String getTheme() {
+        return theme;
     }
     
     public HashMap<String, CamLoc> getCamLocations() {
