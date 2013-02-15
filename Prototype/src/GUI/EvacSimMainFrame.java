@@ -197,7 +197,6 @@ public class EvacSimMainFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1000, 690));
-        setPreferredSize(new java.awt.Dimension(1000, 690));
 
         canvas.setBackground(new java.awt.Color(1, 1, 1));
         canvas.addComponentListener(new java.awt.event.ComponentAdapter() {

@@ -122,6 +122,10 @@ public class EvacSim extends SimpleApplication {
         flyCam.onAnalog(s, .1f, .1f);
     }
     
+    public void camRotate(String s) {
+        flyCam.onAnalog(s, 2f, 2f);
+    }
+    
     public void setCam(String cl) {
         CamLoc c = appSettings.getCamLocations().get(cl);
         if (c != null) {
