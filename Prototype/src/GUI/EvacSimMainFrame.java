@@ -28,7 +28,6 @@ public class EvacSimMainFrame extends javax.swing.JFrame {
     private EvacSimMainFrame(Settings set) {
         settings = set;
         initComponents();
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         
         sidePanel.passParent(this);
         this.setTitle("TeamL Evacuation Simulator: " + settings.getModelName());
