@@ -4,8 +4,8 @@ import EvacSim.jme3tools.navmesh.NavMesh;
 import EvacSim.jme3tools.navmesh.util.NavMeshGenerator;
 import EvacSim.population.Population;
 import GUI.EvacSimMainFrame;
-import Init.Settings.Settings;
 import Init.Settings.CamLoc;
+import Init.Settings.Settings;
 import com.jme3.app.SimpleApplication;
 import com.jme3.font.BitmapText;
 import com.jme3.material.Material;
@@ -119,7 +119,7 @@ public class EvacSim extends SimpleApplication {
     }
     
     public void camControl(String s) {
-        flyCam.onAnalog(s, .1f, .1f);
+        flyCam.onAnalog(s, (appSettings.getCamSpeed()+3.0f)/10f, (appSettings.getCamSpeed()+3.0f)/10f);
     }
     
     public void camRotate(String s) {

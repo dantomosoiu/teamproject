@@ -19,8 +19,9 @@ public class SidePanel extends javax.swing.JPanel {
     /**
      * Creates new form SidePanel
      */
-    public SidePanel() {
-        initComponents();        
+    public SidePanel(Settings set) {
+        initComponents();
+        settings = Settings.get();
     }
     
     public void passParent(EvacSimMainFrame  p) {
@@ -28,8 +29,7 @@ public class SidePanel extends javax.swing.JPanel {
         camControl.passParents(this, parent);
     }
     
-    public void updateSettings(Settings s) {
-        settings = s;
+    public void update() {
         popSize.setValue(settings.getPopulationNumber());
         showNavmesh.setSelected(settings.isShowNavMesh());
         showDecks.setSelected(settings.isShowShip());
@@ -83,7 +83,7 @@ public class SidePanel extends javax.swing.JPanel {
 
         setMaximumSize(new java.awt.Dimension(280, 32767));
         setMinimumSize(new java.awt.Dimension(280, 0));
-        setName("sidePanel"); // NOI18N
+        setName(""); // NOI18N
         setPreferredSize(new java.awt.Dimension(280, 500));
 
         popSize.setModel(new javax.swing.SpinnerNumberModel(20, 1, 200, 1));
@@ -350,7 +350,7 @@ public class SidePanel extends javax.swing.JPanel {
     }//GEN-LAST:event_camMoveButActionPerformed
 
     private void popSizeStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_popSizeStateChanged
-        parent.asyncPopSetup((Integer) popSize.getValue());
+        settings.setPopulationNumber((Integer) popSize.getValue());
     }//GEN-LAST:event_popSizeStateChanged
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

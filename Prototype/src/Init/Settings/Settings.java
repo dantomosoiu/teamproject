@@ -4,7 +4,6 @@
  */
 package Init.Settings;
 
-import Init.Settings.CamLoc;
 import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
 import java.awt.Color;
@@ -16,31 +15,15 @@ import javax.swing.UIManager;
  * @author hector
  */
 public class Settings {
+    //Singleton
+    private static Settings instance = null;
+    //Settings Variables declared at bottom of class
     
-    private String modelLocation; //Location of j30 file. Should be in Models!
-    private int populationNumber; //Number of people to populate model with
-    private float camSpeed; //Camera move speed
-    private String modelName;
-    
-    //GUI Settings
-    //private Dimension windowSize;
-    private boolean showCoordinates;
-    private boolean showNavMesh;
-    private boolean showShip;
-    private boolean showHullFarSide;
-    private Color navMeshColor;
-    private String guiFont;
-    private boolean showFPS;
-    private boolean saveSettings;
-    private boolean hideCamPanel;
-    private HashMap<String, CamLoc> camLocations;
-    private static String theme;
-
-
-    
-    public Settings() {
+    //Private constructor protects singleton method
+    private Settings() {
         modelLocation = "Models/FlatModel2/FlatModel2.j3o";
         populationNumber = 20;
+        tmpPopNum = 20;
         camSpeed = 5;
         showCoordinates = false;
         showNavMesh = true;
@@ -56,6 +39,12 @@ public class Settings {
         camLocations.put("Default", new CamLoc(new Vector3f( 0,0,10), new Quaternion(0,1,0,0)));
         camLocations.put("Exits", new CamLoc(new Vector3f( 8.117443f, 5.746009f, 12.390097f), new Quaternion(-0.00167683f, 0.98768485f, -0.15608728f, -0.010609908f)));
         theme = UIManager.getSystemLookAndFeelClassName();
+    }//Returns the Singleton
+    public static Settings get() {
+        if(instance == null) {
+        instance = new Settings();
+    }
+    return instance;
     }
     
     public void loadFromFile() {
@@ -122,7 +111,10 @@ public class Settings {
     }
 
     public void setPopulationNumber(int populationNumber) {
-        this.populationNumber = populationNumber;
+        tmpPopNum = populationNumber;
+    }
+    public void updatePopNum() {
+        populationNumber = tmpPopNum;
     }
 
     public float getCamSpeed() {
@@ -188,5 +180,24 @@ public class Settings {
     public void setModelName(String modelName) {
         this.modelName = modelName;
     }
+    
+    private String modelLocation; //Location of j30 file. Should be in Models!
+    private int populationNumber; //Number of people to populate model with
+    private int tmpPopNum; //Number of people to populate model with
+    private float camSpeed; //Camera move speed
+    private String modelName;
+    //GUI Settings
+    //private Dimension windowSize;
+    private boolean showCoordinates;
+    private boolean showNavMesh;
+    private boolean showShip;
+    private boolean showHullFarSide;
+    private Color navMeshColor;
+    private String guiFont;
+    private boolean showFPS;
+    private boolean saveSettings;
+    private boolean hideCamPanel;
+    private HashMap<String, CamLoc> camLocations;
+    private static String theme;
     
 }

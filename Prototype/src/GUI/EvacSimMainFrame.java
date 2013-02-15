@@ -6,14 +6,11 @@ package GUI;
 
 import EvacSim.EvacSim;
 import GUI.Components.AdvancedSettings;
+import GUI.Components.GUIHelperMethods;
 import Init.Settings.Settings;
 import com.jme3.system.JmeCanvasContext;
-import java.awt.Dimension;
-import java.awt.GraphicsDevice;
-import java.awt.GraphicsEnvironment;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import javax.swing.Timer;
 
@@ -23,68 +20,60 @@ import javax.swing.Timer;
  */
 public class EvacSimMainFrame extends javax.swing.JFrame {
     
+    //Singleton
+    private static EvacSimMainFrame instance = null;
+    //Settings Variables declared at bottom of class
+    
+    //Private constructor protects singleton method
+    private EvacSimMainFrame(Settings set) {
+        settings = set;
+        initComponents();
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        
+        sidePanel.passParent(this);
+        this.setTitle("TeamL Evacuation Simulator: " + settings.getModelName());
+        this.setVisible(true);
+        
+        GUIHelperMethods.centralise(1070, 690, this);
+        
+        playTimer = new Timer(1000, new java.awt.event.ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                if (evacSim.isDone()) {
+                    playTimer.stop();
+                }
+                else {
+                    s++;
+                    if (s == 60){
+                        m++;
+                        s = 0;
+                    }
+                    sidePanel.setTime(m, s);
+                }
+            }    
+          });
+    }//Returns the Singleton
+    public static EvacSimMainFrame get(Settings set) {
+        if(instance == null) {
+            instance = new EvacSimMainFrame(set);
+        }
+        else {
+            instance.updateSettings(set);
+        }
+        return instance;
+    }
+    
     private Settings settings;
     private EvacSim evacSim;
     private Timer playTimer;
     private static int m = 0, s = 0;
     private GridBagConstraints g;
-    JmeCanvasContext ctx;
-    int newPopSize;
+    private JmeCanvasContext ctx;
     private AdvancedSettings adset;
-    
-    
-
-    /**
-     * Creates new form EvacSimMainFrame
-     */
-    public EvacSimMainFrame() {
-        initComponents();
-        this.setVisible(true);
-        evacSim = null;
-        newPopSize = -1;
-        
-        //Finds the size of the screen and item. Uses this to calculate how to position the frame in the center of the screen.
-        Toolkit kit = this.getToolkit();
-        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-        GraphicsDevice[] gs = ge.getScreenDevices();
-        Insets in = kit.getScreenInsets(gs[0].getDefaultConfiguration());
-        Dimension d = kit.getScreenSize();
-        int max_width = (d.width - in.left - in.right);
-        int max_height = (d.height - in.top - in.bottom);
-        this.setSize(Math.min(max_width, 1070), Math.min(max_height, 690));
-        this.setLocation((int) (max_width - this.getWidth()) / 2, (int) (max_height - this.getHeight()) / 2);
-        
-        
-        playTimer = new Timer(1000, new java.awt.event.ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                s++;
-                if (s == 60){
-                    m++;
-                    s = 0;
-                }
-                sidePanel.setTime(m, s);
-                
-                if (evacSim.isDone()) {
-                    playTimer.stop();
-                }
-
-            }    
-          });
-    }
-    
-    public void asyncPopSetup(int p) {
-        newPopSize = p;
-    }
-    
-    public void setSPParent() {
-        sidePanel.passParent(this);
-    }
     
     public void updateSettings(Settings s) {
         settings = s;
-        sidePanel.updateSettings(settings);
+        sidePanel.update();
         this.setTitle("TeamL Evacuation Simulator: " + settings.getModelName());
-        newPopSize = settings.getPopulationNumber();
     }
     
     public void updateStatus(int numEvac) {
@@ -117,7 +106,7 @@ public class EvacSimMainFrame extends javax.swing.JFrame {
         }
     }
     public void hideCamCont() {
-        sidePanel.updateSettings(settings);
+        sidePanel.update();
     }
     
     public void setcam(String s) {
@@ -149,10 +138,7 @@ public class EvacSimMainFrame extends javax.swing.JFrame {
     }
     
     public void updateCanvas() {
-        if (newPopSize > 0 && settings.getPopulationNumber() != newPopSize) {
-            settings.setPopulationNumber(newPopSize);
-        }
-        canvas.remove(loadingText);
+        settings.updatePopNum();
         canvas.removeAll();
         
         if (evacSim != null) {
@@ -170,7 +156,7 @@ public class EvacSimMainFrame extends javax.swing.JFrame {
         playTimer.restart();
         playTimer.stop();
         
-        sidePanel.updateSettings(settings);
+        sidePanel.update();
         sidePanel.updateStatus(settings.getPopulationNumber(), -1);
                 
         evacSim = new EvacSim(settings);
@@ -183,6 +169,7 @@ public class EvacSimMainFrame extends javax.swing.JFrame {
 
         canvas.add(ctx.getCanvas(), g);
     }
+                  
     
 
     /**
@@ -196,7 +183,7 @@ public class EvacSimMainFrame extends javax.swing.JFrame {
 
         canvas = new javax.swing.JPanel();
         loadingText = new javax.swing.JLabel();
-        sidePanel = new GUI.Components.SidePanel();
+        sidePanel = new GUI.Components.SidePanel(settings);
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         importMod = new javax.swing.JMenuItem();
@@ -297,7 +284,7 @@ public class EvacSimMainFrame extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(canvas, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(sidePanel, javax.swing.GroupLayout.DEFAULT_SIZE, 701, Short.MAX_VALUE))
+                    .addComponent(sidePanel, javax.swing.GroupLayout.DEFAULT_SIZE, 705, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -353,7 +340,7 @@ public class EvacSimMainFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EvacSimMainFrame().setVisible(true);
+                new EvacSimMainFrame(null).setVisible(true);
             }
         });
     }

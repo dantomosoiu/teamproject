@@ -6,8 +6,8 @@ package Init;
  */
 
 
-import Init.Settings.Settings;
 import GUI.EvacSimMainFrame;
+import Init.Settings.Settings;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.UIManager;
@@ -15,7 +15,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  *
- * @author hector
+ * @author Hector Grebbell
  */
 public class Initiator {
     
@@ -23,8 +23,10 @@ public class Initiator {
     
     public static void main(String[] args) {
         
-        settings = new Settings();
+        
+        settings = Settings.get();
         settings.loadFromFile();
+        
         try {
             UIManager.setLookAndFeel(Settings.getTheme());
         } catch (ClassNotFoundException ex) {
@@ -37,9 +39,7 @@ public class Initiator {
             Logger.getLogger(Initiator.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        EvacSimMainFrame mainFrame = new EvacSimMainFrame();
-        mainFrame.setSPParent();
-        mainFrame.updateSettings(settings);
+        EvacSimMainFrame mainFrame = EvacSimMainFrame.get(settings);
         
     }
     
