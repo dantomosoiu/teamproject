@@ -2,9 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Init;
+package Init.Settings;
 
-import Init.settingsHelpers.CamLoc;
+import Init.Settings.CamLoc;
 import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
 import java.awt.Color;

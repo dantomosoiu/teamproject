@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Init.settingsHelpers;
+package Init.Settings;
 
 import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;

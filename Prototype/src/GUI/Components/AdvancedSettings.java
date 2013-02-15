@@ -5,7 +5,7 @@
 package GUI.Components;
 
 import GUI.EvacSimMainFrame;
-import Init.Settings;
+import Init.Settings.Settings;
 import java.awt.Dimension;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;

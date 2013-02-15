@@ -6,7 +6,7 @@ package GUI;
 
 import EvacSim.EvacSim;
 import GUI.Components.AdvancedSettings;
-import Init.Settings;
+import Init.Settings.Settings;
 import com.jme3.system.JmeCanvasContext;
 import java.awt.Dimension;
 import java.awt.GraphicsDevice;

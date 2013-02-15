@@ -5,7 +5,7 @@
 package GUI.Components;
 
 import GUI.EvacSimMainFrame;
-import Init.Settings;
+import Init.Settings.Settings;
 
 /**
  *

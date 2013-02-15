@@ -6,6 +6,7 @@ package Init;
  */
 
 
+import Init.Settings.Settings;
 import GUI.EvacSimMainFrame;
 import java.util.logging.Level;
 import java.util.logging.Logger;
