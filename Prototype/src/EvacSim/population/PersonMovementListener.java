@@ -4,6 +4,7 @@
  */
 package EvacSim.population;
 
+import Init.Settings.Settings;
 import com.jme3.cinematic.MotionPathListener;
 import com.jme3.cinematic.events.MotionEvent;
 
@@ -18,7 +19,7 @@ public class PersonMovementListener implements MotionPathListener{
         person = p;
     }
     public void onWayPointReach(MotionEvent motionControl, int wayPointIndex) {
-       System.out.println("Person pos:" + person.getPerson().getLocalTranslation());
+       if (Settings.get().getPrintEv()) System.out.println("Person pos:" + person.getPerson().getLocalTranslation());
         
     }
     

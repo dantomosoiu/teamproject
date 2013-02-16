@@ -22,7 +22,7 @@ import java.util.Random;
  * @author TR
  * 
  */
-public class Cell implements Savable {
+public class Cell implements Savable, java.io.Serializable {
 
     static final int VERT_A = 0;
     static final int VERT_B = 1;

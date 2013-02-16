@@ -7,6 +7,7 @@ package EvacSim.population;
 import EvacSim.goal.ExitGoal;
 import EvacSim.goal.Goal;
 import EvacSim.jme3tools.navmesh.NavMesh;
+import Init.Settings.Settings;
 import com.jme3.math.FastMath;
 import com.jme3.math.Vector3f;
 import java.util.ArrayList;
@@ -22,7 +23,7 @@ public abstract class BehaviourModel {
     private static ArrayList<ExitGoal> exits = new ArrayList<ExitGoal>();
     
     public static void percieveDecideAct(Person person){
-        PersonNavmeshRoutePlanner personOnNavmesh = new PersonNavmeshRoutePlanner(person.getNavmesh(),person.getPerson().getLocalTranslation());
+        PersonNavmeshRoutePlanner personOnNavmesh = new PersonNavmeshRoutePlanner(Settings.get().getNavMesh(),person.getPerson().getLocalTranslation());
         //Check if person is moveing through an exit - if so return 
         ArrayList<Goal> visibleGoals = perceive(personOnNavmesh);
         ArrayList<ExitGoal>  visibleExits = new ArrayList<ExitGoal>();

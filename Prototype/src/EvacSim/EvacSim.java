@@ -17,6 +17,7 @@ import com.jme3.scene.Mesh;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 import com.jme3.scene.VertexBuffer;
+import java.util.concurrent.Callable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -40,50 +41,73 @@ public class EvacSim extends SimpleApplication {
     @Override
     public void simpleInitApp() {
         
+        this.setPauseOnLostFocus(false);
         
         this.setDisplayStatView(false); //Hides debug info
         this.setDisplayFps(appSettings.isShowFPS()); //Depending on settings hides FPS
-        
         flyCam.setDragToRotate(true); //Sets cam mouse controls
 
         flyCam.setMoveSpeed(appSettings.getCamSpeed()); //Sets Cam speed
 
         Logger.getLogger("").setLevel(Level.SEVERE);
 
-        //Loads Model
-        Spatial ship = assetManager.loadModel(appSettings.getModelLocation());
-        Node node = (Node) ship;
-        Node chil1 = (Node) node.getChildren().get(0);
-        Geometry chil = (Geometry) chil1.getChildren().get(0);
+        if ((shipNM = appSettings.getNavMesh()) == null) {
+            //Loads Model
+            Spatial ship = assetManager.loadModel(appSettings.getModelLocation());
+            Node node = (Node) ship;
+            Node chil1 = (Node) node.getChildren().get(0);
+            Geometry chil = (Geometry) chil1.getChildren().get(0);
 
-        Mesh shipMesh = chil.getMesh();
-        shipNM = new NavMesh();
+            Mesh shipMesh = chil.getMesh();
+            shipNM = new NavMesh();
 
-        NavMeshGenerator generator = new NavMeshGenerator();
+            NavMeshGenerator generator = new NavMeshGenerator();
 
-        Mesh optimisedMesh = generator.optimize(shipMesh);
+            Mesh optimisedMesh = generator.optimize(shipMesh);
 
-        shipNM.loadFromMesh(optimisedMesh);
+            shipNM.loadFromMesh(optimisedMesh);
+            appSettings.saveNavMesh(shipNM);
+        }
+        
         navMeshOn = false;
         if (appSettings.isShowNavMesh()) { 
             drawNavmesh(); //Draws NavMesh
-            navMeshOn = true;
+        }
+        
+        if (appSettings.showOrigin()) {
+            guiFont = assetManager.loadFont(appSettings.getGuiFont());
+            BitmapText helloText = new BitmapText(guiFont, false);
+            helloText.setSize(0.1f);
+            helloText.setText("ORIGIN");
+            helloText.setLocalTranslation(0, 0, 0);
+            rootNode.attachChild(helloText);
         }
 
-        guiFont = assetManager.loadFont(appSettings.getGuiFont());
-        BitmapText helloText = new BitmapText(guiFont, false);
-        helloText.setSize(0.1f);
-        helloText.setText("ORIGIN");
-        helloText.setLocalTranslation(0, 0, 0);
-        rootNode.attachChild(helloText);
-
         try {
-            population = new Population(rootNode, shipNM, this);
+            population = new Population(shipNM, this);
         } catch (Exception e) {
         }
 
-        population.populate(appSettings.getPopulationNumber());
+        population.populate();
 
+    }
+    
+    public void attachChild(final Spatial N) {
+        this.enqueue( new Callable<Object>() {
+        public Spatial call() throws Exception {
+                rootNode.attachChild(N);
+                return null;
+            }
+        });
+    }
+
+    public void detachChild(final Spatial N) {
+        this.enqueue( new Callable<Object>() {
+        public Spatial call() throws Exception {
+                rootNode.detachChild(N);
+                return null;
+            }
+        });
     }
     
     public void setSettings(Settings set) {
@@ -103,7 +127,16 @@ public class EvacSim extends SimpleApplication {
     }
     
     public boolean isDone() {
-        return population.isDone();
+        if (population != null) return population.isDone();
+        else return true;
+    }
+    
+    public void done() {
+        population = null;
+    }
+
+    public void setPaused(boolean paused) {
+        this.paused = paused;
     }
     
     public void evac() {
@@ -181,6 +214,16 @@ public class EvacSim extends SimpleApplication {
                 }
             }
         }
+    }
+    
+    public void restartSim() {
+        this.enqueue( new Callable<Object>() {
+        public Spatial call() throws Exception {
+                rootNode.detachAllChildren();
+                simpleInitApp();
+                return null;
+            }
+        });
     }
     
 

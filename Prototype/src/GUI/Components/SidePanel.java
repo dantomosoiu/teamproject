@@ -329,8 +329,8 @@ public class SidePanel extends javax.swing.JPanel {
         if (!evacButton.isEnabled()) {
             evacButton.setEnabled(true);
         }
-        parent.route();
         routeButton.setEnabled(false);
+        parent.route();
     }//GEN-LAST:event_routeButtonActionPerformed
 
     private void evacButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_evacButtonActionPerformed

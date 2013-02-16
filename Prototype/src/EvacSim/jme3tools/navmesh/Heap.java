@@ -15,7 +15,7 @@ import com.jme3.math.Vector3f;
  * @author TR
  * 
  */
-class Heap {
+class Heap implements java.io.Serializable {
 
     private MinHeap nodes = new MinHeap();
     private int sessionID;

@@ -4,11 +4,17 @@
  */
 package Init.Settings;
 
-import com.jme3.math.Quaternion;
-import com.jme3.math.Vector3f;
+import EvacSim.jme3tools.navmesh.NavMesh;
 import java.awt.Color;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.HashMap;
-import javax.swing.UIManager;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -17,28 +23,11 @@ import javax.swing.UIManager;
 public class Settings {
     //Singleton
     private static Settings instance = null;
-    //Settings Variables declared at bottom of class
+    private static SettingsVariables variables;
     
     //Private constructor protects singleton method
     private Settings() {
-        modelLocation = "Models/FlatModel2/FlatModel2.j3o";
-        populationNumber = 20;
-        tmpPopNum = 20;
-        camSpeed = 5;
-        showCoordinates = false;
-        showNavMesh = true;
-        showShip = false;
-        showHullFarSide = false;
-        navMeshColor = Color.white;
-        guiFont = "Interface/Fonts/Default.fnt";
-        showFPS = true;
-        saveSettings = true;
-        hideCamPanel = false;
-        modelName = "Glenlee, Glasgow";
-        camLocations = new HashMap<String, CamLoc>();
-        camLocations.put("Default", new CamLoc(new Vector3f( 0,0,10), new Quaternion(0,1,0,0)));
-        camLocations.put("Exits", new CamLoc(new Vector3f( 8.117443f, 5.746009f, 12.390097f), new Quaternion(-0.00167683f, 0.98768485f, -0.15608728f, -0.010609908f)));
-        theme = UIManager.getSystemLookAndFeelClassName();
+        variables = new SettingsVariables();
     }//Returns the Singleton
     public static Settings get() {
         if(instance == null) {
@@ -48,156 +37,214 @@ public class Settings {
     }
     
     public void loadFromFile() {
-        
+        loadFromFile("assets/Settings/settings.data");
     }
     public void loadFromFile(String fileName) {
-        
+        FileInputStream f_in;
+        try {
+            f_in = new FileInputStream(fileName);
+            // Read object using ObjectInputStream
+            ObjectInputStream obj_in = new ObjectInputStream (f_in);
+            // Read an object
+            Object obj = obj_in.readObject();
+            
+            obj_in.close();
+            f_in.close();
+            if (obj instanceof SettingsVariables)
+            {
+                // Cast object to a Vector
+                variables = (SettingsVariables) obj;
+            }
+        } catch (FileNotFoundException ex) {
+            //Logger.getLogger(Settings.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException io) {
+            Logger.getLogger(Settings.class.getName()).log(Level.SEVERE, null, io);
+        } catch (ClassNotFoundException ce) {
+            Logger.getLogger(Settings.class.getName()).log(Level.SEVERE, null, ce);
+        }
     }
     public void saveToFile() {
-        if (saveSettings) {
-            
+        if (variables.saveSettings) {
+            saveToFile("assets/Settings/settings.data");
         }
     }
     public void saveToFile(String fileName) {
-        
+        FileOutputStream f_out;
+        try {
+            f_out = new FileOutputStream(fileName);
+            // Write object with ObjectOutputStream
+            ObjectOutputStream obj_out = new ObjectOutputStream (f_out);
+            // Write object out to disk
+            obj_out.writeObject ( variables );
+            f_out.close();
+        } catch (FileNotFoundException ex) {
+            //Logger.getLogger(Settings.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException io) {
+            Logger.getLogger(Settings.class.getName()).log(Level.SEVERE, null, io);
+        }
     }
     
     public static String getTheme() {
-        return theme;
+        return SettingsVariables.theme;
+    }
+    
+    public NavMesh getNavMesh() {
+        return variables.nm;
+    }
+    public void saveNavMesh(NavMesh nm) {
+        variables.nm = nm;
+        saveToFile();
     }
     
     public HashMap<String, CamLoc> getCamLocations() {
-        return camLocations;
+        return variables.camLocations;
     }
     
     public void addCamLoc(String s, CamLoc c) {
-        camLocations.put(s, c);
+        variables.camLocations.put(s, c);
     }
 
     public boolean isSaveSettings() {
-        return saveSettings;
+        return variables.saveSettings;
     }
 
     public void setSaveSettings(boolean saveSettings) {
-        this.saveSettings = saveSettings;
+        variables.saveSettings = saveSettings;
     }
 
     public boolean isHideCamPanel() {
-        return hideCamPanel;
+        return variables.hideCamPanel;
     }
 
     public void setHideCamPanel(boolean hideCamPanel) {
-        this.hideCamPanel = hideCamPanel;
+        variables.hideCamPanel = hideCamPanel;
     }
 
     public boolean isShowFPS() {
-        return showFPS;
+        return variables.showFPS;
     }
 
     public void setShowFPS(boolean showFPS) {
-        this.showFPS = showFPS;
+        variables.showFPS = showFPS;
     }
     
     public String getModelLocation() {
-        return modelLocation;
+        return variables.modelLocation;
     }
 
     public void setModelLocation(String modelLocation) {
-        this.modelLocation = modelLocation;
+        variables.modelLocation = modelLocation;
     }
 
     public int getPopulationNumber() {
-        return populationNumber;
+        return variables.populationNumber;
     }
 
     public void setPopulationNumber(int populationNumber) {
-        tmpPopNum = populationNumber;
+        variables.tmpPopNum = populationNumber;
     }
     public void updatePopNum() {
-        populationNumber = tmpPopNum;
+        variables.populationNumber = variables.tmpPopNum;
     }
 
     public float getCamSpeed() {
-        return camSpeed;
+        return variables.camSpeed;
     }
 
     public void setCamSpeed(float camSpeed) {
-        this.camSpeed = camSpeed;
+        variables.camSpeed = camSpeed;
     }
 
     public boolean isShowCoordinates() {
-        return showCoordinates;
+        return variables.showCoordinates;
     }
 
     public void setShowCoordinates(boolean showCoordinates) {
-        this.showCoordinates = showCoordinates;
+        variables.showCoordinates = showCoordinates;
     }
 
     public boolean isShowNavMesh() {
-        return showNavMesh;
+        return variables.showNavMesh;
     }
 
     public void setShowNavMesh(boolean showNavMesh) {
-        this.showNavMesh = showNavMesh;
+        variables.showNavMesh = showNavMesh;
     }
 
     public boolean isShowShip() {
-        return showShip;
+        return variables.showShip;
     }
 
     public void setShowShip(boolean showShip) {
-        this.showShip = showShip;
+        variables.showShip = showShip;
     }
 
     public boolean isShowHullFarSide() {
-        return showHullFarSide;
+        return variables.showHullFarSide;
     }
 
     public void setShowHullFarSide(boolean showHullFarSide) {
-        this.showHullFarSide = showHullFarSide;
+        variables.showHullFarSide = showHullFarSide;
     }
 
     public Color getNavMeshColor() {
-        return navMeshColor;
+        return variables.navMeshColor;
     }
 
     public void setNavMeshColor(Color navMeshColor) {
-        this.navMeshColor = navMeshColor;
+        variables.navMeshColor = navMeshColor;
     }
 
     public String getGuiFont() {
-        return guiFont;
+        return variables.guiFont;
     }
 
     public void setGuiFont(String guiFont) {
-        this.guiFont = guiFont;
+        variables.guiFont = guiFont;
     }
 
     public String getModelName() {
-        return modelName;
+        return variables.modelName;
     }
 
     public void setModelName(String modelName) {
-        this.modelName = modelName;
+        variables.modelName = modelName;
     }
     
-    private String modelLocation; //Location of j30 file. Should be in Models!
-    private int populationNumber; //Number of people to populate model with
-    private int tmpPopNum; //Number of people to populate model with
-    private float camSpeed; //Camera move speed
-    private String modelName;
-    //GUI Settings
-    //private Dimension windowSize;
-    private boolean showCoordinates;
-    private boolean showNavMesh;
-    private boolean showShip;
-    private boolean showHullFarSide;
-    private Color navMeshColor;
-    private String guiFont;
-    private boolean showFPS;
-    private boolean saveSettings;
-    private boolean hideCamPanel;
-    private HashMap<String, CamLoc> camLocations;
-    private static String theme;
+    public boolean showOrigin() {
+        return variables.showOrigin;
+    }
+    
+    public void setShowOrigin(boolean o) {
+        variables.showOrigin = o;
+    }
+    
+    public String getPersonModelLocation() {
+        return variables.personModelLocation;
+    }
+    public void setPersonModelLocation(String s) {
+        variables.personModelLocation = s;
+    }
+    
+    public float getBASESPEED() {
+        return variables.BASESPEED;
+    }
+    public void setBaseSpeed(float f) {
+        variables.BASESPEED = f;
+    }
+    
+    public boolean showRoutes() {
+        return variables.showRoutes;
+    }
+    public void setShowRoutes(boolean b) {
+        variables.showRoutes = b;
+    }
+    
+    public boolean getPrintEv() {
+        return variables.printEverything;
+    }
+    public void setPrintEv(boolean b) {
+        variables.printEverything = b;
+    }
     
 }

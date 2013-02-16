@@ -6,8 +6,7 @@ package EvacSim.population;
 
 import EvacSim.EvacSim;
 import EvacSim.goal.Goal;
-import EvacSim.jme3tools.navmesh.NavMesh;
-import com.jme3.app.SimpleApplication;
+import Init.Settings.Settings;
 import com.jme3.cinematic.MotionPath;
 import com.jme3.cinematic.events.CinematicEvent;
 import com.jme3.cinematic.events.CinematicEventListener;
@@ -27,23 +26,17 @@ import com.jme3.scene.VertexBuffer;
  * @author michael
  */
 public class Person implements Runnable{
-
-    /**
-     * Owning Node
-     */
-    private com.jme3.scene.Node rootNode;
-    /**
-     * Provides visual representation of a person
-     */
+    
+    //Handles for pausing the process
     private boolean fin;
     private boolean start;
     
+    /**
+     * Provides visual representation of a person
+     */
     private Spatial person;
     private Material mat1;
-    /**
-     * NavMesh on which routes are planned
-     */
-    private NavMesh navmesh;
+
     /**
      * Path for movement of visual representation
      */
@@ -59,24 +52,28 @@ public class Person implements Runnable{
     private Goal currentGoal;
     private float speed;
     private float stress;
+    
+    EvacSim evs;
+    Settings settings;
 
-    public Person(SimpleApplication simp, com.jme3.scene.Node rootNode, NavMesh navmesh, Vector3f initialLocation, float speed, Population p) {
-        this.rootNode = rootNode;
-        this.navmesh = navmesh;
+    public Person(EvacSim evs, Vector3f initialLocation, float speed, Population p) {
         this.initialLocation = initialLocation;
         this.speed = speed;
         fin = false;
+        this.evs = evs;
+        settings = Settings.get();
 
         //Create Visual Representation
-        person = simp.getAssetManager().loadModel("Models/Ninja/Ninja.mesh.xml");
-        Material mat_default = new Material(simp.getAssetManager(), "Common/MatDefs/Misc/ShowNormals.j3md");
+        
+        person = evs.getAssetManager().loadModel(settings.getPersonModelLocation());
+        Material mat_default = new Material(evs.getAssetManager(), "Common/MatDefs/Misc/ShowNormals.j3md");
         person.setMaterial(mat_default);
         person.scale(0.002f);
         person.setLocalTranslation(initialLocation);
-        mat1 = new Material(simp.getAssetManager(),
+        mat1 = new Material(evs.getAssetManager(),
                 "Common/MatDefs/Misc/Unshaded.j3md");
         mat1.setColor("Color", ColorRGBA.randomColor());
-        rootNode.attachChild(person);
+        evs.attachChild(person);
 
         //setup motion control
 
@@ -103,36 +100,39 @@ public class Person implements Runnable{
     public void run() {
         start = true;
         currentGoal = BehaviourModel.nearestExit(initialLocation);
-        PersonNavmeshRoutePlanner routeplan = new PersonNavmeshRoutePlanner(navmesh, initialLocation, currentGoal.getLocation());
+        PersonNavmeshRoutePlanner routeplan = new PersonNavmeshRoutePlanner(settings.getNavMesh(), initialLocation, currentGoal.getLocation());
 
         if (!routeplan.computePath(currentGoal.getLocation())) {
             System.err.println("Could not Compute path to exit");
             return;
         }
-        System.err.println("Starting from " + initialLocation.toString());
+        Mesh lineMesh;
+        if (settings.getPrintEv()) System.err.println("Starting from " + initialLocation.toString());
         while (!routeplan.isAtGoalWaypoint()) {
             Vector3f oldPosition = new Vector3f(routeplan.getCurrentPos3d());
-            System.err.println("Currently at " + oldPosition.toString());
+            if (settings.getPrintEv()) System.err.println("Currently at " + oldPosition.toString());
             routeplan.planPathToWaypoint(Population.DISTANCEBETWEENMOTIONWAYPOINTS);
             Vector3f newPosition = new Vector3f(routeplan.getCurrentPos3d());
-            System.err.println("Added " + newPosition.toString());
+            if (settings.getPrintEv()) System.err.println("Added " + newPosition.toString());
 
-            Mesh lineMesh = new Mesh();
-            lineMesh.setMode(Mesh.Mode.Lines);
-            lineMesh.setLineWidth(5f);
-            lineMesh.setBuffer(VertexBuffer.Type.Position, 3, new float[]{oldPosition.x, oldPosition.y, oldPosition.z, newPosition.x, newPosition.y, newPosition.z});
-            lineMesh.setBuffer(VertexBuffer.Type.Index, 2, new short[]{0, 1});
-            lineMesh.updateBound();
-            lineMesh.updateCounts();
-            Geometry lineGeometry = new Geometry("line", lineMesh);
+            if (settings.showRoutes()) {
+                lineMesh = new Mesh();
+                lineMesh.setMode(Mesh.Mode.Lines);
+                lineMesh.setLineWidth(5f);
+                lineMesh.setBuffer(VertexBuffer.Type.Position, 3, new float[]{oldPosition.x, oldPosition.y, oldPosition.z, newPosition.x, newPosition.y, newPosition.z});
+                lineMesh.setBuffer(VertexBuffer.Type.Index, 2, new short[]{0, 1});
+                lineMesh.updateBound();
+                lineMesh.updateCounts();
+                Geometry lineGeometry = new Geometry("line", lineMesh);
 
-            lineGeometry.setMaterial(mat1);
-            rootNode.attachChild(lineGeometry);
+                lineGeometry.setMaterial(mat1);
+                evs.attachChild(lineGeometry);
+            }
         }
 
         motionpath = routeplan.getMotionpath();
         motionpath.addListener(new PersonMovementListener(this));
-        System.err.println("Finished motion path!" + (motionpath.isCycle() ? " (cycled)" : ""));
+        if (settings.getPrintEv()) System.err.println("Finished motion path!" + (motionpath.isCycle() ? " (cycled)" : ""));
 
 
         float time = calculateMotionTime(speed, motionpath);
@@ -150,7 +150,8 @@ public class Person implements Runnable{
                 
                 EvacSim.updateStatus();
                 EvacSim.getPopulation().updateNumberOfPeople();
-                rootNode.detachChild(person);
+                evs.detachChild(person);
+                return;
             }
         });
     }
@@ -174,10 +175,6 @@ public class Person implements Runnable{
 
     public float getStress() {
         return stress;
-    }
-
-    public NavMesh getNavmesh() {
-        return navmesh;
     }
 
     public Goal getCurrentGoal() {

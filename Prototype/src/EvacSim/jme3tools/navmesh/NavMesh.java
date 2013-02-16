@@ -30,7 +30,7 @@ import java.util.List;
  * @author TR
  * 
  */
-public class NavMesh implements Savable {
+public class NavMesh implements Savable, java.io.Serializable {
 
     /**
      * the cells that make up this mesh

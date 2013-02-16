@@ -138,10 +138,10 @@ public class EvacSimMainFrame extends javax.swing.JFrame {
     
     public void updateCanvas() {
         settings.updatePopNum();
-        canvas.removeAll();
+        //canvas.removeAll();
         
         if (evacSim != null) {
-            evacSim.destroy(); /*NOT GOOD! Fix if possible!*/
+            evacSim.restartSim(); /*NOT GOOD! Fix if possible!*/
         }
         else {
             g = new GridBagConstraints();
@@ -150,6 +150,16 @@ public class EvacSimMainFrame extends javax.swing.JFrame {
             g.gridwidth = 2;
             g.insets = new Insets(10, 0, 0, 8);
             g.gridx = g.gridy = 0;
+            evacSim = new EvacSim(settings);
+            evacSim.passParent(this);
+            canvas.remove(loadingText);
+            
+            evacSim.createCanvas(); // create canvas!
+            ctx = (JmeCanvasContext) evacSim.getContext();
+            ctx.setSystemListener(evacSim);
+            ctx.getCanvas().setSize(canvas.getSize());
+
+            canvas.add(ctx.getCanvas(), g);
         }
         
         playTimer.restart();
@@ -157,16 +167,8 @@ public class EvacSimMainFrame extends javax.swing.JFrame {
         
         sidePanel.update();
         sidePanel.updateStatus(settings.getPopulationNumber(), -1);
-                
-        evacSim = new EvacSim(settings);
-        evacSim.passParent(this);
         
-        evacSim.createCanvas(); // create canvas!
-        ctx = (JmeCanvasContext) evacSim.getContext();
-        ctx.setSystemListener(evacSim);
-        ctx.getCanvas().setSize(canvas.getSize());
-
-        canvas.add(ctx.getCanvas(), g);
+        
     }
                   
     

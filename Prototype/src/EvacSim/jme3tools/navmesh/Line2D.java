@@ -20,7 +20,7 @@ import com.jme3.math.Vector2f;
  * @author TR
  *
  */
-class Line2D implements Savable {
+class Line2D implements Savable, java.io.Serializable {
 
     enum PointSide {
 

@@ -11,7 +11,7 @@ import com.jme3.math.Vector3f;
  *
  * @author hector
  */
-public class CamLoc {
+public class CamLoc implements java.io.Serializable {
     
     public Vector3f loc;
     public Quaternion rot;

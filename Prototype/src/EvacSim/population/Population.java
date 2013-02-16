@@ -4,13 +4,13 @@
  */
 package EvacSim.population;
 
+import EvacSim.EvacSim;
 import EvacSim.goal.ExitGoal;
 import EvacSim.jme3tools.navmesh.NavMesh;
-import com.jme3.app.SimpleApplication;
+import Init.Settings.Settings;
 import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector3f;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Random;
 import java.util.logging.Level;
@@ -22,29 +22,28 @@ import java.util.logging.Logger;
  */
 public class Population implements Runnable {
     public static float DISTANCEBETWEENMOTIONWAYPOINTS = 0.5f;
-    public static float BASESPEED = 1;
     
-    private SimpleApplication simp;
+    private EvacSim evs;
     private Person people[];
     private ArrayList<PersonCategory> personCategories = new ArrayList<PersonCategory>();
     private Thread peopleThreads[];
-    private com.jme3.scene.Node rootNode;
     private NavMesh mesh;
-    private ArrayList<PersonCluster> personClusterList; //list of clusters of closely positioned persons
-    private BoundaryComparator bComp = new BoundaryComparator(); //comparator used in sorting the persons based on an indvidual axis
+    //private ArrayList<PersonCluster> personClusterList; //list of clusters of closely positioned persons
+    //private BoundaryComparator bComp = new BoundaryComparator(); //comparator used in sorting the persons based on an indvidual axis
     private  boolean evacuationDone;
     //distance from the center of a person to the edge of its surface area.
     //used in generating non-overlaping persons
     //should be linked with a persons surface area
     private float personCollisionDistance = 0.2f; 
     private int numEvacuated;
+    private Settings settings;
 
-    public Population(com.jme3.scene.Node rootNode, NavMesh mesh, SimpleApplication simp) {
+    public Population(NavMesh mesh, EvacSim evs) {
         this.mesh = mesh;
-        this.simp = simp;
-        this.rootNode = rootNode;
+        this.evs = evs;
         this.evacuationDone = false;
         this.numEvacuated = 0;
+        settings = Settings.get();
         GoalParser.parseGoals("assets/Input/Goals.csv");
         for(ExitGoal exit: BehaviourModel.getExits()){
             System.out.println("EXIT: " + exit.getLocation());
@@ -53,7 +52,8 @@ public class Population implements Runnable {
 
     }
 
-    public void populate(int popNumber) {
+    public void populate() {
+        int popNumber = settings.getPopulationNumber();
        // GoalParser.parseGoals("/users/level3/1003819k/teamproject/Prototype/assets/Input/Goals.csv");
         people = new Person[popNumber];
 
@@ -86,7 +86,7 @@ public class Population implements Runnable {
                 //candidate = new Vector3f(-0.63556033f, -1.2945915f, 14.966727f);
                 //
                 
-                people[i] = new Person(simp,rootNode,mesh,candidate,BASESPEED, this);
+                people[i] = new Person(evs,candidate, settings.getBASESPEED(), this);
                 peopleThreads[i] = new Thread(people[i]);
             }
         }
@@ -128,7 +128,7 @@ public class Population implements Runnable {
      * have enough informations about their current neighbourhood in order
      * to safely avoid collisions.
      */
-    private void refreshPersonClusters() {
+    /*private void refreshPersonClusters() {
         ArrayList<PersonCluster> newClusterList = new ArrayList<PersonCluster>();
 
         PersonCluster allPersons = new PersonCluster(0);
@@ -136,9 +136,9 @@ public class Population implements Runnable {
 
        // RDC(newClusterList, allPersons, 0);
 
-        this.personClusterList = newClusterList;
+        //this.personClusterList = newClusterList;
         //System.out.println(personClusterList.size());
-    }
+    }*/
 
     /**
      * Recursively splits the current PersonCluster along the 3 dimensions, until no splits can be made.
@@ -227,7 +227,8 @@ public class Population implements Runnable {
     
     public void updateNumberOfPeople(){
         if (++this.numEvacuated == people.length){
-            this.evacuationDone = true;
+            evs.done();
+            this.evacuationDone = true;      
         }
     }
     

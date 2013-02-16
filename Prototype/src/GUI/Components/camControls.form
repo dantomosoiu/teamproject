@@ -175,6 +175,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="mLeft">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Symbol" size="14" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="&#x2190;"/>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 75]"/>
@@ -192,6 +195,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="mRight">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Symbol" size="14" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="&#x2192;"/>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[30, 75]"/>
@@ -209,6 +215,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="mDown">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Symbol" size="14" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="&#x2193;"/>
         <Property name="toolTipText" type="java.lang.String" value="Move Backwards"/>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -228,7 +237,7 @@
     <Component class="javax.swing.JButton" name="mUp">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Ubuntu" size="15" style="0"/>
+          <Font name="Symbol" size="14" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="&#x2191;"/>
         <Property name="toolTipText" type="java.lang.String" value="Move Forward"/>
