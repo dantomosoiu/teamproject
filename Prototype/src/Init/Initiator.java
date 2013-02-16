@@ -8,6 +8,8 @@ package Init;
 
 import GUI.EvacSimMainFrame;
 import Init.Settings.Settings;
+import java.awt.Graphics2D;
+import java.awt.SplashScreen;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.UIManager;
@@ -19,10 +21,11 @@ import javax.swing.UnsupportedLookAndFeelException;
  */
 public class Initiator {
     
+    
+    
     private static Settings settings;
     
     public static void main(String[] args) {
-        
         
         settings = Settings.get();
         settings.loadFromFile();
