@@ -6,6 +6,7 @@ package EvacSim.population;
 
 import EvacSim.EvacSim;
 import EvacSim.goal.ExitGoal;
+import EvacSim.jme3tools.navmesh.Cell;
 import EvacSim.jme3tools.navmesh.NavMesh;
 import Init.Settings.Settings;
 import com.jme3.math.ColorRGBA;
@@ -63,11 +64,26 @@ public class Population implements Runnable {
 
         peopleThreads = new Thread[popNumber];
 
+        float cellAverage = 0;
+        for(int i=0;i<totalCells;i++){
+            cellAverage += mesh.getCell(i).getArea();
+        }
+        cellAverage /= totalCells;
+        
+        ArrayList<Cell> largeCells = new ArrayList<Cell>();
+        for(int i=0;i<totalCells;i++){
+            if(mesh.getCell(i).getArea() > cellAverage){
+                largeCells.add(mesh.getCell(i));
+            }
+        }
+        
         //creates the persons with randomly generated (non-overlaping) positions on the navmesh
         for (int i = 0; i < popNumber; i++) {
             boolean foundCandidate = false;
+
             while (!foundCandidate) {
-                Vector3f candidate = mesh.getCell(rand.nextInt(totalCells)).getRandomPoint();
+                Vector3f candidate = largeCells.get(rand.nextInt(largeCells.size())).getRandomPoint();
+                
                 boolean overlaps = false;
                 for (Vector3f position : personPositions) {
                     if (position.distance(candidate) < personCollisionDistance) {

@@ -18,6 +18,7 @@ import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.Mesh;
+import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 import com.jme3.scene.VertexBuffer;
 
@@ -52,8 +53,10 @@ public class Person implements Runnable{
     private Goal currentGoal;
     private float speed;
     private float stress;
+    private PersonNavmeshRoutePlanner routeplan;
     
     EvacSim evs;
+    Node routeGeometryHolder;
     Settings settings;
 
     public Person(EvacSim evs, Vector3f initialLocation, float speed, Population p) {
@@ -62,14 +65,51 @@ public class Person implements Runnable{
         fin = false;
         this.evs = evs;
         settings = Settings.get();
+        routeGeometryHolder = new Node();
 
+        currentGoal = BehaviourModel.nearestExit(initialLocation);
+        routeplan = new PersonNavmeshRoutePlanner(settings.getNavMesh(), initialLocation, currentGoal.getLocation());
+        
+        //Calculate Path
+        if (!routeplan.computePath(currentGoal.getLocation())) {
+            System.err.println("Could not Compute path to exit");
+            return;
+        }
+        Mesh lineMesh;
+        if (settings.getPrintEv()) System.err.println("Starting from " + initialLocation.toString());
+        while (!routeplan.isAtGoalWaypoint()) {
+            Vector3f oldPosition = new Vector3f(routeplan.getCurrentPos3d());
+            if (settings.getPrintEv()) System.err.println("Currently at " + oldPosition.toString());
+            routeplan.planPathToWaypoint(Population.DISTANCEBETWEENMOTIONWAYPOINTS);
+            Vector3f newPosition = new Vector3f(routeplan.getCurrentPos3d());
+            if (settings.getPrintEv()) System.err.println("Added " + newPosition.toString());
+
+            if (settings.showRoutes()) {
+                lineMesh = new Mesh();
+                lineMesh.setMode(Mesh.Mode.Lines);
+                lineMesh.setLineWidth(5f);
+                lineMesh.setBuffer(VertexBuffer.Type.Position, 3, new float[]{oldPosition.x, oldPosition.y, oldPosition.z, newPosition.x, newPosition.y, newPosition.z});
+                lineMesh.setBuffer(VertexBuffer.Type.Index, 2, new short[]{0, 1});
+                lineMesh.updateBound();
+                lineMesh.updateCounts();
+                Geometry lineGeometry = new Geometry("line", lineMesh);
+
+                lineGeometry.setMaterial(mat1);
+                routeGeometryHolder.attachChild(lineGeometry);
+            }
+        }
+
+        motionpath = routeplan.getMotionpath();
+        motionpath.addListener(new PersonMovementListener(this));
+        
         //Create Visual Representation
         
         person = evs.getAssetManager().loadModel(settings.getPersonModelLocation());
         Material mat_default = new Material(evs.getAssetManager(), "Common/MatDefs/Misc/ShowNormals.j3md");
         person.setMaterial(mat_default);
-        person.scale(0.002f);
-        person.setLocalTranslation(initialLocation);
+        person.scale(0.002f);        
+        
+        person.setLocalTranslation(routeplan.motionpath.getWayPoint(0));
         mat1 = new Material(evs.getAssetManager(),
                 "Common/MatDefs/Misc/Unshaded.j3md");
         mat1.setColor("Color", ColorRGBA.randomColor());
@@ -99,39 +139,9 @@ public class Person implements Runnable{
     @Override
     public void run() {
         start = true;
-        currentGoal = BehaviourModel.nearestExit(initialLocation);
-        PersonNavmeshRoutePlanner routeplan = new PersonNavmeshRoutePlanner(settings.getNavMesh(), initialLocation, currentGoal.getLocation());
-
-        if (!routeplan.computePath(currentGoal.getLocation())) {
-            System.err.println("Could not Compute path to exit");
-            return;
-        }
-        Mesh lineMesh;
-        if (settings.getPrintEv()) System.err.println("Starting from " + initialLocation.toString());
-        while (!routeplan.isAtGoalWaypoint()) {
-            Vector3f oldPosition = new Vector3f(routeplan.getCurrentPos3d());
-            if (settings.getPrintEv()) System.err.println("Currently at " + oldPosition.toString());
-            routeplan.planPathToWaypoint(Population.DISTANCEBETWEENMOTIONWAYPOINTS);
-            Vector3f newPosition = new Vector3f(routeplan.getCurrentPos3d());
-            if (settings.getPrintEv()) System.err.println("Added " + newPosition.toString());
-
-            if (settings.showRoutes()) {
-                lineMesh = new Mesh();
-                lineMesh.setMode(Mesh.Mode.Lines);
-                lineMesh.setLineWidth(5f);
-                lineMesh.setBuffer(VertexBuffer.Type.Position, 3, new float[]{oldPosition.x, oldPosition.y, oldPosition.z, newPosition.x, newPosition.y, newPosition.z});
-                lineMesh.setBuffer(VertexBuffer.Type.Index, 2, new short[]{0, 1});
-                lineMesh.updateBound();
-                lineMesh.updateCounts();
-                Geometry lineGeometry = new Geometry("line", lineMesh);
-
-                lineGeometry.setMaterial(mat1);
-                evs.attachChild(lineGeometry);
-            }
-        }
-
-        motionpath = routeplan.getMotionpath();
-        motionpath.addListener(new PersonMovementListener(this));
+        routeGeometryHolder.setMaterial(mat1);
+        evs.attachChild(routeGeometryHolder);
+        
         if (settings.getPrintEv()) System.err.println("Finished motion path!" + (motionpath.isCycle() ? " (cycled)" : ""));
 
 

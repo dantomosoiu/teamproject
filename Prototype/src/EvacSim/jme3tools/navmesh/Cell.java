@@ -16,11 +16,11 @@ import java.util.Random;
  * collisions with the cell walls. Portions of the A* path finding algorythm are
  * provided within this class as well, but the path finding process is managed
  * by the parent Navigation Mesh.
- * 
+ *
  * Portions Copyright (C) Greg Snook, 2000
- * 
+ *
  * @author TR
- * 
+ *
  */
 public class Cell implements Savable, java.io.Serializable {
 
@@ -37,17 +37,14 @@ public class Cell implements Savable, java.io.Serializable {
          * The path does not cross this cell
          */
         NoRelationship,
-
         /**
          * The path ends in this cell
          */
         EndingCell,
-
         /**
          * The path exits this cell through side X
          */
         ExitingCell;
-        
     };
 
     class ClassifyResult {
@@ -62,68 +59,64 @@ public class Cell implements Savable, java.io.Serializable {
             return result.toString() + " " + cell;
         }
     }
-
     /**
      * A plane containing the cell triangle
      */
     private Plane cellPlane = new Plane();
-
     /**
-     * pointers to the verticies of this triangle held in the
-     * NavigationMesh's vertex pool
+     * pointers to the verticies of this triangle held in the NavigationMesh's
+     * vertex pool
      */
     private Vector3f[] verticies = new Vector3f[3];
-
     /**
      * The center of the triangle
      */
     private Vector3f center = new Vector3f();
-
     /**
      * a 2D line representing each cell Side
      */
     private Line2D[] sides = new Line2D[3];
-
     /**
      * pointers to cells that attach to this cell. A null link denotes a solid
      * edge. Pathfinding Data...
      */
     private Cell[] links = new Cell[3];
-
     /**
      * an identifier for the current pathfinding session.
      */
     private volatile int sessionID;
-
     /**
      * total cost to use this cell as part of a path
      */
     private volatile float arrivalCost;
-
     /**
      * our estimated cost to the goal from here
      */
     private volatile float heuristic;
-
     /**
      * are we currently listed as an Open cell to revisit and test?
      */
     private volatile boolean open;
-
     /**
      * the side we arrived through.
      */
     private volatile int arrivalWall;
-
     /**
      * the pre-computed midpoint of each wall.
      */
     private Vector3f[] wallMidpoints = new Vector3f[3];
-
     /**
      * the distances between each wall midpoint of sides (0-1, 1-2, 2-0)
      */
     private float[] wallDistances = new float[3];
+    /**
+     * triangle area
+     */
+    private float area;
+
+    public float getArea() {
+        return area;
+    }
 
     void initialize(Vector3f pointA, Vector3f pointB, Vector3f pointC) {
         verticies[VERT_A] = pointA;
@@ -185,13 +178,18 @@ public class Cell implements Savable, java.io.Serializable {
         wallVector = wallMidpoints[2].subtract(wallMidpoints[0]);
         wallDistances[2] = wallVector.length();
 
+
+        float s = wallDistances[0] + wallDistances[1] + wallDistances[2];
+        s /= 2;
+
+        area = (float) Math.sqrt(s * (s - wallDistances[0]) * (s - wallDistances[1]) * (s - wallDistances[0]));
     }
 
     /**
      * Navigation Mesh is created as a pool of raw cells. The cells are then
-     * compared against each other to find common edges and create links.
-     * This routine is called from a potentially adjacent cell to test if
-     * a link should exist between the two.
+     * compared against each other to find common edges and create links. This
+     * routine is called from a potentially adjacent cell to test if a link
+     * should exist between the two.
      *
      * @param pointA
      * @param pointB
@@ -242,15 +240,19 @@ public class Cell implements Savable, java.io.Serializable {
     }
 
     /**
-     * Uses the X and Z information of the vector to calculate Y on the cell plane
+     * Uses the X and Z information of the vector to calculate Y on the cell
+     * plane
+     *
      * @param point
      */
-    public float getHeightOnCell(Vector3f point){
+    public float getHeightOnCell(Vector3f point) {
         return cellPlane.solveForY(point.x, point.z);
     }
 
     /**
-     * Uses the X and Z information of the vector to calculate Y on the cell plane
+     * Uses the X and Z information of the vector to calculate Y on the cell
+     * plane
+     *
      * @param point
      */
     public void computeHeightOnCell(Vector3f point) {
@@ -287,6 +289,7 @@ public class Cell implements Savable, java.io.Serializable {
     /**
      * Test to see if a 3D point is within the cell by projecting it down to 2D
      * and calling the above method.
+     *
      * @param point
      * @return
      */
@@ -306,7 +309,7 @@ public class Cell implements Savable, java.io.Serializable {
         return (links[side]);
     }
 
-    Line2D getWall(int side){
+    Line2D getWall(int side) {
         return sides[side];
     }
 
@@ -326,7 +329,7 @@ public class Cell implements Savable, java.io.Serializable {
         return (arrivalWall);
     }
 
-    public float getWallLength(int side){
+    public float getWallLength(int side) {
         return wallDistances[side];
     }
 
@@ -551,6 +554,7 @@ public class Cell implements Savable, java.io.Serializable {
     /**
      * Force a 3D point to the interior cell by forcing it to the interior of
      * each wall
+     *
      * @param point
      * @return
      */
@@ -658,9 +662,9 @@ public class Cell implements Savable, java.io.Serializable {
         return false;
     }
 
-
     /**
      * Compute the A* Heuristic for this cell given a Goal point
+     *
      * @param goal
      */
     void computeHeuristic(Vector3f goal) {
@@ -712,24 +716,24 @@ public class Cell implements Savable, java.io.Serializable {
         InputCapsule capsule = e.getCapsule(this);
 
         Savable[] verts = capsule.readSavableArray("verticies", null);
-        for (int i = 0; i < verts.length; i++){
+        for (int i = 0; i < verts.length; i++) {
             verticies[i] = (Vector3f) verts[i];
         }
 
         Savable[] savLinks = capsule.readSavableArray("links", null);
-        for (int i = 0; i < savLinks.length; i++){
+        for (int i = 0; i < savLinks.length; i++) {
             links[i] = (Cell) savLinks[i];
         }
 
         computeCellData();
-        
+
 //        cellPlane = (Plane) capsule.readSavable("cellPlane", new Plane());
 //        center = (Vector3f) capsule.readSavable("center", new Vector3f());
 //        sides = (Line2D[]) capsule.readSavableArray("sides", new Line2D[3]);
 //        wallMidpoints = (Vector3f[]) capsule.readSavableArray("midpoints", new Vector3f[3]);
 //        wallDistances = capsule.readFloatArray("distances", new float[3]);
 
-        
+
     }
 
     void checkAndLink(Cell other, float epsilon) {
