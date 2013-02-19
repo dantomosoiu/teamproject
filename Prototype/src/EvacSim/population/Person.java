@@ -27,7 +27,7 @@ import com.jme3.scene.VertexBuffer;
  * @author michael
  */
 public class Person implements Runnable{
-
+    public final int WAYPOINTSBETWEENDECISIONS = 20;
     /**
      * Owning Node
      */
@@ -131,7 +131,7 @@ public class Person implements Runnable{
         }
 
         motionpath = routeplan.getMotionpath();
-        motionpath.addListener(new PersonMovementListener(this));
+        motionpath.addListener(new PersonMovementListener(this,WAPOINTSBETWEENDECISIONS));
         System.err.println("Finished motion path!" + (motionpath.isCycle() ? " (cycled)" : ""));
 
 
