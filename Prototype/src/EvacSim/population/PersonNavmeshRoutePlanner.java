@@ -11,7 +11,7 @@ import com.jme3.math.Vector3f;
 public class PersonNavmeshRoutePlanner extends NavMeshPathfinder {
     private Vector3f initialLocation;
     private Vector3f goalLocation;
-    MotionPath motionpath;
+    private MotionPath motionpath;
     
     public PersonNavmeshRoutePlanner(NavMesh navmesh, Vector3f location){
         super(navmesh);
@@ -80,4 +80,7 @@ public class PersonNavmeshRoutePlanner extends NavMeshPathfinder {
         return super.getNavMesh();
     }
    
+    public void setGoal(Vector3f goal){
+        this.goalLocation = goal;
+    }
 }

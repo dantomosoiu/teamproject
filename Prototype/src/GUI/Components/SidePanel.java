@@ -5,7 +5,7 @@
 package GUI.Components;
 
 import GUI.EvacSimMainFrame;
-import Init.Settings;
+import Init.Settings.Settings;
 
 /**
  *
@@ -19,8 +19,9 @@ public class SidePanel extends javax.swing.JPanel {
     /**
      * Creates new form SidePanel
      */
-    public SidePanel() {
-        initComponents();        
+    public SidePanel(Settings set) {
+        initComponents();
+        settings = Settings.get();
     }
     
     public void passParent(EvacSimMainFrame  p) {
@@ -28,8 +29,7 @@ public class SidePanel extends javax.swing.JPanel {
         camControl.passParents(this, parent);
     }
     
-    public void updateSettings(Settings s) {
-        settings = s;
+    public void update() {
         popSize.setValue(settings.getPopulationNumber());
         showNavmesh.setSelected(settings.isShowNavMesh());
         showDecks.setSelected(settings.isShowShip());
@@ -38,6 +38,7 @@ public class SidePanel extends javax.swing.JPanel {
         if (settings.isHideCamPanel()) {
             camControl.setVisible(false);
         }
+        else camControl.setVisible(true);
     }
     
     public void setTime(int m, int s) {
@@ -82,7 +83,7 @@ public class SidePanel extends javax.swing.JPanel {
 
         setMaximumSize(new java.awt.Dimension(280, 32767));
         setMinimumSize(new java.awt.Dimension(280, 0));
-        setName("sidePanel"); // NOI18N
+        setName(""); // NOI18N
         setPreferredSize(new java.awt.Dimension(280, 500));
 
         popSize.setModel(new javax.swing.SpinnerNumberModel(20, 1, 200, 1));
@@ -281,7 +282,7 @@ public class SidePanel extends javax.swing.JPanel {
                     .addComponent(camLoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(camMoveBut))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(camControl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(camControl, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(popButton, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -328,8 +329,8 @@ public class SidePanel extends javax.swing.JPanel {
         if (!evacButton.isEnabled()) {
             evacButton.setEnabled(true);
         }
-        parent.route();
         routeButton.setEnabled(false);
+        parent.route();
     }//GEN-LAST:event_routeButtonActionPerformed
 
     private void evacButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_evacButtonActionPerformed
@@ -349,7 +350,7 @@ public class SidePanel extends javax.swing.JPanel {
     }//GEN-LAST:event_camMoveButActionPerformed
 
     private void popSizeStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_popSizeStateChanged
-        parent.asyncPopSetup((Integer) popSize.getValue());
+        settings.setPopulationNumber((Integer) popSize.getValue());
     }//GEN-LAST:event_popSizeStateChanged
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

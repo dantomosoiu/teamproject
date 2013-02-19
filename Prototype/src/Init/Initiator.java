@@ -7,21 +7,42 @@ package Init;
 
 
 import GUI.EvacSimMainFrame;
+import Init.Settings.Settings;
+import java.awt.Graphics2D;
+import java.awt.SplashScreen;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  *
- * @author hector
+ * @author Hector Grebbell
  */
 public class Initiator {
     
+    
+    
+    private static Settings settings;
+    
     public static void main(String[] args) {
         
-        Settings settings = new Settings();
+        settings = Settings.get();
         settings.loadFromFile();
         
-        EvacSimMainFrame mainFrame = new EvacSimMainFrame();
-        mainFrame.setSPParent();
-        mainFrame.updateSettings(settings);
+        try {
+            UIManager.setLookAndFeel(Settings.getTheme());
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Initiator.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            Logger.getLogger(Initiator.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(Initiator.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnsupportedLookAndFeelException ex) {
+            Logger.getLogger(Initiator.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        EvacSimMainFrame mainFrame = EvacSimMainFrame.get(settings);
         
     }
     

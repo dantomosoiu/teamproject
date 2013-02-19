@@ -7,6 +7,8 @@ package EvacSim.population;
 import EvacSim.goal.ExitGoal;
 import EvacSim.goal.Goal;
 import EvacSim.jme3tools.navmesh.NavMesh;
+import Init.Settings.Settings;
+import com.jme3.cinematic.MotionPath;
 import com.jme3.math.FastMath;
 import com.jme3.math.Vector3f;
 import java.util.ArrayList;
@@ -21,8 +23,8 @@ public abstract class BehaviourModel {
     private static ArrayList<Goal> goals = new ArrayList<Goal>();
     private static ArrayList<ExitGoal> exits = new ArrayList<ExitGoal>();
     
-    public static void percieveDecideAct(Person person){
-        PersonNavmeshRoutePlanner personOnNavmesh = new PersonNavmeshRoutePlanner(person.getNavmesh(),person.getPerson().getLocalTranslation());
+    public static MotionPath percieveDecideAct(Person person){
+        PersonNavmeshRoutePlanner personOnNavmesh = new PersonNavmeshRoutePlanner(Settings.get().getNavMesh(),person.getPerson().getLocalTranslation());
         //Check if person is moveing through an exit - if so return 
         ArrayList<Goal> visibleGoals = perceive(personOnNavmesh);
         ArrayList<ExitGoal>  visibleExits = new ArrayList<ExitGoal>();
@@ -37,7 +39,7 @@ public abstract class BehaviourModel {
         }
         
         Goal target = decide(person,personOnNavmesh,visibleExits.toArray(new ExitGoal[visibleExits.size()]));
-        
+        return act(target,personOnNavmesh);
     }
         
         
@@ -89,7 +91,11 @@ public abstract class BehaviourModel {
         return target;
       }
             
-            
+      private static MotionPath act(Vector3f target, PersonNavmeshRoutePlanner personOnNavmesh){
+          personOnNavmesh.setGoal(target);
+          personOnNavmesh.createMovementPath(Population.DISTANCEBETWEENMOTIONWAYPOINTS);
+          return personOnNavmesh.getMotionpath();
+      }      
    
     
     
