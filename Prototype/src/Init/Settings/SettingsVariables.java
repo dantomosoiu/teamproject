@@ -7,7 +7,6 @@ package Init.Settings;
 import EvacSim.jme3tools.navmesh.NavMesh;
 import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
-import java.awt.Color;
 import java.io.Serializable;
 import java.util.HashMap;
 import javax.swing.UIManager;
@@ -23,12 +22,11 @@ public class SettingsVariables implements Serializable {
     protected float camSpeed; //Camera move speed
     protected String modelName;
     //GUI Settings
-    //private Dimension windowSize;
     protected boolean showCoordinates;
     protected boolean showNavMesh;
     protected boolean showShip;
     protected boolean showHullFarSide;
-    protected Color navMeshColor;
+    protected String navMeshColor;
     protected String guiFont;
     protected boolean showFPS;
     protected boolean saveSettings;
@@ -41,17 +39,20 @@ public class SettingsVariables implements Serializable {
     protected boolean showRoutes;
     protected float BASESPEED;
     protected boolean printEverything;
+    protected HashMap<String, PersonCategory> peopleTypes;
+    protected boolean confExit;
+    protected String currentCamLoc;
 
     protected SettingsVariables() {
         modelLocation = "Models/FlatModel2/FlatModel2.j3o";
         populationNumber = 20;
-        tmpPopNum = 20;
+        tmpPopNum = populationNumber;
         camSpeed = 5;
         showCoordinates = false;
         showNavMesh = true;
         showShip = false;
         showHullFarSide = false;
-        navMeshColor = Color.white;
+        navMeshColor = "White";
         guiFont = "Interface/Fonts/Default.fnt";
         showFPS = true;
         saveSettings = true;
@@ -67,31 +68,11 @@ public class SettingsVariables implements Serializable {
         showRoutes = true;
         BASESPEED = 1;
         printEverything = false;
+        peopleTypes = new HashMap<String, PersonCategory>();
+        peopleTypes.put("Average", new PersonCategory("Average", 0.6f, 1.2f,0, 0, "White", 80));
+        peopleTypes.put("Athlete", new PersonCategory("Athlete", 1.0f, 1.9f,0, 0, "Red", 8));
+        peopleTypes.put("Infant", new PersonCategory("Infant", 0.3f, 0.7f,0, 0, "Pink", 12));
+        confExit = true;
+        currentCamLoc = "Default";
     }
-    
-    protected SettingsVariables(String modelLocation, int populationNumber, int tmpPopNum, float camSpeed, String modelName, boolean showCoordinates, boolean showNavMesh, boolean showShip, boolean showHullFarSide, Color navMeshColor, String guiFont, boolean showFPS, boolean saveSettings, boolean hideCamPanel, HashMap<String, CamLoc> camLocations, boolean showOrigin) {
-        this.modelLocation = modelLocation;
-        this.populationNumber = populationNumber;
-        this.tmpPopNum = tmpPopNum;
-        this.camSpeed = camSpeed;
-        this.modelName = modelName;
-        this.showCoordinates = showCoordinates;
-        this.showNavMesh = showNavMesh;
-        this.showShip = showShip;
-        this.showHullFarSide = showHullFarSide;
-        this.navMeshColor = navMeshColor;
-        this.guiFont = guiFont;
-        this.showFPS = showFPS;
-        this.saveSettings = saveSettings;
-        this.hideCamPanel = hideCamPanel;
-        this.camLocations = camLocations;
-        nm = null;
-        this.showOrigin = showOrigin;
-        personModelLocation = "Models/Ninja/Ninja.mesh.xml";
-        showRoutes = true;
-        BASESPEED = 1;
-        printEverything = false;
-    }
-    
-    
 }

@@ -5,7 +5,11 @@
 package Init.Settings;
 
 import EvacSim.jme3tools.navmesh.NavMesh;
-import java.awt.Color;
+import EvacSim.population.Population;
+import com.jme3.export.binary.BinaryExporter;
+import com.jme3.math.ColorRGBA;
+import com.jme3.scene.Node;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -24,6 +28,9 @@ public class Settings {
     //Singleton
     private static Settings instance = null;
     private static SettingsVariables variables;
+    private int numEvac = 0;
+    private Node nmHolder;
+    private Node nmCHolder;
     
     //Private constructor protects singleton method
     private Settings() {
@@ -35,11 +42,19 @@ public class Settings {
     }
     return instance;
     }
+    public void resetDefault() {
+        variables = new SettingsVariables();
+    }
     
     public void loadFromFile() {
         loadFromFile("assets/Settings/settings.data");
     }
     public void loadFromFile(String fileName) {
+        SettingsVariables v2 = load(fileName);
+        if (v2 != null) variables = v2;
+    }
+    
+    private SettingsVariables load(String fileName) {
         FileInputStream f_in;
         try {
             f_in = new FileInputStream(fileName);
@@ -53,7 +68,7 @@ public class Settings {
             if (obj instanceof SettingsVariables)
             {
                 // Cast object to a Vector
-                variables = (SettingsVariables) obj;
+                return (SettingsVariables) obj;
             }
         } catch (FileNotFoundException ex) {
             //Logger.getLogger(Settings.class.getName()).log(Level.SEVERE, null, ex);
@@ -62,20 +77,27 @@ public class Settings {
         } catch (ClassNotFoundException ce) {
             Logger.getLogger(Settings.class.getName()).log(Level.SEVERE, null, ce);
         }
+        return null;
     }
+        
+        
     public void saveToFile() {
         if (variables.saveSettings) {
             saveToFile("assets/Settings/settings.data");
         }
     }
     public void saveToFile(String fileName) {
+        save(variables, fileName);
+    }
+    
+    private void save(SettingsVariables sv, String fileName) {
         FileOutputStream f_out;
         try {
             f_out = new FileOutputStream(fileName);
             // Write object with ObjectOutputStream
             ObjectOutputStream obj_out = new ObjectOutputStream (f_out);
             // Write object out to disk
-            obj_out.writeObject ( variables );
+            obj_out.writeObject ( sv );
             f_out.close();
         } catch (FileNotFoundException ex) {
             //Logger.getLogger(Settings.class.getName()).log(Level.SEVERE, null, ex);
@@ -83,6 +105,23 @@ public class Settings {
             Logger.getLogger(Settings.class.getName()).log(Level.SEVERE, null, io);
         }
     }
+    
+    public void saveNavMeshDrawn() {
+        BinaryExporter exporter = BinaryExporter.getInstance();
+        File file = new File("assets/Settings/navMeshNode.j3o");
+        try {
+            exporter.save(nmHolder, file);
+          } catch (IOException ex) {
+            Logger.getLogger(Settings.class.getName()).log(Level.SEVERE, "Error: Failed to save NavMesh!", ex);
+          }
+        File file2 = new File("assets/Settings/navCoordsNode.j3o");
+        try {
+            exporter.save(nmCHolder, file2);
+          } catch (IOException ex) {
+            Logger.getLogger(Settings.class.getName()).log(Level.SEVERE, "Error: Failed to save NavMeshCoords!", ex);
+          }
+    }
+    
     
     public static String getTheme() {
         return SettingsVariables.theme;
@@ -94,6 +133,18 @@ public class Settings {
     public void saveNavMesh(NavMesh nm) {
         variables.nm = nm;
         saveToFile();
+    }
+    public Node getNMHolder() {
+        return nmHolder;
+    }
+    public void setNMHolder(Node n) {
+        nmHolder = n;
+    }
+        public Node Coords() {
+        return nmCHolder;
+    }
+    public void setCoords(Node n) {
+        nmCHolder = n;
     }
     
     public HashMap<String, CamLoc> getCamLocations() {
@@ -110,6 +161,11 @@ public class Settings {
 
     public void setSaveSettings(boolean saveSettings) {
         variables.saveSettings = saveSettings;
+        if (saveSettings == false){
+            SettingsVariables sv = load("assets/Settings/settings.data");
+            sv.saveSettings = false;
+            save(sv, "assets/Settings/settings.data");
+        }
     }
 
     public boolean isHideCamPanel() {
@@ -187,11 +243,14 @@ public class Settings {
         variables.showHullFarSide = showHullFarSide;
     }
 
-    public Color getNavMeshColor() {
+    public String getNavMeshColor() {
         return variables.navMeshColor;
     }
+    public ColorRGBA getNavMeshColorC() {
+        return getCol(variables.navMeshColor);
+    }
 
-    public void setNavMeshColor(Color navMeshColor) {
+    public void setNavMeshColor(String navMeshColor) {
         variables.navMeshColor = navMeshColor;
     }
 
@@ -245,6 +304,55 @@ public class Settings {
     }
     public void setPrintEv(boolean b) {
         variables.printEverything = b;
+    }
+    
+    public void setNumEvac(int i) {
+        numEvac = i;
+    }
+    public int getNumEvac() {
+        return numEvac;
+    }
+    public void incNumEvac() {
+        numEvac += 1;
+        if (variables.populationNumber-numEvac == 0) Population.done();
+    }
+    
+    public HashMap<String, PersonCategory> getPersonCategories() {
+        return variables.peopleTypes;
+    }
+    public void remPersonCategory(String name) {
+        variables.peopleTypes.remove(name);
+    }
+    public void addPersonCategory(String name, PersonCategory p) {
+        variables.peopleTypes.put(name, p);
+    }
+    
+    public boolean confExit() {
+        return variables.confExit;
+    }
+    public void setConfExit(boolean b) {
+        variables.confExit = b;
+    }
+    
+    public String currentCamLoc() {
+        return variables.currentCamLoc;
+    }
+    public void setCamLoc(String s) {
+        if (variables.camLocations.keySet().contains(s)) variables.currentCamLoc = s;
+    }
+    
+    public ColorRGBA getCol(String s) {
+        if (s.equals("White")) return ColorRGBA.White;
+        else if (s.equals("LightGray")) return ColorRGBA.LightGray;
+        else if (s.equals("Red")) return ColorRGBA.Red;
+        else if (s.equals("Green")) return ColorRGBA.Green;
+        else if (s.equals("Blue")) return ColorRGBA.Blue;
+        else if (s.equals("Yellow")) return ColorRGBA.Yellow;
+        else if (s.equals("Magenta")) return ColorRGBA.Magenta;
+        else if (s.equals("Cyan")) return ColorRGBA.Cyan;
+        else if (s.equals("Orange")) return ColorRGBA.Orange;
+        else if (s.equals("Pink")) return ColorRGBA.Pink;
+        else return ColorRGBA.White;
     }
     
 }

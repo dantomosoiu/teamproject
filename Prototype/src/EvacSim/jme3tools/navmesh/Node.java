@@ -1,5 +1,7 @@
 package EvacSim.jme3tools.navmesh;
 
+import java.io.Serializable;
+
 /**
  * A NavigationNode represents an entry in the NavigationHeap. It provides some
  * simple operators to classify it against other NavigationNodes when the heap
@@ -10,7 +12,7 @@ package EvacSim.jme3tools.navmesh;
  * @author TR
  * 
  */
-class Node implements Comparable<Node> {
+class Node implements Comparable<Node>, Serializable {
 
     /**
      * pointer to the cell in question

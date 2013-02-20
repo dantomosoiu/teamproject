@@ -3,15 +3,14 @@ package EvacSim;
 import EvacSim.jme3tools.navmesh.NavMesh;
 import EvacSim.jme3tools.navmesh.util.NavMeshGenerator;
 import EvacSim.population.Population;
-import GUI.EvacSimMainFrame;
+import GUI.Components.SidePanel;
 import Init.Settings.CamLoc;
 import Init.Settings.Settings;
 import com.jme3.app.SimpleApplication;
 import com.jme3.font.BitmapText;
+import com.jme3.input.InputManager;
 import com.jme3.material.Material;
-import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector3f;
-import com.jme3.renderer.RenderManager;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.Mesh;
 import com.jme3.scene.Node;
@@ -26,23 +25,29 @@ import java.util.logging.Logger;
  * @author normenhansen
  */
 public class EvacSim extends SimpleApplication {
-
+    
     private static Settings appSettings;
     private static Population population;
-    private static NavMesh shipNM;
-    private static EvacSimMainFrame parent;
-    private Node navMeshHolder;
-    private boolean navMeshOn;
+    private BitmapText origin;
+    private boolean running;
+    private String buttonCam;
     
     public EvacSim(Settings set) {
         appSettings = set;
+        running = false;
+    }
+    
+    @Override
+    public void update() {
+        super.update();
+        System.out.println(buttonCam);
+        if (buttonCam != null) flyCam.onAnalog(buttonCam, 0.05f, 0);
     }
 
     @Override
     public void simpleInitApp() {
-        
+        buttonCam = null;
         this.setPauseOnLostFocus(false);
-        
         this.setDisplayStatView(false); //Hides debug info
         this.setDisplayFps(appSettings.isShowFPS()); //Depending on settings hides FPS
         flyCam.setDragToRotate(true); //Sets cam mouse controls
@@ -51,43 +56,29 @@ public class EvacSim extends SimpleApplication {
 
         Logger.getLogger("").setLevel(Level.SEVERE);
 
-        if ((shipNM = appSettings.getNavMesh()) == null) {
-            //Loads Model
-            Spatial ship = assetManager.loadModel(appSettings.getModelLocation());
-            Node node = (Node) ship;
-            Node chil1 = (Node) node.getChildren().get(0);
-            Geometry chil = (Geometry) chil1.getChildren().get(0);
-
-            Mesh shipMesh = chil.getMesh();
-            shipNM = new NavMesh();
-
-            NavMeshGenerator generator = new NavMeshGenerator();
-
-            Mesh optimisedMesh = generator.optimize(shipMesh);
-
-            shipNM.loadFromMesh(optimisedMesh);
-            appSettings.saveNavMesh(shipNM);
+        if ((appSettings.getNavMesh()) == null) {
+            drawNM();
+        }
+        else {
+            appSettings.setNMHolder((Node)assetManager.loadModel("Settings/navMeshNode.j3o"));
+            //appSettings.setCoords((Node)assetManager.loadModel("Settings/navCoordsNode.j3o"));
         }
         
-        navMeshOn = false;
-        if (appSettings.isShowNavMesh()) { 
-            drawNavmesh(); //Draws NavMesh
-        }
+        showNavMesh();
         
+        guiFont = assetManager.loadFont(appSettings.getGuiFont());
+        origin = new BitmapText(guiFont, false);
+        origin.setSize(0.1f);
+        origin.setText("ORIGIN");
+        origin.setLocalTranslation(0, 0, 0);
         if (appSettings.showOrigin()) {
-            guiFont = assetManager.loadFont(appSettings.getGuiFont());
-            BitmapText helloText = new BitmapText(guiFont, false);
-            helloText.setSize(0.1f);
-            helloText.setText("ORIGIN");
-            helloText.setLocalTranslation(0, 0, 0);
-            rootNode.attachChild(helloText);
+            rootNode.attachChild(origin);
         }
 
-        try {
-            population = new Population(shipNM, this);
-        } catch (Exception e) {
-        }
-
+        
+        population = new Population(this);
+        if (population == null) System.out.println("Shite");
+        
         population.populate();
 
     }
@@ -100,6 +91,11 @@ public class EvacSim extends SimpleApplication {
             }
         });
     }
+    
+    public void moveCamC(String s) {
+        if (buttonCam == null) buttonCam = s;
+        else buttonCam = null;
+    }
 
     public void detachChild(final Spatial N) {
         this.enqueue( new Callable<Object>() {
@@ -110,78 +106,97 @@ public class EvacSim extends SimpleApplication {
         });
     }
     
-    public void setSettings(Settings set) {
-        appSettings = set;
-    }
-    
-    public void passParent(EvacSimMainFrame mf) {
-        parent = mf;
-    }
-    
-    public static Population getPopulation() {
-        return population;
-    }
-    
-    public static void updateStatus() {
-        parent.updateStatus(population.getNumEvacuated());
-    }
-    
-    public boolean isDone() {
-        if (population != null) return population.isDone();
-        else return true;
-    }
-    
-    public void done() {
-        population = null;
-    }
-
-    public void setPaused(boolean paused) {
-        this.paused = paused;
-    }
-    
-    public void evac() {
-        population.play();
+    public void moveCam(final CamLoc c) {
+        this.enqueue( new Callable<Object>() {
+        public Spatial call() throws Exception {
+                cam.setLocation(c.loc);
+                cam.setRotation(c.rot);
+                return null;
+            }
+        });
     }
     
     public void route() {
         population.evacuate();
     }
-    
-    public void stopSim() {
-        population.stopSim();
-    }
-    
-    public void camControl(String s) {
-        flyCam.onAnalog(s, (appSettings.getCamSpeed()+3.0f)/10f, (appSettings.getCamSpeed()+3.0f)/10f);
-    }
-    
-    public void camRotate(String s) {
-        flyCam.onAnalog(s, 2f, 2f);
-    }
-    
-    public void setCam(String cl) {
-        CamLoc c = appSettings.getCamLocations().get(cl);
-        if (c != null) {
-            cam.setLocation(c.getLoc());
-            cam.setRotation(c.getRot());
+    public void evacuate() {
+        if (running == false) {
+            population.play();
+            running = true;
+        }
+        else {
+            running = false;
+            population.stopSim();
         }
     }
     
-    public void setCamSpeed(int s) {
-        flyCam.setMoveSpeed(s);
+    public void restartSim(final int n) {
+        this.enqueue( new Callable<Object>() {
+        public Spatial call() throws Exception {
+                if (n == 0) {
+                    SidePanel.reset();
+                    rootNode.detachAllChildren();
+                    simpleInitApp();
+                }
+                else if (n==1) {
+                    if (appSettings.showOrigin()) rootNode.attachChild(origin);
+                    else rootNode.detachChild(origin);
+                }
+                else if (n==2) {
+                    setDisplayFps(appSettings.isShowFPS());
+                }
+                else if (n==3) {
+                    drawNM();
+                    showNavMesh();
+                }
+                return null;
+            }
+        });
     }
     
-    public void removeNavmesh() {
-        if (navMeshOn) {
-            navMeshOn = false;
-            rootNode.detachChild(navMeshHolder);
+    public void showNavMesh() {
+        if (appSettings.isShowNavMesh() && !rootNode.hasChild(appSettings.getNMHolder())) {
+            attachChild(appSettings.getNMHolder());
         }
+        else if (rootNode.hasChild(appSettings.getNMHolder())) {
+            detachChild(appSettings.getNMHolder());
+        }
+        /*if (appSettings.isShowCoordinates() && !rootNode.hasChild(appSettings.Coords())) {
+            attachChild(appSettings.Coords());
+        }
+        else if (rootNode.hasChild(appSettings.Coords())) {
+            detachChild(appSettings.Coords());
+        }*/
     }
-    public void drawNavmesh() {
-        if (!navMeshOn) {
-            navMeshOn = true;
-            navMeshHolder = new Node();
-            rootNode.attachChild(navMeshHolder);
+    
+    public InputManager getInManager() {
+        return inputManager;
+    }
+    
+    public boolean isDone() {
+        return population.isDone();
+    }
+    
+    public void drawNM() {
+        //Loads Model
+            Spatial ship = assetManager.loadModel(appSettings.getModelLocation());
+            Node node = (Node) ship;
+            Node chil1 = (Node) node.getChildren().get(0);
+            Geometry chil = (Geometry) chil1.getChildren().get(0);
+
+            Mesh shipMesh = chil.getMesh();
+            NavMesh shipNM = new NavMesh();
+
+            NavMeshGenerator generator = new NavMeshGenerator();
+
+            Mesh optimisedMesh = generator.optimize(shipMesh);
+
+            shipNM.loadFromMesh(optimisedMesh);
+            appSettings.saveNavMesh(shipNM);
+            
+            Node nmH = new Node();
+            Node nmCH = new Node();
+            
             //draws navMesh
             for (int i = 0; i < shipNM.getNumCells(); i++) {
                 Vector3f v0 = shipNM.getCell(i).getVertex(0);
@@ -200,41 +215,23 @@ public class EvacSim extends SimpleApplication {
                     lineMesh.updateCounts();
                     Geometry lineGeometry = new Geometry("line", lineMesh);
                     Material lineMaterial = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
-                    lineMaterial.setColor("Color", ColorRGBA.White);
+                    lineMaterial.setColor("Color", appSettings.getNavMeshColorC());
                     lineGeometry.setMaterial(lineMaterial);
-                    navMeshHolder.attachChild(lineGeometry);
+                    nmH.attachChild(lineGeometry);
 
-                    if (appSettings.isShowCoordinates()) {
-                        BitmapText helloText = new BitmapText(guiFont, false);
-                        helloText.setSize(0.05f);
-                        helloText.setText(vt[0].toString());
-                        helloText.setLocalTranslation(vt[0].x, vt[0].y, vt[0].z);
-                        navMeshHolder.attachChild(helloText);
-                    }
+                    BitmapText helloText = new BitmapText(guiFont, false);
+                    helloText.setSize(0.05f);
+                    helloText.setText(vt[0].toString());
+                    helloText.setLocalTranslation(vt[0].x, vt[0].y, vt[0].z);
+                    nmCH.attachChild(helloText);
+
                 }
             }
-        }
-    }
-    
-    public void restartSim() {
-        this.enqueue( new Callable<Object>() {
-        public Spatial call() throws Exception {
-                rootNode.detachAllChildren();
-                simpleInitApp();
-                return null;
+            appSettings.setNMHolder(nmH);
+            appSettings.setCoords(nmCH);
+            if (appSettings.getNMHolder() == null || appSettings.isSaveSettings()) {
+                appSettings.saveNavMeshDrawn();
             }
-        });
-    }
-    
-
-    @Override
-    public void simpleUpdate(float tpf) {
-        //TODO: add update code
     }
 
-    @Override
-    public void simpleRender(RenderManager rm) {
-        //TODO: add render code
-    }
-    
 }

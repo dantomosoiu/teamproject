@@ -30,10 +30,7 @@ import com.jme3.scene.VertexBuffer;
 public class Person implements Runnable{
 
     public final int WAYPOINTSBETWEENDECISIONS = 50;
-    /**
-     * Owning Node
-     */
-    private com.jme3.scene.Node rootNode;
+
     /**
      * Provides visual representation of a person
     */
@@ -72,18 +69,18 @@ public class Person implements Runnable{
     Settings settings;
     NavMesh navmesh;
 
-    public Person(EvacSim evs, Vector3f initialLocation, float speed, Population p, NavMesh navmesh) {
+    public Person(EvacSim evs, Vector3f initialLocation, float speed, Population p) {
         this.initialLocation = initialLocation;
         this.speed = speed;
         fin = false;
         this.evs = evs;
         settings = Settings.get();
+        navmesh = settings.getNavMesh();
         routeGeometryHolder = new Node();
-        this.navmesh = navmesh;
         this.listener = new PersonMovementListener(this,WAYPOINTSBETWEENDECISIONS);
 
         currentGoal = BehaviourModel.nearestExit(initialLocation);
-        routeplan = new PersonNavmeshRoutePlanner(settings.getNavMesh(), initialLocation, currentGoal.getLocation());
+        routeplan = new PersonNavmeshRoutePlanner(navmesh, initialLocation, currentGoal.getLocation());
         
         //Calculate Path
         if (!routeplan.computePath(currentGoal.getLocation())) {
@@ -181,6 +178,10 @@ public class Person implements Runnable{
        
     }
     
+    public void pause() {
+        motionControl.pause();
+    }
+    
     
     public void play() {
         if (motionControl != null) {
@@ -222,10 +223,8 @@ public class Person implements Runnable{
             public void onPause(CinematicEvent e){}
             public void onStop(CinematicEvent e){
                 fin = true;
-                EvacSim.updateStatus();
-                EvacSim.getPopulation().updateNumberOfPeople();
+                settings.incNumEvac();
                 evs.detachChild(person);
-                return;
             }
         });
     }
@@ -240,7 +239,7 @@ public class Person implements Runnable{
             lineMesh.updateCounts();
             Geometry lineGeometry = new Geometry("line", lineMesh);
             lineGeometry.setMaterial(mat1);
-            rootNode.attachChild(lineGeometry);
+            evs.attachChild(lineGeometry);
     }
     
     public boolean buildMotionPath(Goal goal){

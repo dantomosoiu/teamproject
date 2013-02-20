@@ -7,9 +7,8 @@ package EvacSim.population;
 import EvacSim.EvacSim;
 import EvacSim.goal.ExitGoal;
 import EvacSim.jme3tools.navmesh.Cell;
-import EvacSim.jme3tools.navmesh.NavMesh;
+import GUI.Components.SidePanel;
 import Init.Settings.Settings;
-import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector3f;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -26,25 +25,21 @@ public class Population implements Runnable {
     
     private EvacSim evs;
     private Person people[];
-    private ArrayList<PersonCategory> personCategories = new ArrayList<PersonCategory>();
     private Thread peopleThreads[];
-    private NavMesh mesh;
     //private ArrayList<PersonCluster> personClusterList; //list of clusters of closely positioned persons
     //private BoundaryComparator bComp = new BoundaryComparator(); //comparator used in sorting the persons based on an indvidual axis
-    private  boolean evacuationDone;
+    private static boolean evacuationDone;
     //distance from the center of a person to the edge of its surface area.
     //used in generating non-overlaping persons
     //should be linked with a persons surface area
     private float personCollisionDistance = 0.2f; 
-    private int numEvacuated;
     private Settings settings;
 
-    public Population(NavMesh mesh, EvacSim evs) {
-        this.mesh = mesh;
+    public Population(EvacSim evs) {
         this.evs = evs;
-        this.evacuationDone = false;
-        this.numEvacuated = 0;
+        evacuationDone = false;
         settings = Settings.get();
+        settings.setNumEvac(0);
         GoalParser.parseGoals("assets/Input/Goals.csv");
         for(ExitGoal exit: BehaviourModel.getExits()){
             System.out.println("EXIT: " + exit.getLocation());
@@ -54,31 +49,29 @@ public class Population implements Runnable {
     }
 
     public void populate() {
-        int popNumber = settings.getPopulationNumber();
-       // GoalParser.parseGoals("/users/level3/1003819k/teamproject/Prototype/assets/Input/Goals.csv");
-        people = new Person[popNumber];
+        people = new Person[settings.getPopulationNumber()];
 
         ArrayList<Vector3f> personPositions = new ArrayList<Vector3f>();
-        int totalCells = mesh.getNumCells();
+        int totalCells = settings.getNavMesh().getNumCells();
         Random rand = new Random();
 
-        peopleThreads = new Thread[popNumber];
+        peopleThreads = new Thread[settings.getPopulationNumber()];
 
         float cellAverage = 0;
         for(int i=0;i<totalCells;i++){
-            cellAverage += mesh.getCell(i).getArea();
+            cellAverage += settings.getNavMesh().getCell(i).getArea();
         }
         cellAverage /= totalCells;
         
         ArrayList<Cell> largeCells = new ArrayList<Cell>();
         for(int i=0;i<totalCells;i++){
-            if(mesh.getCell(i).getArea() > cellAverage){
-                largeCells.add(mesh.getCell(i));
+            if(settings.getNavMesh().getCell(i).getArea() > cellAverage){
+                largeCells.add(settings.getNavMesh().getCell(i));
             }
         }
         
         //creates the persons with randomly generated (non-overlaping) positions on the navmesh
-        for (int i = 0; i < popNumber; i++) {
+        for (int i = 0; i < settings.getPopulationNumber(); i++) {
             boolean foundCandidate = false;
 
             while (!foundCandidate) {
@@ -102,20 +95,12 @@ public class Population implements Runnable {
                 //candidate = new Vector3f(-0.63556033f, -1.2945915f, 14.966727f);
                 //
                 
-                people[i] = new Person(evs,candidate, settings.getBASESPEED(), this,mesh);
+                people[i] = new Person(evs,candidate, settings.getBASESPEED(), this);
                 peopleThreads[i] = new Thread(people[i]);
             }
         }
-        
+        SidePanel.enablePop();
         //refreshPersonClusters();
-    }
-    
-    public boolean addPersonCategory(String name, float minspeed, float maxspeed, float minstress, float maxstress, ColorRGBA color, int number){
-       return personCategories.add(new PersonCategory(name,minspeed,maxspeed,minstress,maxstress,color,number));
-    }
-    
-    public ArrayList<PersonCategory> returnCategories(){
-         return personCategories;
     }
     
   
@@ -227,11 +212,7 @@ public class Population implements Runnable {
     
     public void stopSim() {
         for (int i = 0; i < people.length; i++) {
-            try {
-                if (people[i].isStart() == true && people[i].isFin() == false) people[i].wait();
-            } catch (InterruptedException ex) {
-                Logger.getLogger(Population.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            if (people[i].isStart() == true && people[i].isFin() == false) people[i].pause();
         }
     }
 
@@ -240,16 +221,9 @@ public class Population implements Runnable {
         //    people[i].update(tpf);
         //}
     }
-    
-    public void updateNumberOfPeople(){
-        if (++this.numEvacuated == people.length){
-            evs.done();
-            this.evacuationDone = true;      
-        }
-    }
-    
-    public int getNumEvacuated(){
-        return this.numEvacuated;
+
+    public static void done() {
+        evacuationDone = true;
     }
 
     public boolean isDone(){

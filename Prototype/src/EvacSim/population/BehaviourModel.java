@@ -39,6 +39,10 @@ public abstract class BehaviourModel {
         }
         
         Goal target = decide(person,personOnNavmesh,visibleExits.toArray(new ExitGoal[visibleExits.size()]));
+        
+        /*Michael, you're dastardly attempts to break things have been temporarily defeated.
+         * Once you have fixed this remove the try/catch from onWayPointReach
+         */
         return act(target,personOnNavmesh);
     }
         
@@ -131,8 +135,9 @@ public abstract class BehaviourModel {
         //calculate a random 'breaking point' for over which a person will make a stressed decision
         float monteCarloRange = FastMath.nextRandomFloat() * 100 + STRESSOFFSET; 
         //if the person's stress is below the threshold
-        if(p.getStress() <= monteCarloRange)
+        if(p.getStress() <= monteCarloRange) {
             return false;
+        }
         return true;
     }
    

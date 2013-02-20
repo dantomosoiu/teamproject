@@ -4,27 +4,43 @@
  */
 package GUI.Components;
 
+import EvacSim.EvacSim;
 import GUI.EvacSimMainFrame;
+import Init.Settings.Settings;
+import com.jme3.input.FlyByCamera;
+import com.jme3.input.InputManager;
+import com.jme3.input.KeyInput;
+import com.jme3.input.MouseInput;
+import com.jme3.input.controls.KeyTrigger;
+import com.jme3.input.controls.MouseAxisTrigger;
+import java.awt.AWTException;
+import java.awt.Canvas;
+import java.awt.Component;
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author hector
  */
-public class camControls extends javax.swing.JPanel {
+public class CamControls extends javax.swing.JPanel {
 
-    private SidePanel  sidepanel;
-    private EvacSimMainFrame mainframe;
+    private EvacSim evacSim;
+    private Settings settings;
+    private Robot robot;
+    private boolean pushed = false;
+    private FlyByCamera cam;
+    private InputManager inputManager;
     /**
-     * Creates new form camControls
+     * Creates new form CamControls
      */
-    public camControls() {
+    public CamControls(EvacSim evs, Settings set) {
+        evacSim = evs;
+        settings = set;
+        inputManager = evs.getInManager();
         initComponents();
-        mainframe = null;
-    }
-    
-    public void passParents(SidePanel  p, EvacSimMainFrame m) {
-        mainframe = m;
-        sidepanel = p;
     }
 
     /**
@@ -36,51 +52,33 @@ public class camControls extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        camSpeed = new javax.swing.JSlider();
         jLabel1 = new javax.swing.JLabel();
-        panRight = new javax.swing.JButton();
-        panLeft = new javax.swing.JButton();
+        camSpeed = new javax.swing.JSlider();
         panUp = new javax.swing.JButton();
         panDown = new javax.swing.JButton();
-        mLeft = new javax.swing.JButton();
-        mRight = new javax.swing.JButton();
-        mDown = new javax.swing.JButton();
         mUp = new javax.swing.JButton();
+        mLeft = new javax.swing.JButton();
+        mDown = new javax.swing.JButton();
+        mRight = new javax.swing.JButton();
+        panRight = new javax.swing.JButton();
+        panLeft = new javax.swing.JButton();
 
+        setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 1, 0, new java.awt.Color(148, 148, 148)));
+        setForeground(new java.awt.Color(254, 254, 254));
         setMaximumSize(new java.awt.Dimension(280, 211));
         setMinimumSize(new java.awt.Dimension(280, 211));
         setPreferredSize(new java.awt.Dimension(280, 211));
+
+        jLabel1.setText("Cam Speed");
 
         camSpeed.setFont(new java.awt.Font("Ubuntu", 0, 3)); // NOI18N
         camSpeed.setForeground(new java.awt.Color(246, 244, 242));
         camSpeed.setMaximum(15);
         camSpeed.setMinimum(1);
-        camSpeed.setValue(8);
+        camSpeed.setValue(Math.round(settings.getCamSpeed()));
         camSpeed.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 camSpeedStateChanged(evt);
-            }
-        });
-
-        jLabel1.setText("Cam Speed");
-
-        panRight.setText("<html>Pan <br/>Right</html>");
-        panRight.setMaximumSize(new java.awt.Dimension(95, 30));
-        panRight.setMinimumSize(new java.awt.Dimension(95, 30));
-        panRight.setPreferredSize(new java.awt.Dimension(95, 30));
-        panRight.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                panRightActionPerformed(evt);
-            }
-        });
-
-        panLeft.setText("<html>Pan <br/>Left</html>");
-        panLeft.setMaximumSize(new java.awt.Dimension(95, 30));
-        panLeft.setMinimumSize(new java.awt.Dimension(95, 30));
-        panLeft.setPreferredSize(new java.awt.Dimension(95, 30));
-        panLeft.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                panLeftActionPerformed(evt);
             }
         });
 
@@ -100,6 +98,18 @@ public class camControls extends javax.swing.JPanel {
             }
         });
 
+        mUp.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        mUp.setText("↑");
+        mUp.setToolTipText("Move Forward");
+        mUp.setMaximumSize(new java.awt.Dimension(30, 75));
+        mUp.setMinimumSize(new java.awt.Dimension(30, 75));
+        mUp.setPreferredSize(new java.awt.Dimension(30, 75));
+        mUp.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                mUpActionPerformed(evt);
+            }
+        });
+
         mLeft.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
         mLeft.setText("←");
         mLeft.setMaximumSize(new java.awt.Dimension(30, 75));
@@ -108,17 +118,6 @@ public class camControls extends javax.swing.JPanel {
         mLeft.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mLeftActionPerformed(evt);
-            }
-        });
-
-        mRight.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
-        mRight.setText("→");
-        mRight.setMaximumSize(new java.awt.Dimension(30, 75));
-        mRight.setMinimumSize(new java.awt.Dimension(30, 75));
-        mRight.setPreferredSize(new java.awt.Dimension(30, 75));
-        mRight.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mRightActionPerformed(evt);
             }
         });
 
@@ -134,15 +133,34 @@ public class camControls extends javax.swing.JPanel {
             }
         });
 
-        mUp.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
-        mUp.setText("↑");
-        mUp.setToolTipText("Move Forward");
-        mUp.setMaximumSize(new java.awt.Dimension(30, 75));
-        mUp.setMinimumSize(new java.awt.Dimension(30, 75));
-        mUp.setPreferredSize(new java.awt.Dimension(30, 75));
-        mUp.addActionListener(new java.awt.event.ActionListener() {
+        mRight.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        mRight.setText("→");
+        mRight.setMaximumSize(new java.awt.Dimension(30, 75));
+        mRight.setMinimumSize(new java.awt.Dimension(30, 75));
+        mRight.setPreferredSize(new java.awt.Dimension(30, 75));
+        mRight.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mUpActionPerformed(evt);
+                mRightActionPerformed(evt);
+            }
+        });
+
+        panRight.setText("<html>Pan <br/>Right</html>");
+        panRight.setMaximumSize(new java.awt.Dimension(95, 30));
+        panRight.setMinimumSize(new java.awt.Dimension(95, 30));
+        panRight.setPreferredSize(new java.awt.Dimension(95, 30));
+        panRight.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                panRightActionPerformed(evt);
+            }
+        });
+
+        panLeft.setText("<html>Pan <br/>Left</html>");
+        panLeft.setMaximumSize(new java.awt.Dimension(95, 30));
+        panLeft.setMinimumSize(new java.awt.Dimension(95, 30));
+        panLeft.setPreferredSize(new java.awt.Dimension(95, 30));
+        panLeft.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                panLeftActionPerformed(evt);
             }
         });
 
@@ -207,42 +225,44 @@ public class camControls extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void camSpeedStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_camSpeedStateChanged
-        if (mainframe != null) {
+        /*if (mainframe != null) {
             mainframe.setCamSpeed(camSpeed.getValue());
-        }
+        }*/
     }//GEN-LAST:event_camSpeedStateChanged
 
-    private void mLeftActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mLeftActionPerformed
-        if (mainframe != null) mainframe.camControl("FLYCAM_StrafeLeft");
-    }//GEN-LAST:event_mLeftActionPerformed
-
-    private void mRightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mRightActionPerformed
-        if (mainframe != null) mainframe.camControl("FLYCAM_StrafeRight");
-    }//GEN-LAST:event_mRightActionPerformed
-
-    private void mUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mUpActionPerformed
-        if (mainframe != null) mainframe.camControl("FLYCAM_Forward");
-    }//GEN-LAST:event_mUpActionPerformed
-
-    private void mDownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mDownActionPerformed
-        if (mainframe != null) mainframe.camControl("FLYCAM_Backward");
-    }//GEN-LAST:event_mDownActionPerformed
-
-    private void panLeftActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_panLeftActionPerformed
-        if (mainframe != null) mainframe.camControl("FLYCAM_StrafeLeft");
-    }//GEN-LAST:event_panLeftActionPerformed
-
-    private void panRightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_panRightActionPerformed
-        if (mainframe != null) mainframe.camControl("FLYCAM_StrafeRight");
-    }//GEN-LAST:event_panRightActionPerformed
-
     private void panUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_panUpActionPerformed
-        if (mainframe != null) mainframe.camControl("FLYCAM_Rise");
+        //if (mainframe != null) mainframe.camControl("FLYCAM_Rise");
     }//GEN-LAST:event_panUpActionPerformed
 
     private void panDownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_panDownActionPerformed
-        if (mainframe != null) mainframe.camControl("FLYCAM_Lower");
+        //if (mainframe != null) mainframe.camControl("FLYCAM_Lower");
     }//GEN-LAST:event_panDownActionPerformed
+
+    private void mUpActionPerformed(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_mUpActionPerformed
+        evacSim.moveCamC("FLYCAM_Forward");
+        
+        //if (mainframe != null) mainframe.camControl("FLYCAM_Forward");
+    }//GEN-LAST:event_mUpActionPerformed
+
+    private void mLeftActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mLeftActionPerformed
+        //if (mainframe != null) mainframe.camControl("FLYCAM_StrafeLeft");
+    }//GEN-LAST:event_mLeftActionPerformed
+
+    private void mDownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mDownActionPerformed
+        //if (mainframe != null) mainframe.camControl("FLYCAM_Backward");
+    }//GEN-LAST:event_mDownActionPerformed
+
+    private void mRightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mRightActionPerformed
+        //if (mainframe != null) mainframe.camControl("FLYCAM_StrafeRight");
+    }//GEN-LAST:event_mRightActionPerformed
+
+    private void panRightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_panRightActionPerformed
+        //if (mainframe != null) mainframe.camControl("FLYCAM_StrafeRight");
+    }//GEN-LAST:event_panRightActionPerformed
+
+    private void panLeftActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_panLeftActionPerformed
+        //if (mainframe != null) mainframe.camControl("FLYCAM_StrafeLeft");
+    }//GEN-LAST:event_panLeftActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JSlider camSpeed;

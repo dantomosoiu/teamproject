@@ -4,52 +4,105 @@
  */
 package GUI.Components;
 
-import GUI.EvacSimMainFrame;
+import EvacSim.EvacSim;
+import Init.Settings.PersonCategory;
 import Init.Settings.Settings;
-import java.awt.Dimension;
-import java.awt.GraphicsDevice;
-import java.awt.GraphicsEnvironment;
+import java.awt.Component;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.Toolkit;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 /**
  *
  * @author hector
  */
-public class AdvancedSettings extends javax.swing.JFrame {
-
+public class AdvancedSettings extends javax.swing.JDialog {
     
-    Settings settings;
-    EvacSimMainFrame parent;
+    private Settings settings;
+    private EvacSim evacSim;
+
     /**
      * Creates new form AdvancedSettings
      */
-    public AdvancedSettings() {
+    public AdvancedSettings(java.awt.Frame parent, Settings set, EvacSim evs) {
+        super(parent, true);
+        settings = set;
+        evacSim = evs;
         initComponents();
-        setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
-        //Finds the size of the screen and item. Uses this to calculate how to position the frame in the center of the screen.
-        Toolkit kit = this.getToolkit();
-        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-        GraphicsDevice[] gs = ge.getScreenDevices();
-        Insets in = kit.getScreenInsets(gs[0].getDefaultConfiguration());
-        Dimension d = kit.getScreenSize();
-        int max_width = (d.width - in.left - in.right);
-        int max_height = (d.height - in.top - in.bottom);
-        this.setSize(Math.min(max_width, 555), Math.min(max_height, 353));//whatever size you want but smaller the insets
-        this.setLocation((int) (max_width - this.getWidth()) / 2, (int) (max_height - this.getHeight()) / 2);
+        
+        showRoutes.setEnabled(false);
         
         
+        popDist.setLayout(new GridBagLayout());
+        GridBagConstraints g = new GridBagConstraints();
+        g.gridy=0;
+        g.insets = new Insets(12, 0, 0, 0);
+        int i = 0;
+        for (String s : settings.getPersonCategories().keySet()) {
+            g.gridy = i;
+            popDist.add(new PopTypeSlider(settings, s, this), g);
+            g.insets = new Insets(0, 0, 0, 0);
+            i++;
+        }
+        g.gridy = i;
+        g.weighty = 5;
+        popDist.add(new JPanel(), g);
+        popDistScroll.getVerticalScrollBar().setUnitIncrement(5);
         
         
+        saveOnExit.setSelected(settings.isSaveSettings());
+        hideCamCont.setSelected(settings.isHideCamPanel());
+        showCoords.setSelected(settings.isShowCoordinates());
+        showFPS.setSelected(settings.isShowFPS());
+        showOrigin.setSelected(settings.showOrigin());
+        showRoutes.setSelected(settings.showRoutes());
+        printDebug.setSelected(settings.getPrintEv());
+        baseSpeed.setValue((int)Math.round(settings.getBASESPEED()*10));
+        nmColor.setSelectedItem(settings.getNavMeshColor().toString());
+        
+        minSpeed.setValue(settings.getPersonCategories().get((String)popCat.getSelectedItem()).getMinspeed());
+        maxSpeed.setValue(settings.getPersonCategories().get((String)popCat.getSelectedItem()).getMaxspeed());
+        //maxStress.setValue(settings.getPersonCategories().get((String)popCat.getSelectedItem()).getMaxStress());
+        //maxStress.setValue(settings.getPersonCategories().get((String)popCat.getSelectedItem()).getMaxStress());
+        popColor.setSelectedItem(settings.getPersonCategories().get((String)popCat.getSelectedItem()).getColor());
+        
+        conExit.setSelected(settings.confExit());
+        
+        
+        GUIHelperMethods.centralise(555, 353, this);
+        
+        this.setVisible(true);
     }
     
-    public void update(EvacSimMainFrame mf, Settings s) {
-        parent = mf;
-        settings = s;
-        saveOnExit.setSelected(settings.isSaveSettings());
-        hideCamControls.setSelected(settings.isHideCamPanel());
-        showCoordinates.setSelected(settings.isShowCoordinates());
+    public void updateDist() {
+        for (Component p : popDist.getComponents()) {
+            if (p instanceof PopTypeSlider) {
+                ((PopTypeSlider) p).updateDist();
+            }
+        }
+    }
+    
+    public void redraw(String nm) {
+        popDist.removeAll();
+        GridBagConstraints g = new GridBagConstraints();
+        g.gridy=0;
+        g.insets = new Insets(12, 0, 0, 0);
+        int i = 0;
+        for (String s : settings.getPersonCategories().keySet()) {
+            g.gridy = i;
+            popDist.add(new PopTypeSlider(settings, s, this), g);
+            g.insets = new Insets(0, 0, 0, 0);
+            i++;
+        }
+        g.gridy = i;
+        g.weighty = 5;
+        popDist.add(new JPanel(), g);
+        popDistScroll.getVerticalScrollBar().setUnitIncrement(5);
         
+        popCat.setModel(new javax.swing.DefaultComboBoxModel(settings.getPersonCategories().keySet().toArray()));
+        popCat.setSelectedItem(nm);
     }
 
     /**
@@ -62,25 +115,41 @@ public class AdvancedSettings extends javax.swing.JFrame {
     private void initComponents() {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
+        genPanel = new javax.swing.JPanel();
         saveOnExit = new javax.swing.JCheckBox();
-        hideCamControls = new javax.swing.JCheckBox();
-        showCoordinates = new javax.swing.JCheckBox();
-        jPanel2 = new javax.swing.JPanel();
-        jComboBox1 = new javax.swing.JComboBox();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        hideCamCont = new javax.swing.JCheckBox();
+        showCoords = new javax.swing.JCheckBox();
+        showFPS = new javax.swing.JCheckBox();
+        showOrigin = new javax.swing.JCheckBox();
+        showRoutes = new javax.swing.JCheckBox();
         jLabel1 = new javax.swing.JLabel();
+        baseSpeed = new javax.swing.JSlider();
         jLabel2 = new javax.swing.JLabel();
+        nmColor = new javax.swing.JComboBox();
+        printDebug = new javax.swing.JCheckBox();
+        conExit = new javax.swing.JCheckBox();
+        jLabel9 = new javax.swing.JLabel();
+        popTypePanel = new javax.swing.JPanel();
+        popCat = new javax.swing.JComboBox();
+        removeButton = new javax.swing.JButton();
+        AddButton = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jSpinner1 = new javax.swing.JSpinner();
-        jSpinner2 = new javax.swing.JSpinner();
-        jSpinner3 = new javax.swing.JSpinner();
-        jSpinner4 = new javax.swing.JSpinner();
-        jPanel3 = new javax.swing.JPanel();
+        minSpeed = new javax.swing.JSpinner();
+        maxSpeed = new javax.swing.JSpinner();
+        maxStress = new javax.swing.JSpinner();
+        minStress = new javax.swing.JSpinner();
+        popColor = new javax.swing.JComboBox();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        popDistScroll = new javax.swing.JScrollPane();
+        popDist = new javax.swing.JPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(555, 353));
+        setResizable(false);
 
         saveOnExit.setText("Save Settings on Exit");
         saveOnExit.addActionListener(new java.awt.event.ActionListener() {
@@ -89,146 +158,314 @@ public class AdvancedSettings extends javax.swing.JFrame {
             }
         });
 
-        hideCamControls.setText("Hide Manual Camera Controls");
-        hideCamControls.addActionListener(new java.awt.event.ActionListener() {
+        hideCamCont.setText("Hide Manual Camera Controls");
+        hideCamCont.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                hideCamControlsActionPerformed(evt);
+                hideCamContActionPerformed(evt);
             }
         });
 
-        showCoordinates.setText("Show Coordinates");
+        showCoords.setText("Show Coordinates");
+        showCoords.setEnabled(false);
+        showCoords.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showCoordsActionPerformed(evt);
+            }
+        });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        showFPS.setText("Show Frames Per Second");
+        showFPS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showFPSActionPerformed(evt);
+            }
+        });
+
+        showOrigin.setText("Show Origin");
+        showOrigin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showOriginActionPerformed(evt);
+            }
+        });
+
+        showRoutes.setText("Show Routes");
+        showRoutes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showRoutesActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Person Base Speed");
+
+        baseSpeed.setFont(new java.awt.Font("Ubuntu", 0, 1)); // NOI18N
+        baseSpeed.setMaximum(30);
+        baseSpeed.setMinimum(1);
+        baseSpeed.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                baseSpeedStateChanged(evt);
+            }
+        });
+
+        jLabel2.setText("NavMesh Color");
+
+        nmColor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "White", "LightGray", "Red", "Green", "Blue", "Yellow", "Magenta", "Cyan", "Orange", "Pink" }));
+        nmColor.setToolTipText("");
+        nmColor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nmColorActionPerformed(evt);
+            }
+        });
+
+        printDebug.setText("Print Debug Info to Command Prompt");
+        printDebug.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                printDebugActionPerformed(evt);
+            }
+        });
+
+        conExit.setText("Confirm On Exit");
+        conExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                conExitActionPerformed(evt);
+            }
+        });
+
+        jLabel9.setText("To Apply Some Settings Simulation May be Reset");
+
+        javax.swing.GroupLayout genPanelLayout = new javax.swing.GroupLayout(genPanel);
+        genPanel.setLayout(genPanelLayout);
+        genPanelLayout.setHorizontalGroup(
+            genPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(genPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(saveOnExit)
-                    .addComponent(hideCamControls)
-                    .addComponent(showCoordinates))
-                .addContainerGap(293, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(saveOnExit)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(hideCamControls)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(showCoordinates)
-                .addContainerGap(241, Short.MAX_VALUE))
-        );
-
-        jTabbedPane1.addTab("General", jPanel1);
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jButton1.setText("Add");
-
-        jButton2.setText("Remove");
-
-        jLabel1.setText("Speed");
-
-        jLabel2.setText("Initial Stress");
-
-        jLabel3.setText("Personal Space");
-
-        jLabel4.setText("Social Priority");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addComponent(jLabel4)
-                                                .addGap(171, 171, 171))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                                .addComponent(jLabel3)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jSpinner4, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                            .addComponent(jLabel1)
-                                            .addGap(219, 219, 219)
-                                            .addComponent(jSpinner3, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                            .addComponent(jLabel2)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGap(0, 58, Short.MAX_VALUE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(genPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(genPanelLayout.createSequentialGroup()
+                        .addGroup(genPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(saveOnExit)
+                            .addComponent(hideCamCont)
+                            .addComponent(showCoords)
+                            .addComponent(showOrigin))
+                        .addGap(39, 39, 39)
+                        .addGroup(genPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(genPanelLayout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                                .addComponent(nmColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(showRoutes)
+                            .addComponent(showFPS)
+                            .addComponent(conExit)))
+                    .addGroup(genPanelLayout.createSequentialGroup()
+                        .addGroup(genPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(printDebug)
+                            .addGroup(genPanelLayout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(18, 18, 18)
+                                .addComponent(baseSpeed, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel9))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        genPanelLayout.setVerticalGroup(
+            genPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(genPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                .addGroup(genPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(saveOnExit)
+                    .addComponent(conExit))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
+                .addGroup(genPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(hideCamCont)
+                    .addComponent(showFPS))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jSpinner3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                .addGroup(genPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(showCoords)
+                    .addComponent(showRoutes))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jSpinner4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(genPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(showOrigin)
+                    .addComponent(jLabel2)
+                    .addComponent(nmColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(printDebug)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(genPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1)
+                    .addComponent(baseSpeed, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 133, Short.MAX_VALUE)
+                .addComponent(jLabel9)
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab("General", genPanel);
+
+        popCat.setModel(new javax.swing.DefaultComboBoxModel(settings.getPersonCategories().keySet().toArray()));
+        popCat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                popCatActionPerformed(evt);
+            }
+        });
+
+        removeButton.setText("Remove");
+        removeButton.setMaximumSize(new java.awt.Dimension(104, 30));
+        removeButton.setMinimumSize(new java.awt.Dimension(104, 30));
+        removeButton.setPreferredSize(new java.awt.Dimension(104, 30));
+        removeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeButtonActionPerformed(evt);
+            }
+        });
+
+        AddButton.setText("Add");
+        AddButton.setMaximumSize(new java.awt.Dimension(120, 30));
+        AddButton.setMinimumSize(new java.awt.Dimension(120, 30));
+        AddButton.setPreferredSize(new java.awt.Dimension(120, 30));
+        AddButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("Min Speed");
+
+        jLabel4.setText("Max Speed");
+
+        minSpeed.setModel(new javax.swing.SpinnerNumberModel(Float.valueOf(1.0f), Float.valueOf(0.0f), Float.valueOf(10.0f), Float.valueOf(0.2f)));
+        minSpeed.setMaximumSize(new java.awt.Dimension(120, 32767));
+        minSpeed.setMinimumSize(new java.awt.Dimension(120, 28));
+        minSpeed.setPreferredSize(new java.awt.Dimension(120, 28));
+        minSpeed.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                minSpeedStateChanged(evt);
+            }
+        });
+
+        maxSpeed.setModel(new javax.swing.SpinnerNumberModel(Float.valueOf(1.0f), Float.valueOf(0.0f), Float.valueOf(10.0f), Float.valueOf(0.2f)));
+        maxSpeed.setMaximumSize(new java.awt.Dimension(120, 32767));
+        maxSpeed.setMinimumSize(new java.awt.Dimension(120, 28));
+        maxSpeed.setPreferredSize(new java.awt.Dimension(120, 28));
+        maxSpeed.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                maxSpeedStateChanged(evt);
+            }
+        });
+
+        maxStress.setModel(new javax.swing.SpinnerNumberModel(Float.valueOf(1.0f), Float.valueOf(0.0f), Float.valueOf(10.0f), Float.valueOf(0.2f)));
+        maxStress.setMaximumSize(new java.awt.Dimension(120, 32767));
+        maxStress.setMinimumSize(new java.awt.Dimension(120, 28));
+        maxStress.setPreferredSize(new java.awt.Dimension(120, 28));
+
+        minStress.setModel(new javax.swing.SpinnerNumberModel(Float.valueOf(1.0f), Float.valueOf(0.0f), Float.valueOf(10.0f), Float.valueOf(0.2f)));
+        minStress.setMaximumSize(new java.awt.Dimension(120, 32767));
+        minStress.setMinimumSize(new java.awt.Dimension(120, 28));
+        minStress.setPreferredSize(new java.awt.Dimension(120, 28));
+
+        popColor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "White", "LightGray", "Red", "Green", "Blue", "Yellow", "Magenta", "Cyan", "Orange", "Pink" }));
+        popColor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                popColorActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setText("Max Stress");
+
+        jLabel6.setText("Min Stress");
+
+        jLabel7.setText("Color");
+
+        jLabel8.setText("To Apply Some Settings Simulation May be Reset");
+
+        javax.swing.GroupLayout popTypePanelLayout = new javax.swing.GroupLayout(popTypePanel);
+        popTypePanel.setLayout(popTypePanelLayout);
+        popTypePanelLayout.setHorizontalGroup(
+            popTypePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(popTypePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(popTypePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(popTypePanelLayout.createSequentialGroup()
+                        .addComponent(popCat, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(removeButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(popTypePanelLayout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(minSpeed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(popTypePanelLayout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(maxSpeed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, popTypePanelLayout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(minStress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(popTypePanelLayout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(maxStress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, popTypePanelLayout.createSequentialGroup()
+                        .addGroup(popTypePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel8))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(popTypePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(AddButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(popColor, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap())
+        );
+        popTypePanelLayout.setVerticalGroup(
+            popTypePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(popTypePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(popTypePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(popCat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(removeButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(popTypePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(minSpeed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(popTypePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(maxSpeed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
-                .addContainerGap(117, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(popTypePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(minStress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(popTypePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(maxStress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(popTypePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(popColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
+                .addGroup(popTypePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(AddButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Population Types", jPanel2);
+        jTabbedPane1.addTab("Population Types", popTypePanel);
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 537, Short.MAX_VALUE)
+        javax.swing.GroupLayout popDistLayout = new javax.swing.GroupLayout(popDist);
+        popDist.setLayout(popDistLayout);
+        popDistLayout.setHorizontalGroup(
+            popDistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 545, Short.MAX_VALUE)
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 337, Short.MAX_VALUE)
+        popDistLayout.setVerticalGroup(
+            popDistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 351, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("Population Distribution", jPanel3);
+        popDistScroll.setViewportView(popDist);
+
+        jTabbedPane1.addTab("Population Distribution", popDistScroll);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTabbedPane1)
-                .addContainerGap())
+            .addComponent(jTabbedPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -238,16 +475,94 @@ public class AdvancedSettings extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void popColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_popColorActionPerformed
+        settings.getPersonCategories().get((String)popCat.getSelectedItem()).setColor((String)popColor.getSelectedItem());
+        evacSim.restartSim(0);
+    }//GEN-LAST:event_popColorActionPerformed
+
+    private void maxSpeedStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_maxSpeedStateChanged
+        settings.getPersonCategories().get((String)popCat.getSelectedItem()).setMaxspeed((Float)maxSpeed.getValue());
+        evacSim.restartSim(0);
+    }//GEN-LAST:event_maxSpeedStateChanged
+
+    private void minSpeedStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_minSpeedStateChanged
+        settings.getPersonCategories().get((String)popCat.getSelectedItem()).setMinspeed((Float)minSpeed.getValue());
+        evacSim.restartSim(0);
+    }//GEN-LAST:event_minSpeedStateChanged
+
+    private void popCatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_popCatActionPerformed
+        minSpeed.setValue(settings.getPersonCategories().get((String)popCat.getSelectedItem()).getMinspeed());
+        maxSpeed.setValue(settings.getPersonCategories().get((String)popCat.getSelectedItem()).getMaxspeed());
+        //maxStress.setValue(settings.getPersonCategories().get((String)popCat.getSelectedItem()).getMaxStress());
+        //maxStress.setValue(settings.getPersonCategories().get((String)popCat.getSelectedItem()).getMaxStress());
+        popColor.setSelectedItem(settings.getPersonCategories().get((String)popCat.getSelectedItem()).getColor());
+    }//GEN-LAST:event_popCatActionPerformed
+
+    private void printDebugActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printDebugActionPerformed
+        settings.setPrintEv(printDebug.isSelected());
+    }//GEN-LAST:event_printDebugActionPerformed
+
+    private void baseSpeedStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_baseSpeedStateChanged
+        settings.setBaseSpeed(baseSpeed.getValue()/10);
+    }//GEN-LAST:event_baseSpeedStateChanged
+
+    private void showRoutesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showRoutesActionPerformed
+        settings.setShowRoutes(showRoutes.isSelected());
+        evacSim.restartSim(0);
+    }//GEN-LAST:event_showRoutesActionPerformed
+
+    private void showOriginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showOriginActionPerformed
+        settings.setShowOrigin(showOrigin.isSelected());
+        evacSim.restartSim(1);
+    }//GEN-LAST:event_showOriginActionPerformed
+
+    private void showFPSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showFPSActionPerformed
+        settings.setShowFPS(showFPS.isSelected());
+        evacSim.restartSim(2);
+    }//GEN-LAST:event_showFPSActionPerformed
+
+    private void showCoordsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showCoordsActionPerformed
+        settings.setShowCoordinates(showCoords.isSelected());
+        evacSim.restartSim(3);
+    }//GEN-LAST:event_showCoordsActionPerformed
+
+    private void hideCamContActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hideCamContActionPerformed
+        settings.setHideCamPanel(hideCamCont.isSelected());
+    }//GEN-LAST:event_hideCamContActionPerformed
+
     private void saveOnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveOnExitActionPerformed
         settings.setSaveSettings(saveOnExit.isSelected());
-        parent.updateSettings(settings);
     }//GEN-LAST:event_saveOnExitActionPerformed
 
-    private void hideCamControlsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hideCamControlsActionPerformed
-        settings.setHideCamPanel(hideCamControls.isSelected());
-        parent.updateSettings(settings);
-        parent.hideCamCont();
-    }//GEN-LAST:event_hideCamControlsActionPerformed
+    private void conExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_conExitActionPerformed
+        settings.setConfExit(conExit.isSelected());
+    }//GEN-LAST:event_conExitActionPerformed
+
+    private void nmColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nmColorActionPerformed
+        settings.setNavMeshColor((String)nmColor.getSelectedItem());
+        System.out.println("now");
+        evacSim.restartSim(3);
+    }//GEN-LAST:event_nmColorActionPerformed
+
+    private void AddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddButtonActionPerformed
+        String name = JOptionPane.showInputDialog(null, "Category Name?");
+        if (settings.getPersonCategories().containsKey(name)) JOptionPane.showMessageDialog(null, "Error: Name already Exists!");
+        else if (name != null && !name.equals("") && name.trim().length() > 0) {
+            settings.getPersonCategories().put(name, new PersonCategory(name));
+            redraw(name);
+        }
+    }//GEN-LAST:event_AddButtonActionPerformed
+
+    private void removeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonActionPerformed
+        int result = JOptionPane.showConfirmDialog(null, "Confirm Delete " + popCat.getSelectedItem(), "Are you sure you want to delete category?", JOptionPane.YES_NO_OPTION);
+        if (result == JOptionPane.YES_OPTION) {
+            if (settings.getPersonCategories().size() > 1) {
+                settings.getPersonCategories().remove((String)popCat.getSelectedItem());
+                redraw("");
+            }
+            else JOptionPane.showMessageDialog(null, "Error: Must be at least one Category!");
+        }
+    }//GEN-LAST:event_removeButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -276,31 +591,52 @@ public class AdvancedSettings extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        /* Create and display the form */
+        /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AdvancedSettings().setVisible(true);
+                AdvancedSettings dialog = new AdvancedSettings(new javax.swing.JFrame(), null, null);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JCheckBox hideCamControls;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JButton AddButton;
+    private javax.swing.JSlider baseSpeed;
+    private javax.swing.JCheckBox conExit;
+    private javax.swing.JPanel genPanel;
+    private javax.swing.JCheckBox hideCamCont;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JSpinner jSpinner2;
-    private javax.swing.JSpinner jSpinner3;
-    private javax.swing.JSpinner jSpinner4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JSpinner maxSpeed;
+    private javax.swing.JSpinner maxStress;
+    private javax.swing.JSpinner minSpeed;
+    private javax.swing.JSpinner minStress;
+    private javax.swing.JComboBox nmColor;
+    private javax.swing.JComboBox popCat;
+    private javax.swing.JComboBox popColor;
+    private javax.swing.JPanel popDist;
+    private javax.swing.JScrollPane popDistScroll;
+    private javax.swing.JPanel popTypePanel;
+    private javax.swing.JCheckBox printDebug;
+    private javax.swing.JButton removeButton;
     private javax.swing.JCheckBox saveOnExit;
-    private javax.swing.JCheckBox showCoordinates;
+    private javax.swing.JCheckBox showCoords;
+    private javax.swing.JCheckBox showFPS;
+    private javax.swing.JCheckBox showOrigin;
+    private javax.swing.JCheckBox showRoutes;
     // End of variables declaration//GEN-END:variables
 }
