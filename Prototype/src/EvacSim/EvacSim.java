@@ -92,7 +92,8 @@ public class EvacSim extends SimpleApplication {
     }
     
     public void moveCamC(String s) {
-        if (buttonCam == null) buttonCam = s;
+        if (s == null) buttonCam = null;
+        else if (buttonCam == null) buttonCam = s;
         else buttonCam = null;
     }
 

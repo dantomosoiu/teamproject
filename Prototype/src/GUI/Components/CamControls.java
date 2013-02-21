@@ -22,6 +22,12 @@ public class CamControls extends javax.swing.JPanel {
         evacSim = evs;
         settings = set;
         initComponents();
+        this.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent me) {
+                evacSim.moveCamC(null);
+            }
+        });
+
         panLeft.setEnabled(false);
         panRight.setEnabled(false);
     }
@@ -37,14 +43,14 @@ public class CamControls extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         camSpeed = new javax.swing.JSlider();
-        panUp = new javax.swing.JButton();
-        panDown = new javax.swing.JButton();
-        mUp = new javax.swing.JButton();
-        mLeft = new javax.swing.JButton();
-        mDown = new javax.swing.JButton();
-        mRight = new javax.swing.JButton();
-        panRight = new javax.swing.JButton();
-        panLeft = new javax.swing.JButton();
+        panUp = new javax.swing.JToggleButton();
+        panDown = new javax.swing.JToggleButton();
+        mUp = new javax.swing.JToggleButton();
+        mLeft = new javax.swing.JToggleButton();
+        mDown = new javax.swing.JToggleButton();
+        mRight = new javax.swing.JToggleButton();
+        panRight = new javax.swing.JToggleButton();
+        panLeft = new javax.swing.JToggleButton();
 
         setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 1, 0, new java.awt.Color(148, 148, 148)));
         setForeground(new java.awt.Color(254, 254, 254));
@@ -67,17 +73,19 @@ public class CamControls extends javax.swing.JPanel {
 
         panUp.setText("↟");
         panUp.setToolTipText("Rise");
-        panUp.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+        panUp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 panUpActionPerformed(evt);
+                panUp.setSelected(false);
             }
         });
 
         panDown.setText("↡");
         panDown.setToolTipText("Lower");
-        panDown.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+        panDown.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 panDownActionPerformed(evt);
+                panDown.setSelected(false);
             }
         });
 
@@ -87,9 +95,10 @@ public class CamControls extends javax.swing.JPanel {
         mUp.setMaximumSize(new java.awt.Dimension(30, 75));
         mUp.setMinimumSize(new java.awt.Dimension(30, 75));
         mUp.setPreferredSize(new java.awt.Dimension(30, 75));
-        mUp.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+        mUp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mUpActionPerformed(evt);
+                mUp.setSelected(false);
             }
         });
 
@@ -98,11 +107,13 @@ public class CamControls extends javax.swing.JPanel {
         mLeft.setMaximumSize(new java.awt.Dimension(30, 75));
         mLeft.setMinimumSize(new java.awt.Dimension(30, 75));
         mLeft.setPreferredSize(new java.awt.Dimension(30, 75));
-        mLeft.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+        mLeft.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mLeftActionPerformed(evt);
+                mLeft.setSelected(false);
             }
         });
+        
 
         mDown.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
         mDown.setText("↓");
@@ -110,9 +121,10 @@ public class CamControls extends javax.swing.JPanel {
         mDown.setMaximumSize(new java.awt.Dimension(30, 75));
         mDown.setMinimumSize(new java.awt.Dimension(30, 75));
         mDown.setPreferredSize(new java.awt.Dimension(30, 75));
-        mDown.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+        mDown.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mDownActionPerformed(evt);
+                mDown.setSelected(false);
             }
         });
 
@@ -121,9 +133,10 @@ public class CamControls extends javax.swing.JPanel {
         mRight.setMaximumSize(new java.awt.Dimension(30, 75));
         mRight.setMinimumSize(new java.awt.Dimension(30, 75));
         mRight.setPreferredSize(new java.awt.Dimension(30, 75));
-        mRight.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+        mRight.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mRightActionPerformed(evt);
+                mRight.setSelected(false);
             }
         });
 
@@ -131,9 +144,10 @@ public class CamControls extends javax.swing.JPanel {
         panRight.setMaximumSize(new java.awt.Dimension(95, 30));
         panRight.setMinimumSize(new java.awt.Dimension(95, 30));
         panRight.setPreferredSize(new java.awt.Dimension(95, 30));
-        panRight.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+        panRight.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 panRightActionPerformed(evt);
+                panRight.setSelected(false);
             }
         });
 
@@ -141,9 +155,10 @@ public class CamControls extends javax.swing.JPanel {
         panLeft.setMaximumSize(new java.awt.Dimension(95, 30));
         panLeft.setMinimumSize(new java.awt.Dimension(95, 30));
         panLeft.setPreferredSize(new java.awt.Dimension(95, 30));
-        panLeft.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+        panLeft.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 panLeftActionPerformed(evt);
+                panLeft.setSelected(false);
             }
         });
 
@@ -212,48 +227,48 @@ public class CamControls extends javax.swing.JPanel {
         evacSim.getFlyByCamera().setMoveSpeed(camSpeed.getValue());
     }//GEN-LAST:event_camSpeedStateChanged
 
-    private void panUpActionPerformed(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_panUpActionPerformed
+    private void panUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_panUpActionPerformed
         evacSim.moveCamC("FLYCAM_Rise");
     }//GEN-LAST:event_panUpActionPerformed
 
-    private void panDownActionPerformed(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_panDownActionPerformed
+    private void panDownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_panDownActionPerformed
         evacSim.moveCamC("FLYCAM_Lower");
     }//GEN-LAST:event_panDownActionPerformed
 
-    private void mUpActionPerformed(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_mUpActionPerformed
+    private void mUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mUpActionPerformed
         evacSim.moveCamC("FLYCAM_Forward");
     }//GEN-LAST:event_mUpActionPerformed
 
-    private void mLeftActionPerformed(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_mLeftActionPerformed
+    private void mLeftActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mLeftActionPerformed
         evacSim.moveCamC("FLYCAM_StrafeLeft");
     }//GEN-LAST:event_mLeftActionPerformed
 
-    private void mDownActionPerformed(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_mDownActionPerformed
+    private void mDownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mDownActionPerformed
         evacSim.moveCamC("FLYCAM_Backward");
     }//GEN-LAST:event_mDownActionPerformed
 
-    private void mRightActionPerformed(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_mRightActionPerformed
+    private void mRightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mRightActionPerformed
         evacSim.moveCamC("FLYCAM_StrafeRight");
     }//GEN-LAST:event_mRightActionPerformed
 
-    private void panRightActionPerformed(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_panRightActionPerformed
+    private void panRightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_panRightActionPerformed
         evacSim.moveCamC("FLYCAM_Right");
     }//GEN-LAST:event_panRightActionPerformed
 
-    private void panLeftActionPerformed(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_panLeftActionPerformed
+    private void panLeftActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_panLeftActionPerformed
         evacSim.moveCamC("FLYCAM_Left");
     }//GEN-LAST:event_panLeftActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JSlider camSpeed;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JButton mDown;
-    private javax.swing.JButton mLeft;
-    private javax.swing.JButton mRight;
-    private javax.swing.JButton mUp;
-    private javax.swing.JButton panDown;
-    private javax.swing.JButton panLeft;
-    private javax.swing.JButton panRight;
-    private javax.swing.JButton panUp;
+    private javax.swing.JToggleButton mDown;
+    private javax.swing.JToggleButton mLeft;
+    private javax.swing.JToggleButton mRight;
+    private javax.swing.JToggleButton mUp;
+    private javax.swing.JToggleButton panDown;
+    private javax.swing.JToggleButton panLeft;
+    private javax.swing.JToggleButton panRight;
+    private javax.swing.JToggleButton panUp;
     // End of variables declaration//GEN-END:variables
 }
