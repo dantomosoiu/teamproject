@@ -146,6 +146,7 @@ public class SidePanel extends javax.swing.JPanel {
         evacButton.setText("Evacuate");
         evacButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
+                routeButton.setEnabled(false);
                 if (!evacButton.isSelected()) {
                     evacButton.setText("Resume");
                     timer.stop();

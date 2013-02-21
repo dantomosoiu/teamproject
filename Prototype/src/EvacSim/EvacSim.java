@@ -40,8 +40,7 @@ public class EvacSim extends SimpleApplication {
     @Override
     public void update() {
         super.update();
-        System.out.println(buttonCam);
-        if (buttonCam != null) flyCam.onAnalog(buttonCam, 0.05f, 0);
+        if (buttonCam != null) flyCam.onAnalog(buttonCam, 0.02f, 0);
     }
 
     @Override
