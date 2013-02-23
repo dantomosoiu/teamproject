@@ -8,7 +8,9 @@ import EvacSim.EvacSim;
 import EvacSim.goal.ExitGoal;
 import EvacSim.jme3tools.navmesh.Cell;
 import GUI.Components.SidePanel;
+import Init.Settings.PersonCategory;
 import Init.Settings.Settings;
+import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector3f;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -94,8 +96,9 @@ public class Population implements Runnable {
                 //remove this
                 //candidate = new Vector3f(-0.63556033f, -1.2945915f, 14.966727f);
                 //
-                
-                people[i] = new Person(evs,candidate, settings.getBASESPEED(), this);
+                PersonCategory defaultCat;
+                defaultCat = new PersonCategory("Default",1f,1f,1f,1f,"Red",settings.getPopulationNumber());
+                people[i] = new Person(evs,candidate,defaultCat, this);
                 peopleThreads[i] = new Thread(people[i]);
             }
         }

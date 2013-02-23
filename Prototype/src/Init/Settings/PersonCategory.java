@@ -5,6 +5,7 @@
 package Init.Settings;
 
 import java.io.Serializable;
+import java.util.Random;
 
 /**
  *
@@ -18,7 +19,8 @@ public class PersonCategory implements Serializable{
     private float maxstress;
     private String color;
     private int numberOfPeople;
-
+    private Random random;
+    
     public PersonCategory(String name) {
         this.name = name;
         minspeed = maxspeed = minstress = maxstress = 1;
@@ -34,6 +36,7 @@ public class PersonCategory implements Serializable{
         this.maxstress = maxstress;
         this.color = color;
         this.numberOfPeople = numberOfPeople;
+        this.random = new Random();
     }
 
     public String getName() {
@@ -76,5 +79,12 @@ public class PersonCategory implements Serializable{
         this.numberOfPeople = numberOfPeople;
     }
     
+    public float generateSpeed(){
+         return minspeed + (random.nextFloat() * (maxspeed - minspeed));
+    }
+
+    public float generateStress(){
+        return minstress + (random.nextFloat() * (maxstress - minstress));
+    }
     
 }

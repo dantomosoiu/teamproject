@@ -7,6 +7,7 @@ package EvacSim.population;
 import EvacSim.EvacSim;
 import EvacSim.goal.Goal;
 import EvacSim.jme3tools.navmesh.NavMesh;
+import Init.Settings.PersonCategory;
 import Init.Settings.Settings;
 import com.jme3.cinematic.MotionPath;
 import com.jme3.cinematic.events.CinematicEvent;
@@ -69,9 +70,11 @@ public class Person implements Runnable{
     Settings settings;
     NavMesh navmesh;
 
-    public Person(EvacSim evs, Vector3f initialLocation, float speed, Population p) {
+    public Person(EvacSim evs, Vector3f initialLocation,PersonCategory category, Population p) {
         this.initialLocation = initialLocation;
-        this.speed = speed;
+        this.speed = category.generateSpeed();
+        this.stress = category.generateStress();
+        
         fin = false;
         this.evs = evs;
         settings = Settings.get();
@@ -124,7 +127,7 @@ public class Person implements Runnable{
         person.setLocalTranslation(routeplan.getMotionpath().getWayPoint(0));
         mat1 = new Material(evs.getAssetManager(),
                 "Common/MatDefs/Misc/Unshaded.j3md");
-        mat1.setColor("Color", ColorRGBA.randomColor());
+        mat1.setColor("Color", settings.getCol(category.getColor()));
         evs.attachChild(person);
 
         //setup motion control
@@ -165,15 +168,19 @@ public class Person implements Runnable{
         evs.attachChild(routeGeometryHolder);
         
         if (settings.getPrintEv()) System.err.println("Finished motion path!" + (motionpath.isCycle() ? " (cycled)" : ""));
-
-       /*run motion path and block person thread
-        *motion path continues. At key intervals PersonMovementListener calls
-        *perceiveDecideAct.
-        * If a new goal is found, the motionpath is stopped, this thread is restarted and
-        * a new motionpath to an exit is calculated
-        * Otherwise continue with the current motionpath
-        * Repeat until person has exited
-        */
+        
+        while(!this.isFin()){
+            try{
+                wait();
+            }catch(InterruptedException e){
+                this.stop();
+                this.initialLocation = motionControl.getSpatial().getLocalTranslation();
+                buildMotionPath(currentGoal);
+                motionpath.addListener(listener);
+                buildMotionControl();
+                this.fin = false; //stop person from believing they are finished
+            }
+        }
 
        
     }
@@ -189,6 +196,10 @@ public class Person implements Runnable{
             motionControl.setRotation(new Quaternion(new float[]{0, 135, 0}));
             motionControl.play();
         }
+    }
+    
+    public void stop(){
+        motionControl.stop();
     }
 
     public Spatial getPerson() {
@@ -261,5 +272,11 @@ public class Person implements Runnable{
         }
         
         return true;
+    }
+    public void pausePerson(){
+       
+    }
+    protected void changeGoal(Goal g){
+            this.currentGoal = g;
     }
 }

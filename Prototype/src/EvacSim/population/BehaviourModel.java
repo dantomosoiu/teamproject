@@ -23,7 +23,7 @@ public abstract class BehaviourModel {
     private static ArrayList<Goal> goals = new ArrayList<Goal>();
     private static ArrayList<ExitGoal> exits = new ArrayList<ExitGoal>();
     
-    public static MotionPath percieveDecideAct(Person person){
+    public static Goal perceiveDecideAct(Person person){
         PersonNavmeshRoutePlanner personOnNavmesh = new PersonNavmeshRoutePlanner(Settings.get().getNavMesh(),person.getPerson().getLocalTranslation());
         //Check if person is moveing through an exit - if so return 
         ArrayList<Goal> visibleGoals = perceive(personOnNavmesh);
@@ -43,7 +43,7 @@ public abstract class BehaviourModel {
         /*Michael, you're dastardly attempts to break things have been temporarily defeated.
          * Once you have fixed this remove the try/catch from onWayPointReach
          */
-        return act(target,personOnNavmesh);
+        return act(target);
     }
         
         
@@ -95,10 +95,8 @@ public abstract class BehaviourModel {
         return target;
       }
             
-      private static MotionPath act(Vector3f target, PersonNavmeshRoutePlanner personOnNavmesh){
-          personOnNavmesh.setGoal(target);
-          personOnNavmesh.createMovementPath(Population.DISTANCEBETWEENMOTIONWAYPOINTS);
-          return personOnNavmesh.getMotionpath();
+      private static Goal act(Goal g){
+          return g; //at the moment this method is largely superflous
       }      
    
     
