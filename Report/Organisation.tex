@@ -1,0 +1,36 @@
+\documentclass{article}
+\begin{document}
+\section{Team Structure \& Development Process}
+\subsection{Team Structure}
+With respect to the relatively small team size, we naturally wished to find a flexible way to distribute administrative tasks such as managing version control software, risk management, etc.\\
+The team made use of the Administrative Programming Team \ref{AdministrativeProgrammingTeam}. This was chosen because it provided a sound infrastructure for the division of the teams administrative tasks, without constraining the choice of process for implementing the system.//
+The roles of the Administrative Programming Team were assigned as follows:
+\begin{itemize}
+\item{textbf{Project Manager:} Hector Grebbell}
+\item{textbf{Librarian:} Peeranat Fupongsiripan}
+\item{textbf{Configuration Manager:} Dan Tomosoiu}
+\item{textbf{Toolsmith:} Tony Lau}
+\item{textbf{Quality Assurance:} Michael Kilian}
+\end{itemize}
+It should be emphasised that each person was not solely responsible for the tasks associated with their role; their responsibility is to coordinate these tasks within the team by proposing, implementing and maintaining effective procedures to acheive this.
+
+In tandem with this, the team was further divided into two subteams for development. The \textbf{Modelling and GUI Team}, consisting of Hector Grebbell and Peeranat Fuponsiripan, produced the 3D model of the ship and later developed the GUI for the system. The \textbf{Core Implementation Team}, consisting of Dan Tomosoiu, Tony Lau and Michael Kilian, worked on the rest of the system. 
+
+\subsection{Development Process}
+The greatest challenge of designing an evacuation simulator is defining a level of accuracy which can be deemed acceptable with respect to the project's resources, and then translating this into an effective design which balances the use of up to date techniques with a realistic implementation plan. Many of the techniques that this project aimed to implement are complex and lack a well defined framework for their implementation. These techniques are discussed further in the research section.\\
+Ultimately, it became clear that the only way to make progress was to use a strategy of incremental prototyping. Obviously this carries considerable risk which must be addressed:
+\begin{itemize}
+\item{A tendency to procude low quality and difficult to maintain code.}
+\item{Difficulties in managing change.}
+\item{Sacrificing quality assurance and documentation.}
+\end{itemize}
+To mitigate these risks, several techniques taken from the field of agile development were employed as follows:
+\begin{itemize]
+\item{textbf{Constant Refactoring:} Before the completion of each prototype or upon fixing a defect, significant reactoring was undertaken to improve code quality.}
+\item{textbf{Pair Programming:} This technique was particularly helpful when fixing defects related to navigation (see Implementation) due to the complexity of these defects.
+\item{textbf{Division Into Subteams:} The team was divided as outlined above so as to allow these subteams to work in parallel on orthogonal tasks, This reduced communication overhead and the difficulty of managing change to the system.}
+\end{itemize}
+
+
+
+\end{document}
