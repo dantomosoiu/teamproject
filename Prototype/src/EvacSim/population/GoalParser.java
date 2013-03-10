@@ -16,7 +16,11 @@ import java.util.Scanner;
  * @author 1003819k
  */
 public class GoalParser {
-	public static void parseGoals(String filename){
+	/**
+     *
+     * @param filename
+     */
+    public static void parseGoals(String filename){
 		Scanner linescan;
 		try{
 			FileInputStream file = new FileInputStream(filename);

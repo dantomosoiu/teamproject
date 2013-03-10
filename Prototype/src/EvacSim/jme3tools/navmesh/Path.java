@@ -17,6 +17,9 @@ import java.util.Iterator;
  */
 public class Path implements Iterable<Waypoint> {
 
+    /**
+     *
+     */
     public class Waypoint {
 
         private Vector3f position;
@@ -24,26 +27,40 @@ public class Path implements Iterable<Waypoint> {
 
         /**
          * The cell which owns the waypoint
+         * @return 
          */
         public Cell getCell() {
             return cell;
         }
 
+        /**
+         *
+         * @param cell
+         */
         public void setCell(Cell cell) {
             this.cell = cell;
         }
 
         /**
          * 3D position of waypoint
+         * @return 
          */
         public Vector3f getPosition() {
             return position;
         }
 
+        /**
+         *
+         * @param position
+         */
         public void setPosition(Vector3f position) {
             this.position = position;
         }
 
+        /**
+         *
+         * @return
+         */
         @Override
         public String toString() {
             return "Waypoint[position=" + position.x + ", " + position.z + " cell:"
@@ -85,20 +102,33 @@ public class Path implements Iterable<Waypoint> {
         waypointList.add(start);
     }
 
+    /**
+     *
+     */
     public void clear() {
         waypointList.clear();
     }
 
+    /**
+     *
+     * @return
+     */
     public int size(){
         return waypointList.size();
     }
 
+    /**
+     *
+     * @return
+     */
     public Iterator<Waypoint> iterator() {
         return waypointList.iterator();
     }
 
     /**
      * Adds a new waypoint to the end of the list
+     * @param point 
+     * @param cell 
      */
     public void addWaypoint(Vector3f point, Cell cell) {
         Waypoint newPoint = new Waypoint();
@@ -115,26 +145,50 @@ public class Path implements Iterable<Waypoint> {
         waypointList.add(end);
     }
 
+    /**
+     *
+     * @return
+     */
     public NavMesh getOwner() {
         return owner;
     }
 
+    /**
+     *
+     * @return
+     */
     public Waypoint getStart() {
         return start;
     }
 
+    /**
+     *
+     * @return
+     */
     public Waypoint getEnd() {
         return end;
     }
 
+    /**
+     *
+     * @return
+     */
     public Waypoint getFirst(){
         return waypointList.get(0);
     }
 
+    /**
+     *
+     * @return
+     */
     public Waypoint getLast(){
         return waypointList.get(waypointList.size()-1);
     }
 
+    /**
+     *
+     * @return
+     */
     public ArrayList<Waypoint> getWaypoints() {
         return waypointList;
     }

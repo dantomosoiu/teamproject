@@ -14,14 +14,25 @@ import com.jme3.math.Vector3f;
 public class ExitSignGoal extends Goal {
 	private  Vector3f normal;
 
-	public ExitSignGoal(Vector3f location,Vector3f n ,float c) {
+	/**
+     *
+     * @param location
+     * @param n
+     * @param c
+     */
+    public ExitSignGoal(Vector3f location,Vector3f n ,float c) {
 		super(location);
 		normal = n.normalize();
 		
 	}
 
 
-	public Vector3f registerWithGoal(Person p){
+	/**
+     *
+     * @param p
+     * @return
+     */
+    public Vector3f registerWithGoal(Person p){
 		return null;
 	}
 

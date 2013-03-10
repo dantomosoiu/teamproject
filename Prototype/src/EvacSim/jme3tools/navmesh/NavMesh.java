@@ -43,6 +43,9 @@ public class NavMesh implements Savable, java.io.Serializable {
     private volatile int sessionID = 0;
     private volatile Heap heap = new Heap();
 
+    /**
+     *
+     */
     public void clear() {
         cellList.clear();
     }
@@ -68,16 +71,28 @@ public class NavMesh implements Savable, java.io.Serializable {
     void Update(float elapsedTime) {
     }
 
+    /**
+     *
+     * @return
+     */
     public int getNumCells() {
         return cellList.size();
     }
 
+    /**
+     *
+     * @param index
+     * @return
+     */
     public Cell getCell(int index) {
         return (cellList.get(index));
     }
 
     /**
      * Force a point to be inside the cell
+     * @param cell 
+     * @param point 
+     * @return 
      */
     public Vector3f snapPointToCell(Cell cell, Vector3f point) {
         if (!cell.contains(point))
@@ -96,6 +111,8 @@ public class NavMesh implements Savable, java.io.Serializable {
 
     /**
      * Find the closest cell on the mesh to the given point
+     * @param point 
+     * @return 
      */
     public Cell findClosestCell(Vector3f point) {
         float closestDistance = 3.4E+38f;
@@ -149,6 +166,13 @@ public class NavMesh implements Savable, java.io.Serializable {
 
     /**
      * Build a navigation path using the provided points and the A* method
+     * @param navPath 
+     * @param endPos
+     * @param startCell 
+     * @param startPos 
+     * @param entityRadius
+     * @param endCell
+     * @return  
      */
     public boolean buildNavigationPath(Path navPath,
             Cell startCell, Vector3f startPos,
@@ -297,6 +321,7 @@ public class NavMesh implements Savable, java.io.Serializable {
      * @param startPos
      * @param startCell
      * @param endPos
+     * @param modifiedEndPos 
      * @return
      */
     public Cell resolveMotionOnMesh(Vector3f startPos, Cell startCell, Vector3f endPos, Vector3f modifiedEndPos) {
@@ -445,6 +470,11 @@ public class NavMesh implements Savable, java.io.Serializable {
         }
     }
 
+    /**
+     *
+     * @param positions
+     * @param indices
+     */
     public void loadFromData(Vector3f[] positions, short[][] indices){
         Plane up = new Plane();
         up.setPlanePoints(Vector3f.UNIT_X, Vector3f.ZERO, Vector3f.UNIT_Z);
@@ -468,6 +498,10 @@ public class NavMesh implements Savable, java.io.Serializable {
         linkCells();
     }
 
+    /**
+     *
+     * @param mesh
+     */
     public void loadFromMesh(Mesh mesh) {
         clear();
 
@@ -503,11 +537,21 @@ public class NavMesh implements Savable, java.io.Serializable {
         linkCells();
     }
 
+    /**
+     *
+     * @param e
+     * @throws IOException
+     */
     public void write(JmeExporter e) throws IOException {
         OutputCapsule capsule = e.getCapsule(this);
         capsule.writeSavableArrayList(cellList, "cellarray", null);
     }
 
+    /**
+     *
+     * @param e
+     * @throws IOException
+     */
     @SuppressWarnings("unchecked")
     public void read(JmeImporter e) throws IOException {
         InputCapsule capsule = e.getCapsule(this);

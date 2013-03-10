@@ -47,6 +47,7 @@ public class MaxHeap extends Heap
      *  Use given Comparator for all comparisons between elements in
      *  this MaxHeap.  Otherwise rely on compareTo methods and
      *  Comparable Objects.
+     * @param c 
      */
     public MaxHeap(Comparator c)
     {
@@ -55,6 +56,7 @@ public class MaxHeap extends Heap
 
     /**
      * Creates an empty MaxHeap with the given capacity.
+     * @param capacity 
      */
     public MaxHeap(int capacity)
     {
@@ -64,6 +66,7 @@ public class MaxHeap extends Heap
     /**
      * Create a new MaxHeap containing the elements of the given
      * Collection.
+     * @param c 
      */
     public MaxHeap(Collection c)
     {
@@ -72,6 +75,7 @@ public class MaxHeap extends Heap
 
     /**
      * Delete the largest element of this MaxHeap.
+     * @return 
      */
     public Object deleteMax()
     {
@@ -81,6 +85,9 @@ public class MaxHeap extends Heap
     /**
      * Compare two Objects in this heap - wrapper around
      * compareTo/Comparator.compare
+     * @param node1
+     * @param node2
+     * @return  
      */
     protected int cmp(int node1, int node2)
     {

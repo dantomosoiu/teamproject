@@ -114,6 +114,10 @@ public class Cell implements Savable, java.io.Serializable {
      */
     private float area;
 
+    /**
+     *
+     * @return
+     */
     public float getArea() {
         return area;
     }
@@ -244,6 +248,7 @@ public class Cell implements Savable, java.io.Serializable {
      * plane
      *
      * @param point
+     * @return  
      */
     public float getHeightOnCell(Vector3f point) {
         return cellPlane.solveForY(point.x, point.z);
@@ -297,10 +302,19 @@ public class Cell implements Savable, java.io.Serializable {
         return (contains(new Vector2f(point.x, point.z)));
     }
 
+    /**
+     *
+     * @param Vert
+     * @return
+     */
     public Vector3f getVertex(int Vert) {
         return (verticies[Vert]);
     }
 
+    /**
+     *
+     * @return
+     */
     public Vector3f getCenter() {
         return (center);
     }
@@ -329,10 +343,20 @@ public class Cell implements Savable, java.io.Serializable {
         return (arrivalWall);
     }
 
+    /**
+     *
+     * @param side
+     * @return
+     */
     public float getWallLength(int side) {
         return wallDistances[side];
     }
 
+    /**
+     *
+     * @param side
+     * @return
+     */
     public Vector3f getWallMidpoint(int side) {
         return (wallMidpoints[side]);
     }
@@ -680,15 +704,27 @@ public class Cell implements Savable, java.io.Serializable {
         heuristic = goal.distance(center);
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString() {
         return "Cell: " + center.x + "," + center.z;
     }
 
+    /**
+     *
+     * @return
+     */
     public Vector3f getNormal() {
         return this.cellPlane.getNormal();
     }
 
+    /**
+     *
+     * @return
+     */
     public Vector3f getRandomPoint() {
         Random rand = new Random();
         Vector2f ret =
@@ -700,6 +736,11 @@ public class Cell implements Savable, java.io.Serializable {
         return vec;
     }
 
+    /**
+     *
+     * @param e
+     * @throws IOException
+     */
     public void write(JmeExporter e) throws IOException {
         OutputCapsule capsule = e.getCapsule(this);
 //        capsule.write(terrain, "terrain", null);
@@ -712,6 +753,11 @@ public class Cell implements Savable, java.io.Serializable {
 //        capsule.write(wallDistances, "distances", null);
     }
 
+    /**
+     *
+     * @param e
+     * @throws IOException
+     */
     public void read(JmeImporter e) throws IOException {
         InputCapsule capsule = e.getCapsule(this);
 

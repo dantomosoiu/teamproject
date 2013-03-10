@@ -9,6 +9,10 @@ import java.nio.FloatBuffer;
 import org.critterai.nmgen.NavmeshGenerator;
 import org.critterai.nmgen.TriangleMesh;
 
+/**
+ *
+ * @author michael
+ */
 public class NavMeshGenerator {
 
     private org.critterai.nmgen.NavmeshGenerator nmgen;
@@ -32,9 +36,15 @@ public class NavMeshGenerator {
     private float contourSampleDistance = 0.1f;
     private float contourMaxDeviation = 0.1f;
 
+    /**
+     *
+     */
     public NavMeshGenerator() {
     }
 
+    /**
+     *
+     */
     public void printParams() {
         System.out.println("Cell Size: " + cellSize);
         System.out.println("Cell Height: " + cellHeight);
@@ -54,6 +64,11 @@ public class NavMeshGenerator {
         System.out.println("Contour Max Dev.: " + contourMaxDeviation);
     }
 
+    /**
+     *
+     * @param mesh
+     * @return
+     */
     public Mesh optimize(Mesh mesh) {
         nmgen = new NavmeshGenerator(cellSize, cellHeight, minTraversableHeight,
                 maxTraversableStep, maxTraversableSlope,
@@ -94,6 +109,11 @@ public class NavMeshGenerator {
         return mesh2;
     }
 
+    /**
+     *
+     * @param terr
+     * @return
+     */
     public Mesh optimize(Terrain terr) {
         float[] floats = terr.getHeightMap();
         int length = floats.length;
@@ -149,122 +169,242 @@ public class NavMeshGenerator {
         this.cellSize = cellSize;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isClipLedges() {
         return clipLedges;
     }
 
+    /**
+     *
+     * @param clipLedges
+     */
     public void setClipLedges(boolean clipLedges) {
         this.clipLedges = clipLedges;
     }
 
+    /**
+     *
+     * @return
+     */
     public float getContourMaxDeviation() {
         return contourMaxDeviation;
     }
 
+    /**
+     *
+     * @param contourMaxDeviation
+     */
     public void setContourMaxDeviation(float contourMaxDeviation) {
         this.contourMaxDeviation = contourMaxDeviation;
     }
 
+    /**
+     *
+     * @return
+     */
     public float getContourSampleDistance() {
         return contourSampleDistance;
     }
 
+    /**
+     *
+     * @param contourSampleDistance
+     */
     public void setContourSampleDistance(float contourSampleDistance) {
         this.contourSampleDistance = contourSampleDistance;
     }
 
+    /**
+     *
+     * @return
+     */
     public float getEdgeMaxDeviation() {
         return edgeMaxDeviation;
     }
 
+    /**
+     *
+     * @param edgeMaxDeviation
+     */
     public void setEdgeMaxDeviation(float edgeMaxDeviation) {
         this.edgeMaxDeviation = edgeMaxDeviation;
     }
 
+    /**
+     *
+     * @return
+     */
     public float getMaxEdgeLength() {
         return maxEdgeLength;
     }
 
+    /**
+     *
+     * @param maxEdgeLength
+     */
     public void setMaxEdgeLength(float maxEdgeLength) {
         this.maxEdgeLength = maxEdgeLength;
     }
 
+    /**
+     *
+     * @return
+     */
     public float getMaxTraversableSlope() {
         return maxTraversableSlope;
     }
 
+    /**
+     *
+     * @param maxTraversableSlope
+     */
     public void setMaxTraversableSlope(float maxTraversableSlope) {
         this.maxTraversableSlope = maxTraversableSlope;
     }
 
+    /**
+     *
+     * @return
+     */
     public float getMaxTraversableStep() {
         return maxTraversableStep;
     }
 
+    /**
+     *
+     * @param maxTraversableStep
+     */
     public void setMaxTraversableStep(float maxTraversableStep) {
         this.maxTraversableStep = maxTraversableStep;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getMaxVertsPerPoly() {
         return maxVertsPerPoly;
     }
 
+    /**
+     *
+     * @param maxVertsPerPoly
+     */
     public void setMaxVertsPerPoly(int maxVertsPerPoly) {
         this.maxVertsPerPoly = maxVertsPerPoly;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getMergeRegionSize() {
         return mergeRegionSize;
     }
 
+    /**
+     *
+     * @param mergeRegionSize
+     */
     public void setMergeRegionSize(int mergeRegionSize) {
         this.mergeRegionSize = mergeRegionSize;
     }
 
+    /**
+     *
+     * @return
+     */
     public float getMinTraversableHeight() {
         return minTraversableHeight;
     }
 
+    /**
+     *
+     * @param minTraversableHeight
+     */
     public void setMinTraversableHeight(float minTraversableHeight) {
         this.minTraversableHeight = minTraversableHeight;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getMinUnconnectedRegionSize() {
         return minUnconnectedRegionSize;
     }
 
+    /**
+     *
+     * @param minUnconnectedRegionSize
+     */
     public void setMinUnconnectedRegionSize(int minUnconnectedRegionSize) {
         this.minUnconnectedRegionSize = minUnconnectedRegionSize;
     }
 
+    /**
+     *
+     * @return
+     */
     public NavmeshGenerator getNmgen() {
         return nmgen;
     }
 
+    /**
+     *
+     * @param nmgen
+     */
     public void setNmgen(NavmeshGenerator nmgen) {
         this.nmgen = nmgen;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getSmoothingThreshold() {
         return smoothingThreshold;
     }
 
+    /**
+     *
+     * @param smoothingThreshold
+     */
     public void setSmoothingThreshold(int smoothingThreshold) {
         this.smoothingThreshold = smoothingThreshold;
     }
 
+    /**
+     *
+     * @return
+     */
     public float getTraversableAreaBorderSize() {
         return traversableAreaBorderSize;
     }
 
+    /**
+     *
+     * @param traversableAreaBorderSize
+     */
     public void setTraversableAreaBorderSize(float traversableAreaBorderSize) {
         this.traversableAreaBorderSize = traversableAreaBorderSize;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isUseConservativeExpansion() {
         return useConservativeExpansion;
     }
 
+    /**
+     *
+     * @param useConservativeExpansion
+     */
     public void setUseConservativeExpansion(boolean useConservativeExpansion) {
         this.useConservativeExpansion = useConservativeExpansion;
     }

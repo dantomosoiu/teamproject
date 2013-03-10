@@ -30,6 +30,9 @@ import com.jme3.scene.VertexBuffer;
  */
 public class Person implements Runnable{
 
+    /**
+     *
+     */
     public final int WAYPOINTSBETWEENDECISIONS = 50;
 
     /**
@@ -70,6 +73,13 @@ public class Person implements Runnable{
     Settings settings;
     NavMesh navmesh;
 
+    /**
+     *
+     * @param evs
+     * @param initialLocation
+     * @param category
+     * @param p
+     */
     public Person(EvacSim evs, Vector3f initialLocation,PersonCategory category, Population p) {
         this.initialLocation = initialLocation;
         this.speed = category.generateSpeed();
@@ -134,9 +144,17 @@ public class Person implements Runnable{
 
     }
     
+    /**
+     *
+     * @return
+     */
     public boolean isFin() {
         return fin;
     }
+    /**
+     *
+     * @return
+     */
     public boolean isStart() {
         return start;
     }
@@ -144,6 +162,7 @@ public class Person implements Runnable{
     /**Calculates the time a Person should take to traverse a path at a given speed
      * @param speedUnitsPerSecond The Person's movement speed in metres per second
      * @param motionpath The MotionPath over which the person moves
+     * @return  
      */
     public float calculateMotionTime(float speedUnitsPerSecond, MotionPath motionpath) {
         float distance = motionpath.getLength(); //get the distance of the motionpath
@@ -151,6 +170,9 @@ public class Person implements Runnable{
         return time;
     }
 
+    /**
+     *
+     */
     @Override
     public void run() {
         start = true;
@@ -169,27 +191,21 @@ public class Person implements Runnable{
         
         if (settings.getPrintEv()) System.err.println("Finished motion path!" + (motionpath.isCycle() ? " (cycled)" : ""));
         
-        while(!this.isFin()){
-            try{
-                wait();
-            }catch(InterruptedException e){
-                this.stop();
-                this.initialLocation = motionControl.getSpatial().getLocalTranslation();
-                buildMotionPath(currentGoal);
-                motionpath.addListener(listener);
-                buildMotionControl();
-                this.fin = false; //stop person from believing they are finished
-            }
-        }
 
        
     }
     
+    /**
+     *
+     */
     public void pause() {
         motionControl.pause();
     }
     
     
+    /**
+     *
+     */
     public void play() {
         if (motionControl != null) {
             motionControl.setDirectionType(MotionEvent.Direction.PathAndRotation);
@@ -198,30 +214,56 @@ public class Person implements Runnable{
         }
     }
     
+    /**
+     *
+     */
     public void stop(){
         motionControl.stop();
     }
 
+    /**
+     *
+     * @return
+     */
     public Spatial getPerson() {
         return person;
     }
 
+    /**
+     *
+     * @return
+     */
     public float getSpeed() {
         return speed;
     }
 
+    /**
+     *
+     * @return
+     */
     public float getStress() {
         return stress;
     }
 
+    /**
+     *
+     * @return
+     */
     public Goal getCurrentGoal() {
         return currentGoal;
     }
 
+    /**
+     *
+     * @param p
+     */
     public void setMotionPath(MotionPath p){
         this.motionpath = p;
     }
     
+    /**Builds the motion control for the Person, associating a listener and setting the control parameters.
+     *
+     */
     public void buildMotionControl(){
         float time = calculateMotionTime(speed, motionpath);
         motionControl = new MotionEvent(person, motionpath);
@@ -240,6 +282,11 @@ public class Person implements Runnable{
         });
     }
     
+    /**
+     *Draws a visible line between two points; used in route generation.
+     * @param oldPosition
+     * @param newPosition
+     */
     public void drawLine(Vector3f oldPosition, Vector3f newPosition){
             Mesh lineMesh = new Mesh();
             lineMesh.setMode(Mesh.Mode.Lines);
@@ -253,6 +300,11 @@ public class Person implements Runnable{
             evs.attachChild(lineGeometry);
     }
     
+    /**Builds MotionPath from current location to goal
+     *
+     * @param goal
+     * @return
+     */
     public boolean buildMotionPath(Goal goal){
         routeplan = new PersonNavmeshRoutePlanner(navmesh, initialLocation, currentGoal.getLocation());
         if (!routeplan.computePath(currentGoal.getLocation())) {
@@ -273,10 +325,17 @@ public class Person implements Runnable{
         
         return true;
     }
+    /**
+     *
+     */
     public void pausePerson(){
        
     }
-    protected void changeGoal(Goal g){
+    /**
+     *
+     * @param g
+     */
+    protected synchronized void changeGoal(Goal g){
             this.currentGoal = g;
     }
 }

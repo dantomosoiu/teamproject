@@ -4,11 +4,19 @@ import java.io.File;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 
+/**
+ *
+ * @author michael
+ */
 public class GenGui extends javax.swing.JFrame {
 
     private NavMeshGenerator navMeshGen;
     private JFileChooser chooser = new JFileChooser();
 
+    /**
+     *
+     * @param navMeshGen
+     */
     public GenGui(NavMeshGenerator navMeshGen) {
         initComponents();
         this.navMeshGen = navMeshGen;

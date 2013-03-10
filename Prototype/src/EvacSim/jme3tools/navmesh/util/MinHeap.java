@@ -44,6 +44,7 @@ public class MinHeap extends Heap
      *  Use given Comparator for all comparisons between elements in
      *  this MinHeap.  Otherwise rely on compareTo methods and
      *  Comparable Objects.
+     * @param c 
      */
     public MinHeap(Comparator c)
     {
@@ -52,6 +53,7 @@ public class MinHeap extends Heap
 
     /**
      * Creates an empty MinHeap with the given capacity.
+     * @param capacity 
      */
     public MinHeap(int capacity)
     {
@@ -61,6 +63,7 @@ public class MinHeap extends Heap
     /**
      * Create a new MinHeap containing the elements of the given
      * Collection.
+     * @param c 
      */
     public MinHeap(Collection c)
     {
@@ -69,6 +72,7 @@ public class MinHeap extends Heap
 
     /**
      * Delete the smallest element of this MinHeap.
+     * @return 
      */
     public Object deleteMin()
     {

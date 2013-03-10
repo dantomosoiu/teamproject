@@ -22,7 +22,14 @@ import java.util.logging.Logger;
  *
  * @author michael, tony, dan
  */
+/**
+ *
+ * @author michael
+ */
 public class Population implements Runnable {
+    /**
+     *
+     */
     public static float DISTANCEBETWEENMOTIONWAYPOINTS = 0.5f;
     
     private EvacSim evs;
@@ -37,6 +44,10 @@ public class Population implements Runnable {
     private float personCollisionDistance = 0.2f; 
     private Settings settings;
 
+    /**
+     *
+     * @param evs
+     */
     public Population(EvacSim evs) {
         this.evs = evs;
         evacuationDone = false;
@@ -50,6 +61,9 @@ public class Population implements Runnable {
 
     }
 
+    /**
+     *
+     */
     public void populate() {
         people = new Person[settings.getPopulationNumber()];
 
@@ -146,9 +160,6 @@ public class Population implements Runnable {
 
     /**
      * Recursively splits the current PersonCluster along the 3 dimensions, until no splits can be made.
-     * @param finalClusterList The list holding the final clusters of neighbours.
-     * @param currentCluster The current cluster to be tested for splitting.
-     * @param dimension The current dimension on which to check for clustering.
      */
 //    private void RDC(ArrayList<PersonCluster> finalClusterList, PersonCluster currentCluster, int dimension) {
 //        //assert (dimension > -1);
@@ -205,6 +216,9 @@ public class Population implements Runnable {
          }*/
     }
 
+    /**
+     *
+     */
     public void play() {
         for (int i = 0; i < people.length; i++) {
             if (!people[i].isFin()) {
@@ -213,26 +227,43 @@ public class Population implements Runnable {
         }
     }
     
+    /**
+     *
+     */
     public void stopSim() {
         for (int i = 0; i < people.length; i++) {
             if (people[i].isStart() == true && people[i].isFin() == false) people[i].pause();
         }
     }
 
+    /**
+     *
+     * @param tpf
+     */
     public void update(float tpf) {
         //for(int i = 0; i < peopleThreads.length; i++){
         //    people[i].update(tpf);
         //}
     }
 
+    /**
+     *
+     */
     public static void done() {
         evacuationDone = true;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isDone(){
         return this.evacuationDone;
     }
     
+    /**
+     *
+     */
     public void run() {
     }
 }

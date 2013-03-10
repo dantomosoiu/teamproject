@@ -23,6 +23,11 @@ public abstract class BehaviourModel {
     private static ArrayList<Goal> goals = new ArrayList<Goal>();
     private static ArrayList<ExitGoal> exits = new ArrayList<ExitGoal>();
     
+    /**
+     *
+     * @param person
+     * @return
+     */
     public static Goal perceiveDecideAct(Person person){
         PersonNavmeshRoutePlanner personOnNavmesh = new PersonNavmeshRoutePlanner(Settings.get().getNavMesh(),person.getPerson().getLocalTranslation());
         //Check if person is moveing through an exit - if so return 
@@ -55,7 +60,7 @@ public abstract class BehaviourModel {
         for(Goal g : goals){
             if(person.isInLineOfSight(g.getLocation())){
                 visibleGoals.add(g);
-                System.out.println(g.getLocation().toString()); //debugging line
+                //System.out.println(g.getLocation().toString()); //debugging line
             }
         }
         return visibleGoals;
@@ -81,7 +86,7 @@ public abstract class BehaviourModel {
                       targetExit = exits[i]; //note cast to type Goal
                   }
               }
-              return target;
+              return targetExit;
             }else{
                 Vector3f personLocation = p.getCurrentPos3d();
                 for(int i = 1; i <exits.length; i++){
@@ -90,9 +95,9 @@ public abstract class BehaviourModel {
                     }
                 }
             }
-            target = targetExit; //note cast to type Goal
+            return targetExit;
           }
-        return target;
+           return null;
       }
             
       private static Goal act(Goal g){
@@ -102,22 +107,43 @@ public abstract class BehaviourModel {
     
     
 
+    /**
+     *
+     * @return
+     */
     public static ArrayList<Goal> getGoals() {
         return goals;
     }
 
+    /**
+     *
+     * @param goals
+     */
     public static void setGoals(ArrayList<Goal> goals) {
         BehaviourModel.goals = goals;
     }
 
+    /**
+     *
+     * @return
+     */
     public static ArrayList<ExitGoal> getExits() {
         return exits;
     }
 
+    /**
+     *
+     * @param exits
+     */
     public static void setExits(ArrayList<ExitGoal> exits) {
         BehaviourModel.exits = exits;
     }
     
+    /**
+     *
+     * @param personlocation
+     * @return
+     */
     public static Goal nearestExit(Vector3f personlocation){
          //possibly improve efficiency for larger amounts of exits
         Goal closeExit = exits.get(0);

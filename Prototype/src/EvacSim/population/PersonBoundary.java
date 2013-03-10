@@ -9,11 +9,27 @@ package EvacSim.population;
  * @author 1102486t
  */
 public class PersonBoundary {
+    /**
+     *
+     */
     public Person person;
+    /**
+     *
+     */
     public float position;
+    /**
+     *
+     */
     public short axis;
+    /**
+     *
+     */
     public boolean opening;
     
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString(){
         String s;
