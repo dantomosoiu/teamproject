@@ -1,3 +1,0 @@
-This folder contains the projct report for Purges. Purges was a fourth year Computing Science project at the University of Glasgow. The report discusses implementation and technical details about Purges and talks about some of the theorhetical background for the project.
-
-The project report is supplied in two versions. A postscript file, called Report.ps, and a PDF file called Report.pdf. You can use Adobe Acrobat Reader to view the PDF file and can get it from http://www.adobe.com.
