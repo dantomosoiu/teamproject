@@ -1,0 +1,291 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section*
+GUI Design and Implementation
+\end_layout
+
+\begin_layout Standard
+The target userbase for the evacuator does not guarantee a good degree of
+ computer-literacy.
+ Hence a clear and easy to use GUI was required.
+\end_layout
+
+\begin_layout Subsection*
+Initial Design
+\end_layout
+
+\begin_layout Standard
+Based from initial system requirements a wireframe for the GUI could be
+ generated.
+ To keep the user experience simple it was decided to keep all the basic
+ functionality within the main window.
+ This allows unfamiliar users to gain from the software without being overwhelme
+d by endless options.
+ For advanced configuration there was to be a detailed configuration panel
+ allowing advanced users to set the majority of variables as they saw fit.
+\end_layout
+
+\begin_layout Standard
+The wireframe below was drawn up to support these concepts.
+ By sticking to conventions it gives a familiar feel to most who have used
+ a typical windows based system within the last decade.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename GUIv1WF.png
+	width 11cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+GUI Implementation and Revision
+\end_layout
+
+\begin_layout Standard
+It was decided since the project was to be built in java and several members
+ had knowledge of the library to use Swing for implementation of the GUI.
+ The toolkit was more than capable of our needs and any advantages of alternativ
+es seemed unlikely to counterbalance the time required to learn a new environmen
+t.
+ SWT was briefly considered since the interface created generally allows
+ a closer to native feel and higher performance (http://www.ibm.com/developerworks
+/grid/library/os-swingswt/).
+ This however would come at a cost of portability as well as the time considerat
+ion mentioned above.
+\end_layout
+
+\begin_layout Standard
+The GUI implementation was a quick and crude attempt towards the initial
+ wireframe.
+ Its purpose was more towards checking how well the JMonkey canvas could
+ be displayed within the Swing layout than producing a suitable end product.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename GUIv1.png
+	width 11cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Whilst not particurly attractive a suitable platform for basic testing was
+ then available.
+\end_layout
+
+\begin_layout Standard
+At this point it became apparent that the back end would not easily allow
+ for the evacuation to be 
+\begin_inset Quotes eld
+\end_inset
+
+scrolled through
+\begin_inset Quotes erd
+\end_inset
+
+ in the way we had initially anticipated.
+ The play bar at the bottom of the screen was removed from designs.
+ this Led to the control buttons being moved to the panel on the right.
+ After speaking to some less computer-literate users it was further decided
+ to use a traditional menu-bar.
+ Some also found the nav-mesh didn't give an immediate understanding of
+ what the model represented so toggles were added to allow a physical representa
+tion of the ship to be shown.
+\end_layout
+
+\begin_layout Standard
+These changes manifested themselves as can be seen below.
+ Due to more time being spent on this iteration it gives a much more complete
+ feel and is considerably closed to the initial wireframe.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename GUIv2.png
+	width 11cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Further talks with users suggested that for those not used to computer-games
+ the keyboard based camera controls were not immediately understandable
+ so a control panel was added.
+ Due to the way functionality was implemented a route button was added for
+ testing purposes.
+ It was then decided this would be of use to users so was left in.
+ Finally, to allow a more native feel the theming was set to inherit from
+ the system the code was run from.
+ A new wireframe (below) was drawn up as below to show this.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename GUIv2WF.png
+	width 11cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Final GUI
+\end_layout
+
+\begin_layout Standard
+The wireframe above was implmented to give our final GUI.
+ It gives a polished finish and meets original aims well and takes into
+ consideration user feedback.
+ 
+\end_layout
+
+\begin_layout Standard
+Initial work was done using the Netbeans GUI builder.
+ This allowed the layout we required to be built quickly, but not the functional
+ity.
+ To achieve this some work was needed on the raw swing code.
+\end_layout
+
+\begin_layout Standard
+The final interface is shown below, both in linux and windows.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+centerline{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename GUIv3FULL.png
+	width 18cm
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+centerline{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename GUIv3FULLWIN.png
+	width 18cm
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
