@@ -159,7 +159,6 @@ public class Person implements Runnable{
         this.buildMotionControl();
         motionpath = routeplan.getMotionpath();
         motionpath.addListener(listener);
-        System.err.println("Finished motion path!" + (motionpath.isCycle() ? " (cycled)" : ""));
 
         routeGeometryHolder.setMaterial(mat1);
         evs.attachChild(routeGeometryHolder);
@@ -245,16 +244,16 @@ public class Person implements Runnable{
     public boolean buildMotionPath(Goal goal){
         routeplan = new PersonNavmeshRoutePlanner(navmesh, initialLocation, currentGoal.getLocation());
         if (!routeplan.computePath(currentGoal.getLocation())) {
-            System.err.println("Could not Compute path to exit");
+            if (settings.getPrintEv()) System.err.println("Could not Compute path to exit");
             return false;
         }
-        System.err.println("Starting from " + initialLocation.toString());
+        if (settings.getPrintEv()) System.err.println("Starting from " + initialLocation.toString());
         while (!routeplan.isAtGoalWaypoint()) {
             Vector3f oldPosition = new Vector3f(routeplan.getCurrentPos3d());
-            System.err.println("Currently at " + oldPosition.toString());
+            if (settings.getPrintEv()) System.err.println("Currently at " + oldPosition.toString());
             routeplan.planPathToWaypoint(Population.DISTANCEBETWEENMOTIONWAYPOINTS);
             Vector3f newPosition = new Vector3f(routeplan.getCurrentPos3d());
-            System.err.println("Added " + newPosition.toString());
+            if (settings.getPrintEv()) System.err.println("Added " + newPosition.toString());
             if(settings.showRoutes()){
                 drawLine(oldPosition,newPosition);
             }

@@ -92,7 +92,6 @@ public class PopTypeSlider extends javax.swing.JPanel {
         int total = percent.getValue();
         
         for (PersonCategory p : settings.getPersonCategories().values()) {
-            System.out.println(p.getName() + " " + typ);
             if (!p.getName().equals(typ)) {
                 int newB = (int) (p.getNumberOfPeople() * ((double)(100-oldA) - deltaA) / (100-oldA));
                 total += newB;

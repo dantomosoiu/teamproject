@@ -26,7 +26,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jTabbedPane1" alignment="0" max="32767" attributes="0"/>
+          <Component id="jTabbedPane1" alignment="0" pref="555" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -66,7 +66,7 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
                                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace pref="43" max="32767" attributes="0"/>
+                                      <EmptySpace pref="34" max="32767" attributes="0"/>
                                       <Component id="nmColor" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Component id="showRoutes" min="-2" max="-2" attributes="0"/>
@@ -190,7 +190,7 @@
                   <Font name="Ubuntu" size="1" style="0"/>
                 </Property>
                 <Property name="maximum" type="int" value="30"/>
-                <Property name="minimum" type="int" value="1"/>
+                <Property name="minimum" type="int" value="5"/>
               </Properties>
               <Events>
                 <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="baseSpeedStateChanged"/>
@@ -198,7 +198,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel2">
               <Properties>
-                <Property name="text" type="java.lang.String" value="NavMesh Color"/>
+                <Property name="text" type="java.lang.String" value="Wireframe Color"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JComboBox" name="nmColor">

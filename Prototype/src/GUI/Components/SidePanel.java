@@ -7,8 +7,9 @@ package GUI.Components;
 import EvacSim.EvacSim;
 import GUI.EvacSimMainFrame;
 import Init.Settings.Settings;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
-import javax.swing.JPopupMenu;
+import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.Timer;
 
@@ -40,7 +41,6 @@ public class SidePanel extends javax.swing.JPanel {
         showHull.setSelected(settings.isShowHullFarSide());
         camLoc.setSelectedItem(settings.currentCamLoc());
         evacButton.setEnabled(false);
-        
         timer = new Timer(1000, new java.awt.event.ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 s++;
@@ -51,6 +51,7 @@ public class SidePanel extends javax.swing.JPanel {
                 updateStatus();
                 if (evacSim.isDone()) {
                     timer.stop();
+                    JOptionPane.showConfirmDialog(null, "Evacuation Complete", "Evacuation Complete", JOptionPane.PLAIN_MESSAGE);
                 }
             }    
           });  
@@ -203,7 +204,7 @@ public class SidePanel extends javax.swing.JPanel {
         showDecks.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         showDecks.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
-        showNavmesh.setText("Show Nav-Mesh");
+        showNavmesh.setText("Show Wireframe");
         showNavmesh.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         showNavmesh.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         showNavmesh.addActionListener(new java.awt.event.ActionListener() {

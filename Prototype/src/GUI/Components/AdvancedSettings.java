@@ -198,14 +198,14 @@ public class AdvancedSettings extends javax.swing.JDialog {
 
         baseSpeed.setFont(new java.awt.Font("Ubuntu", 0, 1)); // NOI18N
         baseSpeed.setMaximum(30);
-        baseSpeed.setMinimum(1);
+        baseSpeed.setMinimum(5);
         baseSpeed.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 baseSpeedStateChanged(evt);
             }
         });
 
-        jLabel2.setText("NavMesh Color");
+        jLabel2.setText("Wireframe Color");
 
         nmColor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "White", "LightGray", "Red", "Green", "Blue", "Yellow", "Magenta", "Cyan", "Orange", "Pink" }));
         nmColor.setToolTipText("");
@@ -248,7 +248,7 @@ public class AdvancedSettings extends javax.swing.JDialog {
                         .addGroup(genPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(genPanelLayout.createSequentialGroup()
                                 .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                                 .addComponent(nmColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(showRoutes)
                             .addComponent(showFPS)
@@ -465,7 +465,7 @@ public class AdvancedSettings extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 555, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
