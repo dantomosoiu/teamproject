@@ -89,7 +89,7 @@ public class CamControls extends javax.swing.JPanel {
             }
         });
 
-        mUp.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        mUp.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         mUp.setText("↑");
         mUp.setToolTipText("Move Forward");
         mUp.setMaximumSize(new java.awt.Dimension(30, 75));
@@ -102,7 +102,7 @@ public class CamControls extends javax.swing.JPanel {
             }
         });
 
-        mLeft.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        mLeft.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         mLeft.setText("←");
         mLeft.setMaximumSize(new java.awt.Dimension(30, 75));
         mLeft.setMinimumSize(new java.awt.Dimension(30, 75));
@@ -115,7 +115,7 @@ public class CamControls extends javax.swing.JPanel {
         });
         
 
-        mDown.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        mDown.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         mDown.setText("↓");
         mDown.setToolTipText("Move Backwards");
         mDown.setMaximumSize(new java.awt.Dimension(30, 75));
@@ -128,7 +128,7 @@ public class CamControls extends javax.swing.JPanel {
             }
         });
 
-        mRight.setFont(new java.awt.Font("Symbol", 1, 14)); // NOI18N
+        mRight.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         mRight.setText("→");
         mRight.setMaximumSize(new java.awt.Dimension(30, 75));
         mRight.setMinimumSize(new java.awt.Dimension(30, 75));
