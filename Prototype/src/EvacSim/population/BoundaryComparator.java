@@ -12,6 +12,12 @@ import java.util.Comparator;
  */
 public class BoundaryComparator implements Comparator<PersonBoundary> {
 
+    /**
+     *
+     * @param o1
+     * @param o2
+     * @return
+     */
     public int compare(PersonBoundary o1, PersonBoundary o2) {
         float p1 = o1.position;
         float p2 = o2.position;

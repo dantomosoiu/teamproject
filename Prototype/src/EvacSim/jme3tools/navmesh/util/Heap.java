@@ -36,6 +36,7 @@ import java.util.Vector;
  * supports deleteMin() and a MaxHeap class that supports deleteMax()
  * but neither of them support both.
  *
+ * @param <T> 
  * @author Ron Weiss (ronw@ee.columbia.edu)
  */
 public abstract class Heap<T> extends Vector<T> {
@@ -47,6 +48,9 @@ public abstract class Heap<T> extends Vector<T> {
     // (all operations aside from sort() are guaranteed to maintain
     // the heap property, this is just to keep track of whether or not
     // sort() has screwed stuff up).
+    /**
+     *
+     */
     protected boolean isHeap = true;
 
     /**
@@ -60,6 +64,7 @@ public abstract class Heap<T> extends Vector<T> {
      *  Use given Comparator for all comparisons between elements in
      *  this Heap.  Otherwise rely on compareTo methods and Comparable
      *  Objects.
+     * @param c 
      */
     public Heap(Comparator<T> c) {
         super();
@@ -68,6 +73,7 @@ public abstract class Heap<T> extends Vector<T> {
 
     /**
      * Creates an empty Heap with the given capacity.
+     * @param capacity 
      */
     public Heap(int capacity) {
         super(capacity);
@@ -76,6 +82,7 @@ public abstract class Heap<T> extends Vector<T> {
     /**
      * Create a new Heap containing the elements of the given
      * Collection.
+     * @param c 
      */
     public Heap(Collection<T> c) {
         super();
@@ -84,6 +91,8 @@ public abstract class Heap<T> extends Vector<T> {
 
     /**
      * Remove the Object at the given index from the Heap
+     * @param index 
+     * @return 
      */
     @Override
     public T remove(int index) {
@@ -104,6 +113,8 @@ public abstract class Heap<T> extends Vector<T> {
     /**
      * Remove the Object o from the Heap and return true.  Returns
      * false if o is not in the Heap (as measured by o.equals()).
+     * @param o 
+     * @return 
      */
     @Override
     public boolean remove(Object o) {
@@ -122,6 +133,8 @@ public abstract class Heap<T> extends Vector<T> {
 
     /**
      * Add o to the Heap.
+     * @param o
+     * @return  
      */
     @Override
     public boolean add(T o) {
@@ -155,6 +168,8 @@ public abstract class Heap<T> extends Vector<T> {
 
     /**
      *  Add the contents of a Collection to the Heap.
+     * @param c
+     * @return  
      */
     @Override
     public boolean addAll(Collection c) {
@@ -219,6 +234,9 @@ public abstract class Heap<T> extends Vector<T> {
     /**
      * Compare two Objects in this heap - wrapper around
      * compareTo/Comparator.compare.
+     * @param node1
+     * @param node2 
+     * @return  
      */
     protected int cmp(int node1, int node2) {
         int c = 0;
@@ -272,6 +290,7 @@ public abstract class Heap<T> extends Vector<T> {
     /**
      * Do the contents of this object currently obey the heap
      * property?
+     * @return 
      */
     public boolean isHeap() {
         return isHeap;

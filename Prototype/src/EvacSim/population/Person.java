@@ -7,6 +7,7 @@ package EvacSim.population;
 import EvacSim.EvacSim;
 import EvacSim.goal.Goal;
 import EvacSim.jme3tools.navmesh.NavMesh;
+import Init.Settings.PersonCategory;
 import Init.Settings.Settings;
 import com.jme3.cinematic.MotionPath;
 import com.jme3.cinematic.events.CinematicEvent;
@@ -29,6 +30,9 @@ import com.jme3.scene.VertexBuffer;
  */
 public class Person implements Runnable{
 
+    /**
+     *
+     */
     public final int WAYPOINTSBETWEENDECISIONS = 50;
 
     /**
@@ -69,9 +73,18 @@ public class Person implements Runnable{
     Settings settings;
     NavMesh navmesh;
 
-    public Person(EvacSim evs, Vector3f initialLocation, float speed, Population p) {
+    /**
+     *
+     * @param evs
+     * @param initialLocation
+     * @param category
+     * @param p
+     */
+    public Person(EvacSim evs, Vector3f initialLocation,PersonCategory category, Population p) {
         this.initialLocation = initialLocation;
-        this.speed = speed;
+        this.speed = category.generateSpeed();
+        this.stress = category.generateStress();
+        
         fin = false;
         this.evs = evs;
         settings = Settings.get();
@@ -124,16 +137,24 @@ public class Person implements Runnable{
         person.setLocalTranslation(routeplan.getMotionpath().getWayPoint(0));
         mat1 = new Material(evs.getAssetManager(),
                 "Common/MatDefs/Misc/Unshaded.j3md");
-        mat1.setColor("Color", ColorRGBA.randomColor());
+        mat1.setColor("Color", settings.getCol(category.getColor()));
         evs.attachChild(person);
 
         //setup motion control
 
     }
     
+    /**
+     *
+     * @return
+     */
     public boolean isFin() {
         return fin;
     }
+    /**
+     *
+     * @return
+     */
     public boolean isStart() {
         return start;
     }
@@ -141,6 +162,7 @@ public class Person implements Runnable{
     /**Calculates the time a Person should take to traverse a path at a given speed
      * @param speedUnitsPerSecond The Person's movement speed in metres per second
      * @param motionpath The MotionPath over which the person moves
+     * @return  
      */
     public float calculateMotionTime(float speedUnitsPerSecond, MotionPath motionpath) {
         float distance = motionpath.getLength(); //get the distance of the motionpath
@@ -148,6 +170,9 @@ public class Person implements Runnable{
         return time;
     }
 
+    /**
+     *
+     */
     @Override
     public void run() {
         start = true;
@@ -164,24 +189,22 @@ public class Person implements Runnable{
         evs.attachChild(routeGeometryHolder);
         
         if (settings.getPrintEv()) System.err.println("Finished motion path!" + (motionpath.isCycle() ? " (cycled)" : ""));
-
-       /*run motion path and block person thread
-        *motion path continues. At key intervals PersonMovementListener calls
-        *perceiveDecideAct.
-        * If a new goal is found, the motionpath is stopped, this thread is restarted and
-        * a new motionpath to an exit is calculated
-        * Otherwise continue with the current motionpath
-        * Repeat until person has exited
-        */
+        
 
        
     }
     
+    /**
+     *
+     */
     public void pause() {
         motionControl.pause();
     }
     
     
+    /**
+     *
+     */
     public void play() {
         if (motionControl != null) {
             motionControl.setDirectionType(MotionEvent.Direction.PathAndRotation);
@@ -189,27 +212,57 @@ public class Person implements Runnable{
             motionControl.play();
         }
     }
+    
+    /**
+     *
+     */
+    public void stop(){
+        motionControl.stop();
+    }
 
+    /**
+     *
+     * @return
+     */
     public Spatial getPerson() {
         return person;
     }
 
+    /**
+     *
+     * @return
+     */
     public float getSpeed() {
         return speed;
     }
 
+    /**
+     *
+     * @return
+     */
     public float getStress() {
         return stress;
     }
 
+    /**
+     *
+     * @return
+     */
     public Goal getCurrentGoal() {
         return currentGoal;
     }
 
+    /**
+     *
+     * @param p
+     */
     public void setMotionPath(MotionPath p){
         this.motionpath = p;
     }
     
+    /**Builds the motion control for the Person, associating a listener and setting the control parameters.
+     *
+     */
     public void buildMotionControl(){
         float time = calculateMotionTime(speed, motionpath);
         motionControl = new MotionEvent(person, motionpath);
@@ -228,6 +281,11 @@ public class Person implements Runnable{
         });
     }
     
+    /**
+     *Draws a visible line between two points; used in route generation.
+     * @param oldPosition
+     * @param newPosition
+     */
     public void drawLine(Vector3f oldPosition, Vector3f newPosition){
             Mesh lineMesh = new Mesh();
             lineMesh.setMode(Mesh.Mode.Lines);
@@ -241,6 +299,11 @@ public class Person implements Runnable{
             evs.attachChild(lineGeometry);
     }
     
+    /**Builds MotionPath from current location to goal
+     *
+     * @param goal
+     * @return
+     */
     public boolean buildMotionPath(Goal goal){
         routeplan = new PersonNavmeshRoutePlanner(navmesh, initialLocation, currentGoal.getLocation());
         if (!routeplan.computePath(currentGoal.getLocation())) {
@@ -260,5 +323,18 @@ public class Person implements Runnable{
         }
         
         return true;
+    }
+    /**
+     *
+     */
+    public void pausePerson(){
+       
+    }
+    /**
+     *
+     * @param g
+     */
+    protected synchronized void changeGoal(Goal g){
+            this.currentGoal = g;
     }
 }

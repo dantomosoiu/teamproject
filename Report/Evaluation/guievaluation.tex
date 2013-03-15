@@ -1,0 +1,222 @@
+% This example An LaTeX document showing how to use the l3proj class to
+% write your report. Use pdflatex and bibtex to process the file, creating 
+% a PDF file as output (there is no need to use dvips when using pdflatex).
+
+% Modified 
+
+\documentclass{article}
+\begin{document}
+\title{User Interface Evaluation}
+\author{Tony Lau}
+\maketitle
+%==============================================================================
+\section{Introduction}
+\label{intro}
+
+User Interface
+The simulator will be evaluated through a series of users tests with different participants. The goals of the user interface evaluation are to assess the effect of the interface on the user and to identify specific problems which should be rectified. The simulator will be first tested with the fire warden of The Tall Ship who is the primary user of the system. Secondly, feedback on usability of the system will be gathered from usability testing with the subjects being students at the University of Glasgow.
+
+Two evaluation methods, namely Heuristic Evaluation and Usability Experiments, will be used to determine whether the requirements specified in section [insert section] have been met and also to determine the overall usability of the system.
+
+Heuristic Evaluation
+Heuristic evaluation is a usability inspection method pioneered by Jakob Nielsen and Rolf Molich which helps to identify problems with a user interface by judging the interface’s compliance to recognized usability principles -- heuristics[].
+
+The heuristics made use of in this part of the evaluation are Nielsen’s Heuristics, developed by Jakob Nielsen and Rolf Molich in 1990 []. Nielsen refined the original set of heuristics in 1994 []. Below is list of the heuristics and a description of each one:
+
+1. Visibility of system status:
+The system should always keep users informed about what is going on, through appropriate feedback within reasonable time.
+2. Match between system and the real world:
+The system should speak the user's language, with words, phrases and concepts familiar to the user, rather than system-oriented terms. Follow real-world conventions, making information appear in a natural and logical order.
+3. User control and freedom:
+Users often choose system functions by mistake and will need a clearly marked "emergency exit" to leave the unwanted state without having to go through an extended dialogue. Support undo and redo.
+4. Consistency and standards:
+Users should not have to wonder whether different words, situations, or actions mean the same thing. Follow platform conventions.
+5. Error prevention:
+Even better than good error messages is a careful design which prevents a problem from occurring in the first place. Either eliminate error-prone conditions or check for them and present users with a confirmation option before they commit to the action.
+6. Recognition rather than recall:
+Minimize the user's memory load by making objects, actions, and options visible. The user should not have to remember information from one part of the dialogue to another. Instructions for use of the system should be visible or easily retrievable whenever appropriate.
+7. Flexibility and efficiency of use:
+Accelerators—unseen by the novice user—may often speed up the interaction for the expert user such that the system can cater to both inexperienced and experienced users. Allow users to tailor frequent actions.
+8. Aesthetic and minimalist design:
+Dialogues should not contain information which is irrelevant or rarely needed. Every extra unit of information in a dialogue competes with the relevant units of information and diminishes their relative visibility.
+9. Help users recognize, diagnose, and recover from errors:
+Error messages should be expressed in plain language (no codes), precisely indicate the problem, and constructively suggest a solution.
+10. Help and documentation:
+Even though it is better if the system can be used without documentation, it may be necessary to provide help and documentation. Any such information should be easy to search, focused on the user's task, list concrete steps to be carried out, and not be too large.
+
+The user interface of the simulator will be examined and evaluated using the descriptions of each of Nielsen’s 10 Heuristics above. Heuristic Evaluation is a relatively quick and inexpensive way to evaluate a user interface. Deviation from recognized usability principles, identified from the evaluation, can provide great insight into how the user interface could be further refined to enhance the usability of the system.
+
+Usability Experiments
+Usability experiments can be used in addition to Heuristic Evaluation to gain further feedback on the system. These are particularly useful because they allow the experimenter to gain insight to the reactions of the users of the system first-hand.
+
+Two different sets of users will be used for evaluation: the fire warden and a group of students. The fire warden will be able to tell us whether the system meets the requirements and also on how usable the system is. Since it is unlikely that the students work in the domain of fire safety, the set of students will be primarily used to test the ease in which the system can be used. Any suggestions of improvements to the system by either group will also be recorded.
+
+Experimental Design
+The experiment must be designed carefully in order to provide results that are both reliable and generalisable. Two types of experimental design can be used: within-subjects design and between-subjects design.
+
+In a between-subjects (or randomized) design, each participant is given a different condition, of which there are at least 2. A control condition, where the independent variables are not changed, is needed to ensure the measured differences in the other conditions are true. Since each subject only performs under one condition, the likelihood of any learning effect from performing two similar conditions one after the other is mitigated. However, a between-subjects design requires a large number of participants if one is going to extract meaningful information.
+
+In a within-subjects design, each subject is given the same conditions to perform. The effect of learning is more prominent in this method, which is a disadvantage but it has an advantage compared to between-subjects design because less subjects and time are required.
+
+Considering the advantages and disadvantages of both methods, a within-subjects design will be adopted for the user interface evaluation of the evacuation simulator. Since limited resources are available in terms of time and users, the less costly within-subjects design is more appropriate. Learning effects can be lessened by changing the order in which the conditions are carried out by the participants. This allows a comparison of participants who carried out a condition first and participants who carried out the condition after another one, and therefore subject to learning. The results from the within-subjects evaluation will be analysed to determine whether effects of learning have adversely affected the results of the evaluation.
+
+For both sets of users, they will carry out a set of fixed tasks and the time taken to perform these tasks as well as any mistakes they make will be recorded. This data will be used to form the evaluation results and will allow the identification of flaws in the usability of the system and areas for improvement. A section entitled ‘Further Work’ will detail the improvements (if any) which could be made to the system to enhance both the usability and functionality of the system based on the results from both evaluation techniques detailed above.
+
+Think-aloud Protocol
+In addition to the usability experiment discussed above, the think-aloud protocol will also be used to gather information from users of the system. This method was introduced in the usability field by Clayton Lewis and is discussed in  Task-Centered User Interface Design: A Practical Introduction by C. Lewis and J. Rieman. []. Think-aloud protocols involve participants thinking aloud as they perform a set of pre-specified tasks. The idea is to have the users of the system saying out loud exactly what they are doing and how they are feeling. This allows the experimenter to gain a first-hand sight of a user using the product and provides insightful knowledge into how the end user would go about performing tasks.
+
+The information gathered from the experiment will be analysed and the difficulties the user had will be discussed and rectified by changing the user interface. Any major changes to the user interface will have to be evaluated again to ensure the changes actually improve the usability of the system as a whole. 
+%==============================================================================
+\section{Results}
+\label{results}
+
+Visibility of system status
+The system gives users little information about what is going on. For example, on pressing the populate or route buttons, no information is displayed on the screen informing the user that something is happening in the background. As a result, the user could be left wondering whether the button was correctly clicked.
+
+Inclusion of messages on the screen stating what is happening at a particular moment in time would help the users to identify the status of the system. For example, inclusion of a message saying that the system is loading instead of a black screen will inform the user that something is indeed happening. Messages when the user clicks a button confirming that the action is happening and a message that displays on the screen when the evacuation simulation has finished will also increase the user’s awareness of the system status which in turn makes the system more user friendly.
+
+Match between system and real world
+The arrow keys (up, down, left and right) for camera movement are positioned in a logical order which would be familiar to the majority of users. This allows an easy mapping from real world natural conventions to the system which makes the system easier to use. Non-natural placement of these buttons on the screen would cause confusion in users and lead to frustration.
+
+The system does use the term ‘navmesh’ in the checkbox labelled ‘show navmesh’. The user is likely to be unfamiliar with this technical term and would thus have to consult the documentation to learn properly what it does. The system should use words and phrases familiar to the user so it would seem appropriate to replace the word ‘navmesh’ with something along the lines of ‘ship outline’ or ‘ship frame’.
+
+User control and freedom
+The user has the ability to control the camera manually using the on-screen buttons. The allows the user to view the ship in any way they want. There is also functionality to increase or decrease the speed of the camera and also to select preset camera locations from a drop-down menu which increases the control and freedom the user has. The number of preset camera locations is currently two. This should be expanded to give the user more options.
+
+The user can change the population size from the main screen and a more advanced settings menu allows the user to create categories of people according to various factors. This gives more advanced users more freedom to be more involved with the system as whole.
+
+
+Consistency and standards
+In general, the buttons are labelled well and the user does have to wonder what they do. However, some problems exist in the camera settings part of the main screen. There are two up arrows and two down arrows and their functionality is not made entirely clear to the user. One of the up arrows is to pan up and the other up arrow is to rotate upwards. This should be made clear to the user by either increasing the size of the button and including a meaningful button name, or include the information as text above the buttons on the camera controls panel itself.
+
+By making sure that there are no consistency errors in the user interface, it will make the system easier to use and keep user frustration while using the system to a minimum.
+
+Error prevention
+Some steps have been taken to prevent the users from executing an action which would lead to an error in the system. The evacuate button is grayed out and is only allowable to be clicked by the user when the ship has been successfully evacuated. By stopping the user from performing this action until it is appropriate, allows the prevention of an illegal system state -- namely evacuating an empty ship.
+
+Error prevention related to the other buttons was overlooked and should be corrected. Other buttons on the main panel of the user interface should also be grayed out when it would not be appropriate to click. For example, the
+
+Where there exist fields which can be altered by the user (for example, the population size field) a maximum and minimum value has been defined to prevent the user from entering too high or too low a number. This eliminates the possibility that the system will enter a state which it cannot handle as a result of user input which protects the system from mistakes made by the user.
+
+Recognition rather than recall
+The main buttons on the user interface are made to be as self explanatory as possible, however one shortfall is the design of the camera location panel. As discussed in the consistency heuristic, it should be made more clear what these buttons actually do. This would remove the need of the user to consult documentation for help and would thus reduce the extent of recall from one dialog to the next.
+
+Flexibility and efficiency of use
+The system has the ability to cater for more experienced user as mentioned in the user control and freedom heuristic. There exists the ability for the more experienced user to change a variety of properties of the camera such as speed and location. There is also the ability to use the keyboard to navigate around the ship which would allow more experienced users to increase their speed of interaction with the system.
+
+There is, however, no method of allowing the user to tailor frequent actions through the use of accelerators or custom keyboard shortcuts, for example. The addition of such features would increase development time and since the experienced users group is a minority, it would not be in the best interest to develop this feature at this time.
+
+Aesthetic and minimalist design
+The system has a main screen which includes the most often used actions, and a settings screen which includes extra functionality. This separation allows a less cluttered minimalist view in the main screen which is easier to comprehend for the user. Overall the system is aesthetically pleasing with the display elements positioned in a natural way, allowing the user to focus on using the system and not needing to familiarise themselves with the interface for too long.   
+
+Help users recognize, diagnose and recover from errors
+As mentioned in the prevention of errors heuristic above, some steps have been taken to prevent the user from making errors. However, since not all sections of the interface are removed from use when they are not supposed to be used, it is possible for a user to crash the system by pressing the buttons repeatedly. There are no friendly error messages to tell the user that something has went wrong -- they are presented with a black screen. This leaves the user wondering whether the system is busy in the background carrying out some task, or has crashed.
+
+To resolve this problem, better messages should be displayed on the screen to the user to increase visibility of system status. This would eliminate any confusion from the user when using the system. A reset button should also be implemented as a last resort for the user to click if the system crashes for an undocumented reason. This will ensure robustness in the system and increase the user-friendliness as a whole.
+
+Help and documentation
+No help or documentation is provided to the user. While the majority of the system is, on the whole, quite intuitive to use, some parts such as the camera controls panel and the advanced settings dialog box would benefit from documentation.
+
+Brief documentation on the basic parts of the interface and what each button does as well as more detailed documentation on the more complex parts of the system should be created to assist the user in using the system and making decisions.
+
+
+Think Aloud
+The Think Aloud evaluation of the user interface was carried out with eight participants. The participants were asked to complete the six tasks listed below and were encouraged to ‘think aloud’ during the evaluation. The participants were observed and notes were taken to allow a discussion of improvements which could be made to the user interface after the evaluation.
+
+Tasks
+1. Set the population size to 50. Populate the ship.
+2. Hide the ship frame from view, then show it again.
+3. Generate the exit routes for the population
+4. Change the camera angle so you have a bird’s eye view of the ship.
+5. Evacuate the ship. While the evacuation is taking place, change the camera view to face the exits of the ship.
+6. Read out loud the time the simulation took and the number of people evacuated.
+
+A summary of the findings of the Think Aloud evaluation is discussed below. Detailed notes on a per-participant level are included in Appendix C.
+
+    The visibility of system status was a clear shortfall as indicated by the participants. Particularly in tasks 1, 3 and 5 where buttons attached to many lines of code had to be pressed, the participant was left guessing whether anything was happening with the system or whether they had done something wrong.
+    The meaning of the camera location buttons was also not as clear as they should have been. Participants had to investigate what the buttons did and clear labelling would have solved this issue.
+    The participants had no difficulty identifying key information such as number of people evacuated and the time taken for the evacuation which confirms that the information is well visible and the labelling is unambiguous.
+    Identification of the completion of the evacuation was most often done by looking at whether anything more was happening in the graphical representation rather than looking at the ‘remaining people’ metric at the right hand side of the interface. It was noted that a pop-up message when the simulation is complete would make this more clear to the user.
+    The terminology used in the user interface must be standardised to remove jargon words such as ‘navmesh’ which would be unclear to the user. Task 2 highlighted that while some users guessed that ‘ship frame’ was equivalent to the ‘navmesh’ in this particular situation, 5 of the 8 participants were confused by the technical language. 
+
+
+NASA TLX: Task Load Index (TODO)
+NASA TLX was used after the Think Aloud evaluation to measure the workload of the participants relating to the tasks that they had just performed. Talk about what it is and how it measures workload.
+Include pictures of the rating scale and the description of the rating scale from the instruction manual.
+Discuss the pairwise comparison and whether to use Raw TLX (RTLX). Cite 20 years later paper.
+
+Appendix C: Think Aloud Evaluation Participant Notes
+Tasks
+1. Set the population size to 50. Populate the ship.
+2. Hide the ship frame from view, then show it again.
+3. Generate the exit routes for the population
+4. Change the camera angle so you have a bird’s eye view of the ship.
+5. Evacuate the ship. While the evacuation is taking place, change the camera view to face the exits of the ship.
+6. Read out loud the time the simulation took and the number of people evacuated.
+
+Participant 1 (ID: 146)
+1. Participant successfully changed the population size to 50 but was unclear about the status of the system after clicking the populate button. Participant questioned whether anything was happening.
+2. Did not understand the task fully, particularly what was meant by ‘ship frame’. The participant tried to hide the ship from view by changing the location of the camera so that the ship was not in view but this was not what was wanted.
+3. Participant was eventually able to accomplish the task although at one point was confused and thought camera location had an effect of route generation. This did not affect the outcome of the task, though.
+4. Controls used correctly but the camera angle was slightly short of the bird’s eye angle asked for.
+5. Participant knew to use the evacuate button. When changing the camera view, the participant made use of the camera location controls and manually panned the camera to find the exits instead of using the preset camera location drop-down menu. Judging the completion of the simulation was done by noticing the absence of people from the ship and not by the ‘remaining people’ display panel.
+6. Completed successfully.
+
+Participant 2 (ID:102)
+1. Accomplished successfully, although expressed views of uncertainty of system status.
+2. No problems completing task.
+3. Successfully generated routes although was unsure again about system status. The participant said that they did not know whether the button had worked or not.
+4. Participant went straight to the camera location drop-down but realised another method was needed because ‘bird’s eye’ was not there. Tried to use the manual controls and the mouse on the simulation environment but couldn’t finish the task.
+5. Clicked the correct button for evacuate but when selecting the ‘exits’ item from the drop-down menu, did not immediately click the ‘move’ button to register the action. The participant realised the mistake and clicked the move button to finish the task.
+6. Completed successfully.
+
+Participant 3 (ID:93)
+1. Accomplished without hesitation.
+2. Looked at the interface for longer to identify the correct option. At first the participant clicked the drop-down camera locations but realised this was a mistake. The participant was confused as to what the task was asking and assumed ‘navmesh’ was the ship frame.
+3. Moved mouse from the top to the bottom of the display to identify the button to press. The participant correctly identified and pressed the button although was unsure about the progress of the system. The participant assumed something was happening in the background because a lot of text was being displayed in the console.
+4. The camera locations drop-down was the first thing the participant looked at. The participant could not find the correct option so looked for an alternative. The ‘cam speed’ slider was tried a few times. The participant expected it to do something but nothing was happening on screen. The participant then pressed buttons haphazardly and admitted that they could not finish the task.
+5. Successfully evacuated the ship, moved the camera to the exits using the drop-down menu and identified when the evacuation ended.
+6. Completed successfully.
+
+Participant 4 (ID:24)
+1. Population size changed successfully but there was a slight hesitation finding the populate button.
+2. Completed successfully although the participant had some confusion over whether the frame asked for in the question and the navmesh were the same thing.
+3. Clicked the ‘route’ button but was unsure whether the routes were actually being calculated.
+4. Could not find ‘bird’s eye’ view in the drop-down menu and was confused over the semantics of the camera control buttons. The participant failed to complete the task.
+5. The participant completed the task successfully. The completion of the evacuation was immediately noticed.
+6. Completed successfully.
+
+Participant 5 (ID:46)
+1. Participant correctly changed the population size but thought that on entering the population, the system would populate itself. The participant clicked the populate button but was unclear when the system was finished completing the task.
+2. At first the participant did not bring the ship frame back into view but was able to hide it with no problems.
+3. Correctly identified the button to press but was unclear about the system state.
+4. Participant was able to use the mouse and the buttons on screen to manipulate the camera angle. It was noted that the participant went to the on screen buttons first and then used the mouse on the simulation canvas to finish the task.
+5. The participant panned to the exits using the manual buttons and not the preset camera location drop-down menu as anticipated. The participant also announced the end of the evacuation prematurely by not looking at the ‘remaining people’ metric at the right hand side.
+6. Completed successfully.  
+
+Participant 6 (ID:81)
+1. Completed successfully but was unsure of system state.
+2. The participant had a slight hesitation to find the correct button to press but accomplished the task nevertheless.
+3. The route button was found clearly by the participant although it was remarked that nothing was happening on screen when there was really something happening in the background.
+4. The participant went straight to control the ship with the mouse directly interacting with the canvas. This was supplemented by use of the camera control buttons provided on the interface and the task was completed successfully.
+5. The participant did not notice the drop-down menu item to set the view to the exits view already defined. Instead, the manual controls were used to pan to the exit location. The ‘remaining participants’ metric in the sidebar was not used to determine whether the evacuation was finished. Instead, the participant preferred to see whether there were any people still on the ship by looking at the simulation graphics.
+6. Completed successfully.
+
+Participant 7 (ID:3344862)
+1. Participant thought it was quite obvious how to accomplish the task and completed it without any trouble. The system status was not clear to the participant.
+2. The terminology of ‘ship frame’ versus ‘navmesh’ was questioned and assumed by the participant to mean the same thing. The task was completed after this initial hesitation.
+3. Participant remarked that the button was called ‘route’ and though that it should be called ‘routes’ to indicate more than one route. The participant was not sure whether anything was happening and was confused about the overlapping lines which appeared on the screen after this task was accomplished.
+4. Participant went straight to the camera locations drop-down to find a preset. After noticing that there was no preset, the participant proceeded to instinctively use the mouse and a combination of the on screen buttons to accomplish the task.
+5. Successfully identified and clicked the correct button and then proceeded to investigate the scene using the mouse and the scroll on the mouse. The participant raised some questions such as how many exits there are and how the user is supposed to know where a particular exit is.
+6. Completed successfully.
+
+Participant 8 (ID:33621329)
+1. The participant highlighted the text box and changed the population size without any difficulty.
+2. The terminology of “frame” confused the candidate and wasn’t sure whether she had done the correct thing by hiding and showing again the navmesh.
+3. The participant was not sure whether the route button was the correct button to press. It was assumed by the participant to be correct after noticing that more things appeared on the screen.
+4. The camera location drop-down was selected first and the participant selected exits to see what it did. This was the wrong thing to do and realising the error, the participant proceeded to press all the camera location buttons to try to complete the task. There was not much structure to the way the buttons were pressed. On discovery of the fact that the mouse could be used on the simulation canvas, the task was completed successfully.
+5. The participant was not sure they had to click the ‘move’ button to register the camera move event but eventually realised this had to be done.
+6. Completed successfully. 
+
+%==============================================================================
+\end{document}

@@ -4,6 +4,7 @@
  */
 package EvacSim.population;
 
+import EvacSim.goal.Goal;
 import Init.Settings.Settings;
 import com.jme3.cinematic.MotionPathListener;
 import com.jme3.cinematic.events.MotionEvent;
@@ -23,15 +24,22 @@ public class PersonMovementListener implements MotionPathListener{
         person = p;
         this.waypointsBetweenDecisions = waypointsBetweenDecisions;
     }
+    /**
+     *
+     * @param motionControl
+     * @param wayPointIndex
+     */
     public void onWayPointReach(MotionEvent motionControl, int wayPointIndex) {
-       if(wayPointIndex % waypointsBetweenDecisions == 0){
+       /*if(wayPointIndex % waypointsBetweenDecisions == 0){
            try {
-               BehaviourModel.percieveDecideAct(person);
+               Goal g = BehaviourModel.perceiveDecideAct(person);
+               person.changeGoal(g);
+               
            }
            catch (Exception e) {
                person.isFin();
            }
-       }
+       }*/
         
     }
     

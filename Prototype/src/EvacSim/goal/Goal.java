@@ -14,14 +14,26 @@ import com.jme3.math.Vector3f;
 public abstract class Goal { 
     private Vector3f location;
 
+    /**
+     *
+     * @param location
+     */
     public Goal(Vector3f location) {
         this.location = location;
     }
     
+    /**
+     *
+     * @return
+     */
     public Vector3f getLocation() {
         return location;    
     }
 
+    /**
+     *
+     * @param location
+     */
     public void setLocation(Vector3f location) {
         this.location = location;
     }

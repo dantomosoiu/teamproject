@@ -1,0 +1,57 @@
+\documentclass{article}
+\begin{document}
+\section{Prototypes and Problems Encountered}
+The prototyping process consisted of five deliveries in total, including the final system. Here we outline the aims and objectives of the first four of these, which problems/defects were discovered at each stage.
+
+\subsection{Prototype 1}
+\subsubsection{Aims}
+\begin{itemize}
+\item{Generate a navmesh over a simple, one floor model of a building.}
+\item{Initialise and generate evacuation route for a single agent (note that they do not need to exit, animation will be implemented later. Nor should the agents have any behaviour at this stage.}
+\end{itemize}
+\subsubsection{Problems/Design Changes}
+The navmesh package was generating non-optimal routes between cells. This was easily fixed (see implementation).
+
+\subsection{Prototype 2}
+\subsubsection{Aims}
+\begin{itemize}
+\item{Extend initialisation and path calculation to multiple agents.}
+\item{Introduce animation for agent movement to exits.}
+\end{itemize}
+\subsubsection{Problems/Design Changes}
+In implementing agent animation, it was found that the initial design for an agent would not allow for their animation within the constraints imposed by JMonkeyEngine's graphics update procedure. The design was changed to use the JMonkeyEngine class MotionPath. Eventually the logical and visual representations of an agent were seperated entirely, giving the Person and PersonNavmeshRoutePlanner classes.
+
+\subsection{Prototype 3}
+\subsubsection{Aims}
+\begin{itemize}
+\item{Introduce goals and foundations for agent behaviour.}
+\item{Move to using the final, multi-storey model of the Tall Ship.}
+\item{Basic GUI, consisting of a simple settings menu and camera control buttons.}
+\end{itemize}
+\subsubsection{Problem/Design Changes}
+The move to the multi-floored model revealed an extensive number of defects in the navmesh package which were not apparent in the single-floor model (discussed further in implementation). Virtually all effort was expended in correcting these defects, leaving the first aim largely unrealised.
+
+\subsection{Prototype 4}
+\subsubsection{Aims}
+\begin{itemize}
+\item{Implementation of herding algorithm.}
+\item{Refined GUI.}
+\item{Advanced settings made available.}
+\end{itemize}
+\subsubsection{Problems/Design}
+This phase saw the most significant period of refactoring, radically overhauling the system's package structure.
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+

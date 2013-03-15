@@ -34,6 +34,10 @@ public class EvacSim extends SimpleApplication {
     private String buttonCam;
     private BitmapText routing;
     
+    /**
+     *
+     * @param set
+     */
     public EvacSim(Settings set) {
         appSettings = set;
         running = false;
@@ -45,6 +49,9 @@ public class EvacSim extends SimpleApplication {
         if (buttonCam != null) flyCam.onAnalog(buttonCam, 0.02f, 0);
     }
 
+    /**
+     *
+     */
     @Override
     public void simpleInitApp() {
         buttonCam = null;
@@ -90,6 +97,10 @@ public class EvacSim extends SimpleApplication {
 
     }
     
+    /**
+     *
+     * @param N
+     */
     public void attachChild(final Spatial N) {
         this.enqueue( new Callable<Object>() {
         public Spatial call() throws Exception {
@@ -107,12 +118,20 @@ public class EvacSim extends SimpleApplication {
         });
     }
     
+    /**
+     *
+     * @param s
+     */
     public void moveCamC(String s) {
         if (s == null) buttonCam = null;
         else if (buttonCam == null) buttonCam = s;
         else buttonCam = null;
     }
 
+    /**
+     *
+     * @param N
+     */
     public void detachChild(final Spatial N) {
         this.enqueue( new Callable<Object>() {
         public Spatial call() throws Exception {
@@ -130,6 +149,10 @@ public class EvacSim extends SimpleApplication {
         });
     }
     
+    /**
+     *
+     * @param c
+     */
     public void moveCam(final CamLoc c) {
         this.enqueue( new Callable<Object>() {
         public Spatial call() throws Exception {
@@ -140,11 +163,17 @@ public class EvacSim extends SimpleApplication {
         });
     }
     
+    /**
+     *
+     */
     public void route() {
         attachGUIChild(routing);
         population.evacuate();
         detachGUIChild(routing);
     }
+    /**
+     *
+     */
     public void evacuate() {
         if (running == false) {
             population.play();
@@ -156,6 +185,10 @@ public class EvacSim extends SimpleApplication {
         }
     }
     
+    /**
+     *
+     * @param n
+     */
     public void restartSim(final int n) {
         this.enqueue( new Callable<Object>() {
         public Spatial call() throws Exception {
@@ -180,6 +213,9 @@ public class EvacSim extends SimpleApplication {
         });
     }
     
+    /**
+     *
+     */
     public void showNavMesh() {
         if (appSettings.isShowNavMesh() && !rootNode.hasChild(appSettings.getNMHolder())) {
             attachChild(appSettings.getNMHolder());
@@ -195,14 +231,25 @@ public class EvacSim extends SimpleApplication {
         }*/
     }
     
+    /**
+     *
+     * @return
+     */
     public InputManager getInManager() {
         return inputManager;
     }
     
+    /**
+     *
+     * @return
+     */
     public boolean isDone() {
         return population.isDone();
     }
     
+    /**
+     *
+     */
     public void drawNM() {
         //Loads Model
             Spatial ship = assetManager.loadModel(appSettings.getModelLocation());

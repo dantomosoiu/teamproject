@@ -13,12 +13,23 @@ public class PersonNavmeshRoutePlanner extends NavMeshPathfinder {
     private Vector3f goalLocation;
     private MotionPath motionpath;
     
+    /**
+     *
+     * @param navmesh
+     * @param location
+     */
     public PersonNavmeshRoutePlanner(NavMesh navmesh, Vector3f location){
         super(navmesh);
         this.initialLocation = location;
         warp(initialLocation);
         this.goalLocation = null;
     }
+    /**
+     *
+     * @param navmesh
+     * @param initialLocation
+     * @param goalLocation
+     */
     public PersonNavmeshRoutePlanner(NavMesh navmesh, Vector3f initialLocation, Vector3f goalLocation){
         super(navmesh);
         this.initialLocation = initialLocation;
@@ -27,6 +38,11 @@ public class PersonNavmeshRoutePlanner extends NavMeshPathfinder {
         motionpath = new MotionPath();
     }
     
+    /**
+     *
+     * @param distanceBetweenWaypoints
+     * @return
+     */
     public MotionPath createMovementPath(float distanceBetweenWaypoints){
         motionpath = new MotionPath();
         motionpath.addWayPoint(this.getPosition());
@@ -40,7 +56,11 @@ public class PersonNavmeshRoutePlanner extends NavMeshPathfinder {
         return motionpath;
     }
     
-     public void planPathToWaypoint(float moveDistance) {
+     /**
+     *
+     * @param moveDistance
+     */
+    public void planPathToWaypoint(float moveDistance) {
         //find furthest visible navmesh waypoint from current position and set this to the next waypoint
     	setNextWaypoint(this.getPath().getFurthestVisibleWayPoint(getNextWaypoint())); 
     	Vector3f unitVector; 
@@ -67,19 +87,36 @@ public class PersonNavmeshRoutePlanner extends NavMeshPathfinder {
     	motionpath.addWayPoint(this.getPosition());
     }
 
+    /**
+     *
+     * @return
+     */
     public MotionPath getMotionpath() {
         return motionpath;
     }
      
+    /**
+     *
+     * @param point
+     * @return
+     */
     @Override
     public boolean isInLineOfSight(Vector3f point){
         return super.isInLineOfSight(point);
     }
      
+    /**
+     *
+     * @return
+     */
     public NavMesh getNavmesh(){
         return super.getNavMesh();
     }
    
+    /**
+     *
+     * @param goal
+     */
     public void setGoal(Vector3f goal){
         this.goalLocation = goal;
     }

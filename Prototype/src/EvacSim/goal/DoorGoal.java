@@ -16,6 +16,12 @@ public class DoorGoal extends PassableGoal{
     private  Vector3f sideB;
     
     
+    /**
+     *
+     * @param location
+     * @param n
+     * @param c
+     */
     public DoorGoal(Vector3f location,Vector3f n ,float c) {
         super(location, c);
         normal = n.normalize();
