@@ -1,7 +1,25 @@
 \documentclass{article}
 \usepackage{algorithm2e}
 \begin{document}
-\section{Implementing the Peceive, Decide, Act process}
+\section{Route Planning}
+Planning an agent's route from its current point to a given point is acheived by a collaboration between a Person and PersonNavmeshRoutePlanner instance. Routes are stored using the jMonkeyEngine class MotionPath. This contains a set of waypoints and methods to animate the agent's movement between these waypoints. The Mmaximum distance between each waypoint is roughly constant and can be set as a parameter to the following procedure (it is not constant when the agent must turn at a point closer to its current position that the maximum distance between points). The distance used is an important decision in the implementation. If it is too large the accuracy of the animation tends to degrade. If it is too low then a large number of waypoints will be stored needlessly.After extensive experimentation 0.5 was found to be an acceptable value for the maximum distance between waypoints. In practice this provided a balance between quality and efficiency.\\
+A route is calculated in two stages:
+\begin{enumerate}
+\item{A path is calculated on the navigation mesh using a modified A* algorithm to traverse the mesh like a graph. This returns a small set of points. These points illustrate the lines of motion an agent must take to reach their goal. This is performed in the constructor for a PersonNavmeshRoutePlanner.}
+\item{Using these points as guidance, the path is `fleshed out' by moving along the path and placing MotionPath waypoints no further apart than the defined maximum
+distance. This terminates with a waypoint being placed on the goal location the agent must reach.}
+\end{enumerate}
+Note that a fresh PersonNavmeshRoutePlanner instance must be instantiated to calculate a route. The relationship between the Person and PersonNavmeshRoutePlanner instances is expressed in 
+
+\begin{figure}
+\centering
+\includegrahics[scale=0.5]{UMLDiagrams/RoutePlanningSequence.png}
+\label{fig:RoutePlanSequence}
+\caption{Generation of an agent route as a MotionPath}
+\end{figure}
+
+
+\section{Implementing the Perceive, Decide, Act Process}
 Here we discuss the techniques and algorithms used to realise the Perceive, Decide, Act process previously discussed [Reference to Research].
 
 %%%%%%%%%%%%%%%%%%%%%%%%%Perception Implementation
