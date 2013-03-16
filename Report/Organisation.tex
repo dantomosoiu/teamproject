@@ -2,33 +2,37 @@
 \begin{document}
 \section{Team Structure \& Development Process}
 \subsection{Team Structure}
-With respect to the relatively small team size, we naturally wished to find a flexible way to distribute administrative tasks such as managing version control software, risk management, etc.\\
-The team made use of the Administrative Programming Team \ref{AdministrativeProgrammingTeam}. This was chosen because it provided a sound infrastructure for the division of the teams administrative tasks, without constraining the choice of process for implementing the system.//
-The roles of the Administrative Programming Team were assigned as follows:
+In order to develop a structured approach to task allocation, the software engineering tasks require were structured using the Administrative Programming Team \cite{AdministrativeProgrammingTeam}. This consists of the following roles:
 \begin{itemize}
-\item{textbf{Project Manager:} Hector Grebbell}
-\item{textbf{Librarian:} Peeranat Fupongsiripan}
-\item{textbf{Configuration Manager:} Dan Tomosoiu}
-\item{textbf{Toolsmith:} Tony Lau}
-\item{textbf{Quality Assurance:} Michael Kilian}
+\item{\textbf{Project Manager} }
+\item{\textbf{Librarian} }
+\item{\textbf{Configuration Manager} }
+\item{\textbf{Toolsmith} }
+\item{\textbf{Quality Assuror}}
 \end{itemize}
 It should be emphasised that each person was not solely responsible for the tasks associated with their role; their responsibility is to coordinate these tasks within the team by proposing, implementing and maintaining effective procedures to acheive this.
 
-In tandem with this, the team was further divided into two subteams for development. The \textbf{Modelling and GUI Team}, consisting of Hector Grebbell and Peeranat Fuponsiripan, produced the 3D model of the ship and later developed the GUI for the system. The \textbf{Core Implementation Team}, consisting of Dan Tomosoiu, Tony Lau and Michael Kilian, worked on the rest of the system. 
-
-\subsection{Development Process}
-The greatest challenge of designing an evacuation simulator is defining a level of accuracy which can be deemed acceptable with respect to the project's resources, and then translating this into an effective design which balances the use of up to date techniques with a realistic implementation plan. Many of the techniques that this project aimed to implement are complex and lack a well defined framework for their implementation. These techniques are discussed further in the research section.\\
-Ultimately, it became clear that the only way to make progress was to use a strategy of incremental prototyping. Obviously this carries considerable risk which must be addressed:
+In tandem with this, the team was further divided into two subteams for development:
 \begin{itemize}
-\item{A tendency to procude low quality and difficult to maintain code.}
-\item{Difficulties in managing change.}
-\item{Sacrificing quality assurance and documentation.}
+\item{\textbf{Modelling and GUI Team:} responsible for development of any 3D models required including the final model of the ship. In the later stages of the project this team developed the graphical user interface.}
+ \itemize{\textbf{Core Implementation Team:} responsible for all other development tasks, including implementation of the navigation mesh, population model, etc.}
 \end{itemize}
-To mitigate these risks, several techniques taken from the field of agile development were employed as follows:
-\begin{itemize]
-\item{textbf{Constant Refactoring:} Before the completion of each prototype or upon fixing a defect, significant reactoring was undertaken to improve code quality.}
-\item{textbf{Pair Programming:} This technique was particularly helpful when fixing defects related to navigation (see Implementation) due to the complexity of these defects.
-\item{textbf{Division Into Subteams:} The team was divided as outlined above so as to allow these subteams to work in parallel on orthogonal tasks, This reduced communication overhead and the difficulty of managing change to the system.}
+By seperating the development of the user interface from the development of the underlying program logic, the team aimed to promote a Model-View-Controller design. \cite[Ch 6.3.1]{SommervilleSoftwareEng}.
+  
+\subsection{Development Process}
+One of the challenges of designing an evacuation simulator is defining a level of accuracy which can be deemed acceptable with respect to the project's resources, and then translating this into an effective design which balances the use of up to date techniques with an implementation plan. Many of the techniques that this project aimed to implement are complex. These techniques are discussed further in the Research section.\\
+Ultimately, it became clear that the most tangible way to make progress was to use a strategy of incremental prototyping \cite[Ch 2.3.2]{SommervilleSoftwareEng}. This would allow the team to progressively `scale up' ideas and to investigate the feasability of implementing certain principles in a structured manner. However incremental prototyping carries considerable risk which must be addressed:
+\begin{itemize}
+\item{A tendency to produce low quality and difficult to maintain code.}
+\item{Difficulties in managing change.}
+\item{Tendency to sacrifice quality assurance and documentation because of poorly understood aims.}
+\end{itemize}
+To mitigate these risks, several techniques taken from the field of agile development \cite[Ch. 3]{SommervilleSoftwareEng} were employed as follows:
+\begin{itemize{
+\item{\textbf{Division Into Subteams:} The team was divided as outlined above so as to allow these subteams to work in parallel on orthogonal tasks, This reduced communication overhead and the difficulty of managing change to the system.}
+\item{\textbf{Constant Refactoring:} Before the completion of each prototype or upon fixing a defect, significant reactoring was undertaken to improve code quality.}
+\item{\textbf{Pair Programming:} This technique was particularly helpful when fixing defects related to navigation (see Implementation) due to the complexity of these defects.
+\item{\textbf{Test First Development:} wherever the understanding of requirements was sufficient to allow it, test cases were developed for a feature before they were implemented. The full testing procedure is discussed in the Evaluation section.}
 \end{itemize}
 
 
