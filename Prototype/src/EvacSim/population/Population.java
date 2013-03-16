@@ -13,8 +13,10 @@ import Init.Settings.Settings;
 import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector3f;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.LinkedList;
 import java.util.Random;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -87,35 +89,77 @@ public class Population implements Runnable {
         }
         
         //creates the persons with randomly generated (non-overlaping) positions on the navmesh
-        for (int i = 0; i < settings.getPopulationNumber(); i++) {
-            boolean foundCandidate = false;
+        //generate population by category assigned in settings
+        int totalNumberAllocated = 0;
+        Set catNameSet = settings.getPersonCategories().keySet();
+        for(Object cat: catNameSet){
+            String catName = (String) cat;
+            PersonCategory category = settings.getPersonCategories().get(catName);
+            int numberInCat =(int) ((float)(1/category.getNumberOfPeople()) * (float)settings.getPopulationNumber()); //calcuates the percentage of people
+            for(int i = 0; i < numberInCat; i++){
+                /*generate a random starting position*/
+                boolean foundCandidate = false;
+                while (!foundCandidate) {
+                    Vector3f candidate = largeCells.get(rand.nextInt(largeCells.size())).getRandomPoint();
 
-            while (!foundCandidate) {
-                Vector3f candidate = largeCells.get(rand.nextInt(largeCells.size())).getRandomPoint();
-                
-                boolean overlaps = false;
-                for (Vector3f position : personPositions) {
-                    if (position.distance(candidate) < personCollisionDistance) {
-                        overlaps = true;
-                        break;
+                    boolean overlaps = false;
+                    for (Vector3f position : personPositions) {
+                        if (position.distance(candidate) < personCollisionDistance) {
+                            overlaps = true;
+                            break;
+                        }
                     }
+
+                    if(overlaps){
+                        continue;
+                    }
+                    foundCandidate = true;
+                    personPositions.add(candidate);
+
+                    people[totalNumberAllocated] = new Person(evs,candidate,category, this);
+                    peopleThreads[totalNumberAllocated] = new Thread(people[totalNumberAllocated]);
+                    System.out.println("TNA: " + totalNumberAllocated);
+                    totalNumberAllocated++;
+                   
                 }
-                
-                if(overlaps){
-                    continue;
+            }
+            //Assign any remaining people randomly
+            
+            if(totalNumberAllocated < settings.getPopulationNumber()){
+                int noOfCategories = settings.getPersonCategories().size();
+                while(totalNumberAllocated < settings.getPopulationNumber()){
+                       /*generate a random starting position*/
+                    boolean foundCandidate = false;
+                    while (!foundCandidate) {
+                        Vector3f candidate = largeCells.get(rand.nextInt(largeCells.size())).getRandomPoint();
+
+                        boolean overlaps = false;
+                        for (Vector3f position : personPositions) {
+                            if (position.distance(candidate) < personCollisionDistance) {
+                                overlaps = true;
+                                break;
+                            }
+                        }
+
+                        if(overlaps){
+                            continue;
+                        }
+                        foundCandidate = true;
+                        personPositions.add(candidate);
+                        
+                        int targetCatNo =(int) Math.random() * noOfCategories;
+                        String targetCatKey = (String) catNameSet.toArray()[targetCatNo];
+                        people[totalNumberAllocated] = new Person(evs,candidate,category,this);
+                        peopleThreads[totalNumberAllocated] = new Thread(people[totalNumberAllocated]);
+                        totalNumberAllocated++;
+                    }
+                   
+                    
                 }
-                foundCandidate = true;
-                personPositions.add(candidate);
-                
-                //remove this
-                //candidate = new Vector3f(-0.63556033f, -1.2945915f, 14.966727f);
-                //
-                PersonCategory defaultCat;
-                defaultCat = new PersonCategory("Default",1f,1f,1f,1f,"Red",settings.getPopulationNumber());
-                people[i] = new Person(evs,candidate,defaultCat, this);
-                peopleThreads[i] = new Thread(people[i]);
             }
         }
+           
+        
         SidePanel.enablePop();
         //refreshPersonClusters();
     }
