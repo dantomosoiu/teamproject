@@ -56,10 +56,11 @@ public class Population implements Runnable {
         settings = Settings.get();
         settings.setNumEvac(0);
         GoalParser.parseGoals("assets/Input/Goals.csv");
-        for(ExitGoal exit: BehaviourModel.getExits()){
-            System.out.println("EXIT: " + exit.getLocation());
+        if (settings.getPrintEv()) {
+            for(ExitGoal exit: BehaviourModel.getExits()){
+                System.out.println("EXIT: " + exit.getLocation());
+            }
         }
-        
 
     }
 

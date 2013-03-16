@@ -10,6 +10,7 @@ import com.jme3.app.SimpleApplication;
 import com.jme3.font.BitmapText;
 import com.jme3.input.InputManager;
 import com.jme3.material.Material;
+import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector3f;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.Mesh;
@@ -31,6 +32,7 @@ public class EvacSim extends SimpleApplication {
     private BitmapText origin;
     private boolean running;
     private String buttonCam;
+    private BitmapText routing;
     
     /**
      *
@@ -57,7 +59,13 @@ public class EvacSim extends SimpleApplication {
         this.setDisplayStatView(false); //Hides debug info
         this.setDisplayFps(appSettings.isShowFPS()); //Depending on settings hides FPS
         flyCam.setDragToRotate(true); //Sets cam mouse controls
-
+        routing = new BitmapText(guiFont, false);   
+        routing.setSize(guiFont.getCharSet().getRenderedSize()*1.2f);      // font size
+        routing.setColor(ColorRGBA.White);                             // font color
+        routing.setText("Routing. Please Wait...");            // the text
+        int add = 0;
+        if (appSettings.isShowFPS()) add = 30;
+        routing.setLocalTranslation(0, add + routing.getLineHeight(), 0); // position
         flyCam.setMoveSpeed(appSettings.getCamSpeed()); //Sets Cam speed
 
         Logger.getLogger("").setLevel(Level.SEVERE);
@@ -101,6 +109,14 @@ public class EvacSim extends SimpleApplication {
             }
         });
     }
+    public void attachGUIChild(final Spatial N) {
+        this.enqueue( new Callable<Object>() {
+        public Spatial call() throws Exception {
+                guiNode.attachChild(N);
+                return null;
+            }
+        });
+    }
     
     /**
      *
@@ -124,6 +140,14 @@ public class EvacSim extends SimpleApplication {
             }
         });
     }
+    public void detachGUIChild(final Spatial N) {
+        this.enqueue( new Callable<Object>() {
+        public Spatial call() throws Exception {
+                guiNode.detachChild(N);
+                return null;
+            }
+        });
+    }
     
     /**
      *
@@ -143,7 +167,9 @@ public class EvacSim extends SimpleApplication {
      *
      */
     public void route() {
+        attachGUIChild(routing);
         population.evacuate();
+        detachGUIChild(routing);
     }
     /**
      *
