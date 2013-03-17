@@ -9,7 +9,6 @@ import Init.Settings.Settings;
 import com.jme3.app.SimpleApplication;
 import com.jme3.export.binary.BinaryExporter;
 import com.jme3.font.BitmapText;
-import com.jme3.input.InputManager;
 import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector3f;

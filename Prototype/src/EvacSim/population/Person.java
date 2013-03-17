@@ -14,7 +14,6 @@ import com.jme3.cinematic.events.CinematicEvent;
 import com.jme3.cinematic.events.CinematicEventListener;
 import com.jme3.cinematic.events.MotionEvent;
 import com.jme3.material.Material;
-import com.jme3.math.ColorRGBA;
 import com.jme3.math.FastMath;
 import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
@@ -317,9 +316,6 @@ public class Person implements Runnable{
             routeplan.planPathToWaypoint(Population.DISTANCEBETWEENMOTIONWAYPOINTS);
             Vector3f newPosition = new Vector3f(routeplan.getCurrentPos3d());
             if (settings.getPrintEv()) System.err.println("Added " + newPosition.toString());
-            if(settings.showRoutes()){
-                //drawLine(oldPosition,newPosition);
-            }
         }
         
         return true;
