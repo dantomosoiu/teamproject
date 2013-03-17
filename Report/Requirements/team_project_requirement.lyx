@@ -1,0 +1,261 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass article
+\begin_preamble
+
+
+
+%opening
+\title{Requirements}
+\author{Team L}
+\end_preamble
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package none
+\inputencoding utf8
+\fontencoding default
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 10
+\spacing single
+\use_hyperref false
+\papersize a4paper
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 0
+\use_mathdots 0
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section
+System Requirements
+\end_layout
+
+\begin_layout Standard
+Due to the scope of the project it would be impossible to commence without
+ a clear vision of how the end product should function.
+ This also aids greatly in breaking down the system into seperate components
+ allowing team members to work independently without repetition of work.
+ These requirements were decided on during the early stages of the project.
+ The reasoning behind them comes from a number of sources, primarily -
+\end_layout
+
+\begin_layout Itemize
+Research into previous attempts at evacuation simulation.
+ The teams behind these will have each conducted their own research.
+ Rather than repeat their efforts examination of their choices and rationalisati
+on provides a valuable and dense insight into what shall be required.
+\end_layout
+
+\begin_layout Itemize
+Interviews with a target user (The fire warden at our initial site).
+ Since target users are the potential customers for our product it would
+ be naive not to consider what they would expect.
+\end_layout
+
+\begin_layout Itemize
+Requirements derived from research into evacuation and human behaviour.
+\end_layout
+
+\begin_layout Itemize
+Discussions amongst the team.
+\end_layout
+
+\begin_layout Standard
+The Requirements have been split into several sections depending on their
+ necessity, usefulness and difficulty in implementation.
+\end_layout
+
+\begin_layout Subsection
+Must Have
+\end_layout
+
+\begin_layout Standard
+These are the bare minimum requirements for the system to be suitable for
+ any kind of customer use.
+ Without these the software would either be considered entirely non-working
+ or faulty.
+ Not managing to provide these would indicate complete failiure of the project.
+\end_layout
+
+\begin_layout Itemize
+Representation of a 3D environment in a manner allowing the system knowledge
+ of navigatable surfaces.
+\end_layout
+
+\begin_layout Itemize
+Generation and representation of a population within the 3D environment.
+\end_layout
+
+\begin_layout Itemize
+Ability to manipulate the population to allow movement towards a given location.
+\end_layout
+
+\begin_layout Itemize
+Output to the user of time taken for the entire population to successfully
+ move to a safe location.
+\end_layout
+
+\begin_layout Itemize
+Basic behavioural and routing algorithms to generate paths of movement for
+ the population.
+\end_layout
+
+\begin_layout Subsection
+Should Have
+\end_layout
+
+\begin_layout Standard
+High priority requirements which should be satisfied where possible.
+ Missing any of these would indicate the project as incomplete and failing
+ to meet all of its objectives.
+\end_layout
+
+\begin_layout Itemize
+Accurate behavioural models allowing realistic actions from individuals
+ within the population.
+\end_layout
+
+\begin_layout Itemize
+Interaction of members of the population to allow realistic crowd behaviour
+ and collision control.
+\end_layout
+
+\begin_layout Itemize
+Ability for the user to specify environmental and population variables (such
+ as population size).
+\end_layout
+
+\begin_layout Itemize
+Pseudo-random population generation including individual characteristics
+ and behavioural patterns as well as initial position.
+\end_layout
+
+\begin_layout Itemize
+Accurate Timescale for evacuation process
+\end_layout
+
+\begin_layout Itemize
+Intuitive GUI allowing viewing of both environmental variables and a visual
+ representation of the environment throughout the evacuation process.
+\end_layout
+
+\begin_layout Itemize
+Ability for user to change perspective (camera location) within the visual
+ representation.
+\end_layout
+
+\begin_layout Itemize
+Ability to import alternative environmental models.
+\end_layout
+
+\begin_layout Itemize
+Extensive Documentation and user help.
+\end_layout
+
+\begin_layout Subsection
+Could Have
+\end_layout
+
+\begin_layout Standard
+Requirements considered desirable but not necessary.
+ To be included if time and resources allow.
+\end_layout
+
+\begin_layout Itemize
+Ability to pause and resume the simulation
+\end_layout
+
+\begin_layout Itemize
+Representation of assurances and hazards within the environment such as
+ exit signs and low ceilings.
+\end_layout
+
+\begin_layout Itemize
+Variable run speed of simulation
+\end_layout
+
+\begin_layout Itemize
+Ability to output information such as evauation time and path of each member
+ of the population to file allowing further future analysis.
+\end_layout
+
+\begin_layout Itemize
+Accurate modelling of advanced crowd interation, such as staff assisting
+ the guest population.
+\end_layout
+
+\begin_layout Itemize
+Unusual population traits such as disabled guests and the interaction and
+ assistance required for their safe exit.
+\end_layout
+
+\begin_layout Subsection
+Would Like to Have
+\end_layout
+
+\begin_layout Standard
+Features unlikely to be present in the initial release due to time and resource
+ constraints.
+\end_layout
+
+\begin_layout Itemize
+Accurate fire and smoke model.
+\end_layout
+
+\begin_layout Itemize
+User control over fire start location.
+\end_layout
+
+\begin_layout Itemize
+Environmental model support of different materials to allow further accuracy
+ to the fire model.
+\end_layout
+
+\begin_layout Itemize
+Advanced and highly realistic graphical representation of environment.
+\end_layout
+
+\end_body
+\end_document
