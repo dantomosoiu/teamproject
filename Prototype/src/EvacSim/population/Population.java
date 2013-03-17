@@ -96,6 +96,7 @@ public class Population implements Runnable {
         for(Object cat: catNameSet){
             String catName = (String) cat;
             PersonCategory category = settings.getPersonCategories().get(catName);
+            if (category.getNumberOfPeople() == 0) continue;
             int numberInCat =(int) ((float)(1/category.getNumberOfPeople()) * (float)settings.getPopulationNumber()); //calcuates the percentage of people
             for(int i = 0; i < numberInCat; i++){
                 /*generate a random starting position*/
