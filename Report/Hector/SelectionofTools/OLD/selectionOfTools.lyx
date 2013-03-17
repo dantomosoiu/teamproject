@@ -82,9 +82,15 @@ C++
 \begin_layout Standard
 Designed to be a superset of the C language, supporting the object-orientated
  paradigm.
- It is industry standard for almost all 3d graphics development (BIB http://game
-architect.net/Articles/WhyC++.html), bridging the gap between lower level
- languages such as C and object orientated languages such as Java and C#.
+ It is industry standard for almost all 3d graphics development 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Wilson2006"
+
+\end_inset
+
+, bridging the gap between lower level languages such as C and object orientated
+ languages such as Java and C#.
  Due to its speed and power combined with available 3d libraries and very
  high portability if considering the merits of languages alone this would
  have been the easy choice! The majority of available engines are also written
@@ -100,9 +106,15 @@ However as a team we had no experience at all with the C++ programming and
  There are also those who argue instead of trying to bridge gaps, low level
  components of games should be written in C.
  They argue due to the information hiding afforded by C++ it is often easier
- to write efficien code in its lower level counterpart!(BIBX http://gamearchitec
-t.net/Articles/WhyC++.html) Memory management is also far less advanced than
- alternatives offering an easy leeway to memory leaks.
+ to write efficien code in its lower level counterpart!
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Wilson2006"
+
+\end_inset
+
+ Memory management is also far less advanced than alternatives offering
+ an easy leeway to memory leaks.
 \end_layout
 
 \begin_layout Subsubsection*
@@ -111,7 +123,14 @@ Java
 
 \begin_layout Standard
 Written to have as few implementation dependencies as possible java is incredibl
-y portable (BIB http://www.java.com/en/about/).
+y portable 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "AboutJava"
+
+\end_inset
+
+.
  Rather than to binary java compiles to what is known as bytecode which
  runs on the Java virtual machine unrelated to the architechture underneath.
  The language as with C++ implements the object-orientated paradigm allowing
@@ -135,16 +154,14 @@ With astonishingly powerful free IDE's such as Eclipse and Netbeans writing
 The downside to Java is the abstraction from architechture comes at a cost
  of speed.
  Since there is both virtualisation combined with a high level environment
- things are far from efficient (BIB Jelovic, Dejan.
- 
-\begin_inset Quotes eld
+ things are far from efficient 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Jelovic"
+
 \end_inset
 
-Why Java Will Always Be Slower than C++
-\begin_inset Quotes erd
-\end_inset
-
-).
+.
  
 \end_layout
 
@@ -158,9 +175,14 @@ The majority of performance issues relating to 3D programming come from
  Since we were anticipating usage of a preexisting system, we could then
  build our system over the top of this using a high level language such
  as Python.
- Using libraries such as Boost.Python (BIB http://www.boost.org/doc/libs/1_40_0/lib
-s/python/doc/index.html) the two languages can be bound allowing claimed
- seemless interoperability.
+ Using libraries such as Boost.Python 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "boostPython"
+
+\end_inset
+
+ the two languages can be bound allowing claimed seemless interoperability.
  Performance bottlenecks due to Python could be overcome using C++.
  Less critical tasks could be written quickly and easily in Python.
 \end_layout
@@ -185,14 +207,20 @@ Direct3D
 \end_layout
 
 \begin_layout Standard
-Direct3D is a proprietry API (GLOS) designed by Microsoft Corporation.
+Direct3D is a proprietry API (Aplication Programming Interface) designed
+ by Microsoft Corporation.
  It was created to allow games creators more open access towards hardware
  giving much better performance.
  Whilst in previous years it suffered performance issues and multiple bugs
  it has improved drastically and is now considered by many to be the industry
- standard for Windows platforms (BIB http://www.gamedev.net/page/resources/_/techn
-ical/graphics-programming-and-theory/direct3d-vs-opengl-which-api-to-use-when-wh
-e-r1775).
+ standard for Windows platforms
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Roy2002"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -560,6 +588,17 @@ Git is an extremely powerful and lightweight system.
  and basic built in merge capabilities everything we needed was there.
  Combined with a basic knowledge of the platform from a number of the team
  it as with redmine was the logical choice.
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+bibfiles "/home/hector/Documents/teamproject/Report/Hector/SelectionofTools/tools"
+options "plain"
+
+\end_inset
+
+
 \end_layout
 
 \end_body

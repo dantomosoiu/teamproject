@@ -1,0 +1,53 @@
+% This file was created with JabRef 2.7b.
+% Encoding: UTF-8
+
+@ELECTRONIC{boostPython,
+  author = {Dave Abrahams},
+  title = {Boost Python Documentation},
+  url = {http://www.boost.org/doc/libs/1_53_0/libs/python/doc/index.html},
+  owner = {hector},
+  timestamp = {2013.03.17}
+}
+
+@ARTICLE{Jelovic,
+  author = {Dejan Jelovic},
+  title = {Why Java Will Always Be Slower than C++},
+  owner = {hector},
+  timestamp = {2013.03.17}
+}
+
+@ELECTRONIC{AboutJava,
+  author = {Oracle},
+  title = {Learn About Java Technology},
+  url = {http://www.java.com/en/about/},
+  owner = {hector},
+  timestamp = {2013.03.17}
+}
+
+@ARTICLE{Roy2002,
+  author = {Promit Roy},
+  title = {Direct3D vs. OpenGL: Which API to Use When, Where, and Why},
+  journal = {Graphics Programming and Theory; GamerDev.net},
+  year = {2002},
+  owner = {hector},
+  timestamp = {2013.03.17}
+}
+
+@ARTICLE{Wilson2006,
+  author = {Kyle Wilson},
+  title = {Why C++},
+  journal = {Game Architect},
+  year = {2006},
+  owner = {hector},
+  timestamp = {2013.03.17},
+  url = {http://gamearchitect.net/Articles/WhyC++.html}
+}
+
+@comment{jabref-meta: selector_publisher:}
+
+@comment{jabref-meta: selector_author:}
+
+@comment{jabref-meta: selector_journal:}
+
+@comment{jabref-meta: selector_keywords:}
+

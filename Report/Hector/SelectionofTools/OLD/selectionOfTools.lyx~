@@ -82,9 +82,15 @@ C++
 \begin_layout Standard
 Designed to be a superset of the C language, supporting the object-orientated
  paradigm.
- It is industry standard for almost all 3d graphics development (BIB http://game
-architect.net/Articles/WhyC++.html), bridging the gap between lower level
- languages such as C and object orientated languages such as Java and C#.
+ It is industry standard for almost all 3d graphics development 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Wilson2006"
+
+\end_inset
+
+, bridging the gap between lower level languages such as C and object orientated
+ languages such as Java and C#.
  Due to its speed and power combined with available 3d libraries and very
  high portability if considering the merits of languages alone this would
  have been the easy choice! The majority of available engines are also written
@@ -100,9 +106,15 @@ However as a team we had no experience at all with the C++ programming and
  There are also those who argue instead of trying to bridge gaps, low level
  components of games should be written in C.
  They argue due to the information hiding afforded by C++ it is often easier
- to write efficien code in its lower level counterpart!(BIBX http://gamearchitec
-t.net/Articles/WhyC++.html) Memory management is also far less advanced than
- alternatives offering an easy leeway to memory leaks.
+ to write efficien code in its lower level counterpart!
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Wilson2006"
+
+\end_inset
+
+ Memory management is also far less advanced than alternatives offering
+ an easy leeway to memory leaks.
 \end_layout
 
 \begin_layout Subsubsection*
@@ -111,7 +123,7 @@ Java
 
 \begin_layout Standard
 Written to have as few implementation dependencies as possible java is incredibl
-y portable (BIB http://www.java.com/en/about/).
+y portable .
  Rather than to binary java compiles to what is known as bytecode which
  runs on the Java virtual machine unrelated to the architechture underneath.
  The language as with C++ implements the object-orientated paradigm allowing
@@ -473,28 +485,104 @@ Project Management
 Project Management
 \end_layout
 
+\begin_layout Standard
+For a project of this scale to be successful there needs good and common
+ communication amongst members of the team.
+ Using a combination of technology and physical meetings a good structure
+ could be created eliminating duplication of efforts and dependency issues.
+\end_layout
+
 \begin_layout Subsubsection*
 Meeting Schedule
+\end_layout
+
+\begin_layout Standard
+As advanced as electronic communication has become it is still no comparison
+ to physical meetings.
+ Hence we decided it important to have these as regurely as possible.
+ This led to the structure below -
+\end_layout
+
+\begin_layout Itemize
+Bi-weekly meetings on wednesdays and fridays at 11am.
+ These were for discussing how the project was progressing, which team members
+ would be working on particular tasks and making sure those tasks were split
+ in a manner suitable to avoid problems occuring.
+\end_layout
+
+\begin_layout Itemize
+Weekly supervisor meetings (usually mondays at 1pm).
+ These held two purposes.
+ The first was to keep our supervisor up to date and reassure him things
+ continued to advance at a reasonable pace.
+ Further to this they allowed advice to be offered on issues we were undecided
+ on how to move forward with.
 \end_layout
 
 \begin_layout Subsubsection*
 Redmine
 \end_layout
 
+\begin_layout Standard
+We also used a project management tool.
+ Since some of the team had experience it made sense to use redmine.
+ Tickets for jobs can be posted with a priority and due date.
+ These are then assigned to a specific team member who updates the ticket
+ as progress is made.
+ This allows the whole team to quickly see who is working on what and how
+ well it is going.
+\end_layout
+
 \begin_layout Subsubsection*
 Facebook
 \end_layout
 
-\begin_layout Subsection*
-Revision Control
+\begin_layout Standard
+Whilst an unconventional tool facebook has key advantages over other platforms.
+ The largest by far is that all of our team members use and check multiple
+ times a day.
+ This allows messages to be recieved quickly.
 \end_layout
 
-\begin_layout Subsubsection*
-Subversion
+\begin_layout Standard
+For this reason all informal communication happened here both through a
+ group and use of the chat functions.
+\end_layout
+
+\begin_layout Subsection*
+Version Control
+\end_layout
+
+\begin_layout Standard
+While good management helps there are times when it is unavoidable that
+ several team members may need to concurrently work on either the same or
+ dependent files.
+ A system is needed to handle these changes allowing the work to be merged
+ automatically where possible and any issues caused to be reversed.
+ The standard way of doing this is with version control software packages.
 \end_layout
 
 \begin_layout Subsubsection*
 Git
+\end_layout
+
+\begin_layout Standard
+Git is an extremely powerful and lightweight system.
+ With good support for standard version control features such as branching
+ and basic built in merge capabilities everything we needed was there.
+ Combined with a basic knowledge of the platform from a number of the team
+ it as with redmine was the logical choice.
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+bibfiles "/home/hector/Documents/teamproject/Report/Hector/SelectionofTools/tools"
+options "plain"
+
+\end_inset
+
+
 \end_layout
 
 \end_body
