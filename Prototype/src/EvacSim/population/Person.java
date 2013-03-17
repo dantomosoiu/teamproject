@@ -318,7 +318,7 @@ public class Person implements Runnable{
             Vector3f newPosition = new Vector3f(routeplan.getCurrentPos3d());
             if (settings.getPrintEv()) System.err.println("Added " + newPosition.toString());
             if(settings.showRoutes()){
-                drawLine(oldPosition,newPosition);
+                //drawLine(oldPosition,newPosition);
             }
         }
         
