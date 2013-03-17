@@ -25,28 +25,32 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * test
- * @author hector
+ * Controller class for Simulator. Superclass contains the update loop.
+ * 
+ * @author Hector Grebbell
+ * @author Dan Tomosoiu
  */
 public class EvacSim extends SimpleApplication {
     
-    private static Settings appSettings;
-    private static Population population;
-    private BitmapText origin;
-    private boolean running;
-    private String buttonCam;
-    private BitmapText routing;
-    private Node hullNode;
+    private static Settings appSettings;//Settings
+    private static Population population;//Current Population
+    private BitmapText origin;//Holder for origin text
+    private boolean running;//Indicates whether the simulation is playing or not
+    private String buttonCam;//Stores any movement instructions
+    private BitmapText routing;//Holder for routing display text
+    private Node hullNode;//Holder Node for display model
 
     /**
-     *
-     * @param set
+     *Initialises the Simulator
+     * 
+     * @param set Settings to use
      */
     public EvacSim(Settings set) {
         appSettings = set;
         running = false;
     }
     
+    //Adds any camera movement to the update loop
     @Override
     public void update() {
         super.update();
@@ -54,37 +58,40 @@ public class EvacSim extends SimpleApplication {
     }
 
     /**
-     *
+     * Called on simulator startup. Finishes Initialisation.
      */
     @Override
     public void simpleInitApp() {
-        buttonCam = null;
-        this.setPauseOnLostFocus(false);
+        buttonCam = null;//The camera should initially be stationary
+        this.setPauseOnLostFocus(false);//Since the simulator is to be placed in a Swing GUI we need it to keep playing when buttons are pressed
         this.setDisplayStatView(false); //Hides debug info
         this.setDisplayFps(appSettings.isShowFPS()); //Depending on settings hides FPS
         flyCam.setDragToRotate(true); //Sets cam mouse controls
-        routing = new BitmapText(guiFont, false);   
+        routing = new BitmapText(guiFont, false);   //Text for displaying a notification when routing takes place
         routing.setSize(guiFont.getCharSet().getRenderedSize()*1.2f);      // font size
         routing.setColor(ColorRGBA.White);                             // font color
         routing.setText("Routing. Please Wait...");            // the text
-        int add = 0;
+        int add = 0;//offset for routing text
         if (appSettings.isShowFPS()) add = 30;
         routing.setLocalTranslation(0, add + routing.getLineHeight(), 0); // position
         flyCam.setMoveSpeed(appSettings.getCamSpeed()); //Sets Cam speed
 
-        Logger.getLogger("").setLevel(Level.SEVERE);
+        Logger.getLogger("").setLevel(Level.SEVERE);//Reduces unneeded debug info
 
-        if ((appSettings.getNavMesh()) == null) {
+        if ((appSettings.getNavMesh()) == null) {//If the navmesh isnt saved draw it!
             drawNM();
         }
-        else {
+        else {//otherwise load it.
             appSettings.setNMHolder((Node)assetManager.loadModel("Settings/navMeshNode.j3o"));
         }
         
+        //Load in the display model
         hullNode = (Node) assetManager.loadModel(appSettings.getModelLocation() + "ShowModel.j3o");
         
+        //show what the settings tell us to
         showNavMesh();
         
+        //draw origin text
         guiFont = assetManager.loadFont(appSettings.getGuiFont());
         origin = new BitmapText(guiFont, false);
         origin.setSize(0.1f);
@@ -94,17 +101,16 @@ public class EvacSim extends SimpleApplication {
             rootNode.attachChild(origin);
         }
 
-        
+        //create the population
         population = new Population(this);
-        if (population == null) System.out.println("Shite");
-        
         population.populate();
 
     }
     
     /**
-     *
-     * @param N
+     *Attaches spatials to the rootnode in a threadsafe manner.
+     * 
+     * @param N The spatial to attach to the rootnode
      */
     public void attachChild(final Spatial N) {
         this.enqueue( new Callable<Object>() {
@@ -114,6 +120,11 @@ public class EvacSim extends SimpleApplication {
             }
         });
     }
+    /**
+     *Attaches spatials to the GUI node in a threadsafe manner.
+     * 
+     * @param N The spatial to attach to the guiNode
+     */
     public void attachGUIChild(final Spatial N) {
         this.enqueue( new Callable<Object>() {
         public Spatial call() throws Exception {
@@ -124,8 +135,8 @@ public class EvacSim extends SimpleApplication {
     }
     
     /**
-     *
-     * @param s
+     * Sets up camera movement
+     * @param s the movement instruction
      */
     public void moveCamC(String s) {
         if (s == null) buttonCam = null;
@@ -134,8 +145,9 @@ public class EvacSim extends SimpleApplication {
     }
 
     /**
-     *
-     * @param N
+     *Detaches spatials from the root node in a threadsafe manner.
+     * 
+     * @param N The spatial to detach to the rootNode
      */
     public void detachChild(final Spatial N) {
         this.enqueue( new Callable<Object>() {
@@ -145,6 +157,11 @@ public class EvacSim extends SimpleApplication {
             }
         });
     }
+    /**
+     *Detaches spatials from the gui node in a threadsafe manner.
+     * 
+     * @param N The spatial to detach to the guiNode
+     */
     public void detachGUIChild(final Spatial N) {
         this.enqueue( new Callable<Object>() {
         public Spatial call() throws Exception {
@@ -155,8 +172,8 @@ public class EvacSim extends SimpleApplication {
     }
     
     /**
-     *
-     * @param c
+     * Allows the camera to be moved instantaneously to a new position
+     * @param c The location to move the camera to
      */
     public void moveCam(final CamLoc c) {
         this.enqueue( new Callable<Object>() {
@@ -169,7 +186,7 @@ public class EvacSim extends SimpleApplication {
     }
     
     /**
-     *
+     * Generates routes for the population
      */
     public void route() {
         attachGUIChild(routing);
@@ -177,7 +194,7 @@ public class EvacSim extends SimpleApplication {
         detachGUIChild(routing);
     }
     /**
-     *
+     * Plays/pauses the simulation
      */
     public void evacuate() {
         if (running == false) {
@@ -191,8 +208,8 @@ public class EvacSim extends SimpleApplication {
     }
     
     /**
-     *
-     * @param n
+     * Allows updates due to settings
+     * @param n Indicates what to do
      */
     public void restartSim(final int n) {
         this.enqueue( new Callable<Object>() {
@@ -219,7 +236,8 @@ public class EvacSim extends SimpleApplication {
     }
     
     /**
-     *
+     * called after a change to settings.
+     * Will show or hide the navmesh and display model as appropriate.
      */
     public void showNavMesh() {
         if (appSettings.isShowNavMesh() && !rootNode.hasChild(appSettings.getNMHolder())) {
@@ -238,17 +256,9 @@ public class EvacSim extends SimpleApplication {
         }
 
     }
-    
+
     /**
-     *
-     * @return
-     */
-    public InputManager getInManager() {
-        return inputManager;
-    }
-    
-    /**
-     *
+     * Accessor for isDone method in population
      * @return
      */
     public boolean isDone() {
@@ -256,7 +266,7 @@ public class EvacSim extends SimpleApplication {
     }
     
     /**
-     *
+     *draws a navmesh from the model and saves it into settings.
      */
     public void drawNM() {
         //Loads Model
@@ -315,6 +325,10 @@ public class EvacSim extends SimpleApplication {
             }
     }
     
+    /*
+     * Importer Method. Loads two blender files from the given location and stores them in assets as j3o.
+     * 
+     */
     /*Does Not Work. Blend files not found!*/
     public void newModel(String loc) {
         appSettings.setModelLocation("Models/ImportedModel/");
