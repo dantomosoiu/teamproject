@@ -47,7 +47,7 @@ public class Help extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         helpSelection.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "About", "Main View", "Evacuation Progress", "Camera Control", "Evacuation Buttons", "Advanced Settings - General", "Advanced Settings - Population Categories", "Advanced Settings - Population Distribution", "Importing Models", "Importing / Exporting Settings" };
+            String[] strings = { "About", "Main View", "Evacuation Progress", "Camera Control", "Evacuation Buttons", "Advanced Settings - General", "Advanced Settings - Population Categories", "Advanced Settings - Population Distribution", "Importing Models" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
@@ -141,21 +141,19 @@ public class Help extends javax.swing.JDialog {
                     break;
             case 1:  loc = "MainView.html";
                      break;
-            case 2:  loc = "Evacuation Progress.html";
+            case 2:  loc = "EvacProgress.html";
                      break;
-            case 3:  loc = "Camera Control.html";
+            case 3:  loc = "CamControl.html";
                      break;
-            case 4:  loc = "Evacuation Buttons.html";
+            case 4:  loc = "EvacButtons.html";
                      break;
-            case 5:  loc = "Advanced Settings - General.html";
+            case 5:  loc = "Advanced-Gen.html";
                      break;
-            case 6:  loc = "Advanced Settings - Population Categories.html";
+            case 6:  loc = "AdSetPopCat.html";
                      break;
-            case 7:  loc = "Advanced Settings - Population Distribution.html";
+            case 7:  loc = "AdSet-PopDist.html";
                      break;
-            case 8:  loc = "Importing Models.html";
-                     break;
-            case 9:  loc = "Importing / Exporting Settings";
+            case 8:  loc = "Import.html";
                      break;
             default: loc = "About.html";
                      break;
@@ -168,8 +166,9 @@ public class Help extends javax.swing.JDialog {
             Logger.getLogger(Help.class.getName()).log(Level.SEVERE, null, ex);
             return "";
         }
-        scan.useDelimiter("\\Z");  
-        return scan.next();
+        scan.useDelimiter("\\Z");
+        if (scan.hasNext()) return scan.next();
+        else return "";
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextPane helpContent;

@@ -55,7 +55,7 @@
         <Component class="javax.swing.JList" name="helpSelection">
           <Properties>
             <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
-              <StringArray count="10">
+              <StringArray count="9">
                 <StringItem index="0" value="About"/>
                 <StringItem index="1" value="Main View"/>
                 <StringItem index="2" value="Evacuation Progress"/>
@@ -65,7 +65,6 @@
                 <StringItem index="6" value="Advanced Settings - Population Categories"/>
                 <StringItem index="7" value="Advanced Settings - Population Distribution"/>
                 <StringItem index="8" value="Importing Models"/>
-                <StringItem index="9" value="Importing / Exporting Settings"/>
               </StringArray>
             </Property>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
