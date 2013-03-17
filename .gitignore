@@ -13,3 +13,9 @@ TLEvacSim/TLEvacSim/build/
 /Prototype/dist/
 Prototype/lwjgl64.dll
 Prototype/OpenAL64.dll
+*.aux
+*.bbl
+*.log
+*.out
+*.synctex.gz
+*.toc

@@ -1,0 +1,15 @@
+\documentclass{article}
+\begin{document}
+\section{Population Architecture Mistakes } %%Rename or remove
+At the moment, although coded, almost none of the agent behaviour discussed previously is in usage. This was the result of a design problem which restricted the capability to correctly tie the behavioural algorithms to the agents.\\
+As discussed in the Agent Implementation \& Design sections [REFERENCE], an agent's route is calculated in a two stage process, at the end of which a MotionPath is produced. This design emerged as the result of difficulties in reaching the aims of Prototype 2.\\
+To give an agent the required individual behaviour, the system must be able to:
+\begin{enumerate}
+\item{Stop an agent. From the position at which they were stopped, calculate a new route to a chosen target. Rest art the agent to continue down this route.}
+\item{Access an agent's position at any time}
+\end{enumerate}
+Both of the above conditions need to be performed from a synchronised context. Unfortunately neither of these are possible in the current Population package architecture. The implementation of MotionPath heavily restricts access to an agent's position. While it is possible to stop an agent moving, no method has been found for triggering this in a meaningful sense that does not result in a system crash or thread deadlocking.\\
+This design occurred because the routing procedures and behavioural algorithms were developed in parallel. Since they were built up in incremental prototypes [REFERENCE], the challenges associated with merging these two aspects were not considered until late in the project. This could have been addressed with a partial reimplementation of the Population package, but the extensive problems with the navigation mesh found during stage 3 [REFERENCE to prototypes] meant that the individual behaviour features were ultimately dropped.\\
+Nevertheless, we present an overview of the correct solution in section [REFERENCE]. We are confident that should the proposed reimplementation be carried out that it would be relatively simple to tie the behavioural methods to agents effectively.
+
+\end{document}
