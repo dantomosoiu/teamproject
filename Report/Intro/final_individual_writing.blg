@@ -1,0 +1,21 @@
+This is BibTeX, Version 0.99dThe top-level auxiliary file: final_individual_writing.aux
+The style file: unsrt.bst
+Database file #1: individual_ref.bib
+I was expecting a `,' or a `}'---line 139 of file individual_ref.bib
+ :   
+ :   AUTHOR = {Eddie Wrenn},
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Warning--empty publisher in evacuationSimulatordefinition
+Warning--empty publisher in evacuationModel
+Warning--empty publisher in gameProgramming
+Warning--empty year in gameProgramming
+Warning--empty publisher in collisionDetection
+Warning--empty publisher in HAndBoid
+Warning--empty publisher in Fbehavior
+Warning--empty publisher in HumanBehaviouralTraits
+Warning--empty year in GaleaMathModelling
+Too many commas in name 1 of "Xiaoshan Pan, Charles S. Han, Ken Dauber, Kincho H. Law" for entry MultiAgentFramework
+while executing---line 944 of file unsrt.bst
+Warning--empty publisher in glasgowUSimulator
+(There were 2 error messages)

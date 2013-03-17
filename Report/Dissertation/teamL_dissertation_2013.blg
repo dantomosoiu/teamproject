@@ -1,31 +1,38 @@
 This is BibTeX, Version 0.99dThe top-level auxiliary file: teamL_dissertation_2013.aux
-The style file: plain.bst
+The style file: unsrt.bst
 Database file #1: teamL_dissertation_2013.bib
 I was expecting an "="---line 79 of file teamL_dissertation_2013.bib
  : 
  : }
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
+Warning--I didn't find a database entry for "evacuationSimulatordefinition"
+Warning--I didn't find a database entry for "evacuationModel"
+Warning--I didn't find a database entry for "DailyMailEvacuation"
+Warning--I didn't find a database entry for "EvalApprehension"
+Warning--I didn't find a database entry for "fireEvacuationProcedure"
+Warning--I didn't find a database entry for "AgentBasedTutorial"
+Warning--I didn't find a database entry for "A*Review"
+Warning--I didn't find a database entry for "gameProgramming"
+Warning--I didn't find a database entry for "collisionDetection"
+Warning--I didn't find a database entry for "HAndBoid"
+Warning--I didn't find a database entry for "Fbehavior"
+Warning--I didn't find a database entry for "HumanBehaviouralTraits"
+Warning--I didn't find a database entry for "WikipediaFluidMechanics"
+Warning--I didn't find a database entry for "GaleaNumericalSimulation"
+Warning--I didn't find a database entry for "GaleaMathModelling"
+Warning--I didn't find a database entry for "StillCrowdDynamics"
+Warning--I didn't find a database entry for "java3D"
+Warning--I didn't find a database entry for "glasgowUSimulator"
 Warning--I didn't find a database entry for "SommervilleSoftwareEng"
-Warning--to sort, need author or key in AdaptiveBehaviourWiki
-Warning--to sort, need author or key in SocialProofWiki
 Too many commas in name 1 of "Xiaoshan Pan, Charles S. Han, Ken Dauber, Kincho H. Law" for entry MultiAgentFramework
-while executing---line 1049 of file plain.bst
-Warning--to sort, need author or key in ProxemicsWiki
+while executing---line 944 of file unsrt.bst
 Name 1 in "Xiaoshan Pan, Chuck Han, Kincho H. Law, and Jean-Claude Latombe" has a comma at the end for entry IndivBehaviourPseudo
-while executing---line 1049 of file plain.bst
+while executing---line 944 of file unsrt.bst
 Too many commas in name 1 of "Ansgar Kirchnera, Hubert Klupfel, Katsuhiro Nishinari,Andreas Schadschneider, Michael Schreckenberg" for entry EgressBehaviourKirchner
-while executing---line 1049 of file plain.bst
+while executing---line 944 of file unsrt.bst
 Too many commas in name 1 of "Ansgar Kirchnera, Hubert Klupfel, Katsuhiro Nishinari,Andreas Schadschneider, Michael Schreckenberg" for entry EgressBehaviourKirchner
-while executing---line 1049 of file plain.bst
-Too many commas in name 1 of "Ansgar Kirchnera, Hubert Klupfel, Katsuhiro Nishinari,Andreas Schadschneider, Michael Schreckenberg" for entry EgressBehaviourKirchner
-while executing---line 1090 of file plain.bst
-Too many commas in name 1 of "Ansgar Kirchnera, Hubert Klupfel, Katsuhiro Nishinari,Andreas Schadschneider, Michael Schreckenberg" for entry EgressBehaviourKirchner
-while executing---line 1090 of file plain.bst
+while executing---line 944 of file unsrt.bst
 Warning--empty journal in Dijkstra
 Warning--empty journal in Astar
-Too many commas in name 1 of "Xiaoshan Pan, Charles S. Han, Ken Dauber, Kincho H. Law" for entry MultiAgentFramework
-while executing---line 1090 of file plain.bst
-Name 1 in "Xiaoshan Pan, Chuck Han, Kincho H. Law, and Jean-Claude Latombe" has a comma at the end for entry IndivBehaviourPseudo
-while executing---line 1090 of file plain.bst
-(There were 9 error messages)
+(There were 5 error messages)

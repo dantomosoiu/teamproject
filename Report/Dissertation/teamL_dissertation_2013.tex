@@ -10,6 +10,7 @@
 \usepackage{float}
 \usepackage{caption}
 \usepackage{subcaption}
+\usepackage{url}
 \begin{document}
 \title{Project Title}
 \author{Michael Kilian -- 1003819K \\
@@ -19,95 +20,71 @@
         Peeranat Fupongsiripan -- 2056647F}
 \date{19 March 2013}
 \maketitle
+
 \begin{abstract}
-
-The abstract goes here
-
+It is acknowledged that the cost of 
+running evacuation drills in pubilc environments is relatively high both in time and money. This is because very often, the 
+evacuation drills have to be run at night where the chosen environment is not in service and consequently additional payments for 
+equipments, hiring evacuees and fire consultant are needed. This results in fewer number of evacuation drills. 
+There are also some types of evacuation that cannot be drilled both safely and accurately such as a large fire.
+An evacuation simulator is a possible solution to these problems which uses human behaviour in evacuation environment 
+to predict the egress of a population. The aim of this project involves producing a three dimensions visualised 
+evacuation simulator at The Tall Ship at Riverside, Glasgow. Not only focussing on implementation side, the research 
+side is essentially indispensable. Psychology of mass emergency evacuation behaviour and crowd patterns are applied in 
+order to best determine how people will react in an evacuation situation. Moreover, several path finding algorithms 
+are studied to find out which one is suitable for the project.
+The implementation side of this project 
+involves the modelling of the chosen environment in 3D visualisation and simulating an evacuation on this model.
+With this combination, evacuation simulator is more realistic.
 \end{abstract}
+
 \educationalconsent
 \tableofcontents
 %==============================================================================
 \chapter{Introduction}
-\label{intro}
+\label{introduction}
 
+\input{../Intro/final_individual_writing}
 \input{../Intro/organisation}
-
-%ALICE \cite{Alice} was beginning to get very tired of sitting by her sister
-%on the bank and of having nothing to do: once or twice she had peeped into
-%the book her sister was reading, but it had no pictures or conversations in
-%it, ``and what is the use of a book,'' thought Alice, ``without pictures or
-%conversations?'' \cite{Dijkstra}
-%\input{figures/alice}
-%Alice opened the door and found that it led into a small passage.
-
 
 %==============================================================================
 \chapter{Research}
 \label{research}
 
 \input{../Research/behaviourResearch}
-
 \input{../Hector/SelectionofTools/selectionOfTools} %not complete
 
 %Requirements (chapter on its own?)
-
-%------------------------------------------------------------------------------
 
 %==============================================================================
 \chapter{Design}
 \label{design}
 
 \input{../Design/PopulationandGoalDesign}
-
 \input{../Dan/testsize_importandnavmesh} %not complete
-
-%The following diagrams (especially figure \ref{fig:alice}) illustrate the process...
 
 %==============================================================================
 \chapter{Implementation}
-\label{impl}
-
-%In this chapter, we describe how the implemented the system.
+\label{implementation}
 
 \input{../Implementation/behaviourImplementationtest}
-
 \input{../Hector/GUIDesignandImplementation/testsize_gui_dandi} %not complete
-
-%------------------------------------------------------------------------------
-%\section{User Interface}
-%Blah blah blah
-%Blah blah blah
-%Blah blah blah
-%Blah blah blah
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-%\subsection{Foo}
-%Blah blah blah
-%Blah blah blah
-%Blah blah blah
-%Blah blah blah
-
-%------------------------------------------------------------------------------
-%\section{Database Model}
-%\begin{enumerate}
-%\item Blah blah blah
-%\item Blah blah blah
-%\item Blah blah blah
-%\item Blah blah blah
-%\end{enumerate}
-
 
 %==============================================================================
 \chapter{Evaluation}
+\label{evaluation}
 
 \input{../Evaluation/guievaluation} %not complete
 
 %==============================================================================
 \chapter{Conclusion}
+\label{conclusion}
 
 A great project!
 
 %==============================================================================
 \section{Contributions}
+\label{contributions}
 
 Here we explain that Lewis Carroll wrote chapter \ref{intro}. John Wayne
 was out riding his horse every day and didn't do anything. Marilyn Monroe
@@ -117,6 +94,6 @@ project, described in Chapter \ref{impl}.  James Dean handled the
 multimedia content of the project.
 
 %==============================================================================
-\bibliographystyle{plain}
+\bibliographystyle{unsrt}
 \bibliography{teamL_dissertation_2013}
 \end{document}
