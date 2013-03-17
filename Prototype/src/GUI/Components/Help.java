@@ -149,7 +149,7 @@ public class Help extends javax.swing.JDialog {
                      break;
             case 5:  loc = "Advanced-Gen.html";
                      break;
-            case 6:  loc = "AdSetPopCat.html";
+            case 6:  loc = "Advanced-PopCat.html";
                      break;
             case 7:  loc = "AdSet-PopDist.html";
                      break;
