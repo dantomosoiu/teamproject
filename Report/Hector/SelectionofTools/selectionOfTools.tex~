@@ -237,7 +237,7 @@ modellers again this decision was somewhat linked to that decision.
 \subsubsection{How the model progressed}
 Figures 2, 3, 4, and 5 in section shows blueprints of each deck: Weather Deck, Tween Deck, Lower Deck and Cargo Hold respectively.
 \begin{center}
-\includegraphics[scale=0.5]{deck.png}
+\includegraphics[scale=0.5]{../images/deck.png}
 \\layer of deck
 \end{center}
 Each blueprint is used as a model to build a ship starting from the lowest to top deck and it is modelled individually using Blender layer.
