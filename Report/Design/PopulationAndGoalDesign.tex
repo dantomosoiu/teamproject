@@ -1,12 +1,12 @@
-\documentclass{article}
-\usepackage{graphicx}
-\begin{document}
+%\documentclass{article}
+%\usepackage{graphicx}
+%\begin{document}
 
 \section{Population}
 
 \begin{figure}[here]
 \centering
-\includegraphics[scale = 0.5]{PopulationModel.png}
+\includegraphics[scale = 0.5]{../UMLDiagrams/PopulationModel.png}
 \caption{Population Package}
 \label{fig:populationmodel}
 \end{figure}
@@ -45,7 +45,7 @@ of once the route has been returned.
 
 \begin{figure}[here]
 \centering
-\includegraphics[scale=0.5]{GoalModel.png}
+\includegraphics[scale=0.5]{../UMLDiagrams/GoalModel.png}
 \caption{Hierarchy of goal package.}
 \label{fig:goalhierarchy}
 \end{figure}
@@ -60,12 +60,12 @@ ExitSignGoal is an example of a non-passable goal which could direct agents to a
 \\
 \begin{figure}[here]
 \centering
-\includegraphics[scale=0.7]{BehaviourModelToGoalModel.png}
+\includegraphics[scale=0.7]{../UMLDiagrams/BehaviourModelToGoalModel.png}
 \caption{Relationship between BehaviourModel and Goals}
 \label{fig:behaviourtogoalmodel}
 \end{figure}
 
 As figure \ref{fig:behaviourtogoalmodel} shows, the static BehaviourModel instance holds a collection of all Goals in the simulation. For the purposes of calculating agents paths out of the environment, a collection of all the ExitGoals is also kept seperately, since it is anticipated that these will be used most frequently in calculations.\\
 
-\end{document}
+%\end{document}
 

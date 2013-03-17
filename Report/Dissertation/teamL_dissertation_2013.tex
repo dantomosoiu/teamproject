@@ -9,11 +9,11 @@
 \usepackage{graphicx}
 \begin{document}
 \title{Project Title}
-\author{Michael Kilian \\
-        Tony Lau \\
-        Dan Tomosoiu \\
-        Hector Grebbell \\
-        Peeranat Fupongsiripan}
+\author{Michael Kilian -- 1003819K \\
+        Tony Lau -- 1102266L\\
+        Dan Tomosoiu --1102486T \\
+        Hector Grebbell -- 1007414G \\
+        Peeranat Fupongsiripan -- 2056647F}
 \date{19 March 2013}
 \maketitle
 \begin{abstract}
@@ -27,25 +27,24 @@ The abstract goes here
 \chapter{Introduction}
 \label{intro}
 
-ALICE \cite{alice} was beginning to get very tired of sitting by her sister
-on the bank and of having nothing to do: once or twice she had peeped into
-the book her sister was reading, but it had no pictures or conversations in
-it, ``and what is the use of a book,'' thought Alice, ``without pictures or
-conversations?''
+\input{../Intro/organisation}
 
-\input{figures/alice}
+%ALICE \cite{Alice} was beginning to get very tired of sitting by her sister
+%on the bank and of having nothing to do: once or twice she had peeped into
+%the book her sister was reading, but it had no pictures or conversations in
+%it, ``and what is the use of a book,'' thought Alice, ``without pictures or
+%conversations?'' \cite{Dijkstra}
+%\input{figures/alice}
+%Alice opened the door and found that it led into a small passage.
 
-
-
-Alice opened the door and found that it led into a small passage.
 
 %==============================================================================
-\chapter{Research and Requirements}
+\chapter{Research}
 \label{research}
 
-\input{../Implementation/behaviourImplementationtest}
+\input{../Research/behaviourResearch}
 
-Requirements (chapter on its own?)
+%Requirements (chapter on its own?)
 
 %------------------------------------------------------------------------------
 
@@ -53,14 +52,17 @@ Requirements (chapter on its own?)
 \chapter{Design}
 \label{design}
 
-The following diagrams (especially figure \ref{fig:alice}) illustrate the
-process...
+\input{../Design/PopulationandGoalDesign}
+
+%The following diagrams (especially figure \ref{fig:alice}) illustrate the process...
 
 %==============================================================================
 \chapter{Implementation}
 \label{impl}
 
-In this chapter, we describe how the implemented the system.
+%In this chapter, we describe how the implemented the system.
+
+\input{../Implementation/behaviourImplementationtest}
 
 %------------------------------------------------------------------------------
 \section{User Interface}
@@ -93,7 +95,7 @@ Blah blah blah
 %==============================================================================
 \chapter{Evaluation}
 
-We evaluated the project by...
+\input{../Evaluation/guievaluation}
 
 %==============================================================================
 \chapter{Conclusion}

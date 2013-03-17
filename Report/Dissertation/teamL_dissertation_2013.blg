@@ -1,19 +1,29 @@
 This is BibTeX, Version 0.99dThe top-level auxiliary file: teamL_dissertation_2013.aux
 The style file: plain.bst
 Database file #1: teamL_dissertation_2013.bib
-I was expecting an "="---line 81 of file teamL_dissertation_2013.bib
+I was expecting an "="---line 79 of file teamL_dissertation_2013.bib
  : 
  : }
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
-I was expecting a `,' or a `}'---line 153 of file teamL_dissertation_2013.bib
- : 
- : TITLE = {A Formal Basis for the Heuristic Determination of Minimum Cost Paths},
-(Error may have been on previous line)
-I'm skipping whatever remains of this entry
-I was expecting a `,' or a `}'---line 160 of file teamL_dissertation_2013.bib
- : 
- : TITLE = {A note on two problems in connexion with graphs},
-(Error may have been on previous line)
-I'm skipping whatever remains of this entry
-(There were 3 error messages)
+Warning--I didn't find a database entry for "SommervilleSoftwareEng"
+Warning--to sort, need author or key in AdaptiveBehaviourWiki
+Warning--to sort, need author or key in SocialProofWiki
+Too many commas in name 1 of "Xiaoshan Pan, Charles S. Han, Ken Dauber, Kincho H. Law" for entry MultiAgentFramework
+while executing---line 1049 of file plain.bst
+Warning--to sort, need author or key in ProxemicsWiki
+Name 1 in "Xiaoshan Pan, Chuck Han, Kincho H. Law, and Jean-Claude Latombe" has a comma at the end for entry IndivBehaviourPseudo
+while executing---line 1049 of file plain.bst
+Too many commas in name 1 of "Ansgar Kirchnera, Hubert Klupfel, Katsuhiro Nishinari,Andreas Schadschneider, Michael Schreckenberg" for entry EgressBehaviourKirchner
+while executing---line 1049 of file plain.bst
+Too many commas in name 1 of "Ansgar Kirchnera, Hubert Klupfel, Katsuhiro Nishinari,Andreas Schadschneider, Michael Schreckenberg" for entry EgressBehaviourKirchner
+while executing---line 1049 of file plain.bst
+Too many commas in name 1 of "Ansgar Kirchnera, Hubert Klupfel, Katsuhiro Nishinari,Andreas Schadschneider, Michael Schreckenberg" for entry EgressBehaviourKirchner
+while executing---line 1090 of file plain.bst
+Too many commas in name 1 of "Ansgar Kirchnera, Hubert Klupfel, Katsuhiro Nishinari,Andreas Schadschneider, Michael Schreckenberg" for entry EgressBehaviourKirchner
+while executing---line 1090 of file plain.bst
+Too many commas in name 1 of "Xiaoshan Pan, Charles S. Han, Ken Dauber, Kincho H. Law" for entry MultiAgentFramework
+while executing---line 1090 of file plain.bst
+Name 1 in "Xiaoshan Pan, Chuck Han, Kincho H. Law, and Jean-Claude Latombe" has a comma at the end for entry IndivBehaviourPseudo
+while executing---line 1090 of file plain.bst
+(There were 9 error messages)
