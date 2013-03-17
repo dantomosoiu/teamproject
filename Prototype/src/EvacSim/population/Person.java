@@ -92,7 +92,7 @@ public class Person implements Runnable{
         routeGeometryHolder = new Node();
         this.listener = new PersonMovementListener(this,WAYPOINTSBETWEENDECISIONS);
 
-        currentGoal = BehaviourModel.nearestExit(initialLocation);
+        currentGoal = BehaviourModel.randomExit();
         routeplan = new PersonNavmeshRoutePlanner(navmesh, initialLocation, currentGoal.getLocation());
         
         //Calculate Path
@@ -176,7 +176,7 @@ public class Person implements Runnable{
     @Override
     public void run() {
         start = true;
-        currentGoal = BehaviourModel.nearestExit(initialLocation);
+        currentGoal = BehaviourModel.randomExit();
         if(!this.buildMotionPath(currentGoal)){
             System.err.println("Invalid path specified.");
             return;
@@ -318,7 +318,7 @@ public class Person implements Runnable{
             Vector3f newPosition = new Vector3f(routeplan.getCurrentPos3d());
             if (settings.getPrintEv()) System.err.println("Added " + newPosition.toString());
             if(settings.showRoutes()){
-                drawLine(oldPosition,newPosition);
+                //drawLine(oldPosition,newPosition);
             }
         }
         

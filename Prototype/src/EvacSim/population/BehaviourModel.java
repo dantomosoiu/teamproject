@@ -144,15 +144,12 @@ public abstract class BehaviourModel {
      * @param personlocation
      * @return
      */
-    public static Goal nearestExit(Vector3f personlocation){
-         //possibly improve efficiency for larger amounts of exits
-        Goal closeExit = exits.get(0);
-        for(ExitGoal exit: exits){
-            if(personlocation.distance(exit.getLocation()) < personlocation.distance(closeExit.getLocation())){
-                closeExit = exit;
-            }
-        }
-        return closeExit;
+    public static Goal randomExit(){
+         int noOfExits = exits.size();
+         int targetIndex = (int) (Math.random() * (float) noOfExits);
+         return exits.get(targetIndex);
+        
+        
     }
 
     private static boolean isStressed(Person p){
