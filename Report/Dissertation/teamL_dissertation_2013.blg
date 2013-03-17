@@ -1,4 +1,6 @@
-This is BibTeX, Version 0.99dThe top-level auxiliary file: teamL_dissertation_2013.aux
+This is BibTeX, Version 0.99d (TeX Live 2012/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: teamL_dissertation_2013.aux
 The style file: unsrt.bst
 Database file #1: teamL_dissertation_2013.bib
 I was expecting an "="---line 79 of file teamL_dissertation_2013.bib
@@ -24,7 +26,6 @@ Warning--I didn't find a database entry for "GaleaMathModelling"
 Warning--I didn't find a database entry for "StillCrowdDynamics"
 Warning--I didn't find a database entry for "java3D"
 Warning--I didn't find a database entry for "glasgowUSimulator"
-Warning--I didn't find a database entry for "SommervilleSoftwareEng"
 Too many commas in name 1 of "Xiaoshan Pan, Charles S. Han, Ken Dauber, Kincho H. Law" for entry MultiAgentFramework
 while executing---line 944 of file unsrt.bst
 Name 1 in "Xiaoshan Pan, Chuck Han, Kincho H. Law, and Jean-Claude Latombe" has a comma at the end for entry IndivBehaviourPseudo
@@ -35,4 +36,45 @@ Too many commas in name 1 of "Ansgar Kirchnera, Hubert Klupfel, Katsuhiro Nishin
 while executing---line 944 of file unsrt.bst
 Warning--empty journal in Dijkstra
 Warning--empty journal in Astar
+You've used 16 entries,
+            1791 wiz_defined-function locations,
+            557 strings with 6471 characters,
+and the built_in function-call counts, 2024 in all, are:
+= -- 165
+> -- 80
+< -- 0
++ -- 35
+- -- 19
+* -- 57
+:= -- 352
+add.period$ -- 41
+call.type$ -- 16
+change.case$ -- 8
+chr.to.int$ -- 0
+cite$ -- 18
+duplicate$ -- 111
+empty$ -- 227
+format.name$ -- 19
+if$ -- 446
+int.to.chr$ -- 0
+int.to.str$ -- 16
+missing$ -- 6
+newline$ -- 76
+num.names$ -- 14
+pop$ -- 64
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 59
+stack$ -- 0
+substring$ -- 0
+swap$ -- 13
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 2
+while$ -- 13
+width$ -- 18
+write$ -- 148
 (There were 5 error messages)
