@@ -4,6 +4,13 @@
  */
 package GUI.Components;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author hector
@@ -18,6 +25,7 @@ public class Help extends javax.swing.JDialog {
         this.setTitle("EvacSim Help");
         initComponents();
         GUIHelperMethods.centralise(this.getWidth(), this.getHeight(), this);
+        helpSelection.setSelectedIndex(0);
         this.setVisible(true);
         this.requestFocus();
     }
@@ -32,24 +40,29 @@ public class Help extends javax.swing.JDialog {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
+        helpSelection = new javax.swing.JList();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
+        helpContent = new javax.swing.JTextPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(766, 461));
 
-        jList1.setModel(new javax.swing.AbstractListModel() {
+        helpSelection.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "About", "Main View", "Evacuation Progress", "Camera Control", "Evacuation Buttons", "Advanced Settings - General", "Advanced Settings - Population Categories", "Advanced Settings - Population Distribution", "Importing Models", "Importing / Exporting Settings" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
-        jList1.setMaximumSize(new java.awt.Dimension(285, 4000));
-        jList1.setMinimumSize(new java.awt.Dimension(285, 80));
-        jList1.setPreferredSize(new java.awt.Dimension(285, 140));
-        jScrollPane1.setViewportView(jList1);
+        helpSelection.setMaximumSize(new java.awt.Dimension(285, 4000));
+        helpSelection.setMinimumSize(new java.awt.Dimension(285, 80));
+        helpSelection.setPreferredSize(new java.awt.Dimension(285, 140));
+        helpSelection.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                helpSelectionValueChanged(evt);
+            }
+        });
+        jScrollPane1.setViewportView(helpSelection);
 
-        jScrollPane2.setViewportView(jTextPane1);
+        helpContent.setContentType("text/html"); // NOI18N
+        jScrollPane2.setViewportView(helpContent);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -74,6 +87,10 @@ public class Help extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void helpSelectionValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_helpSelectionValueChanged
+        helpContent.setText(newContent(helpSelection.getSelectedIndex()));
+    }//GEN-LAST:event_helpSelectionValueChanged
 
     /**
      * @param args the command line arguments
@@ -116,10 +133,48 @@ public class Help extends javax.swing.JDialog {
             }
         });
     }
+    
+    private String newContent(int  index) {
+        String loc;
+        switch (index) {
+            case 0: loc = "About.html";
+                    break;
+            case 1:  loc = "MainView.html";
+                     break;
+            case 2:  loc = "Evacuation Progress.html";
+                     break;
+            case 3:  loc = "Camera Control.html";
+                     break;
+            case 4:  loc = "Evacuation Buttons.html";
+                     break;
+            case 5:  loc = "Advanced Settings - General.html";
+                     break;
+            case 6:  loc = "Advanced Settings - Population Categories.html";
+                     break;
+            case 7:  loc = "Advanced Settings - Population Distribution.html";
+                     break;
+            case 8:  loc = "Importing Models.html";
+                     break;
+            case 9:  loc = "Importing / Exporting Settings";
+                     break;
+            default: loc = "About.html";
+                     break;
+        }
+        
+        Scanner scan;
+        try {
+            scan = new Scanner((new BufferedReader(new FileReader("assets/Help/" + loc))));
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Help.class.getName()).log(Level.SEVERE, null, ex);
+            return "";
+        }
+        scan.useDelimiter("\\Z");  
+        return scan.next();
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JList jList1;
+    private javax.swing.JTextPane helpContent;
+    private javax.swing.JList helpSelection;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextPane jTextPane1;
     // End of variables declaration//GEN-END:variables
 }

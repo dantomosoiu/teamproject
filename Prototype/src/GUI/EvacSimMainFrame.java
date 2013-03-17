@@ -9,6 +9,7 @@ import GUI.Components.About;
 import GUI.Components.AdvancedSettings;
 import GUI.Components.GUIHelperMethods;
 import GUI.Components.Help;
+import GUI.Components.Importer;
 import Init.Settings.Settings;
 import com.jme3.system.JmeCanvasContext;
 import java.awt.Canvas;
@@ -148,6 +149,12 @@ public class EvacSimMainFrame extends javax.swing.JFrame {
         fileMenu.setText("File");
 
         importModel.setText("Import Model");
+        importModel.setEnabled(false);
+        importModel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                importActionPerformed(evt);
+            }
+        });
         fileMenu.add(importModel);
 
         exit.setText("Exit");
@@ -277,6 +284,10 @@ public class EvacSimMainFrame extends javax.swing.JFrame {
 
     private void adSetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adSetActionPerformed
         AdvancedSettings advancedSettings = new AdvancedSettings(this, settings, evacSim);
+        sidePanel.updateSettings();
+    }
+    private void importActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adSetActionPerformed
+        Importer importer = new Importer(this, settings, evacSim);
         sidePanel.updateSettings();
     }
     private void exitActionPerformed(java.awt.event.ActionEvent evt) {

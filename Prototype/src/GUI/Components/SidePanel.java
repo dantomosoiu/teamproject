@@ -195,14 +195,25 @@ public class SidePanel extends javax.swing.JPanel {
         jLabel5.setText("Camera Location");
 
         showHull.setText("Show Far-Side Hull");
-        showHull.setEnabled(false);
         showHull.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         showHull.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        showHull.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showHullAction();
+                EvacSimMainFrame.giveCanFoc();
+            }
+        });
 
         showDecks.setText("Show Decks");
         showDecks.setEnabled(false);
         showDecks.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         showDecks.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        showDecks.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showDecksAction();
+                EvacSimMainFrame.giveCanFoc();
+            }
+        });
 
         showNavmesh.setText("Show Wireframe");
         showNavmesh.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -298,6 +309,16 @@ public class SidePanel extends javax.swing.JPanel {
     
     private void showNavMeshAction() {
         settings.setShowNavMesh(showNavmesh.isSelected());
+        evacSim.showNavMesh();
+        EvacSimMainFrame.giveCanFoc();
+    }
+    private void showHullAction() {
+        settings.setShowHullFarSide(showHull.isSelected());
+        evacSim.showNavMesh();
+        EvacSimMainFrame.giveCanFoc();
+    }
+    private void showDecksAction() {
+        settings.setShowShip(showDecks.isSelected());
         evacSim.showNavMesh();
         EvacSimMainFrame.giveCanFoc();
     }

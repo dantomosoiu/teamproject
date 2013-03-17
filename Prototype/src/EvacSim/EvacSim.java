@@ -7,6 +7,7 @@ import GUI.Components.SidePanel;
 import Init.Settings.CamLoc;
 import Init.Settings.Settings;
 import com.jme3.app.SimpleApplication;
+import com.jme3.export.binary.BinaryExporter;
 import com.jme3.font.BitmapText;
 import com.jme3.input.InputManager;
 import com.jme3.material.Material;
@@ -17,13 +18,15 @@ import com.jme3.scene.Mesh;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 import com.jme3.scene.VertexBuffer;
+import java.io.File;
+import java.io.IOException;
 import java.util.concurrent.Callable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
  * test
- * @author normenhansen
+ * @author hector
  */
 public class EvacSim extends SimpleApplication {
     
@@ -33,7 +36,8 @@ public class EvacSim extends SimpleApplication {
     private boolean running;
     private String buttonCam;
     private BitmapText routing;
-    
+    private Node hullNode;
+
     /**
      *
      * @param set
@@ -75,8 +79,9 @@ public class EvacSim extends SimpleApplication {
         }
         else {
             appSettings.setNMHolder((Node)assetManager.loadModel("Settings/navMeshNode.j3o"));
-            //appSettings.setCoords((Node)assetManager.loadModel("Settings/navCoordsNode.j3o"));
         }
+        
+        hullNode = (Node) assetManager.loadModel(appSettings.getModelLocation() + "ShowModel.j3o");
         
         showNavMesh();
         
@@ -219,16 +224,19 @@ public class EvacSim extends SimpleApplication {
     public void showNavMesh() {
         if (appSettings.isShowNavMesh() && !rootNode.hasChild(appSettings.getNMHolder())) {
             attachChild(appSettings.getNMHolder());
+            
         }
-        else if (rootNode.hasChild(appSettings.getNMHolder())) {
+        else if (!appSettings.isShowNavMesh() && rootNode.hasChild(appSettings.getNMHolder())) {
             detachChild(appSettings.getNMHolder());
         }
-        /*if (appSettings.isShowCoordinates() && !rootNode.hasChild(appSettings.Coords())) {
-            attachChild(appSettings.Coords());
+        if (appSettings.isShowHullFarSide()) {
+            attachChild(hullNode);
+            
         }
-        else if (rootNode.hasChild(appSettings.Coords())) {
-            detachChild(appSettings.Coords());
-        }*/
+        else if (!appSettings.isShowHullFarSide() && rootNode.hasChild(hullNode)) {
+            detachChild(hullNode);
+        }
+
     }
     
     /**
@@ -252,7 +260,7 @@ public class EvacSim extends SimpleApplication {
      */
     public void drawNM() {
         //Loads Model
-            Spatial ship = assetManager.loadModel(appSettings.getModelLocation());
+            Spatial ship = assetManager.loadModel(appSettings.getModelLocation() + "NavModel.j3o");
             Node node = (Node) ship;
             Node chil1 = (Node) node.getChildren().get(0);
             Geometry chil = (Geometry) chil1.getChildren().get(0);
@@ -305,6 +313,26 @@ public class EvacSim extends SimpleApplication {
             if (appSettings.getNMHolder() == null || appSettings.isSaveSettings()) {
                 appSettings.saveNavMeshDrawn();
             }
+    }
+    
+    /*Does Not Work. Blend files not found!*/
+    public void newModel(String loc) {
+        appSettings.setModelLocation("Models/ImportedModel/");
+        Spatial navMod = assetManager.loadModel(loc + "/NavModel.blend");
+        Spatial showMod = assetManager.loadModel(loc + "/ShowModel.blend");
+        BinaryExporter exporter = BinaryExporter.getInstance();
+        File navModel = new File("assets/Models/NavModel.j3o");
+        try {
+            exporter.save(navMod, navModel);
+          } catch (IOException ex) {
+            Logger.getLogger(Settings.class.getName()).log(Level.SEVERE, "Error: Failed to save NavMesh!", ex);
+          }
+        File file2 = new File("assets/Models/ShowModel.j3o");
+        try {
+            exporter.save(showMod, file2);
+          } catch (IOException ex) {
+            Logger.getLogger(Settings.class.getName()).log(Level.SEVERE, "Error: Failed to save NavMeshCoords!", ex);
+          }
     }
 
 }

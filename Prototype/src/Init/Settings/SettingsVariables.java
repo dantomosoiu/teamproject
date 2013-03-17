@@ -16,7 +16,7 @@ import javax.swing.UIManager;
  * @author hector
  */
 public class SettingsVariables implements Serializable {
-    protected String modelLocation; //Location of j30 file. Should be in Models!
+    protected String modelLocation; //Location of j30 files. Should be in Models!
     protected int populationNumber; //Number of people to populate model with
     protected int tmpPopNum; //Number of people to populate model with
     protected float camSpeed; //Camera move speed
@@ -44,7 +44,7 @@ public class SettingsVariables implements Serializable {
     protected String currentCamLoc;
 
     protected SettingsVariables() {
-        modelLocation = "Models/FlatModel2/FlatModel2.j3o";
+        modelLocation = "Models/Glenlee/";
         populationNumber = 20;
         tmpPopNum = populationNumber;
         camSpeed = 5;
@@ -54,7 +54,7 @@ public class SettingsVariables implements Serializable {
         showHullFarSide = false;
         navMeshColor = "White";
         guiFont = "Interface/Fonts/Default.fnt";
-        showFPS = true;
+        showFPS = false;
         saveSettings = true;
         hideCamPanel = false;
         modelName = "Glenlee, Glasgow";
