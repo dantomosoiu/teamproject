@@ -22,6 +22,8 @@ Too many commas in name 1 of "Ansgar Kirchnera, Hubert Klupfel, Katsuhiro Nishin
 while executing---line 1090 of file plain.bst
 Too many commas in name 1 of "Ansgar Kirchnera, Hubert Klupfel, Katsuhiro Nishinari,Andreas Schadschneider, Michael Schreckenberg" for entry EgressBehaviourKirchner
 while executing---line 1090 of file plain.bst
+Warning--empty journal in Dijkstra
+Warning--empty journal in Astar
 Too many commas in name 1 of "Xiaoshan Pan, Charles S. Han, Ken Dauber, Kincho H. Law" for entry MultiAgentFramework
 while executing---line 1090 of file plain.bst
 Name 1 in "Xiaoshan Pan, Chuck Han, Kincho H. Law, and Jean-Claude Latombe" has a comma at the end for entry IndivBehaviourPseudo
