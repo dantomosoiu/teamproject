@@ -32,14 +32,6 @@
 
 \section{Introduction}
 
-\subsection{Motivation}
-Fatalities and injuries may be due to not only the nature of the disaster or emergency itself -- whether a fire, 
-bombing, sinking ship, or train or plane crash -- but also human factors (behaviour of the evacuating crowd)~\cite[Section 1.1]{psychology}. These human factors include not only 
-the effectiveness and appropriateness of emergency procedures and services, but also the behaviour of the evacuating crowd,
-which has often been blamed for panic, disorganized, over-emotional, irrational and ineffective egress~\cite[Section 1.2]{psychology}. 
-Other human factors which may play a role include decision-making~\cite[Section 2.2]{psychology} and the interpretation of events~\cite[Section 2.3]{psychology}, leadership and social influence~\cite[Section 2.9]{psychology}, 
-and after-care policies and practices~\cite[Section 3: Social Identity]{psychology}. Therefore, building an evacuation simulator which corresponds to the behaviour of an evacuating crowd may help to reduce fatalities and injuries within less time and budget.
-
 \subsection{Definition of an Evacuation Simulator}
 An evacuation simulator can be defined as a system to determine evacuation
 times by predicting the egress of individuals in a building or similar
@@ -48,7 +40,7 @@ structure~\cite{evacuationSimulatordefinition}. They are used for the identifica
 \subsection{Why Implement an Evacuation Simulator}
 The task of testing a building's evacuation procedure can be
 both difficult and expensive. One approach is to hire members of the public
-as stand-in ``evacuees'' and run a mock evaluation, such as those performed as part of Forward Defensive
+as stand-in ``evacuees'' and run a mock evacuation, such as those performed as part of Forward Defensive
 in preparation for the London 2012 Olympics \cite{DailyMailEvacuation}. In theory, this would allow an 
 appropriate expert such as a consultant from a local fire department to assess the effectiveness
 of an existing plan. However, such tests on public buildings can be very expensive: the cost
@@ -60,33 +52,13 @@ phenomenon is known as Evaluation Apprehension\cite{EvalApprehension}.\\
 For these reasons large scale tests on a building are rarely performed.
 What a simulator provides is a means for an expert to extensively test the outcomes of evacuating a location
 at minimal cost. By configuring variables in the simulation the expert can examine the probable outcome of multiple evacuations
-and look for potential sources of danger in a building or evacuation procedure.
+and look for potential sources of danger in a building or evacuation procedure.\\
+
+Of particular note is the ability to investigate the effects of human behaviour on the success of an evacuation. This ability is central to a successfull system and it is desirable to model the behaviour of the population as accurately as is acheivable \cite{psychology}.
+
 
 \subsection{Aims}
-The Evacuation Simulation project’s aims are building a visual simulator that
-can be used on a wide range of structures, for which models can be imported in
-the final software without requiring extensive knowledge of the coding process.
-Once the software is available to fire wardens or other authorities in charge of
-building safety, they can cheaply run computer simulations on buildings and,
-depending on the results provided, identify areas where improvements can be
-made. Such improvements could be supplementing fire personnel and/or fire
-extinguishing equipment, opening alternative evacuation routes,
-informing the intervening fire brigade of any areas with low evacuation rates etc.
-This project intends to simulate an evacuation of The Tall Ship at Riverside (reasons for choosing the environment are explained in section 2),
-Glasgow, in a virtual 3D environment. 
-Specifically, the evacuation simulator is
-expected to be able to accurately model the behaviour of people as they egress
-from the ship and provide an interactive graphical user interface which gives
-real-time feedback on the current state of all passengers.
-It was decided to work towards an evacuation of the ship where the cause is
-fire. This will require the exploration of various models of fire~\cite{fireEvacuationProcedure} and the challenge
-of integrating it into the final evacuation system. It will also allow us to explore
-the impact of smoke on the subjects within the ship.
-The aim of this project is to produce a product which gives a
-reasonably accurate representation of the egress of people which can hopefully
-aid The Tall Ship in planning for an evacuation. The finished product can be
-extended to include extra features, such as an enhanced fire model, to make the
-simulation more realistic.
+The project's aims are driven by the desire to maximise the flexibility and extensibility of the system, and to make the system as accurate as is acheivable within the time avaiable. The four key aims can be summarised as follows.
 
 \subsubsection{A Multi-Agent Model of Individuals and Individual Behaviour}
 Previous projects have emphasised crowd behaviour: they have modelled the population from a top down 
@@ -95,10 +67,10 @@ One of the primary aims of this project is to represent an accurate model of ind
 Previous work has shown that multi-agent systems can achieve this. By taking this approach ``the full effects of diversity that exists among agents in their attributes and behaviours can be observed as it
 gives rises to the behaviour of the system as a whole'' \cite{AgentBasedTutorial}.
 
-\subsubsection{An Update of the Technologies Used in Previous Projects}
-Many previous works in this field have made use of software packages such as Java 3D; these are now unsupported and 
-would be difficult to extend in the future.
-These are discussed in the Implementation section.
+\subsubsection{Use of Up-To-Date Technologies Wherever Possible}
+In even recently developed simulators now deprecated technologies such as Java3D are being used. This limits their future extensibility greatly and is not desirable.
+The underlying technologies used in development were chosen primarily based on their future potential and strength of community support.
+These are discussed in the [REFERENCE].
 
 \subsubsection{Use of Navigation Meshes in Environment Modelling}
 A Navigation Mesh is a graph representation of an environment in terms of a set of convex polygons which describe the `walkable' surface of an environment. This design aids agents in finding paths through large areas, whilst avoiding static obstacles in the environment.
@@ -108,14 +80,13 @@ optimise agent movement \cite{A*Review}.
 
 \subsection{Prerequisites}
 Where possible all technical concepts used within this paper will be clearly defined. However, to fully understand the remainder of this report, the reader should have at least
-minimum knowledge in the following areas:
+some knowledge of the following concepts:
 \begin{itemize}
  \item Object-Oriented programming concepts (preferably in Java)
  \item Concurrent programming concepts
  \item Pathfinding simulation and collision detection/avoidance~\cite{gameProgramming}~\cite{collisionDetection}
  \item Herding, flocking behaviour and boids~\cite{HAndBoid}~\cite{Fbehavior}
  \item Human behavioural traits~\cite{HumanBehaviouralTraits}
- \item 3-Dimensional Vectors
 \end{itemize}
 
 \subsection{Previous Work}
@@ -144,34 +115,17 @@ It has also led to the production of at least one prototype implementing this fr
 This project has utilised a modified version of this framework for the integration
 of agent behaviour. This is discussed further in the Research and Implementation sections.
 
-\subsection{Background}
-At present, previous works discussed in last section are obsolete, as they were designed to use Java3D~\cite{java3D},
-an old and currently unsupported library. jMonkeyEngine\cite{jmonkey} was chosen as a
-replacement 3D development engine for this project. This is an open source
-tool and has an active community surrounding it, which could help with solving
-eventual problems that might appear when using it.
-While some of the previous projects have flaws that make them unusable for
-simulation of large environments~\cite{glasgowUSimulator}, one the current project’s main purposes is
-scalability -- importing of reasonably large building models and, once imported,
-executing simulation on the resulted logical structure in a reasonable time-frame.
 
 \section{Environment}
-The Glenlee (The Tall Ship) was built at the Bay Yard in Port Glasgow and was one of a group of 10 steel sailing vessels 
-built to a standard design for the Glasgow shipping firm of Archibald Sterling and Co. Ltd. 
-She is a three masted barque, with length 245 feet, beam 37.5 feet and depth 22.5 feet.
-The Glenlee first took to the water as a bulk cargo carrier in 1896. She circumnavigated the globe four times
-and survived passing through the fearsome storms of Cape Horn fifteen times before 
-being bought by the Spanish navy in 1922 and being turned into a sail training vessel. 
-The ship was modified and served in that role until 1969. She then operated as a training school until 1981 
-when she was laid up in Seville Harbour and largely forgotten.
-Nowadays, she is permanently docked at the Riverside Museum in Glasgow which operates a programme of year-round maritime 
-themed events and activities, with specially devised talks and tours, school visits and costumed volunteer days.
+For the purposes of designing and evaluating the system it was necessary to choose a readily available location to be used as the 3D model with which the system operates. By choosing such a location there is the potential to run mock evaluations and other tests in the future. The environment chosen is the Tall Ship at Riverside, Glasgow \cite{TallShipSite}.
 
-\begin{center}
+\begin{figure}
+\centering
 \includegraphics{../images/glasgowTallShip.jpg}
-\\Figure 1: Glasgow Tall Ship
-\end{center}
-Current work on the project is based on evacuating The Tall Ship because 
+\caption{Glasgow Tall Ship}
+\end{figure}
+
+The Tall Ship was chosen as the simulation environment because:
 \begin{itemize}
  \item It serves as both a tourist attraction and a function hall below decks.
  \item The ship is permanently docked and can be considered a static structure.
@@ -181,25 +135,29 @@ Current work on the project is based on evacuating The Tall Ship because
  \item These drills are infrequent.
 \end{itemize}
 
-\begin{center}
+\begin{figure}
+\centering
 \includegraphics[scale=0.4]{../images/weatherdeck.jpg}
-\\Figure 2: Weather Deck
-\end{center}
+\caption{Weather Deck}
+\end{figure}
 
-\begin{center}
+\begin{figure}
+\centering
 \includegraphics[scale=0.4]{../images/tweendeck.jpg}
-\\Figure 3: Tween Deck
-\end{center}
+\caption{Tween Deck}
+\end{figure}
 
-\begin{center}
+\begin{figure}
+\centering
 \includegraphics[scale=0.4]{../images/lowerdeck.jpg}
-\\Figure 4: Lower Deck
-\end{center}
+\caption{Lower Deck}
+\end{figure}
 
-\begin{center}
+\begin{figure}
+\centering
 \includegraphics[scale=0.4]{../images/cargohold.jpg}
-\\Figure 5: Cargo Hold
-\end{center}
+\caption{Cargo Hold}
+\end{figure}
 
 It is important to note that only small scale staff evacuations have been conducted on the ship
 thus far considering the impractical nature of carrying out an evacuation with
