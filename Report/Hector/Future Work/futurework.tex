@@ -2,10 +2,10 @@
 
 \section{Major Problems Encountered \& Future Work}
 
-Whilst in many ways the project was a success due to several problems
+Whilst in many ways the project was a success, due to several problems
 we failed to meet the full set of expected requirements (must have
 and should have). This section summarises the major issues that occurred
-and why. Further to this an explanation of how the work should be
+and why. Further to this, an explanation of how the work should be
 continued based from experience so far is provided.
 
 
@@ -14,7 +14,7 @@ continued based from experience so far is provided.
 
 \subsubsection{jMonkeyEngine}
 
-We had several issues with the engine, most related to an underestimation
+We had several issues with the engine with most relating to an underestimation
 of its complexity. This was partially down to poor documentation but
 also due to inadequate research into the system before commencing
 implementation.
@@ -22,7 +22,7 @@ implementation.
 jMonkeyEngine has extensive tutorials, however these are aimed at games
 development. The material soon got to a point where most of it was
 useless for our needs. This led us to abandon them quite early on.
-Unfortunately this led several members of the team with a poor understanding
+Unfortunately, this led several members of the team to a poor understanding
 of the system, an example being how the update loop worked. This was
 not spotted until later on in the code as the heavier processing slowed
 things down causing the race conditions to show themselves. By this
@@ -36,8 +36,8 @@ the manual until stumbling upon the information required.
 
 \subsubsection*{NavMesh Generation}
 \label{Problems:subsubsec:navmesh}
-The NavMesh package we used was based from an extremely powerful implementation
-in C++, Recast. Unlike the original instead of being implemented for
+The NavMesh package used was based on an extremely powerful implementation
+in C++, Recast\cite{Recast}. Unlike the original, instead of being implemented for
 speed it was created for educational purposes. It was also not well
 documented but claimed to be fully functional.
 
@@ -51,13 +51,13 @@ this required large amounts of modification at a heavy cost in time.
 
 An issue we had failed to consider when choosing our initial location
 was the complexity of the structure. The curved floors proved a serious
-challenge considering the teams lack of experience with advanced modelling.
+challenge considering the team's lack of experience with advanced modelling.
 This was somewhat negated due to the issues with the NavMesh. The
 models generated became far more complex than we could convert and
 so are unused in the end product.
 
 The other key issue with the modelling relates to the ship plans provided.
-Upon completion of each of the deck plans these needed to be merged
+Upon completion of each of the deck plans, these needed to be merged
 together into one model. It was then we realised the plans did not
 align. This required heavy modification to fit the stairways into
 place.
@@ -65,7 +65,7 @@ place.
 
 \subsection{Future Work}
 
-Below is listed in order of priority the next steps we shall take
+Below is listed, in order of priority, the next steps that shall be taken
 if the project is continued
 
 
@@ -77,21 +77,21 @@ it was built upon a bad methodology upon which the class relies too
 heavily to allow easy repair. Hence it seems more appropriate to rewrite
 it from scratch.
 
-Further to this currently each person is represented by an individual
+Further to this, currently each person is represented by an individual
 thread. This requires considerable overhead and is one of the key
 performance bottlenecks in the existing system. By converting a person
-to an abstract data structure and having a threadpool of workers major
-decreases in waste could be overcome. In each person we would store
-a reference to the relevant behavioural class. These would be static
+to an abstract data structure and having a threadpool of workers, major
+decreases in waste could be overcome. In each person a reference to the 
+relevant behavioural class would be stored. These would be static
 since only one for each category would be required and would inherit
 methods from a generic superclass. Variables in the classes would
 control basic and user created categories, whilst the possibility
 to override methods would allow hard coded extreme changes, such as
 to add in a disabled visitor or a staff member.
 
-We would need some kind of data structure to store each persons location.
-This would have to be made thread safe to allow usage by the pool.
-Ideally this would store people in an order linked to their position
+Some kind of data structure to store each persons location would be needed.
+This would have to be made thread-safe to allow usage by the pool.
+Ideally, this would store people in an order linked to their position
 making locating others within a specific radius of a point easy (needed
 for collision control mentioned below). The worker threads would iterate
 over each person on each cycle of the update loop. The behavioural
@@ -99,11 +99,11 @@ methods would be fed a list of other nearby people and environmental
 factors (such as nearby exits). It would generate a new location in
 a single unit of movement based upon this data, the category class's
 variables such as speed and the current average frames per second.
-The Person in question would be moved by this distance and the worker
+The person in question would be moved by this distance and the worker
 would move on to the next person. We would either need to lock other
 people within close vicinity whilst this calculation was performed,
 or check before moving the person nobody had moved into their path.
-To decide which action to take here further research would need to
+To decide which action to take here, further research would need to
 be performed both into the performance of each method and whether
 temporarily locking movement would restrict the accuracy of the behavioural
 model.
@@ -119,18 +119,18 @@ of the crowd or hazards.
 \subsubsection*{Use of ORCA for collision avoidance}
 \label{Problems:subsubsec:ORCA}
 
-Due to the large number of people our system is aimed to support collsion
+Due to the large number of people our system is aimed to support, collision
 control and avoidance needs to be properly implemented. Currently
 individuals are perfectly able to pass through one another. ORCA (Optimal
 Reciprocal Collision Avoidance) is an advanced set of algorithms designed
-to aid with this.
+to combat this.
 
 
 \subsubsection*{Implementation of an advanced behavioural Model}
 
-Due to the issues relating to understanding of the underlying engine
-work here had to be temporarily suspended. As a result of this the
-current model is severely lacking. Once the person class has been
+Due to the issues relating to understanding of the underlying engine,
+work here had to be temporarily suspended. As a result of this, the
+current model is lacking. Once the person class has been
 re-created in a way able to support this properly it could be continued
 allowing the functionality originally envisioned at the start of the
 project.
