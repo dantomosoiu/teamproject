@@ -21,5 +21,5 @@ Prototype/OpenAL64.dll
 *.toc
 *.jar
 /Prototype/dist/*
-!/TLEvacSim/TLEvacSim/lib/cai-nmgen-0.1.2.jar
+!/Prototype/dist/lib/cai-nmgen-0.1.2.jar
 !/Submission/*

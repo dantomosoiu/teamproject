@@ -20,3 +20,6 @@ Prototype/OpenAL64.dll
 *.synctex.gz
 *.toc
 *.jar
+/Prototype/dist/*
+!/TLEvacSim/TLEvacSim/lib/cai-nmgen-0.1.2.jar
+!/Submission/*

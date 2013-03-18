@@ -59,8 +59,17 @@
 
 \begin_body
 
-\begin_layout Standard
+\begin_layout Section
+Major Problems Encountered & Future Work
+\end_layout
 
+\begin_layout Standard
+Whilst in many ways the project was a success due to several problems we
+ failed to meet the full set of expected requirements (must have and should
+ have).
+ This section summarises the major issues that occured and why.
+ Further to this an explanation of how the work should be continued based
+ from experience so far is provided.
 \end_layout
 
 \end_body
