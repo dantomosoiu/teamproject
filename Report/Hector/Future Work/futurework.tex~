@@ -1,4 +1,10 @@
-
+%% LyX 2.0.3 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[english]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{babel}
+\begin{document}
 
 \section{Major Problems Encountered \& Future Work}
 
@@ -135,4 +141,4 @@ with the behavioural model.
 This links in heavily with the previous suggestion. Fire and smoke
 spread and so a dynamic model for these is required to further improve
 correct simulation of a real life event.
-
+\end{document}
