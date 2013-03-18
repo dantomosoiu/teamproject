@@ -50,7 +50,6 @@ By combining these, the evacuation simulator can be more realistic.
 
 \chapter{Requirements}
 \label{requirements}
-
 \input{../Requirements/team_project_requirement}
 
 %==============================================================================
@@ -85,6 +84,8 @@ By combining these, the evacuation simulator can be more realistic.
 %==============================================================================
 \chapter{Conclusion}
 \label{conclusion}
+
+\input{../Hector/Future\ Work/futurework}
 
 A great project!
 
