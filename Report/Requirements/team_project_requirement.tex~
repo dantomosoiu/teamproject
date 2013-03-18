@@ -1,6 +1,6 @@
 
 
-
+\section{System Requirements}
 
 Due to the scope of the project it would be impossible to commence
 without a clear vision of how the end product should function. This
@@ -24,7 +24,7 @@ The Requirements have been split into several sections depending on
 their necessity, usefulness and difficulty in implementation.
 
 
-\section{Must Have}
+\subsection{Must Have}
 
 These are the bare minimum requirements for the system to be suitable
 for any kind of customer use. Without these the software would either
@@ -42,7 +42,7 @@ move to a safe location.
 for the population.
 \end{itemize}
 
-\section{Should Have}
+\subsection{Should Have}
 
 High priority requirements which should be satisfied where possible.
 Missing any of these would indicate the project as incomplete and
@@ -66,7 +66,7 @@ visual representation.
 \item Extensive Documentation and user help.
 \end{itemize}
 
-\section{Could Have}
+\subsection{Could Have}
 
 Requirements considered desirable but not necessary. To be included
 if time and resources allow.
@@ -83,7 +83,7 @@ the guest population.
 and assistance required for their safe exit.
 \end{itemize}
 
-\section{Would Like to Have}
+\subsection{Would Like to Have}
 
 Features unlikely to be present in the initial release due to time
 and resource constraints.
