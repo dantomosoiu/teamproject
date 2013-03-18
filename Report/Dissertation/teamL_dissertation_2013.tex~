@@ -106,18 +106,29 @@ multimedia content of the project.
 
 
 %==============================================================================
+\clearpage
 \appendix
+\pagenumbering{arabic}
+\blinddocument
 %==============================================================================
 
 
 \chapter{Prototypes and Problems Encountered}
-\input{PrototypeAndProblems}
+\input{../PrototypeAndProblems}
+
+\chapter{Think Aloud Evaluation Participant Notes}
+\input{../Evaluation/appendix}
+
+
+%==============================================================================
+\chapter{Glossary}
+\input{../Glossary}
+
 
 %==============================================================================
 
 
 
-%==============================================================================
 
 \bibliographystyle{unsrt}
 \bibliography{teamL_dissertation_2013}
