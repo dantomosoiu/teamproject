@@ -12,49 +12,47 @@ Warning--empty publisher in Fbehavior
 Warning--empty publisher in HumanBehaviouralTraits
 Warning--empty year in GaleaMathModelling
 Warning--empty publisher in glasgowUSimulator
-Warning--empty journal in Jelovic
-Warning--empty year in Jelovic
 Warning--empty journal in Dijkstra
 Warning--empty journal in Astar
 You've used 44 entries,
             1791 wiz_defined-function locations,
-            652 strings with 9078 characters,
-and the built_in function-call counts, 5902 in all, are:
-= -- 448
-> -- 224
+            651 strings with 9057 characters,
+and the built_in function-call counts, 5940 in all, are:
+= -- 456
+> -- 227
 < -- 0
-+ -- 100
-- -- 56
-* -- 174
-:= -- 927
-add.period$ -- 112
++ -- 101
+- -- 57
+* -- 168
+:= -- 939
+add.period$ -- 115
 call.type$ -- 44
-change.case$ -- 18
+change.case$ -- 17
 chr.to.int$ -- 0
-cite$ -- 58
-duplicate$ -- 340
-empty$ -- 735
-format.name$ -- 56
-if$ -- 1356
+cite$ -- 56
+duplicate$ -- 337
+empty$ -- 739
+format.name$ -- 57
+if$ -- 1368
 int.to.chr$ -- 0
 int.to.str$ -- 44
-missing$ -- 41
-newline$ -- 203
-num.names$ -- 37
-pop$ -- 251
+missing$ -- 40
+newline$ -- 206
+num.names$ -- 38
+pop$ -- 249
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 155
+skip$ -- 153
 stack$ -- 0
 substring$ -- 0
-swap$ -- 40
+swap$ -- 41
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
-warning$ -- 14
-while$ -- 36
+warning$ -- 12
+while$ -- 37
 width$ -- 46
-write$ -- 386
-(There were 14 warnings)
+write$ -- 392
+(There were 12 warnings)
