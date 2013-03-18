@@ -1,46 +1,95 @@
-\documentclass[a4paper,10pt]{article}
-\usepackage[utf8]{inputenc}
 
-%opening
-\title{Requirements}
-\author{Team L}
 
-\begin{document}
+\section{System Requirements}
 
-\maketitle
+Due to the scope of the project it would be impossible to commence
+without a clear vision of how the end product should function. This
+also aids greatly in breaking down the system into seperate components
+allowing team members to work independently without repetition of
+work. These requirements were decided on during the early stages of
+the project. The reasoning behind them comes from a number of sources,
+primarily -
+\begin{itemize}
+\item Research into previous attempts at evacuation simulation. The teams
+behind these will have each conducted their own research. Rather than
+repeat their efforts examination of their choices and rationalisation
+provides a valuable and dense insight into what shall be required.
+\item Interviews with a target user (The fire warden at our initial site).
+Since target users are the potential customers for our product it
+would be naive not to consider what they would expect.
+\item Requirements derived from research into evacuation and human behaviour.
+\item Discussions amongst the team.
+\end{itemize}
+The Requirements have been split into several sections depending on
+their necessity, usefulness and difficulty in implementation.
 
-\section{Requirements from previous project (Purges)}
-  - Model a population in the environment with basic behaviour.\\
-  - Ability to represent hazards/block paths in simulator.\\
-  - Ability to load multiple environment models.\\
-  - Variable run-speed of simulation.\\
-  - GUI for user interaction.\\
-  - User ability to modify perspectives.\\
-  - Play/Pause/Stop/Restart functions.\\
-  - Provide user ability to specify environmental variables.\\
-  
-\section{Requirement from research}
-  - Accurate behavioural model.
-  
-\section{Requirements of our own}
- - 3D representation of models.\\
- - Accurate timescale for simulation.\\
- - Random population generation.\\
- - Dynamic environment modelling (automatic grid/graph generation).\\
- - Statistical feedback in display.\\
- - Accurate fire model.\\
- - Possibly allow statistical to be exported to a standard file format for analysis.\\
- - Provide user control over fire source (area and cause).\\
- - Represent a logical model of the environment.\\
- 
- \section{Requirements from firewarden}
- - Accurately model staff and staff/guest interaction.\\
- - Include wheelchair using guests and interaction required to carry them out.\\
- - Factor in guest reaction time and effect of alarm.\\
- \subsection{How we interview firewarden}
-  1. Gather questions to ask firewarden.\\
-  2. Record the interview.\\
-  3. Ask for suggestions.\\
-  
 
-\end{document}
+\subsection{Must Have}
+
+These are the bare minimum requirements for the system to be suitable
+for any kind of customer use. Without these the software would either
+be considered entirely non-working or faulty. Not managing to provide
+these would indicate complete failiure of the project.
+\begin{itemize}
+\item Representation of a 3D environment in a manner allowing the system
+knowledge of navigatable surfaces.
+\item Generation and representation of a population within the 3D environment.
+\item Ability to manipulate the population to allow movement towards a given
+location.
+\item Output to the user of time taken for the entire population to successfully
+move to a safe location.
+\item Basic behavioural and routing algorithms to generate paths of movement
+for the population.
+\end{itemize}
+
+\subsection{Should Have}
+
+High priority requirements which should be satisfied where possible.
+Missing any of these would indicate the project as incomplete and
+failing to meet all of its objectives.
+\begin{itemize}
+\item Accurate behavioural models allowing realistic actions from individuals
+within the population.
+\item Interaction of members of the population to allow realistic crowd
+behaviour and collision control.
+\item Ability for the user to specify environmental and population variables
+(such as population size).
+\item Pseudo-random population generation including individual characteristics
+and behavioural patterns as well as initial position.
+\item Accurate Timescale for evacuation process
+\item Intuitive GUI allowing viewing of both environmental variables and
+a visual representation of the environment throughout the evacuation
+process.
+\item Ability for user to change perspective (camera location) within the
+visual representation.
+\item Ability to import alternative environmental models.
+\item Extensive Documentation and user help.
+\end{itemize}
+
+\subsection{Could Have}
+
+Requirements considered desirable but not necessary. To be included
+if time and resources allow.
+\begin{itemize}
+\item Ability to pause and resume the simulation
+\item Representation of assurances and hazards within the environment such
+as exit signs and low ceilings.
+\item Variable run speed of simulation
+\item Ability to output information such as evauation time and path of each
+member of the population to file allowing further future analysis.
+\item Accurate modelling of advanced crowd interation, such as staff assisting
+the guest population.
+\item Unusual population traits such as disabled guests and the interaction
+and assistance required for their safe exit.
+\end{itemize}
+
+\subsection{Would Like to Have}
+
+Features unlikely to be present in the initial release due to time
+and resource constraints.
+\begin{itemize}
+\item Accurate fire and smoke model.
+\item User control over fire start location.
+\item Environmental model support of different materials to allow further
+accuracy to the fire model.
+\item Advanced and highly realistic graphical representation of environment.\end{itemize}
