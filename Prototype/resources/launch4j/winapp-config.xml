@@ -6,21 +6,21 @@ and open the template in the editor.
 
 <launch4jConfig>
   <headerType>gui</headerType>
-  <outfile>dist/Team_L_Evacuation_Simulator.exe</outfile>
-  <jar>dist/Team_L_Evacuation_Simulator.jar</jar>
-  <errTitle>Team_L_Evacuation_Simulator</errTitle>
+  <outfile>${dist.dir}/${application.title}.exe</outfile>
+  <jar>${dist.jar}</jar>
+  <errTitle>${application.title}</errTitle>
   <icon>resources/launch4j/win-icon.ico</icon>
   <chdir>.</chdir>
   <customProcName>true</customProcName>
   <singleInstance>
-    <mutexName>Init.Initiator</mutexName>
-    <windowTitle>Team_L_Evacuation_Simulator</windowTitle>
+    <mutexName>${main.class}</mutexName>
+    <windowTitle>${application.title}</windowTitle>
   </singleInstance> 
   <jre>
     <!-- Specify one of the following or both -->
     <path>bundled JRE path</path>
     <minVersion>1.5.0</minVersion>
-    <opt>-XX:+OptimizeStringConcat</opt>
+    <opt>${run.jvmargs}</opt>
   </jre>
   <!--splash>
     <file>file</file>

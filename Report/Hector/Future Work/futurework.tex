@@ -1,0 +1,122 @@
+
+
+\section{Major Problems Encountered \& Future Work}
+
+Whilst in many ways the project was a success due to several problems
+we failed to meet the full set of expected requirements (must have
+and should have). This section summarises the major issues that occured
+and why. Further to this an explanation of how the work should be
+continued based from experience so far is provided.
+
+
+\subsection{Problems Encountered}
+
+
+\subsubsection*{jMonkey}
+
+We had several issues with the engine, most related to an underestimation
+of its complexity. This was partially down to poor documentation but
+also due to inadequite research into the system before commencing
+implementation.
+
+The jMonkey has extensive tutorials, however these are aimed at games
+development. The material soon got to a point where most of it was
+useless for our needs. This led us to abandon them quite early on.
+Unfortunately this led several members of the team with a poor understanding
+of the system, an example being how the update loop worked. This was
+not spotted until later on in the code as the heavier processing slowed
+things down causing the race conditions to show themselves. By this
+point finding and correcting all occurances was a major task.
+
+From a documentation side whilst there is plenty available it does
+not seem well indexed. If you have an issue finding the answer is
+not as simple as a quick search but instead requires trawling through
+the manual until stumbling upon the information required.
+
+
+\subsubsection*{NavMesh Generation}
+
+The NavMesh package we used was based from an extremely powerful implementation
+in C++, Recast. Unlike the original instead of being implemented for
+speed it was created for educational purposes. It was also not well
+documented but claimed to be fully functional.
+
+Throughout the project we encountered several problems with the generation
+of meshes. The largest of these was an inability to work with overlapping
+navigatable surfaces (ie multiple floors in a building). Overcoming
+this required large amounts of modification at a heavy cost in time.
+
+
+\subsubsection*{Modelling Issues}
+
+An issue we had failed to consider when choosing our initial location
+was the complexity of the structure. The curved floors proved a serious
+challenge considering the teams lack of experience with advanced modelling.
+This was somewhat negated due to the issues with the NavMesh. The
+models generated became far more complex than we could convert and
+so are unused in the end product.
+
+The other key issue with the modelling relates to the ship plans provided.
+Upon completion of each of the deck plans these neede to be merged
+together into one model. It was then we realised the plans did not
+align. This required heavy modification to fit the stairways into
+place.
+
+
+\subsection{Future Work}
+
+Below is listed in order of priority the next steps we shall take
+if the project is continued
+
+
+\subsubsection*{Implementation of a thread-pool and rewriting of the Person Class}
+
+The Person Class was developed early on and as such was built before
+we had a clear understanding of the technologies being used. As such
+it was built upon a bad methodology upon which the class relies too
+heavily to allow easy repair. Hence it seems more appropriate to rewrite
+it from scratch.
+
+Further to this currently each person is represented by an individual
+thread. This requires considerable overhead and is one of the key
+performance bottlenecks in the existing system. By converting a person
+to an abstract data structure and having a threadpool of worker threads
+iterating over these major decreases in waste could be overcome.
+
+
+\subsubsection*{Implementation of an advanced behavioural Model}
+
+Due to the issues relating to understanding of the underlying engine
+work here had to be temporarily suspended. As a result of this the
+current model is severely lacking. Once the person class has been
+re-created in a way able to support this properly it could be continued
+allowing the functionality originally envisioned at the start of the
+project.
+
+
+\subsubsection*{Improvement of model importation and removal of maritime phrases}
+
+The project was always intended to be flexible towards a number of
+environments. Currently the importer is poor and allows no modification
+of the NavMesh generation variables. There are also several words
+used within the GUI hinting towards a maritime use (such as Show Far-Side
+Hull on the main sidepanel). These counteract our aims by suggesting
+the software to be bespoke.
+
+
+\subsubsection*{Addition of hazards and assurances into the model}
+
+In a real situation there are multiple stimuli affecting human behaviour.
+Exit signs entice those trying to escape whilst the majority of people
+adhere to no enty indications.
+
+Hence additional environmental features should be added to assist
+with the behavioural model.
+
+
+\subsubsection*{Accurate fire and smoke representation}
+
+This links in heavily with the previous suggestion. Fire and smoke
+spread and so a dynamic model for these is required to further improve
+correct simulation of a real life event.
+

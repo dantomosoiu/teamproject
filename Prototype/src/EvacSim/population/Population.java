@@ -36,7 +36,7 @@ public class Population implements Runnable {
     
     private EvacSim evs;
     private Person people[];
-    private Thread peopleThreads[];
+    private static Thread peopleThreads[];
     //private ArrayList<PersonCluster> personClusterList; //list of clusters of closely positioned persons
     //private BoundaryComparator bComp = new BoundaryComparator(); //comparator used in sorting the persons based on an indvidual axis
     private static boolean evacuationDone;
