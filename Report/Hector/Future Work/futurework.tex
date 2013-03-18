@@ -4,7 +4,7 @@
 
 Whilst in many ways the project was a success due to several problems
 we failed to meet the full set of expected requirements (must have
-and should have). This section summarises the major issues that occured
+and should have). This section summarises the major issues that occurred
 and why. Further to this an explanation of how the work should be
 continued based from experience so far is provided.
 
@@ -12,21 +12,21 @@ continued based from experience so far is provided.
 \subsection{Problems Encountered}
 \label{Problems:subsec:problemsecountered}
 
-\subsubsection{jMonkey}
+\subsubsection{jMonkeyEngine}
 
 We had several issues with the engine, most related to an underestimation
 of its complexity. This was partially down to poor documentation but
-also due to inadequite research into the system before commencing
+also due to inadequate research into the system before commencing
 implementation.
 
-The jMonkey has extensive tutorials, however these are aimed at games
+jMonkeyEngine has extensive tutorials, however these are aimed at games
 development. The material soon got to a point where most of it was
 useless for our needs. This led us to abandon them quite early on.
 Unfortunately this led several members of the team with a poor understanding
 of the system, an example being how the update loop worked. This was
 not spotted until later on in the code as the heavier processing slowed
 things down causing the race conditions to show themselves. By this
-point finding and correcting all occurances was a major task.
+point finding and correcting all occurrences was a major task.
 
 From a documentation side whilst there is plenty available it does
 not seem well indexed. If you have an issue finding the answer is
@@ -43,7 +43,7 @@ documented but claimed to be fully functional.
 
 Throughout the project we encountered several problems with the generation
 of meshes. The largest of these was an inability to work with overlapping
-navigatable surfaces (ie multiple floors in a building). Overcoming
+navigable surfaces (i.e. multiple floors in a building). Overcoming
 this required large amounts of modification at a heavy cost in time.
 
 
@@ -57,7 +57,7 @@ models generated became far more complex than we could convert and
 so are unused in the end product.
 
 The other key issue with the modelling relates to the ship plans provided.
-Upon completion of each of the deck plans these neede to be merged
+Upon completion of each of the deck plans these needed to be merged
 together into one model. It was then we realised the plans did not
 align. This required heavy modification to fit the stairways into
 place.
@@ -82,7 +82,7 @@ thread. This requires considerable overhead and is one of the key
 performance bottlenecks in the existing system. By converting a person
 to an abstract data structure and having a threadpool of workers major
 decreases in waste could be overcome. In each person we would store
-a reference to the relavant behavioural class. These would be static
+a reference to the relevant behavioural class. These would be static
 since only one for each category would be required and would inherit
 methods from a generic superclass. Variables in the classes would
 control basic and user created categories, whilst the possibility
@@ -101,7 +101,7 @@ a single unit of movement based upon this data, the category class's
 variables such as speed and the current average frames per second.
 The Person in question would be moved by this distance and the worker
 would move on to the next person. We would either need to lock other
-people within close viscinity whilst this calculation was performed,
+people within close vicinity whilst this calculation was performed,
 or check before moving the person nobody had moved into their path.
 To decide which action to take here further research would need to
 be performed both into the performance of each method and whether
@@ -121,7 +121,7 @@ of the crowd or hazards.
 
 Due to the large number of people our system is aimed to support collsion
 control and avoidance needs to be properly implemented. Currently
-individuals are perfectly able to pass through oneanother. ORCA (Optimal
+individuals are perfectly able to pass through one another. ORCA (Optimal
 Reciprocal Collision Avoidance) is an advanced set of algorithms designed
 to aid with this.
 
@@ -142,7 +142,7 @@ The project was always intended to be flexible towards a number of
 environments. Currently the importer is poor and allows no modification
 of the NavMesh generation variables. There are also several words
 used within the GUI hinting towards a maritime use (such as Show Far-Side
-Hull on the main sidepanel). These counteract our aims by suggesting
+Hull on the main side panel). These counteract our aims by suggesting
 the software to be bespoke.
 
 
@@ -150,7 +150,7 @@ the software to be bespoke.
 
 In a real situation there are multiple stimuli affecting human behaviour.
 Exit signs entice those trying to escape whilst the majority of people
-adhere to no enty indications.
+adhere to no-entry indications.
 
 Hence additional environmental features should be added to assist
 with the behavioural model.
