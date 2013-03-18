@@ -13,7 +13,7 @@
 
 %\begin{abstract}
 %It is acknowledged that the cost of 
-%running evacuation drills in pubilc environments is relatively high both in time and money. This is because very often, the 
+%running evacuation drills in public environments is relatively high both in time and money. This is because very often, the 
 %evacuation drills have to be run at night where the chosen environment is not in service and consequently additional payments for 
 %equipments, hiring evacuees and fire consultant are needed. This results in fewer number of evacuation drills. 
 %There are also some types of evacuation that cannot be drilled both safely and accurately such as a large fire.
@@ -54,11 +54,11 @@ What a simulator provides is a means for an expert to extensively test the outco
 at minimal cost. By configuring variables in the simulation the expert can examine the probable outcome of multiple evacuations
 and look for potential sources of danger in a building or evacuation procedure.\\
 
-Of particular note is the ability to investigate the effects of human behaviour on the success of an evacuation. This ability is central to a successfull system and it is desirable to model the behaviour of the population as accurately as is acheivable \cite{psychology}.
+Of particular note is the ability to investigate the effects of human behaviour on the success of an evacuation. This ability is central to a successful system and it is desirable to model the behaviour of the population as accurately as is achievable \cite{psychology}.
 
 
 \subsection{Aims}
-The project's aims are driven by the desire to maximise the flexibility and extensibility of the system, and to make the system as accurate as is acheivable within the time avaiable. The four key aims can be summarised as follows.
+The project's aims are driven by the desire to maximise the flexibility and extensibility of the system, and to make the system as accurate as is achievable within the time available. The four key aims can be summarised as follows.
 
 \subsubsection{A Multi-Agent Model of Individuals and Individual Behaviour}
 Previous projects have emphasised crowd behaviour: they have modelled the population from a top down 
@@ -70,10 +70,10 @@ gives rises to the behaviour of the system as a whole'' \cite{AgentBasedTutorial
 \subsubsection{Use of Up-To-Date Technologies Wherever Possible}
 In even recently developed simulators now deprecated technologies such as Java3D are being used. This limits their future extensibility greatly and is not desirable.
 The underlying technologies used in development were chosen primarily based on their future potential and strength of community support.
-These are discussed in the [REFERENCE].
+These are discussed extensively in the Research chapter.
 
 \subsubsection{Use of Navigation Meshes in Environment Modelling}
-A Navigation Mesh is a graph representation of an environment in terms of a set of convex polygons which describe the `walkable' surface of an environment. This design aids agents in finding paths through large areas, whilst avoiding static obstacles in the environment.
+A Navigation Mesh is a graph representation of an environment in terms of a set of convex polygons which describe the `walk able' surface of an environment. This design aids agents in finding paths through large areas, whilst avoiding static obstacles in the environment.
 This technique has largely been pioneered in gaming, but is equally applicable in this setting. The benefits of a navigation mesh, or `navmesh' is that it allows agents to move 
 freely compared to other techniques such as representing the environment using a grid. A navmesh is typically combined with the powerful path finding algorithm A* to 
 optimise agent movement \cite{A*Review}.
@@ -113,7 +113,7 @@ result of agent interactions'' \cite{AgentBasedTutorial}.\\
 The MASSEgress project developed at Stanford University is an ongoing effort to develop a framework for the development of such systems \cite{MultiAgentFramework}.
 It has also led to the production of at least one prototype implementing this framework. 
 This project has utilised a modified version of this framework for the integration
-of agent behaviour. This is discussed further in the Research and Implementation sections.
+of agent behaviour. This is discussed further in Sections \ref{Res:sec:humanBehaviour} & \ref{Imp:sec:perceiveDecideAct}.
 
 
 \section{Environment}
@@ -160,7 +160,7 @@ The Tall Ship was chosen as the simulation environment because:
 \end{figure}
 
 It is important to note that only small scale staff evacuations have been conducted on the ship
-thus far considering the impractical nature of carrying out an evacuation with
+due to the impractical nature of carrying out an evacuation with
 actual visitors. Because of this restriction, an evacuation simulation of The
 Tall Ship is ideal to assess the safety of visitors on the ship in the event of an
 emergency evacuation.
