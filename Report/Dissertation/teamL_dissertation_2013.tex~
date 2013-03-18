@@ -47,6 +47,13 @@ By combining these, the evacuation simulator can be more realistic.
 \input{../Intro/Organisation}
 
 %==============================================================================
+
+\chapter{Requirements}
+\label{requirements}
+
+\input{../Requirements/team_project_requirement}
+
+%==============================================================================
 \chapter{Research}
 \label{research}
 
