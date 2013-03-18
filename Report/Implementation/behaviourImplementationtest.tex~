@@ -14,7 +14,7 @@ Note that a fresh PersonNavmeshRoutePlanner instance must be instantiated to cal
 
 \begin{figure}
 \centering
-\includegraphics[scale=0.5]{../UMLDiagrams/RoutePlanningSequence.png}
+\includegrahics[scale=0.5]{../UMLDiagrams/RoutePlanningSequence.png}
 \label{fig:RoutePlanSequence}
 \caption{Generation of an agent route as a MotionPath}
 \end{figure}
