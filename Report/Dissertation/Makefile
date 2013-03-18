@@ -1,6 +1,6 @@
 
 
-teamL_dissertation_2013.pdf: teamL_dissertation_2013.tex teamL_dissertation_2013.bib
+teamL_dissertation_2013.pdf: realclean teamL_dissertation_2013.tex teamL_dissertation_2013.bib
 	pdflatex teamL_dissertation_2013
 	bibtex teamL_dissertation_2013
 	pdflatex teamL_dissertation_2013

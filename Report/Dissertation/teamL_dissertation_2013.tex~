@@ -87,6 +87,7 @@ By combining these, the evacuation simulator can be more realistic.
 \label{evaluation}
 
 \input{../Evaluation/guievaluation} %not complete
+\input{../MockEvacuationsAndWhyTheyDidntHappen}
 
 %==============================================================================
 \chapter{Conclusion}
@@ -106,18 +107,28 @@ multimedia content of the project.
 
 
 %==============================================================================
+\clearpage
 \appendix
+\pagenumbering{roman}
 %==============================================================================
 
 
 \chapter{Prototypes and Problems Encountered}
-\input{PrototypeAndProblems}
+\input{../PrototypeAndProblems}
+
+\chapter{Think Aloud Evaluation Participant Notes}
+\input{../Evaluation/appendix}
+
+
+%==============================================================================
+\chapter{Glossary}
+\input{../Glossary}
+
 
 %==============================================================================
 
 
 
-%==============================================================================
 
 \bibliographystyle{unsrt}
 \bibliography{teamL_dissertation_2013}
