@@ -19,3 +19,4 @@ Prototype/OpenAL64.dll
 *.out
 *.synctex.gz
 *.toc
+*.jar

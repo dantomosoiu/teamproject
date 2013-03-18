@@ -18,7 +18,11 @@ import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 import com.jme3.scene.VertexBuffer;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.channels.FileChannel;
 import java.util.concurrent.Callable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -331,21 +335,52 @@ public class EvacSim extends SimpleApplication {
     /*Does Not Work. Blend files not found!*/
     public void newModel(String loc) {
         appSettings.setModelLocation("Models/ImportedModel/");
-        Spatial navMod = assetManager.loadModel(loc + "/NavModel.blend");
-        Spatial showMod = assetManager.loadModel(loc + "/ShowModel.blend");
+        File destFile1 = new File("assets/Models/ImportedModel/NavModel.blend");
+        if (destFile1.exists()) destFile1.delete();
+        File sourceFile1 = new File(loc + "/NavModel.blend");
+        File destFile2 = new File("assets/Models/ImportedModel/ShowModel.blend");
+        if (destFile2.exists()) destFile2.delete();
+        File sourceFile2 = new File(loc + "/ShowModel.blend");
+        
+        FileChannel source = null;
+        FileChannel destination = null;
+        try {
+            source = new FileInputStream(sourceFile1).getChannel();
+            destination = new FileOutputStream(destFile1).getChannel();
+            destination.transferFrom(source, 0, source.size());
+            source = new FileInputStream(sourceFile2).getChannel();
+            destination = new FileOutputStream(destFile2).getChannel();
+            destination.transferFrom(source, 0, source.size());
+            if(source != null) {
+                source.close();
+            }
+            if(destination != null) {
+                destination.close();
+            }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(EvacSim.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(EvacSim.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        
+        Spatial navMod = assetManager.loadModel("Models/ImportedModel/NavModel.blend");
+        Spatial showMod = assetManager.loadModel("Models/ImportedModel/ShowModel.blend");
         BinaryExporter exporter = BinaryExporter.getInstance();
-        File navModel = new File("assets/Models/NavModel.j3o");
+        File navModel = new File("assets/Models/ImportedModel/NavModel.j3o");
         try {
             exporter.save(navMod, navModel);
           } catch (IOException ex) {
             Logger.getLogger(Settings.class.getName()).log(Level.SEVERE, "Error: Failed to save NavMesh!", ex);
           }
-        File file2 = new File("assets/Models/ShowModel.j3o");
+        File file2 = new File("assets/Models/ImportedModel/ShowModel.j3o");
         try {
             exporter.save(showMod, file2);
           } catch (IOException ex) {
             Logger.getLogger(Settings.class.getName()).log(Level.SEVERE, "Error: Failed to save NavMeshCoords!", ex);
           }
+        destFile1.delete();
+        destFile2.delete();
     }
 
 }

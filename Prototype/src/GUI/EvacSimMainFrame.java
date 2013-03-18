@@ -142,7 +142,7 @@ public class EvacSimMainFrame extends javax.swing.JFrame {
         fileMenu.setText("File");
 
         importModel.setText("Import Model");
-        importModel.setEnabled(false);
+        //importModel.setEnabled(false);
         importModel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 importActionPerformed(evt);
@@ -282,6 +282,7 @@ public class EvacSimMainFrame extends javax.swing.JFrame {
     private void importActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adSetActionPerformed
         Importer importer = new Importer(this, settings, evacSim);
         sidePanel.updateSettings();
+        this.setTitle("TeamL Evacuation Simulator: " + settings.getModelName());
     }
     private void exitActionPerformed(java.awt.event.ActionEvent evt) {
         WindowEvent wev = new WindowEvent(this, WindowEvent.WINDOW_CLOSING);
