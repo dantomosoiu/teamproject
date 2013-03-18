@@ -2,7 +2,7 @@
 
 \section{Major Problems Encountered \& Future Work}
 
-Whilst in many ways the project was a success due to several problems
+Whilst in many ways the project was a success, due to several problems
 we failed to meet the full set of expected requirements (must have
 and should have). This section summarises the major issues that occurred
 and why. Further to this an explanation of how the work should be
@@ -22,19 +22,12 @@ implementation.
 jMonkeyEngine has extensive tutorials, however these are aimed at games
 development. The material soon got to a point where most of it was
 useless for our needs. This led us to abandon them quite early on.
-Unfortunately this led several members of the team with a poor understanding
-of the system, an example being how the update loop worked. This was
-not spotted until later on in the code as the heavier processing slowed
-things down causing the race conditions to show themselves. By this
-point finding and correcting all occurrences was a major task.
+Unfortunately this left several members of the team with a poor understanding
+of the system.
 
-From a documentation side whilst there is plenty available it does
-not seem well indexed. If you have an issue finding the answer is
-not as simple as a quick search but instead requires trawling through
-the manual until stumbling upon the information required.
+The documentation of advanced features also proved poorly organised and difficult to navigate.
 
-
-\subsubsection*{NavMesh Generation}
+\subsubsection{NavMesh Generation}
 \label{Problems:subsubsec:navmesh}
 The NavMesh package we used was based from an extremely powerful implementation
 in C++, Recast. Unlike the original instead of being implemented for
@@ -43,11 +36,12 @@ documented but claimed to be fully functional.
 
 Throughout the project we encountered several problems with the generation
 of meshes. The largest of these was an inability to work with overlapping
-navigable surfaces (i.e. multiple floors in a building). Overcoming
+navigable surfaces (i.e. multiple floors in a building). At the stage where these defects became apparent, we were already
+heavily commited to this package, and a lack of suitable alternatives could be found. Overcoming
 this required large amounts of modification at a heavy cost in time.
 
 
-\subsubsection*{Modelling Issues}
+\subsubsection{Modelling Issues}
 
 An issue we had failed to consider when choosing our initial location
 was the complexity of the structure. The curved floors proved a serious
@@ -62,14 +56,25 @@ together into one model. It was then we realised the plans did not
 align. This required heavy modification to fit the stairways into
 place.
 
-
+\subsubsection{Population Architecture}
+At the moment, although coded, almost none of the agent behaviour discussed previously is in usage. This was the result of a design problem which restricted the capability to correctly tie the behavioural algorithms to the agents.\\
+As discussed in the Agent Implementation Section \ref{Imp:subsec:peceiveDecideAct} \& Design Section \ref{Des:sec:population} , an agent's route is calculated in a two stage process, at the end of which a MotionPath is produced. This design emerged as the result of difficulties in reaching the aims of Prototype 2.\\
+To give an agent the required individual behaviour, the system must be able to:
+\begin{enumerate}
+\item{Stop an agent. From the position at which they were stopped, calculate a new route to a chosen target. Restart the agent to continue down this route.}
+\item{Access an agent's position at any time}
+\end{enumerate}
+Both of the above conditions need to be performed from a synchronised context. Unfortunately neither of these are possible in the current Population package architecture. The implementation of MotionPath heavily restricts access to an agent's position. While it is possible to stop an agent moving, no method has been found for triggering this in a meaningful sense that does not result in a system crash or thread deadlocking.\\
+This design occurred because the routing procedures and behavioural algorithms were developed in parallel. Since they were built up in incremental prototypes (see Appendix A), the challenges associated with merging these two aspects were not considered until late in the project. This could have been addressed with a partial reimplementation of the Population package, but the extensive problems with the navigation mesh found during stage 3 (see Appendix A) meant that the individual behaviour features were ultimately dropped.\\
+Nevertheless, we present an overview of the correct solution in Section \ref{threadingSolution}. We are confident that should the proposed reimplementation be carried out that it would be relatively simple to tie the behavioural methods to agents effectively.
 \subsection{Future Work}
 
 Below is listed in order of priority the next steps we shall take
 if the project is continued
 
 
-\subsubsection*{Implementation of a thread-pool and rewriting of the Person Class}
+\subsubsection{Implementation of a thread-pool and rewriting of the Person Class}
+\label{threadingSolution}
 
 The Person Class was developed early on and as such was built before
 we had a clear understanding of the technologies being used. As such
@@ -109,14 +114,14 @@ temporarily locking movement would restrict the accuracy of the behavioural
 model.
 
 
-\subsubsection*{Use of D{*} algorithm}
+\subsubsection{Use of D{*} algorithm}
 
 Currently A{*} is used to generate routes. By using D{*} instead these
 would support dynamic updating due to interactions with other members
 of the crowd or hazards.
 
 
-\subsubsection*{Use of ORCA for collision avoidance}
+\subsubsection{Use of ORCA for collision avoidance}
 \label{Problems:subsubsec:ORCA}
 
 Due to the large number of people our system is aimed to support collsion
@@ -126,7 +131,7 @@ Reciprocal Collision Avoidance) is an advanced set of algorithms designed
 to aid with this.
 
 
-\subsubsection*{Implementation of an advanced behavioural Model}
+\subsubsection{Implementation of an advanced behavioural Model}
 
 Due to the issues relating to understanding of the underlying engine
 work here had to be temporarily suspended. As a result of this the
@@ -136,7 +141,7 @@ allowing the functionality originally envisioned at the start of the
 project.
 
 
-\subsubsection*{Improvement of model importation and removal of maritime phrases}
+\subsubsection{Improvement of model importation and removal of maritime phrases}
 
 The project was always intended to be flexible towards a number of
 environments. Currently the importer is poor and allows no modification
@@ -146,7 +151,7 @@ Hull on the main side panel). These counteract our aims by suggesting
 the software to be bespoke.
 
 
-\subsubsection*{Addition of hazards and assurances into the model}
+\subsubsection{Addition of hazards and assurances into the model}
 
 In a real situation there are multiple stimuli affecting human behaviour.
 Exit signs entice those trying to escape whilst the majority of people
@@ -156,8 +161,4 @@ Hence additional environmental features should be added to assist
 with the behavioural model.
 
 
-\subsubsection*{Accurate fire and smoke representation}
 
-This links in heavily with the previous suggestion. Fire and smoke
-spread and so a dynamic model for these is required to further improve
-correct simulation of a real life event.
