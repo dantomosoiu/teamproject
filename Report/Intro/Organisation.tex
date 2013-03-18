@@ -24,7 +24,7 @@ By separating the development of the user interface from the development of the 
   
 \section{Development Process}
 \label{Team:subsec:process}
-One of the challenges of designing an evacuation simulator is defining a level of accuracy which can be deemed acceptable with respect to the project's resources, and then translating this into an effective design which balances the use of up-to-date techniques with an implementation plan. Many of the techniques that this project aimed to implement are complex. These techniques are discussed further in the section \ref{research} Research.\\
+One of the challenges of designing an evacuation simulator is defining a level of accuracy which can be deemed acceptable with respect to the project's resources, and then translating this into an effective design which balances the use of up-to-date techniques with an implementation plan. Many of the techniques that this project aimed to implement are complex. These techniques are discussed further throughout the Research Chapter\\
 Ultimately, it became clear that the most tangible way to make progress was to use a strategy of incremental prototyping \cite[Ch 2.3.2]{SommervilleSoftwareEng}. This would allow the team to progressively `scale up' ideas and to investigate the feasibility of implementing certain principles in a structured manner. However, incremental prototyping carries the following considerable risks which must be addressed:
 \begin{itemize}
 \item A tendency to produce low quality and difficult to maintain code.
@@ -36,7 +36,7 @@ To mitigate these risks, several techniques taken from the field of agile develo
 \begin{itemize}
 \item \textbf{Division into Subteams:} The team was divided as outlined above so as to allow these subteams to work in parallel on orthogonal tasks. This reduced communication overhead and the difficulty of managing change to the system.
 \item \textbf{Constant Refactoring:} Before the completion of each prototype or upon fixing a defect, significant refactoring was undertaken to improve code quality.
-\item \textbf{Pair Programming:} This technique was particularly helpful when fixing defects related to navigation (see Implementation \ref{implementation}) due to the complexity of these defects.
+\item \textbf{Pair Programming:} This technique was particularly helpful when fixing defects related to navigation (see Section \ref{Problems:subsubsec:navmesh}) due to the complexity of these defects.
 \item \textbf{Test First Development:} wherever the understanding of requirements was sufficient to allow it, test cases were developed for a feature before they were implemented.
 \end{itemize}
 
