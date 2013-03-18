@@ -2,6 +2,7 @@ This is BibTeX, Version 0.99c (Web2C 7.5.6)
 The top-level auxiliary file: teamL_dissertation_2013.aux
 The style file: unsrt.bst
 Database file #1: teamL_dissertation_2013.bib
+Warning--I didn't find a database entry for "TallShipSite"
 Warning--I didn't find a database entry for "tlx"
 Warning--I didn't find a database entry for "tlxinvariance"
 Warning--empty publisher in evacuationSimulatordefinition
@@ -13,48 +14,47 @@ Warning--empty publisher in HAndBoid
 Warning--empty publisher in Fbehavior
 Warning--empty publisher in HumanBehaviouralTraits
 Warning--empty year in GaleaMathModelling
-Warning--empty publisher in glasgowUSimulator
 Warning--empty journal in Dijkstra
 Warning--empty journal in Astar
-You've used 46 entries,
+You've used 42 entries,
             1791 wiz_defined-function locations,
-            666 strings with 9422 characters,
-and the built_in function-call counts, 6348 in all, are:
-= -- 490
-> -- 252
+            651 strings with 8981 characters,
+and the built_in function-call counts, 5843 in all, are:
+= -- 449
+> -- 239
 < -- 0
-+ -- 110
-- -- 64
-* -- 192
-:= -- 1006
-add.period$ -- 121
-call.type$ -- 46
-change.case$ -- 19
++ -- 103
+- -- 61
+* -- 185
+:= -- 935
+add.period$ -- 110
+call.type$ -- 42
+change.case$ -- 16
 chr.to.int$ -- 0
-cite$ -- 58
-duplicate$ -- 351
-empty$ -- 779
-format.name$ -- 64
-if$ -- 1457
+cite$ -- 53
+duplicate$ -- 326
+empty$ -- 706
+format.name$ -- 61
+if$ -- 1334
 int.to.chr$ -- 0
-int.to.str$ -- 46
-missing$ -- 41
-newline$ -- 216
-num.names$ -- 40
-pop$ -- 255
+int.to.str$ -- 42
+missing$ -- 39
+newline$ -- 197
+num.names$ -- 37
+pop$ -- 229
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 162
+skip$ -- 148
 stack$ -- 0
 substring$ -- 22
-swap$ -- 43
+swap$ -- 39
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
-warning$ -- 12
-while$ -- 41
-width$ -- 48
-write$ -- 412
+warning$ -- 11
+while$ -- 38
+width$ -- 44
+write$ -- 376
 (There were 14 warnings)
