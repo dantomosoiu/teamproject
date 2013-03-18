@@ -2,8 +2,8 @@
 \section{Selection of 3D Environment}
 
 The key decision before implementation could commence was the environment
-to work in. This was heavily inter-linked with the choice of main
-programming language. Due to time constraints building an entire 3D
+to work in. This was heavily interlinked with the choice of main
+programming language. Due to time constraints, building an entire 3D
 engine would be outside the scope of the project.
 
 
@@ -13,70 +13,67 @@ engine would be outside the scope of the project.
 \subsubsection{C++}
 
 Designed to be a superset of the C language, supporting the object-orientated
-paradigm. It is industry standard for almost all 3d graphics development
+paradigm. It is industry standard for almost all 3D graphics development
 \cite{Wilson2006}, bridging the gap between lower level languages
-such as C and object orientated languages such as Java and C\#. Due
-to its speed and power combined with available 3d libraries and very
-high portability if considering the merits of languages alone this
-would have been the easy choice! The majority of available engines
-are also written in the language offering a large selection when it
-came to this.
+such as C and object orientated languages such as Java and C\#. Some of the advantages of the
+language include its speed and power combined with the available 3D libraries and very
+high portability. The majority of available engines
+are also written in C++ offering a large selection.
 
-However as a team we had no experience at all with the C++ programming
+However, as a team we had no experience at all with the C++ programming
 and at the time of selection only a minor knowledge of C. This alone
-would be a steep learning curve, but to provide the 3d environment
-required an understanding of either the OpenGL library or Direct3d
-(See Graphics Standards Below) would have possibly also been required.
+would be a steep learning curve, but to provide the 3D environment
+required an understanding of either the OpenGL library or Direct3D
+(see Graphics Standards below) would have possibly also been required.
 There are also those who argue instead of trying to bridge gaps, low
-level components of games should be written in C. They argue due to
+level components of games should be written in C. They argue that due to
 the information hiding afforded by C++ it is often easier to write
-efficient code in its lower level counterpart!\cite{Wilson2006} Memory
+efficient code in its lower level counterpart\cite{Wilson2006}. Memory
 management is also far less advanced than alternatives offering an
 easy leeway to memory leaks.
 
-
 \subsubsection{Java}
 
-Written to have as few implementation dependencies as possible Java
-is incredibly portable \cite{AboutJava}. Rather than to binary Java
-compiles to what is known as byte-code which runs on the Java virtual
-machine unrelated to the architecture underneath. The language as
+Written to have as few implementation dependencies as possible, Java
+is incredibly portable\cite{AboutJava}. Rather than to binary, Java
+compiles to what is known as byte-code which runs on the Java Virtual
+Machine, unrelated to the architecture underneath. The language as
 with C++ implements the object-orientated paradigm allowing abstraction
 and with standard extensions such as Java3D offers a less intimidating
 entrance into 3D.
 
-With astonishingly powerful free IDEs such as Eclipse and Netbeans
+With powerful free IDEs such as Eclipse and Netbeans
 writing in Java becomes quick and painless. Threading is built in
-and whilst large the instruction set is easy to learn. To add to this
+and whilst large, the instruction set is easy to learn. Furthermore, 
 Java is the language we as a team have the most experience with. This
 would allow implementation of the basic components to begin immediately.
 There is also the Java garbage collector. This automatically retrieves
 memory which is no longer reachable taking away risks of memory leakage.
 
-The downside to Java is the abstraction from architecture comes at
+The downside to Java is that the abstraction from architecture comes at
 a cost of speed. Since there is both virtualisation combined with
-a high level environment things are far from efficient \cite{Jelovic}. 
+a high level environment it is not as efficient when compared to other languages such as C\cite{Jelovic}. 
 
 
 \subsubsection{Python / A high level scripting language}
 
 The majority of performance issues relating to 3D programming come
 from the underlying engine. Since we were anticipating usage of a
-preexisting system, we could then build our system over the top of
+pre-existing system, we could then build our system over the top of
 this using a high level language such as Python. Using libraries such
-as Boost.Python \cite{boostPython} the two languages can be bound
+as Boost.Python\cite{boostPython} the two languages can be bound,
 allowing claimed seamless interoperability. Performance bottlenecks
 due to Python could be overcome using C++. Less critical tasks could
 be written quickly and easily in Python.
 
-With some team Python experience combined with a less intense learning
-path than pure C++ this methodology was a strong consideration.
+Some of the team had some Python experience. This fact combined with the less intense learning
+path than pure C++ meant that this methodology was a strong consideration.
 
 
 \subsection{Graphics standards}
 
 Whilst this mostly came down to our choice of engine, it was a consideration
-to take during our decisions. There are only really two options, Direct3D
+to take during our decisions. There are two viable options, Direct3D
 and OpenGL.
 
 
@@ -91,9 +88,9 @@ industry standard for Windows platforms\cite{Roy2002}.
 
 Its power is also one of its key weaknesses. There is a steeper learning
 curve than OpenGL and it takes considerable work just to initialize.
-The other big weakness is portability. Outside of windows support
-is extremely poor. Whilst Wine, a compatibility layer for Unix based
-systems offer mostly functional ports these are impeded due to dependencies
+The other big weakness is portability. Support outside of Windows is extremely poor. 
+Whilst Wine, a compatibility layer for Unix-based
+systems offer mostly functional ports, these are impeded due to dependencies
 on other Windows libraries.
 
 
@@ -101,20 +98,17 @@ on other Windows libraries.
 
 OpenGL is an open standard API which was for a number of years little
 disputed as the industry standard. It is available on a large variety
-of platforms including Windows, Mac \& Linux based systems. It provides
+of platforms including Windows, Mac, and Linux based systems. It provides
 a strong range of functionality and was designed to be as future-proof
-as possibly. There is a proven history of stability and to add to
+as possible. There is a proven history of stability and to add to
 its core functionality there is the ability for extensions. Since
 its future is controlled by a board made up from a large diverse group
 of companies its strengths apply to a large number of applications.
 
 Downsides are also many but revolve around two main issues. OpenGL
-was built 10 years ago and the future is was built to work for as
+was built 10 years ago and the future it is was built to work for has
 arguably come and gone. Extensions go a way to remedy this but are
 hindered by many being vendor specific.
-
-Code can also be incredibly messy, again partially down to extensions.
-Often one function can have over a dozen names!
 
 
 \subsection{3D Engines}
@@ -124,21 +118,21 @@ an existing engine, either developed for simulation or game purposes.
 Concepts required are needed by a wide range of industries making
 current developments extensive and abundant.
 
-Due to time constraints it would be incredibly difficult to create
+Due to time constraints it would be difficult to create
 a bespoke system able to provide as detailed and efficient performance.
 As a result of this we decided to use one of these pre-existing solutions.
 This choice would be heavily interlinked with our preferences towards
 other tools.
 
-Many of these are actually games engines. Games engines often are
+Many of these are games engines. Games engines often are
 designed to simulate a real-world environment which offers exactly
-what is needed for this project. Due to the copious options available
+what is needed for this project. Due to the many options available,
 only a subset are mentioned below.
 
 
-\subsubsection{Unity }
+\subsubsection{Unity}
 
-Unity is a cross platform engine written in C/C++, however it also
+Unity is a cross-platform engine written in C/C++, however it also
 supports code written in C\# and JavaScript. It has its own rendering
 capable of using Direct3D or OpenGL. There is strong support for 3D
 model importation from a large range of formats. It has its own scripting
@@ -146,16 +140,13 @@ language as well as supporting C\# and Boo (which has a syntax inspired
 from Python). The basic license would provide all the features we
 needed and is free.
 
-Unity's strengths are also the reasons not to use it for a large crown
-based simulator. The emphasis is on providing incredibly powerful
-GUI graphical design tools got games. The logic is aimed to be done
+The emphasis is on providing incredibly powerful
+GUI design tools not games. The logic is aimed to be done
 entirely in scripting languages which would give performance issues
-when combined with the behavioural processing we would require.
+when combined with the behavioural processing that would be required.
 
-Whilst C\# can be used we have no experience with the language. Whilst
-its similarities to Java would allow a short learning period it then
-asks why we wouldn't just use Java in the first place. C\# as with
-Java offers performance shortfalls when compared to C/C++.
+Whilst C\# can be used, we have no experience with the language. C\#, as with
+Java, offers performance shortfalls when compared to C/C++.
 
 
 \subsubsection{Panda3D}
@@ -166,15 +157,15 @@ environment with a relatively shallow learning curve. There is a strong
 and active community support system but the documentation appears
 to be lacking compared to other alternatives.
 
-The platform is cross platform among the three key operating systems.
+It is cross platform among the three key operating systems.
 It supports both OpenGL and Direct3D providing a relatively thin wrapper
 around the lower level APIs.
 
-If we decided to take the Python and C++ route this would be a strong
+If the decision was made to take the Python and C++ route, this would be a strong
 option to consider.
 
 
-\subsubsection{jMonkey Engine}
+\subsubsection{jMonkeyEngine}
 
 jMonkeyEngine is designed partially as a games engine and partially as a
 replacement for the now unsupported Java3D. Written purely in Java
@@ -182,12 +173,12 @@ all the advantages mentioned towards the language above would also
 apply here. All recent versions of OpenGL are also fully supported
 offering advanced graphics capabilities.
 
-Fundamentally the project is solely a collection of libraries making
+Fundamentally, the project is solely a collection of libraries making
 it a low-level tool which would give us the flexibility we would need
 considering the majority of our code would be related to the simulation
 as opposed to the graphics rendering.
 
-If we were to decide to work in Java there was no comparable competition.
+If the decision was made to work in Java, then there is no comparable competition.
 
 
 \subsubsection{CryENGINE 3}
@@ -197,9 +188,9 @@ technology demo for Nvidia but the company soon saw its potential.
 This has led to massive success with a burst of successful high profile
 games based on the engine.
 
-Programming for CryEngine is done using C++. This gives an extremely
+Programming for CryEngine is accomplished using C++. This gives an extremely
 powerful combination allowing incredible graphics with a high performance
-back end.
+back-end.
 
 The big downside is the lack of support for OpenGL. As a result there
 is little portability outside of Windows. It is also only free for
@@ -212,25 +203,23 @@ required.
 
 Blender is a free and comprehensive 3D production suite, one component
 of which is a games engine. Considering Blender was a strong contender
-for use in our modelling (See Modelling below) there would be no importation
+for use in our modelling (see Modelling below) there would be no importation
 issues. The engine is a mostly independent component written in C++
 including support for Python scripting. Whilst a relatively young
-project it offers all the 3D functionality that would be required,
-however is lacking in the back-end code support we would need.
+project, it offers all the 3D functionality that would be required,
+however is lacking in the back-end code support which would be needed.
 
 
 \subsection{3D Modelling}
 
-To manipulate a 3D environment we needed to first create one! This
-involved modelling the chosen structure in a way that could be imported
+To manipulate a 3D environment, such an environment must first be created. This
+involves modelling the chosen structure in a way that could be imported
 into the physics engine. Since many of the engines considered included
-modellers again this decision was somewhat linked to that decision.
-
-
+modellers, the decision of what 3D modelling tool to use is linked to the decision of what graphics environment is chosen. 
 
 \subsubsection{Blender}
 
-As mentioned above Blender is a comprehensive 3D production suite.
+As mentioned above, Blender is a comprehensive 3D production suite.
 Its main usage is in creation of 3D models. A large number of the
 games engines we were considering either supported Blenders native
 .blend format, or one of the many alternative formats the suite could
@@ -239,37 +228,35 @@ and active support community.
 
 The feature-set offered is comparable with some of the widespread industry
 tools. Released under a GNU General Public License the software is
-free for all usage. We also have some basic experience with the package.
+free to use.
 
 
 \subsubsection{Autodesk 3DS Max}
 
 3DS Max is an incredibly powerful suite and the one most used in the
-modelling industry. Comprehensive and versatile but the features come
+modelling industry. It is comprehensive and versatile but the features come
 at a cost. Licenses are extremely expensive and the system requirements
 are far from low. Whilst the license cost can be avoided since free
 versions are available for students, we would need to gain access
-to hardware capable handling the software.
-
+to hardware capable of handling the software.
 
 \subsubsection{Hexagon}
 
-Hexagon unlike the other options discussed is purely a modelling program.
-Offering equal functionality in this area advanced and detailed models
+Hexagon, unlike the other options discussed is purely a modelling program.
+Offering equal functionality in this area, advanced and detailed models
 can be built. The interface is intuitive and easy to learn. The software
 also has a very low retail price.
-
 
 \subsection{Choices}
 
 Whilst the Python and C++ routes were a strong consideration it was
 decided the benefits failed to overcome the time required to learn
-a completely new language. Although documentation was far from perfect
+a completely new language. Although the documentation was not perfect,
 jMonkeyEngine appeared to offer all the features we required. It was decided
-that provided the back-end code was written in a reasonably efficient
-manner performance should not be an issue.
+that, provided the back-end code was written in a reasonably efficient
+manner, performance should not be an issue.
 
-Since jMonkeyEngine offered an inbuilt importation Blender was a complimentary
+Since jMonkeyEngine offered an inbuilt importer, Blender was a complimentary
 modelling choice. The minor benefits offered by the proprietary solutions
 were far from counterbalancing the restrictions licenses would incur.
 
