@@ -4,9 +4,16 @@
 @misc{boostPython,
   author = {Dave Abrahams},
   title = {Boost Python Documentation},
-  url = {http://www.boost.org/doc/libs/1_53_0/libs/python/doc/index.html},
-  owner = {hector},
+  publisher = {\url{http://www.boost.org/doc/libs/1_53_0/libs/python/doc/index.html}},
   timestamp = {2013.03.17}
+}
+
+@MISC{Recast,
+  title = {\url{https://code.google.com/p/recastnavigation/}}
+}
+
+@MISC{NMGen,
+  title = {\url{http://www.critterai.org/nmgen_study/}}
 }
 
 @PHDTHESIS{EgressBehaviourKirchner,
@@ -62,7 +69,7 @@
 @ARTICLE{Jelovic,
   author = {Dejan Jelovic},
   title = {Why Java Will Always Be Slower than C++},
-  owner = {hector},
+  publisher = {\url{www.jelovic.com/articles/why_java_is_slow.htm}},
   timestamp = {2013.03.17}
 }
 
@@ -92,8 +99,7 @@
 @misc{AboutJava,
   author = {Oracle},
   title = {Learn About Java Technology},
-  url = {http://www.java.com/en/about/},
-  owner = {hector},
+  publisher = {http://www.java.com/en/about/}},
   timestamp = {2013.03.17}
 }
 
@@ -112,6 +118,16 @@
   publisher = {IEEE, TRANSACTIONS OF SYSTEMS SCIENCE AND CYBERNETICS}
 }
 
+@ARTICLE{Dstar,
+    author = {Anthony Stentz and Is Carnegle Mellon},
+    title = {Optimal and Efficient Path Planning for Unknown and Dynamic Environments},
+    journal = {International Journal of Robotics and Automation},
+    year = {1993},
+    volume = {10},
+    pages = {89--100}
+}
+
+
 @ARTICLE{HerdingInHumans,
   author = {Ramsey M. Raafat, Nick Chater and Chris Frith},
   title = {Herding in humans},
@@ -124,7 +140,6 @@
   title = {Direct3D vs. OpenGL: Which API to Use When, Where, and Why},
   journal = {Graphics Programming and Theory; GamerDev.net},
   year = {2002},
-  owner = {hector},
   timestamp = {2013.03.17}
 }
 
@@ -147,8 +162,8 @@
   title = {Why C++},
   journal = {Game Architect},
   year = {2006},
-  owner = {hector},
   timestamp = {2013.03.17},
+
   url = {http://gamearchitect.net/Articles/WhyC++.html}
 }
 

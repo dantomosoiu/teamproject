@@ -16,45 +16,45 @@ Warning--empty journal in Jelovic
 Warning--empty year in Jelovic
 Warning--empty journal in Dijkstra
 Warning--empty journal in Astar
-You've used 42 entries,
+You've used 44 entries,
             1791 wiz_defined-function locations,
-            643 strings with 8815 characters,
-and the built_in function-call counts, 5724 in all, are:
-= -- 438
-> -- 222
+            652 strings with 9078 characters,
+and the built_in function-call counts, 5902 in all, are:
+= -- 448
+> -- 224
 < -- 0
-+ -- 98
++ -- 100
 - -- 56
 * -- 174
-:= -- 915
-add.period$ -- 110
-call.type$ -- 42
-change.case$ -- 16
+:= -- 927
+add.period$ -- 112
+call.type$ -- 44
+change.case$ -- 18
 chr.to.int$ -- 0
-cite$ -- 56
-duplicate$ -- 330
-empty$ -- 699
+cite$ -- 58
+duplicate$ -- 340
+empty$ -- 735
 format.name$ -- 56
-if$ -- 1308
+if$ -- 1356
 int.to.chr$ -- 0
-int.to.str$ -- 42
+int.to.str$ -- 44
 missing$ -- 41
-newline$ -- 197
+newline$ -- 203
 num.names$ -- 37
-pop$ -- 239
+pop$ -- 251
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 139
+skip$ -- 155
 stack$ -- 0
 substring$ -- 0
-swap$ -- 38
+swap$ -- 40
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 14
 while$ -- 36
-width$ -- 44
-write$ -- 376
+width$ -- 46
+write$ -- 386
 (There were 14 warnings)
