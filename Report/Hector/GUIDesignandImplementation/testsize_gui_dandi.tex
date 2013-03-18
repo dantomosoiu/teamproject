@@ -70,27 +70,36 @@ found the navmesh didn't give an immediate understanding of what
 the model represented so toggles were added to allow a physical representation
 of the ship to be shown.
 
-These changes manifested themselves as can be seen below. Due to more
+These changes manifested themselves as can be seen in \ref{secondRefinementGUI}. Due to more
 time being spent on this iteration it gives a much more complete feel
 and is considerably closed to the initial wireframe.\\
 
+\begin{figure}
+\centering
+\label{secondRefinementGUI}
 \includegraphics[width=10cm]{../images/GUIv2}
+\caption{Second refinement to GUI}
+\end{figure}
 
 Further talks with users suggested that for those not used to computer-games
-the keyboard based camera controls were not immediately understandable
-so a control panel was added. Due to the way functionality was implemented
+the keyboard based camera controls were not immediately understandable.
+To fix this a control panel was added. Due to the way functionality was implemented
 a route button was added for testing purposes. It was then decided
 this would be of use to users so was left in. Finally, to allow a
 more native feel the theming was set to inherit from the system the
-code was run from. A new wireframe (below) was drawn up as below to
+code was run from. A new wireframe (\ref{thirdRefinementGUI}) was drawn up  to
 show this.\\
 
+\begin{figure}
+\centering
+\label{thirdRefinementGUI}
 \includegraphics[width=10cm]{../images/GUIv2WF}
-
+\caption{Third refinement to GUI}
+\end{figure}
 
 \subsection{Final GUI}
 
-The wireframe above was implmented to give our final GUI. It gives
+The wireframe in \ref{finalGUI1} was implmented to give our final GUI. It gives
 a polished finish and meets original aims well and takes into consideration
 user feedback. 
 
@@ -98,9 +107,21 @@ Initial work was done using the Netbeans GUI builder. This allowed
 the layout we required to be built quickly, but not the functionality.
 To achieve this some work was needed on the raw swing code.
 
-The final interface is shown below, both in linux and windows.\\
+The final interface is shown in \ref{finalGUI2}, both in linux and windows.\\
 
- \centerline{\includegraphics[width=18cm]{../images/GUIv3FULL}}
+\begin{figure}
+\centering
+\label{finalGUI1}
+\includegraphics[width=18cm]{../images/GUIv3FULL}
+\caption{Final GUI wireframe}
+\end{figure}
 
- \centerline{\includegraphics[width=18cm]{../images/GUIv3FULLWIN}}
+\begin{figure}
+\centering
+\label{finalGUI2}
+\includegraphics[width=18cm]{../images/GUIv3FULLWIN}
+\caption{Final GUI in Swing}
+\end{figure}
+
+
 %\end{document}
