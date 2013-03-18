@@ -181,6 +181,28 @@ ks in the existing system.
 \end_layout
 
 \begin_layout Subsubsection*
+Use of D* algorithm
+\end_layout
+
+\begin_layout Standard
+Currently A* is used to generate routes.
+ By using D* instead these would support dynamic updating due to interactions
+ with other members of the crowd or hazards.
+\end_layout
+
+\begin_layout Subsubsection*
+Use of ORCA for collision avoidance
+\end_layout
+
+\begin_layout Standard
+Due to the large number of people our system is aimed to support collsion
+ control and avoidance needs to be properly implemented.
+ Currently individuals are perfectly able to pass through oneanother.
+ ORCA (Optimal Reciprocal Collision Avoidance) is an advanced set of algorithms
+ designed to aid with this.
+\end_layout
+
+\begin_layout Subsubsection*
 Implementation of an advanced behavioural Model
 \end_layout
 
