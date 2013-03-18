@@ -81,8 +81,14 @@ jMonkey
 \end_layout
 
 \begin_layout Standard
-We had several issues with the es engine, most related to an underestimation
- 
+We had several issues with the engine, most related to an underestimation
+ of its complexity.
+ This was partially down to poor documentation but also due to inadequite
+ research into the system before commencing implementation.
+\end_layout
+
+\begin_layout Standard
+
 \end_layout
 
 \begin_layout Subsubsection*
