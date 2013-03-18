@@ -26,6 +26,7 @@ public class PersonCategory implements Serializable{
         minspeed = maxspeed = minstress = maxstress = 1;
         color = "White";
         numberOfPeople = 0;
+        random = new Random();
     }
     
     public PersonCategory(String name, float minspeed, float maxspeed, float minstress, float maxstress, String color, int numberOfPeople) {
