@@ -71,16 +71,28 @@ Considering the advantages and disadvantages of both methods, a within-subjects 
 For both sets of users, they will carry out a set of fixed tasks and the time taken to perform these tasks as well as any mistakes they make will be recorded. This data will be used to form the evaluation results and will allow the identification of flaws in the usability of the system and areas for improvement. A section entitled ‘Further Work’ will detail the improvements (if any) which could be made to the system to enhance both the usability and functionality of the system based on the results from both evaluation techniques detailed above.
 
 \subsubsection{Think-aloud Protocol}
-In addition to the usability experiment discussed above, the think-aloud protocol will also be used to gather information from users of the system. This method was introduced in the usability field by Clayton Lewis and is discussed in  Task-Centered User Interface Design: A Practical Introduction by C. Lewis and J. Rieman. []. Think-aloud protocols involve participants thinking aloud as they perform a set of pre-specified tasks. The idea is to have the users of the system saying out loud exactly what they are doing and how they are feeling. This allows the experimenter to gain a first-hand sight of a user using the product and provides insightful knowledge into how the end user would go about performing tasks.
+In addition to the usability experiment discussed above, the think-aloud protocol will also be used to gather information from users of the system. This method was introduced in the usability field by Clayton Lewis and is discussed in Task-Centered User Interface Design: A Practical Introduction by C. Lewis and J. Rieman. []. Think-aloud protocols involve participants thinking aloud as they perform a set of pre-specified tasks. The idea is to have the users of the system saying out loud exactly what they are doing and how they are feeling. This allows the experimenter to gain a first-hand sight of a user using the product and provides insightful knowledge into how the end user would go about performing tasks.
 
 The information gathered from the experiment will be analysed and the difficulties the user had will be discussed and rectified by changing the user interface. Any major changes to the user interface will have to be evaluated again to ensure the changes actually improve the usability of the system as a whole. 
 
-\subsection{NASA TLX: Task Load Index (TODO)}
-\begin{itemize}
-\item NASA TLX was used after the Think Aloud evaluation to measure the workload of the participants relating to the tasks that they had just performed. Talk about what it is and how it measures workload.
-\item Include pictures of the rating scale and the description of the rating scale from the instruction manual.
-\item Discuss the pairwise comparison and whether to use Raw TLX (RTLX). Cite 20 years later paper.
-\end{itemize}
+\subsection{NASA TLX: Task Load Index}
+%\begin{itemize}
+%\item NASA TLX was used after the Think Aloud evaluation to measure the workload of the participants relating to the tasks that they had just performed. Talk about what it is and how it measures workload.
+%\item Include pictures of the rating scale and the description of the rating scale from the instruction manual.
+%\item Discuss the pairwise comparison and whether to use Raw TLX (RTLX). Cite 20 years later paper.
+%\end{itemize}
+
+NASA Task Load Index (TLX) will be used to measure the workload of the participants relating to the tasks that they are asked to perform. It is a subjective workload assessment tool which is used to derive an overall workload score based on a weighted average of the six subscales, namely Mental Demands, Physical Demands, Temporal Demands, Own Performance, Effort and Frustration\cite{tlx}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{../images/ratingscale.png}
+	\caption{NASA TLX Rating Scales}
+\end{figure}
+
+After the participants have given a rating on each of the six subscales, they are asked to carry out a pairwise comparison between the subscales to identify their relative importance, in the eyes of the user.
+
+This particular experiment involves asking the user to carry out pairwise comparisons, however, some research has suggested that the exclusion of the pairwise comparisons between subscales can increase experimental validity\cite{tlxinvariance}.
 
 %==============================================================================================
 \section{User Interface Evaluation Results}
@@ -97,7 +109,7 @@ Inclusion of messages on the screen stating what is happening at a particular mo
 \subsubsection{Match between system and real world}
 The arrow keys (up, down, left and right) for camera movement are positioned in a logical order which would be familiar to the majority of users. This allows an easy mapping from real world natural conventions to the system which makes the system easier to use. Non-natural placement of these buttons on the screen would cause confusion in users and lead to frustration.
 
-The system does use the term ‘navmesh’ in the checkbox labelled ‘show navmesh’. The user is likely to be unfamiliar with this technical term and would thus have to consult the documentation to learn properly what it does. The system should use words and phrases familiar to the user so it would seem appropriate to replace the word ‘navmesh’ with something along the lines of ‘ship outline’ or ‘ship frame’.
+The system does use the term `navmesh' in the checkbox labelled `show navmesh'. The user is likely to be unfamiliar with this technical term and would thus have to consult the documentation to learn properly what it does. The system should use words and phrases familiar to the user so it would seem appropriate to replace the word `navmesh' with something along the lines of `ship outline' or `wireframe'.
 
 \subsubsection{User control and freedom}
 The user has the ability to control the camera manually using the on-screen buttons. The allows the user to view the ship in any way they want. There is also functionality to increase or decrease the speed of the camera and also to select preset camera locations from a drop-down menu which increases the control and freedom the user has. The number of preset camera locations is currently two. This should be expanded to give the user more options.
