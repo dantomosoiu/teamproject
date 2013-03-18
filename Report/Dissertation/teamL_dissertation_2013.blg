@@ -2,6 +2,8 @@ This is BibTeX, Version 0.99c (Web2C 7.5.6)
 The top-level auxiliary file: teamL_dissertation_2013.aux
 The style file: unsrt.bst
 Database file #1: teamL_dissertation_2013.bib
+Warning--I didn't find a database entry for "tlx"
+Warning--I didn't find a database entry for "tlxinvariance"
 Warning--empty publisher in evacuationSimulatordefinition
 Warning--empty publisher in evacuationModel
 Warning--empty publisher in gameProgramming
@@ -16,7 +18,7 @@ Warning--empty journal in Dijkstra
 Warning--empty journal in Astar
 You've used 44 entries,
             1791 wiz_defined-function locations,
-            651 strings with 9057 characters,
+            653 strings with 9073 characters,
 and the built_in function-call counts, 5940 in all, are:
 = -- 456
 > -- 227
@@ -55,4 +57,4 @@ warning$ -- 12
 while$ -- 37
 width$ -- 46
 write$ -- 392
-(There were 12 warnings)
+(There were 14 warnings)
