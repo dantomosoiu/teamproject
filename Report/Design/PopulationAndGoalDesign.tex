@@ -33,7 +33,7 @@ By calling the perceiveDecideAct method, an agent is taken through all three sta
 \\
 
 An agent is primarily realised by the three classes: Person, PersonMovementListener and PersonNavmeshRoutePlanner. 
-Each Person holds the attributes, including speed and stress (see Section \ref{Res:subsec:unifyingParameters} which represent the characteristics of 
+Each Person holds the attributes, including speed and stress (see Section \ref{Res:subsec:unifyingParameters}) which represent the characteristics of 
 an evacuee. It also coordinates the visual representation of an agent and the movement of the agent towards its goal.
 \\
 In order to plan a route to a location, a Person must create a PersonNavmeshRoutePlanner instance. Its purpose is to act 
@@ -64,7 +64,7 @@ ExitSignGoal is an example of a non-passable goal which could direct agents to a
 \label{fig:behaviourtogoalmodel}
 \end{figure}
 
-As figure \ref{fig:behaviourtogoalmodel} shows, the static BehaviourModel instance holds a collection of all Goals in the simulation. For the purposes of calculating agent's paths out of the environment, a collection of all the ExitGoals is also kept separately, since it is anticipated that these will be used most frequently in calculations.\\
+As Figure \ref{fig:behaviourtogoalmodel} shows, the static BehaviourModel instance holds a collection of all Goals in the simulation. For the purposes of calculating agent's paths out of the environment, a collection of all the ExitGoals is also kept separately, since it is anticipated that these will be used most frequently in calculations.\\
 
 %\end{document}
 

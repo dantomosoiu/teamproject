@@ -1,4 +1,5 @@
-This is BibTeX, Version 0.99dThe top-level auxiliary file: teamL_dissertation_2013.aux
+This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
+The top-level auxiliary file: teamL_dissertation_2013.aux
 The style file: unsrt.bst
 Database file #1: teamL_dissertation_2013.bib
 Warning--empty publisher in evacuationSimulatordefinition
@@ -13,4 +14,45 @@ Warning--empty year in GaleaMathModelling
 Warning--empty journal in Dijkstra
 Warning--empty journal in Astar
 Warning--empty publisher in uidesign
+You've used 47 entries,
+            1791 wiz_defined-function locations,
+            656 strings with 9149 characters,
+and the built_in function-call counts, 6211 in all, are:
+= -- 473
+> -- 231
+< -- 0
++ -- 104
+- -- 57
+* -- 170
+:= -- 953
+add.period$ -- 118
+call.type$ -- 47
+change.case$ -- 20
+chr.to.int$ -- 0
+cite$ -- 59
+duplicate$ -- 352
+empty$ -- 793
+format.name$ -- 57
+if$ -- 1444
+int.to.chr$ -- 0
+int.to.str$ -- 47
+missing$ -- 40
+newline$ -- 215
+num.names$ -- 37
+pop$ -- 268
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 177
+stack$ -- 0
+substring$ -- 0
+swap$ -- 44
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 12
+while$ -- 36
+width$ -- 49
+write$ -- 407
 (There were 12 warnings)
