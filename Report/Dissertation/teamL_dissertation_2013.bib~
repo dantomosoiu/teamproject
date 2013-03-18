@@ -10,7 +10,8 @@
 }
 
 @PHDTHESIS{EgressBehaviourKirchner,
-  author = {Ansgar Kirchnera and Hubert Klupfel and Katsuhiro Nishinari and Andreas Schadschneider and Michael Schreckenberg},
+  author = {Ansgar Kirchnera, Hubert Klupfel, Katsuhiro Nishinari,Andreas Schadschneider,
+	Michael Schreckenberg},
   title = {Simulation of competitive egress behavior: comparison with aircraft
 	evacuation data},
   school = {Various Institutes},
@@ -136,7 +137,7 @@
 }
 
 @PHDTHESIS{BottleneckStudy,
-  author = {Tobias Kretz and Anna Grunebohm and Michael Schreckenberg},
+  author = {Tobias Kretz, Anna Grunebohm and Michael Schreckenberg},
   title = {Experimental study of pedestrian flow through a bottleneck},
   school = {University of Dulsburg-Essen},
   year = {2008}
