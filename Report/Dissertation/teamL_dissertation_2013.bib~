@@ -99,14 +99,25 @@
 @MISC{AboutJava,
   HOWPUBLISHED = "\url{http://www.java.com/en/about/}",
   AUTHOR = {Oracle},
-  YEAR = {2013}
+  timestamp = {2013.03.17}
 }
 
 @MISC{java3D,
   TITLE = {{Java3D}},
   HOWPUBLISHED = "\url{http://www.oracle.com/technetwork/java/javase/tech/index-jsp-138252.html}",
   AUTHOR = {Oracle},
-  YEAR = {2013}
+  timestamp = {2013.03.17}
+}
+
+
+
+
+@MISC{ORCA,
+  TITLE = {{Optimal
+Reciprocal Collision Avoidance}},
+  HOWPUBLISHED = "\url{http://gamma.cs.unc.edu/ORCA/}",
+  AUTHOR = {Jur van den Berg and Stephen J. Guy and Jamie Snape and Ming C. Lin and Dinesh Manocha},
+  timestamp = {2013.03.17}
 }
 
 @PHDTHESIS{panMASSEgressThesis,

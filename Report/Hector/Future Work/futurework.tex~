@@ -1,5 +1,7 @@
 
 
+
+
 \section{Major Problems Encountered \& Future Work}
 
 Whilst in many ways the project was a success due to several problems
@@ -123,7 +125,7 @@ iterating over these major decreases in waste could be overcome.
 
 \subsubsection{Use of D{*} algorithm}
 
-Currently A{*} is used to generate routes. By using an extension of this instead, D{*} \ref{Dstar}, these would support accounting for real-time changes in the environment due to various hazards such as fire or smoke.
+Currently A{*}\cite{Astar} is used to generate routes. By using an extension of this instead, D{*} \cite{Dstar}, these would support accounting for real-time changes in the environment due to various hazards such as fire or smoke.
 
 
 \subsubsection{Use of ORCA for collision avoidance}

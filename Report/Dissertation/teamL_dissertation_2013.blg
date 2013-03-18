@@ -16,45 +16,45 @@ Warning--empty year in GaleaMathModelling
 Warning--empty publisher in glasgowUSimulator
 Warning--empty journal in Dijkstra
 Warning--empty journal in Astar
-You've used 44 entries,
+You've used 46 entries,
             1791 wiz_defined-function locations,
-            653 strings with 9073 characters,
-and the built_in function-call counts, 5940 in all, are:
-= -- 456
-> -- 227
+            666 strings with 9422 characters,
+and the built_in function-call counts, 6348 in all, are:
+= -- 490
+> -- 252
 < -- 0
-+ -- 101
-- -- 57
-* -- 168
-:= -- 939
-add.period$ -- 115
-call.type$ -- 44
-change.case$ -- 17
++ -- 110
+- -- 64
+* -- 192
+:= -- 1006
+add.period$ -- 121
+call.type$ -- 46
+change.case$ -- 19
 chr.to.int$ -- 0
-cite$ -- 56
-duplicate$ -- 337
-empty$ -- 739
-format.name$ -- 57
-if$ -- 1368
+cite$ -- 58
+duplicate$ -- 351
+empty$ -- 779
+format.name$ -- 64
+if$ -- 1457
 int.to.chr$ -- 0
-int.to.str$ -- 44
-missing$ -- 40
-newline$ -- 206
-num.names$ -- 38
-pop$ -- 249
+int.to.str$ -- 46
+missing$ -- 41
+newline$ -- 216
+num.names$ -- 40
+pop$ -- 255
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 153
+skip$ -- 162
 stack$ -- 0
-substring$ -- 0
-swap$ -- 41
+substring$ -- 22
+swap$ -- 43
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 12
-while$ -- 37
-width$ -- 46
-write$ -- 392
+while$ -- 41
+width$ -- 48
+write$ -- 412
 (There were 14 warnings)

@@ -1,0 +1,12 @@
+The following is a summary of the requirements we feel have been acheived. Testing or initial requirements proved challenging because most of our client's request were non-functional requirements or complex to test (eg. the requirement of having a usable GUI). Unfortunately an acceptance test demonstration could not be carried out with the client at the time of writing.
+
+\begin{enumerate}
+\item{All of the system's must have requirements}
+\item{Ability to set different categories of agent}
+\item{Ability for user to specify environmental and population variables}
+\item{Pseudo-random population generation including randomising inital parameters as well as positions}
+\item{Accurate timescale}
+\item{Allow user to change the perspective (camera location and visual representation)}
+\end{enumerate}
+
+The extent to which we have acheived an effective GUI is discussed seperately in the User Evaluation Section \ref{evaluation}. 
