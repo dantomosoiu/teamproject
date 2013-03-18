@@ -87,6 +87,7 @@ By combining these, the evacuation simulator can be more realistic.
 \label{evaluation}
 
 \input{../Evaluation/guievaluation} %not complete
+\input{../MockEvacuationsAndWhyTheyDidntHappen}
 
 %==============================================================================
 \chapter{Conclusion}
@@ -108,8 +109,7 @@ multimedia content of the project.
 %==============================================================================
 \clearpage
 \appendix
-\pagenumbering{arabic}
-\blinddocument
+\pagenumbering{roman}
 %==============================================================================
 
 

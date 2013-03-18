@@ -1,4 +1,4 @@
-\section{Evaluating the Behavioural Model}
+\Section{Evaluating the Behavioural Model}
 When attempting to evaluate the effectiveness of a behavioural model implementation, in general all approaches involve a real-world enactment in the form of a mock evaluation. Alternatively, it is possible to replicate a previous incident where a real evacuation occured and try to recreate this in the system. Both of these approaches have severe drawbacks.\\
 
 At first glance a mock evaluation may seem a tangible approach. However it has the following major drawbacks:
