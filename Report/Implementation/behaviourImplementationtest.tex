@@ -3,7 +3,7 @@
 %\begin{document}
 \section{Route Planning}
 \label{Imp:sec:routePlanning}
-Planning an agent's route from its current point to a given point is acheived by a collaboration between a Person and PersonNavmeshRoutePlanner instance. Routes are stored using the jMonkeyEngine class MotionPath. This contains a set of waypoints and methods to animate the agent's movement between these waypoints. The maximum distance between each waypoint is roughly constant and can be set as a parameter to the following procedure (it is not constant when the agent must turn at a point closer to its current position that the maximum distance between points). The distance used is an important decision in the implementation. If it is too large the accuracy of the animation tends to degrade. If it is too low then a large number of waypoints will be stored needlessly.After extensive experimentation 0.5 was found to be an acceptable value for the maximum distance between waypoints. In practice this provided a balance between quality and efficiency.\\
+Planning an agent's route from its current point to a given point is acheived by a collaboration between a Person and PersonNavmeshRoutePlanner instance. Routes are stored using the jMonkeyEngine class MotionPath. This contains a set of waypoints and methods to animate the agent's movement between these waypoints. The maximum distance between each waypoint is roughly constant and can be set as a parameter to the following procedure (it is not constant when the agent must turn at a point closer to its current position that the maximum distance between points). The distance used is an important decision in the implementation. If it is too large the accuracy of the animation tends to degrade. If it is too low then a large number of waypoints will be stored needlessly. After extensive experimentation 0.5 was found to be an acceptable value for the maximum distance between waypoints. In practice this provided a balance between quality and efficiency.\\
 A route is calculated in two stages:
 \begin{enumerate}
 \item{A path is calculated on the navigation mesh using a modified A* algorithm to traverse the mesh like a graph. This returns a small set of points. These points illustrate the lines of motion an agent must take to reach their goal. This is performed in the constructor for a PersonNavmeshRoutePlanner.}
@@ -13,16 +13,16 @@ distance. This terminates with a waypoint being placed on the goal location the 
 Note that a fresh PersonNavmeshRoutePlanner instance must be instantiated to calculate a route. The relationship between the Person and PersonNavmeshRoutePlanner instances is expressed in \ref{fig:RoutePlanSequence}.
 
 \begin{figure}
+\label{fig:RoutePlanSequence}
 \centering
 \includegraphics[scale=0.5]{../UMLDiagrams/RoutePlanningSequence.png}
-\label{fig:RoutePlanSequence}
 \caption{Generation of an agent route as a MotionPath}
 \end{figure}
 
 
 \section{Implementing the Perceive, Decide, Act Process}
 \label{Imp:sec:perceiveDecideAct}
-Here we discuss the techniques and algorithms used to realise the Perceive, Decide, Act process previously discussed [Reference to Research].
+Here we discuss the techniques and algorithms used to realise the Perceive, Decide, Act process previously discussed in Section \ref{Res:subsec:perceiveDecideAct}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%Perception Implementation
 \subsection{Perception}
@@ -47,10 +47,10 @@ Agent perception is achieved using the following simple algorithm:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%Decision Implementation
 \subsection{Decision}
 \label{Imp:subsec:decision}
-In the Research Chapter [Reference] the three classes of human behaviour considered in the scope of this project were defined. In practice, only herding behaviour implemented as part of the Decide step; queueing and competetive behaviour must be handled asynchronously using collision avoidance techniques [Reference to Dan's work].\\
+In the Research Chapter [Reference] the three classes of human behaviour considered in the scope of this project were defined. In practice, only herding behaviour implemented as part of the Decide step; queueing and competetive behaviour must be handled asynchronously using collision avoidance techniques. Unfortunately collison avoidance was not implemented in the final system due to various problems discussed in Section \ref{Problems:subsec:problemsecountered}. Future solutions to implement collision avoidance are discussed in Section \ref{Problems:subsubsec:ORCA}.
 To decide on a new action, an agent must select one of the visible goals that were found in the Perceive step (if any). Otherwise it must continue on its current path. The decision making process is realised using an extendable algorithm, which sequentially considers sets of different classes of goal according to their priority. Exits have the highest priority.\\
 
-The final algorithm only makes decisions regarding exits, for reasons we will discuss later in the report. However it is easy to extend this process to include other goal types by adding further conditionals following the pattern laid out below.\\
+The final algorithm only makes decisions regarding exits, due to various issues which emerged during development (see Section \ref{Problems:subsec:problemsecountered}). However it is easy to extend this process to include other goal types by adding further conditionals following the pattern laid out below.\\
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%Decide Algorithm
 \begin{algorithm}[H]

@@ -43,7 +43,7 @@ Since 3D environment models contain information about more than just the walkabl
 
 \subsection{Conversion to a Navigation Mesh}
 In order to allow agents to navigate over a mesh, a collection of the 3D surfaces (in this case, interconnected triangles) can be used. Any point interior to these triangles represents a valid location at which an agent can be positioned at any point in time. Furthermore, the agent can move from any point inside the triangle's surface to any other point inside the same surface.\\
-Each of these triangles can have references (links) to zero up to three other neighbouring triangles, one for each edge of the triangle. If a link exists between two triangle (i.e. they share a common edge), this means that an agent can traverse from one triangle to the other or vice-versa. As a result, a collection of such triangles, or cells, is a convenient structure on which to use graph path-finding algorithms: every cell can be interpreted as a graph node, and any link to other cells as a vertex between two nodes. This whole collection of interconnected triangles (cells), which can be abstracted as a graph, is called a Navigation Mesh (navmesh).\\
+Each of these triangles can have references (links) to zero to three other neighbouring triangles, one for each edge of the triangle. If a link exists between two triangle (i.e. they share a common edge), this means that an agent can traverse from one triangle to the other or vice-versa. As a result, a collection of such triangles, or cells, is a convenient structure on which to use graph path-finding algorithms: every cell can be interpreted as a graph node, and any link to other cells as a vertex between two nodes. This whole collection of interconnected triangles (cells), which can be abstracted as a graph, is called a Navigation Mesh (navmesh).\\
 The Recast\cite{Recast} project is an open-source tool-set focused on the creation of navigation meshes from geometry meshes. The jMonkeyEngine's navmesh package, which is based on Recast, was used in order to convert the project's imported environment models into agent-navigable structures.\\
 To create a navigation from an existing geometry mesh, a series of sequential processes is required. A summary of these processes and their parameters and results will be discussed next, based on the NMGen study \cite{NMGen}.
 \begin{enumerate}
@@ -138,7 +138,7 @@ In order to obtain a well-formed mesh, several parameters are required to be pas
 	\caption{Setting a correct value for the maximum traversable step, elements such as stairs can be detected and made walkable}
 \end{figure} 
   
-  \item\textbf{Maximum traversable slope}: Represents the maximum slope of a ramp that is still considered traversable. Any ramps with a higher slope will be considered unwalkable and will be considered an obstacle by the navmesh.
+  \item\textbf{Maximum traversable slope}: Represents the maximum slope of a ramp that is still deemed traversable. Any ramps with a higher slope will be considered unwalkable and will be considered an obstacle by the navmesh.
   
   \item\textbf{Border size of traversable area}: Represents the distance from the walls to the actual walkable area. For a well-formed navmesh, this should be at least the same size as an agent's surface area.
   
@@ -269,7 +269,8 @@ In order to obtain a well-formed mesh, several parameters are required to be pas
 	
 
 The problem that arises with such a high number of variables is the fact that end-users will not be able to import new models from different evacuation environments without a significant overhead. If wrong parameters are used for the mesh generation, the set of algorithms used might generate badly formed meshes, which do not map the source environment closely enough or even fail all-together.
-Still, with proper scaling of the model, either in Blender stage or after importing the geometrical mesh, importing models of different magnitudes can be achieved.
+Still, with proper scaling of the model, either in Blender stage or after importing the geometrical mesh, importing models of different magnitudes can be achieved.\\
+
 Since the space available for this report is limited, navigation mesh generation was presented only succinctly. For more in-depth information about each of the steps taken and how the previously discussed parameters influence the resulted mesh, the reader can refer to the NMGen Project documentation \cite{NMGen}.
 \section{Navigation}
 
@@ -290,8 +291,8 @@ Once the buildNavigationPath has returned control to its caller, the Path passed
 \subsection{Pathfinding}
 \label{pathfinding}
 
-The buildNavigationPath method from the NavMesh class is in charge of the actual pathfinding routine. Since the navigable surface of the environment is mapped into cells which link to their neighbouring cells, this data structure can be regarded as a non-oriented graph. Therefore, graph pathfinding algorithms like Dijkstra\cite{Dijkstra} or A*\cite{Astar} can be used.  While the number of agents required for the initial environment is small (200), A* would be a more scalable option, being faster than Dijkstra thanks to heuristics.\\
-The pathfinding method used in buildNavigationPath is using A*: a priority queue structure (MinHeap) is used to store intermediary paths from the source to destination, sorted by their lowest expected cost. The heuristic function used in the A* implementation is the euclidean distance from the center of the current cell to the goal. This distance is added to the total cost of the rout up to the current location, and based on these data for each of a current cell's neighbours, decisions are made to consider the cells for further paths or ignore them.\\
+The buildNavigationPath method from the NavMesh class is in charge of the actual pathfinding routine. Since the navigable surface of the environment is mapped into cells which link to their neighbouring cells, this data structure can be regarded as a non-oriented graph. Therefore, graph pathfinding algorithms like Dijkstra\cite{Dijkstra} or A*\cite{Astar} can be used.  While the number of agents required for the initial environment is small (200), A* would be a more scalable option, being faster than Dijkstra thanks to heuristics which attempt to preempt the optimal path.\\
+The pathfinding method used in buildNavigationPath is using A*: a priority queue structure (MinHeap) is used to store intermediary paths from the source to destination, sorted by their lowest expected cost. The heuristic function used in the A* implementation is the euclidean distance from the center of the current cell to the goal. This distance is added to the total cost of the route up to the current location, and based on these data for each of a current cell's neighbours, decisions are made to consider the cells for further paths or ignore them.\\
 Once the calling agent receives control back from the method, the Path passed as a parameter will hold a valid route from the agent's position to its destination, and can be used for scheduling movement.
 
 %\bibliographystyle{plain}
