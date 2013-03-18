@@ -28,11 +28,12 @@ to conventions it gives a familiar feel to most who have used a typical
 windows based system within the last decade.\\
 
 \begin{figure}
-\label{initialGUI}
 \centering
 \includegraphics[width=10cm]{../images/GUIv1WF}
-\caption{First attempt at wireframing GUI}
+\caption{First attempt at wireframing GUI\label{ref:initialGUI}}
 \end{figure}
+
+%\caption{Sample configuration\label{fig:sampleconfig}}
 
 \subsection{GUI Implementation and Revision}
 
@@ -46,7 +47,7 @@ higher performance \cite{SWT}.
 This however would come at a cost of portability as well as the time
 consideration mentioned above.
 
-The initial GUI implementation (\ref{initialGUI}) was a quick and crude attempt towards the initial
+The initial GUI implementation (\ref{ref:initialGUI}) was a quick and crude attempt towards the initial
 wireframe. Its purpose was more towards checking how well the JMonkey
 canvas could be displayed within the Swing layout than producing a
 suitable end product.\\
@@ -76,9 +77,8 @@ and is considerably closed to the initial wireframe.\\
 
 \begin{figure}
 \centering
-\label{secondRefinementGUI}
 \includegraphics[width=10cm]{../images/GUIv2}
-\caption{Second refinement to GUI}
+\caption{Second refinement to GUI\label{secondRefinementGUI}}
 \end{figure}
 
 Further talks with users suggested that for those not used to computer-games
@@ -92,9 +92,8 @@ show this.\\
 
 \begin{figure}
 \centering
-\label{thirdRefinementGUI}
 \includegraphics[width=10cm]{../images/GUIv2WF}
-\caption{Third refinement to GUI}
+\caption{Third refinement to GUI\label{thirdRefinementGUI}}
 \end{figure}
 
 \subsection{Final GUI}
@@ -107,20 +106,18 @@ Initial work was done using the Netbeans GUI builder. This allowed
 the layout we required to be built quickly, but not the functionality.
 To achieve this some work was needed on the raw swing code.
 
-The final interface is shown in \ref{finalGUI2}, both in linux and windows.\\
+The final interface is shown in \ref{finalGUI2}, both in Linux and Windows.\\
 
 \begin{figure}
 \centering
-\label{finalGUI1}
 \includegraphics[width=18cm]{../images/GUIv3FULL}
-\caption{Final GUI wireframe}
+\caption{Final GUI wireframe\label{finalGUI1}}
 \end{figure}
 
 \begin{figure}
 \centering
-\label{finalGUI2}
 \includegraphics[width=18cm]{../images/GUIv3FULLWIN}
-\caption{Final GUI in Swing}
+\caption{Final GUI in Swing\label{finalGUI2}}
 \end{figure}
 
 
