@@ -1,7 +1,5 @@
 
 
-
-
 \section{Major Problems Encountered \& Future Work}
 
 Whilst in many ways the project was a success due to several problems
@@ -14,7 +12,7 @@ continued based from experience so far is provided.
 \subsection{Problems Encountered}
 
 
-\subsubsection{jMonkey}
+\subsubsection*{jMonkey}
 
 We had several issues with the engine, most related to an underestimation
 of its complexity. This was partially down to poor documentation but
@@ -36,7 +34,7 @@ not as simple as a quick search but instead requires trawling through
 the manual until stumbling upon the information required.
 
 
-\subsubsection{NavMesh Generation}
+\subsubsection*{NavMesh Generation}
 
 The NavMesh package we used was based from an extremely powerful implementation
 in C++, Recast. Unlike the original instead of being implemented for
@@ -49,7 +47,7 @@ navigatable surfaces (ie multiple floors in a building). Overcoming
 this required large amounts of modification at a heavy cost in time.
 
 
-\subsubsection{Modelling Issues}
+\subsubsection*{Modelling Issues}
 
 An issue we had failed to consider when choosing our initial location
 was the complexity of the structure. The curved floors proved a serious
@@ -65,50 +63,13 @@ align. This required heavy modification to fit the stairways into
 place.
 
 
-\subsubsection{Population Architecture Mistakes } %%Rename or remove
-At the moment, although coded, almost none of the agent behaviour discussed previously is in usage. This was the result of a design problem which restricted the capability to correctly tie the behavioural algorithms to the agents.\\
-As discussed in the Agent Implementation \ref{Imp:sec:perceiveDecideAct} \& Design sections \ref{Des:sec:population}, an agent's route is calculated in a two stage process, at the end of which a MotionPath is produced. This design emerged as the result of difficulties in reaching the aims of Prototype 2.\\
-To give an agent the required individual behaviour, the system must be able to:
-\begin{enumerate}
-\item{Stop an agent. From the position at which they were stopped, calculate a new route to a chosen target. Rest art the agent to continue down this route.}
-\item{Access an agent's position at any time}
-\end{enumerate}
-Both of the above conditions need to be performed from a synchronised context. Unfortunately neither of these are possible in the current Population package architecture. The implementation of MotionPath heavily restricts access to an agent's position. While it is possible to stop an agent moving, no method has been found for triggering this in a meaningful sense that does not result in a system crash or thread deadlocking.\\
-This design occurred because the routing procedures and behavioural algorithms were developed in parallel. Since they were built up in incremental prototypes \ref{Team:subsec:process}, the challenges associated with merging these two aspects were not considered until late in the project. This could have been addressed with a partial reimplementation of the Population package, but the extensive problems with the navigation mesh found during stage 3 \ref{Proto:sec:main} meant that the individual behaviour features were ultimately dropped.\\
-
-
-
-
-
-
-
-
-
-
-%%%% HECTOR TAKE CARE OF THIS REFERENCE
-
-
-
-
-Nevertheless, we present an overview of the correct solution in section \ref{hectorneedstoaddthisshit}. We are confident that should the proposed reimplementation be carried out that it would be relatively simple to tie the behavioural methods to agents effectively.
-
-
-
-%%%% HECTOR TAKE CARE OF THIS REFERENCE
-
-
-
-
-
-
-
 \subsection{Future Work}
 
 Below is listed in order of priority the next steps we shall take
 if the project is continued
 
 
-\subsubsection{Implementation of a thread-pool and rewriting of the Person Class}
+\subsubsection*{Implementation of a thread-pool and rewriting of the Person Class}
 
 The Person Class was developed early on and as such was built before
 we had a clear understanding of the technologies being used. As such
@@ -119,25 +80,52 @@ it from scratch.
 Further to this currently each person is represented by an individual
 thread. This requires considerable overhead and is one of the key
 performance bottlenecks in the existing system. By converting a person
-to an abstract data structure and having a threadpool of worker threads
-iterating over these major decreases in waste could be overcome.
+to an abstract data structure and having a threadpool of workers major
+decreases in waste could be overcome. In each person we would store
+a reference to the relavant behavioural class. These would be static
+since only one for each category would be required and would inherit
+methods from a generic superclass. Variables in the classes would
+control basic and user created categories, whilst the possibility
+to override methods would allow hard coded extreme changes, such as
+to add in a disabled visitor or a staff member.
+
+We would need some kind of data structure to store each persons location.
+This would have to be made thread safe to allow usage by the pool.
+Ideally this would store people in an order linked to their position
+making locating others within a specific radius of a point easy (needed
+for collision control mentioned below). The worker threads would iterate
+over each person on each cycle of the update loop. The behavioural
+methods would be fed a list of other nearby people and environmental
+factors (such as nearby exits). It would generate a new location in
+a single unit of movement based upon this data, the category class's
+variables such as speed and the current average frames per second.
+The Person in question would be moved by this distance and the worker
+would move on to the next person. We would either need to lock other
+people within close viscinity whilst this calculation was performed,
+or check before moving the person nobody had moved into their path.
+To decide which action to take here further research would need to
+be performed both into the performance of each method and whether
+temporarily locking movement would restrict the accuracy of the behavioural
+model.
 
 
-\subsubsection{Use of D{*} algorithm}
+\subsubsection*{Use of D{*} algorithm}
 
-Currently A{*}\cite{Astar} is used to generate routes. By using an extension of this instead, D{*} \cite{Dstar}, these would support accounting for real-time changes in the environment due to various hazards such as fire or smoke.
+Currently A{*} is used to generate routes. By using D{*} instead these
+would support dynamic updating due to interactions with other members
+of the crowd or hazards.
 
 
-\subsubsection{Use of ORCA for collision avoidance}
+\subsubsection*{Use of ORCA for collision avoidance}
 
 Due to the large number of people our system is aimed to support collsion
 control and avoidance needs to be properly implemented. Currently
 individuals are perfectly able to pass through oneanother. ORCA (Optimal
-Reciprocal Collision Avoidance) \cite{ORCA} is an advanced set of algorithms designed
+Reciprocal Collision Avoidance) is an advanced set of algorithms designed
 to aid with this.
 
 
-\subsubsection{Implementation of an advanced behavioural Model}
+\subsubsection*{Implementation of an advanced behavioural Model}
 
 Due to the issues relating to understanding of the underlying engine
 work here had to be temporarily suspended. As a result of this the
@@ -147,7 +135,7 @@ allowing the functionality originally envisioned at the start of the
 project.
 
 
-\subsubsection{Improvement of model importation and removal of maritime phrases}
+\subsubsection*{Improvement of model importation and removal of maritime phrases}
 
 The project was always intended to be flexible towards a number of
 environments. Currently the importer is poor and allows no modification
@@ -157,7 +145,7 @@ Hull on the main sidepanel). These counteract our aims by suggesting
 the software to be bespoke.
 
 
-\subsubsection{Addition of hazards and assurances into the model}
+\subsubsection*{Addition of hazards and assurances into the model}
 
 In a real situation there are multiple stimuli affecting human behaviour.
 Exit signs entice those trying to escape whilst the majority of people
@@ -167,9 +155,8 @@ Hence additional environmental features should be added to assist
 with the behavioural model.
 
 
-\subsubsection{Accurate fire and smoke representation}
+\subsubsection*{Accurate fire and smoke representation}
 
 This links in heavily with the previous suggestion. Fire and smoke
 spread and so a dynamic model for these is required to further improve
 correct simulation of a real life event.
-
