@@ -86,7 +86,7 @@ NASA Task Load Index (TLX) will be used to measure the workload of the participa
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.5]{../images/ratingscale.png}
+	\includegraphics[scale=0.4]{../images/ratingscale.png}
 	\caption{NASA TLX Rating Scales}
 \end{figure}
 
@@ -170,11 +170,19 @@ A summary of the findings of the Think Aloud evaluation is discussed below. Deta
 \item The terminology used in the user interface must be standardised to remove jargon words such as ‘navmesh’ which would be unclear to the user. Task 2 highlighted that while some users guessed that ‘ship frame’ was equivalent to the ‘navmesh’ in this particular situation, 5 of the 8 participants were confused by the technical language. 
 \end{itemize}
 
-\subsection{NASA TLX: Task Load Index (TODO)}
-\begin{itemize}
-\item Insert graph.
-\item Discuss that there is a low workload in using the system.
-\end{itemize}
+\subsection{NASA TLX: Task Load Index}
+%\begin{itemize}
+%\item Insert graph.
+%\item Discuss that there is a low workload in using the system.
+%\end{itemize}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.25]{../images/tlxresults.png}
+	\caption{Average workload across participants}
+\end{figure}
+
+%% a few sentences to add
 
 %==============================================================================================
 \section{Appendix A: Think Aloud Evaluation Participant Notes}
