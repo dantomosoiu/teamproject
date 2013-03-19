@@ -59,7 +59,7 @@ place.
 
 \subsubsection{Population Architecture}
 At the moment, although coded, almost none of the agent behaviour discussed previously is in usage. This was the result of a design problem which restricted the capability to correctly tie the behavioural algorithms to the agents.\\
-As discussed in the Agent Implementation Section \ref{Imp:subsec:peceiveDecideAct} \& Design Section \ref{Des:sec:population} , an agent's route is calculated in a two stage process, at the end of which a MotionPath is produced. This design emerged as the result of difficulties in reaching the aims of Prototype 2.\\
+As discussed in the Agent Implementation Section \ref{Imp:subsec:perceiveDecideAct} \& Design Section \ref{Des:sec:population} , an agent's route is calculated in a two stage process, at the end of which a MotionPath is produced. This design emerged as the result of difficulties in reaching the aims of Prototype 2.\\
 To give an agent the required individual behaviour, the system must be able to:
 \begin{enumerate}
 \item{Stop an agent. From the position at which they were stopped, calculate a new route to a chosen target. Restart the agent to continue down this route.}
@@ -117,9 +117,7 @@ model.
 
 \subsubsection{Use of D{*} algorithm}
 
-Currently A{*} is used to generate routes. By using D{*} instead these
-would support dynamic updating due to interactions with other members
-of the crowd or hazards.
+Currently A{*} is used to generate routes. By using an extension of this instead, D{*} \ref{Dstar}, these would support accounting for real-time changes in the environment due to various hazards such as fire or smoke.
 
 
 \subsubsection{Use of ORCA for collision avoidance}
@@ -128,7 +126,7 @@ of the crowd or hazards.
 Due to the large number of people our system is aimed to support, collision
 control and avoidance needs to be properly implemented. Currently
 individuals are perfectly able to pass through one another. ORCA (Optimal
-Reciprocal Collision Avoidance) is an advanced set of algorithms designed
+Reciprocal Collision Avoidance) \ref{ORCA} is an advanced set of algorithms designed
 to combat this.
 
 
