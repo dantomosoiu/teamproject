@@ -24,3 +24,6 @@ TSES/OpenAL64.dll
 !/TSES/lib/cai-nmgen-0.1.2.jar
 !/Submission/*
 
+/Prototype/nbproject/private/
+/Prototype/build/
+/Prototype/dist/
