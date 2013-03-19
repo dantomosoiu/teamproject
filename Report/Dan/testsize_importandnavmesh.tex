@@ -36,7 +36,7 @@ In this particular case, the jME mesh will hold the environment's geometric info
 
 \subsection {Choice of data structure}
 In order to simulate a person's movement in the environment, a way to store and use information about its walkable surfaces needs to be found.
-A matrix-type structure, or a grid, is easy to visualise and implement. Surfaces are divided into tiny cells of the same size, each holding information about the type of surface it maps, and links to its neighbours. However this is costly in terms of memory consumption and processing power, as a very large amount of cells for would be needed for mapping reasonably large environments.\\
+A matrix-type structure, or a grid, is easy to visualise and implement. Surfaces are divided into tiny cells of the same size, each holding information about the type of surface it maps, and links to its neighbours. However this is costly in terms of memory consumption and processing power, as a very large amount of cells would be needed for mapping reasonably large environments.\\
 A more efficient alternative are Navigation Meshes, as convex polygons are used to cover the walkable surface areas. This way, large open areas can be covered by a handful of polygons, greatly reducing the amount of memory needed. Since each individual polygon can still be considered a node, holding references to its neighbours, the whole structure can be used as a graph, which will later allow us to use efficient pathfinding algorithms, such as Dijkstra or A*.\\
 Since 3D environment models contain information about more than just the walkable surfaces, a series of algorithms have to be used to extract and filter it into a navigation mesh.
 
