@@ -5,14 +5,14 @@ TLEvacSim/TLEvacSim/build/
 /Model/JMonkey Project/Michael/build/
 /Model/JMonkey Project/Michael/nbproject/private/
 /Model/JMonkey Project/Michael/dist/
-/Prototype/nbproject/private/
-/Prototype/build/
+/TSES/nbproject/private/
+/TSES/build/
 /Model/JMonkey Project/Michael_1/nbproject/private/
 /Model/JMonkey Project/Michael_1/build/
 /Model/JMonkey Project/Michael_1/dist/
-/Prototype/dist/
-Prototype/lwjgl64.dll
-Prototype/OpenAL64.dll
+/TSES/dist/
+TSES/lwjgl64.dll
+TSES/OpenAL64.dll
 *.aux
 *.bbl
 *.log
@@ -20,6 +20,7 @@ Prototype/OpenAL64.dll
 *.synctex.gz
 *.toc
 *.jar
-/Prototype/dist/*
-!/Prototype/lib/cai-nmgen-0.1.2.jar
+/TSES/dist/*
+!/TSES/lib/cai-nmgen-0.1.2.jar
 !/Submission/*
+
